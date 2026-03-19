@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reusable Architecture — Proof of Value</title>
+  <meta name="description" content="Building templated, composable systems that scale across features and products — not one-off solutions. Every component designed to compose with others.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d97757'/><text x='50' y='68' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='60' fill='white'>A</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #d97757;
+      --accent-hover: #c4623f;
+      --accent-bg: rgba(217,119,87,0.1);
+      --blue: #5b7083;
+      --blue-bg: rgba(91,112,131,0.08);
+      --green: #6b8f71;
+      --green-bg: rgba(107,143,113,0.08);
+      --purple: #8b7bb5;
+      --purple-bg: rgba(139,123,181,0.08);
+      --yellow: #b5924c;
+      --yellow-bg: rgba(181,146,76,0.08);
+      --red: #c27165;
+      --red-bg: rgba(194,113,101,0.08);
+      --text: #131314;
+      --text-secondary: #5a5a5f;
+      --text-tertiary: #8e8e93;
+      --surface: #faf9f0;
+      --surface-dim: #f2f1e8;
+      --surface-card: #ffffff;
+      --border: #e5e4db;
+      --shadow-sm: 0 1px 3px rgba(19,19,20,0.06), 0 1px 2px rgba(19,19,20,0.04);
+      --nav-height: 64px;
+    }
+
+    [data-theme="dark"] {
+      --accent: #e09070;
+      --accent-hover: #eba88e;
+      --accent-bg: rgba(224,144,112,0.12);
+      --blue: #8fa8bd;
+      --blue-bg: rgba(143,168,189,0.1);
+      --green: #8fb896;
+      --green-bg: rgba(143,184,150,0.1);
+      --purple: #a99fd0;
+      --purple-bg: rgba(169,159,208,0.1);
+      --yellow: #d4b46e;
+      --yellow-bg: rgba(212,180,110,0.1);
+      --red: #d99690;
+      --red-bg: rgba(217,150,144,0.1);
+      --text: #ececec;
+      --text-secondary: #a0a0a5;
+      --text-tertiary: #6e6e73;
+      --surface: #1a1a1c;
+      --surface-dim: #232325;
+      --surface-card: #2a2a2d;
+      --border: #333336;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.15);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    ::selection { background: rgba(217,119,87,0.25); color: #131314; }
+    [data-theme="dark"] ::selection { background: rgba(224,144,112,0.3); color: #ececec; }
+
+    /* --- Nav --- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,249,240,0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-height); transition: background 0.3s;
+    }
+    [data-theme="dark"] nav { background: rgba(26,26,28,0.92); }
+    .nav-inner {
+      max-width: 100%; margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between; height: var(--nav-height);
+    }
+    .nav-left { display: flex; align-items: center; gap: 12px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+    .nav-logo-mark {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--accent);
+      display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 600;
+    }
+    .nav-logo-text { font-size: 16px; font-weight: 600; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: var(--text); }
+    .nav-link--primary {
+      background: var(--accent);
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 48px;
+    }
+    .nav-link--primary:hover { background: var(--accent-hover); }
+    .nav-icon-btn {
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); background: transparent; color: var(--text-secondary);
+      border-radius: 50%; cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s;
+    }
+    .nav-icon-btn:hover { background: var(--surface-dim); color: var(--text); }
+    .nav-icon-btn svg { width: 18px; height: 18px; }
+    .nav-icon-btn .icon-moon { display: none; }
+    [data-theme="dark"] .nav-icon-btn .icon-sun { display: none; }
+    [data-theme="dark"] .nav-icon-btn .icon-moon { display: block; }
+
+    /* --- Sidebar Toggle --- */
+    .sidebar-toggle {
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      border: none; background: transparent; color: var(--text-secondary);
+      border-radius: 50%; cursor: pointer; transition: background 0.2s, color 0.2s;
+    }
+    .sidebar-toggle:hover { background: var(--surface-dim); color: var(--text); }
+
+    /* --- Left Sidebar --- */
+    .sidebar-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.2); z-index: 80;
+    }
+    .sidebar-overlay.visible { display: block; }
+    .sidebar {
+      position: fixed; top: var(--nav-height); left: 0; bottom: 0;
+      width: 260px; background: var(--surface);
+      border-right: 1px solid var(--border); z-index: 90;
+      transform: translateX(-100%);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto; display: flex; flex-direction: column;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-section { padding: 16px 16px 8px; }
+    .sidebar-section-label {
+      font-size: 11px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.8px; color: var(--text-tertiary);
+      padding: 0 12px; margin-bottom: 8px;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px; font-size: 14px; font-weight: 400;
+      color: var(--text-secondary); text-decoration: none;
+      border-radius: 48px; transition: background 0.15s, color 0.15s;
+    }
+    .sidebar-link:hover { background: var(--surface-dim); color: var(--text); }
+    .sidebar-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: 8px 16px; }
+    .sidebar-spacer { flex: 1; }
+    .sidebar-footer { padding: 16px; border-top: 1px solid var(--border); }
+    .sidebar-footer-text { font-size: 12px; color: var(--text-tertiary); text-align: center; }
+
+    /* --- Page Layout --- */
+    .page { margin-top: 0; }
+
+    /* --- Hero --- */
+    .hero {
+      text-align: center; padding: 72px 40px 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px; font-size: 12px; font-weight: 600;
+      color: var(--accent); background: var(--accent-bg);
+      border-radius: 48px; margin-bottom: 24px; letter-spacing: 0.3px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 4.5vw, 52px); font-weight: 400;
+      line-height: 1.12; color: var(--text); margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: clamp(16px, 1.8vw, 18px); color: var(--text-secondary);
+      line-height: 1.65; max-width: 700px; margin: 0 auto;
+    }
+
+    /* --- Stats Strip --- */
+    .stats {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+    .stat {
+      text-align: center; padding: 24px 16px;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-value { font-size: 28px; font-weight: 600; color: var(--accent); margin-bottom: 2px; }
+    .stat-label { font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
+
+    /* --- Content --- */
+    .content { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+
+    /* --- Section --- */
+    .section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .section-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .section-icon svg { width: 20px; height: 20px; }
+    .section-icon--blue { background: var(--blue-bg); color: var(--blue); }
+    .section-icon--green { background: var(--green-bg); color: var(--green); }
+    .section-icon--purple { background: var(--purple-bg); color: var(--purple); }
+    .section-icon--yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .section-icon--red { background: var(--red-bg); color: var(--red); }
+    .section-icon--accent { background: var(--accent-bg); color: var(--accent); }
+    .section-title { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+    .section-desc {
+      font-size: 15px; color: var(--text-secondary); line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    /* --- Item Cards --- */
+    .items { display: flex; flex-direction: column; gap: 12px; }
+    .item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px; background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 8px; transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .item:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+    .item-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      margin-top: 7px; flex-shrink: 0;
+    }
+    .item-dot--blue { background: var(--blue); }
+    .item-dot--green { background: var(--green); }
+    .item-dot--purple { background: var(--purple); }
+    .item-dot--yellow { background: var(--yellow); }
+    .item-dot--red { background: var(--red); }
+    .item-dot--accent { background: var(--accent); }
+    .item-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .item-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .item-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+    .item-tag {
+      padding: 2px 8px; font-size: 11px; border-radius: 4px;
+      background: var(--surface-dim); color: var(--text-tertiary); font-weight: 500;
+    }
+
+    /* --- Grid Cards --- */
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .grid-card {
+      padding: 20px; background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 8px; transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .grid-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+    .grid-card-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .grid-card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .grid-card-path { font-size: 11px; color: var(--text-tertiary); margin-top: 8px; font-family: 'Source Code Pro', monospace; }
+
+    /* --- Quote Block --- */
+    .quote-block {
+      padding: 32px 40px; margin: 0;
+      background: var(--accent-bg);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      font-size: 16px; font-weight: 500; color: var(--text);
+      line-height: 1.65; font-style: italic;
+    }
+    .quote-block-footer {
+      margin-top: 16px; font-size: 12px; color: var(--text-tertiary);
+      font-style: normal; font-weight: 400;
+    }
+
+    /* --- Footer --- */
+    footer { border-top: 1px solid var(--border); padding: 24px 40px; }
+    .footer-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-text { font-size: 12px; color: var(--text-tertiary); }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a { font-size: 12px; color: var(--text-tertiary); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-logo-text { display: none; }
+      .hero { padding: 48px 20px 36px; }
+      .content { padding: 0 20px; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--border); }
+      .grid { grid-template-columns: 1fr; }
+      footer { padding: 24px 20px; }
+      .footer-inner { flex-direction: column; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- --- Nav --- -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-mark">A</div>
+          <span class="nav-logo-text">Abhay Tyagi</span>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="https://github.com/lampiiii" class="nav-icon-btn" target="_blank" rel="noopener" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <button class="nav-icon-btn" id="theme-toggle" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- --- Breadcrumb --- -->
+  <div style="margin-top: var(--nav-height); padding: 12px 48px; border-bottom: 1px solid var(--border); background: var(--surface-dim);">
+    <a href="/proof-of-value" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Proof of Value
+    </a>
+  </div>
+
+  <!-- --- Sidebar Overlay --- -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- --- Left Sidebar --- -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Pages</div>
+      <a href="/profile" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+      <a href="/claude-code" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Claude Code
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Tools</div>
+      <a href="/playbook" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Playbook
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Quick Links</div>
+      <a href="resources/Abhay.pdf" class="sidebar-link" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
+      <a href="mailto:mail4abhaytyagi@gmail.com" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/abhay-tyagi-iimu/" class="sidebar-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-text">PM Workspace v1.0</div>
+    </div>
+  </aside>
+
+  <div class="page">
+
+    <!-- --- Hero --- -->
+    <div class="hero">
+      <div class="hero-badge">Proof of Value</div>
+      <h1><span>Reusable</span> Architecture</h1>
+      <p>Building templated, composable systems that scale across features and products — not one-off solutions. Every component designed to compose with others.</p>
+    </div>
+
+    <!-- --- Stats --- -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Custom Agents</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">8</div>
+        <div class="stat-label">Custom Skills</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">5</div>
+        <div class="stat-label">Memory Files</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">7+</div>
+        <div class="stat-label">Dashboards</div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- --- 1. Custom Agents --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </div>
+          <div class="section-title">Custom Agents</div>
+        </div>
+        <div class="section-desc">Specialized autonomous agents that encode competitive intelligence and risk analysis as reusable, queryable systems — not tribal knowledge locked in someone's head.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">Competitive Strategic Lens</div>
+              <div class="item-desc">Analyze any CSM feature against the competitive landscape. 7-step analysis covering feature comparison (vs. Gainsight, Totango, ChurnZero, Planhat, Vitally, Salesforce), differentiation classification, moat assessment, AI disruption threats, and sustainable advantage scoring.</div>
+              <div class="item-tags"><span class="item-tag">Strategy</span><span class="item-tag">Competitive Intel</span><span class="item-tag">Opus</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">PRD Edge Case Analyzer</div>
+              <div class="item-desc">Systematic risk analysis across 10 dimensions before engineering handoff. User/Actor edge cases, Data/Input, State/Flow, Integration risks, Security/Privacy, Performance, Compliance, UX, Operations, and a mandatory CSM Impact Assessment.</div>
+              <div class="item-tags"><span class="item-tag">Quality</span><span class="item-tag">Risk Analysis</span><span class="item-tag">Opus</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 2. Custom Skills --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="section-title">Custom Skills</div>
+        </div>
+        <div class="section-desc">Eight skills that automate repeatable PM workflows with zero-questions execution. Each is a self-contained, reusable module.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/epic-creator</div>
+              <div class="item-desc">Generates structured epics with AC, personas, outcomes, telemetry.</div>
+              <div class="item-tags"><span class="item-tag">Domain Expertise</span><span class="item-tag">CSM-specific</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/story-creator</div>
+              <div class="item-desc">Creates user stories with constrained descriptions and AC.</div>
+              <div class="item-tags"><span class="item-tag">Reusable Architecture</span><span class="item-tag">Templated</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/meeting-prep</div>
+              <div class="item-desc">Produces prioritized agendas from free-form input.</div>
+              <div class="item-tags"><span class="item-tag">Stakeholder Mgmt</span><span class="item-tag">Structured prep</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/doc-refiner</div>
+              <div class="item-desc">Refines unstructured markdown in a single pass.</div>
+              <div class="item-tags"><span class="item-tag">System-Level Thinking</span><span class="item-tag">Info architecture</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/design-thinker</div>
+              <div class="item-desc">Asks empathy-driven questions before building.</div>
+              <div class="item-tags"><span class="item-tag">Design Thinking</span><span class="item-tag">Moat skill</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/figma-console</div>
+              <div class="item-desc">Connects to Figma for design-to-code workflows.</div>
+              <div class="item-tags"><span class="item-tag">Platform Thinking</span><span class="item-tag">Cross-tool</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/linkedin-post</div>
+              <div class="item-desc">Writes LinkedIn posts in authentic voice and proven format.</div>
+              <div class="item-tags"><span class="item-tag">Content</span><span class="item-tag">Personal Brand</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/team-message</div>
+              <div class="item-desc">Converts rough thoughts into clear professional messages.</div>
+              <div class="item-tags"><span class="item-tag">Communication</span><span class="item-tag">Productivity</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 3. Persistent Memory --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          </div>
+          <div class="section-title">Persistent Memory — Cross-Session Intelligence</div>
+        </div>
+        <div class="section-desc">Memory files that persist user preferences, feedback, and workflow patterns across sessions — so Claude remembers context without re-explaining.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--red"></div>
+            <div>
+              <div class="item-name">Session Start Reminder</div>
+              <div class="item-desc">Always pull latest code before work.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--red"></div>
+            <div>
+              <div class="item-name">Proactive Career Growth</div>
+              <div class="item-desc">Every task cross-referenced against the Strategic Playbook.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--red"></div>
+            <div>
+              <div class="item-name">Ironman UI Quality Bar</div>
+              <div class="item-desc">Design quality standards from direct user feedback (rated 1/100).</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--red"></div>
+            <div>
+              <div class="item-name">Strategic PM Partner Style</div>
+              <div class="item-desc">Structured, copy-ready, CSM-domain-aware response mode.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--red"></div>
+            <div>
+              <div class="item-name">Hook Delegation Registry</div>
+              <div class="item-desc">Tracks what's handled by hooks vs. memory to prevent duplication.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 4. Dashboard Standardization --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--yellow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <div class="section-title">Dashboard Standardization</div>
+        </div>
+        <div class="section-desc">Consistent UX patterns across 7+ interactive dashboards — sort controls, table headers, dark mode toggle, responsive layouts. A shared design system without a framework.</div>
+        <div class="grid">
+          <div class="grid-card">
+            <div class="grid-card-title">Action Tracker Dashboard</div>
+            <div class="grid-card-desc">LNO-prioritized task management</div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card-title">Weekly Sync Dashboard</div>
+            <div class="grid-card-desc">1:1 discussion point tracking</div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card-title">Strategic Playbook Dashboard</div>
+            <div class="grid-card-desc">Career framework visualization</div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card-title">Product Backlog Dashboard</div>
+            <div class="grid-card-desc">Backlog management and prioritization</div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card-title">Proof of Value Hub</div>
+            <div class="grid-card-desc">10 strategic skill categories</div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card-title">Profile Page</div>
+            <div class="grid-card-desc">Professional portfolio with sidebar nav</div>
+          </div>
+          <div class="grid-card">
+            <div class="grid-card-title">Claude Code Showcase</div>
+            <div class="grid-card-desc">System architecture documentation</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 5. Product Work --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--accent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="section-title">Product Work</div>
+        </div>
+        <div class="section-desc">Reusable architecture demonstrated in product feature decisions.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--accent"></div>
+            <div>
+              <div class="item-name">Executive Briefing (2026-03-18)</div>
+              <div class="item-desc">Separated the briefing (informational — "what happened") from recommendations (actionable — "what to do") into two independent capabilities. The briefing uses a Now Assist Skill for synthesis; recommendations will live in a separate experience. Each capability stands alone and can evolve independently.</div>
+              <div class="item-tags"><span class="item-tag">Modular Separation</span><span class="item-tag">2026-03-18</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 6. Quote Block --- -->
+      <div class="section">
+        <blockquote class="quote-block">
+          The best architecture isn't the one that solves today's problem — it's the one where today's solution becomes tomorrow's building block. Every agent, skill, and dashboard in this system is designed to compose, not just exist.
+          <div class="quote-block-footer">Last updated: 2026-03-19</div>
+        </blockquote>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-text">Abhay Tyagi — Built with Claude Code</span>
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/profile">Profile</a>
+          <a href="/claude-code">Claude Code</a>
+          <a href="https://github.com/lampiiii" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // --- Sidebar ---
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+
+    function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('visible'); }
+    function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('visible'); }
+
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+    overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
+
+    // --- Dark Mode ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('portfolio-theme', newTheme);
+    });
+  </script>
+
+</body>
+</html>

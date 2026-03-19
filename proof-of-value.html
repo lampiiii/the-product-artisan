@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proof of Value — Abhay Tyagi | PM Workspace</title>
+  <meta name="description" content="Demonstrating irreplaceable PM skills through an AI-native operating system. 10 strategic skill categories that agents cannot replace.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d97757'/><text x='50' y='68' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='60' fill='white'>A</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent: #d97757;
+      --accent-hover: #c4623f;
+      --accent-bg: rgba(217,119,87,0.1);
+      --blue: #5b7083;
+      --blue-bg: rgba(91,112,131,0.08);
+      --green: #6b8f71;
+      --green-bg: rgba(107,143,113,0.08);
+      --purple: #8b7bb5;
+      --purple-bg: rgba(139,123,181,0.08);
+      --yellow: #b5924c;
+      --yellow-bg: rgba(181,146,76,0.08);
+      --red: #c27165;
+      --red-bg: rgba(194,113,101,0.08);
+      --text: #131314;
+      --text-secondary: #5a5a5f;
+      --text-tertiary: #8e8e93;
+      --surface: #faf9f0;
+      --surface-dim: #f2f1e8;
+      --surface-card: #ffffff;
+      --border: #e5e4db;
+      --shadow-sm: 0 1px 3px rgba(19,19,20,0.06), 0 1px 2px rgba(19,19,20,0.04);
+      --shadow-md: 0 8px 24px rgba(19,19,20,0.08), 0 4px 8px rgba(19,19,20,0.04);
+      --nav-height: 64px;
+    }
+
+    [data-theme="dark"] {
+      --accent: #e09070;
+      --accent-hover: #eba88e;
+      --accent-bg: rgba(224,144,112,0.12);
+      --blue: #8fa8bd;
+      --blue-bg: rgba(143,168,189,0.1);
+      --green: #8fb896;
+      --green-bg: rgba(143,184,150,0.1);
+      --purple: #a99fd0;
+      --purple-bg: rgba(169,159,208,0.1);
+      --yellow: #d4b46e;
+      --yellow-bg: rgba(212,180,110,0.1);
+      --red: #d99690;
+      --red-bg: rgba(217,150,144,0.1);
+      --text: #ececec;
+      --text-secondary: #a0a0a5;
+      --text-tertiary: #6e6e73;
+      --surface: #1a1a1c;
+      --surface-dim: #232325;
+      --surface-card: #2a2a2d;
+      --border: #333336;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.15);
+      --shadow-md: 0 8px 24px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: rgba(217,119,87,0.25); color: #131314; }
+    [data-theme="dark"] ::selection { background: rgba(224,144,112,0.3); color: #ececec; }
+
+    /* --- Nav --- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250,249,240,0.92);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-height); transition: background 0.3s;
+    }
+    [data-theme="dark"] nav { background: rgba(26,26,28,0.92); }
+    .nav-inner {
+      max-width: 100%; margin: 0 auto; padding: 0 40px;
+      display: flex; align-items: center; justify-content: space-between; height: var(--nav-height);
+    }
+    .nav-left { display: flex; align-items: center; gap: 12px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+    .nav-logo-mark {
+      width: 32px; height: 32px; border-radius: 50%; background: var(--accent);
+      display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 600;
+    }
+    .nav-logo-text { font-size: 16px; font-weight: 600; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-link { font-size: 14px; font-weight: 500; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+    .nav-link:hover { color: var(--text); }
+    .nav-link--primary {
+      background: var(--accent); color: white !important;
+      padding: 8px 20px; border-radius: 48px;
+    }
+    .nav-link--primary:hover { background: var(--accent-hover); }
+    .nav-icon-btn {
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); background: transparent; color: var(--text-secondary);
+      border-radius: 50%; cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s;
+    }
+    .nav-icon-btn:hover { background: var(--surface-dim); color: var(--text); }
+    .nav-icon-btn svg { width: 18px; height: 18px; }
+    .nav-icon-btn .icon-moon { display: none; }
+    [data-theme="dark"] .nav-icon-btn .icon-sun { display: none; }
+    [data-theme="dark"] .nav-icon-btn .icon-moon { display: block; }
+
+    /* --- Sidebar Toggle --- */
+    .sidebar-toggle {
+      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      border: none; background: transparent; color: var(--text-secondary);
+      border-radius: 50%; cursor: pointer; transition: background 0.2s, color 0.2s;
+    }
+    .sidebar-toggle:hover { background: var(--surface-dim); color: var(--text); }
+
+    /* --- Left Sidebar --- */
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.2); z-index: 80; }
+    .sidebar-overlay.visible { display: block; }
+    .sidebar {
+      position: fixed; top: var(--nav-height); left: 0; bottom: 0;
+      width: 260px; background: var(--surface);
+      border-right: 1px solid var(--border); z-index: 90;
+      transform: translateX(-100%);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto; display: flex; flex-direction: column;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-section { padding: 16px 16px 8px; }
+    .sidebar-section-label {
+      font-size: 11px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.8px; color: var(--text-tertiary); padding: 0 12px; margin-bottom: 8px;
+    }
+    .sidebar-link {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px; font-size: 14px; font-weight: 400;
+      color: var(--text-secondary); text-decoration: none;
+      border-radius: 48px; transition: background 0.15s, color 0.15s;
+    }
+    .sidebar-link:hover { background: var(--surface-dim); color: var(--text); }
+    .sidebar-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .sidebar-divider { border: none; border-top: 1px solid var(--border); margin: 8px 16px; }
+    .sidebar-spacer { flex: 1; }
+    .sidebar-footer { padding: 16px; border-top: 1px solid var(--border); }
+    .sidebar-footer-text { font-size: 12px; color: var(--text-tertiary); text-align: center; }
+
+    /* --- Page --- */
+    .page {
+      margin-top: var(--nav-height);
+      min-height: calc(100vh - var(--nav-height));
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- Compact Header --- */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-dim);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .page-header-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .page-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+    }
+    .page-badge svg { width: 14px; height: 14px; }
+    .page-title {
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+    .page-title span { color: var(--accent); }
+
+    /* --- Progress Bar (horizontal) --- */
+    .progress-strip {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .progress-bar-wrap {
+      width: 200px;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 10%;
+      background: var(--accent);
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+    .progress-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .progress-label strong {
+      color: var(--accent);
+      font-size: 18px;
+    }
+
+    /* --- Grid Container --- */
+    .grid-container {
+      flex: 1;
+      padding: 32px 48px 48px;
+    }
+
+    /* --- Bento Grid --- */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* --- Card Base --- */
+    .card {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, opacity 0.2s;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* --- Active Card --- */
+    .card--active {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .card--active:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--accent);
+    }
+    .card--active .card-accent-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-hover));
+      border-radius: 16px 16px 0 0;
+    }
+
+    /* --- Watching Card --- */
+    .card--watching {
+      opacity: 0.5;
+      cursor: default;
+    }
+    .card--watching:hover {
+      opacity: 0.65;
+    }
+
+    /* --- Card Icon --- */
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+    .card-icon svg { width: 22px; height: 22px; }
+    .card-icon--blue    { background: var(--blue-bg);   color: var(--blue); }
+    .card-icon--red     { background: var(--red-bg);    color: var(--red); }
+    .card-icon--green   { background: var(--green-bg);  color: var(--green); }
+    .card-icon--purple  { background: var(--purple-bg); color: var(--purple); }
+    .card-icon--accent  { background: var(--accent-bg); color: var(--accent); }
+    .card-icon--yellow  { background: var(--yellow-bg); color: var(--yellow); }
+
+    /* --- Card Content --- */
+    .card-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    /* --- Card Footer --- */
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .card-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .card-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+    }
+    .card-status--active { color: var(--green); }
+    .card-status--active .card-dot { background: var(--green); }
+    .card-status--watching { color: var(--text-tertiary); }
+    .card-status--watching .card-dot { background: var(--text-tertiary); }
+
+    .card-items {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+
+    .card-lock {
+      color: var(--text-tertiary);
+      opacity: 0.4;
+    }
+    .card-lock svg { width: 13px; height: 13px; }
+
+    /* --- Quote Footer --- */
+    .page-footer-quote {
+      text-align: center;
+      padding: 24px 48px;
+      border-top: 1px solid var(--border);
+      background: var(--surface-dim);
+    }
+    .page-footer-quote p {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .page-footer-quote .auto-note {
+      font-size: 11px;
+      margin-top: 8px;
+      font-style: normal;
+      color: var(--text-tertiary);
+      opacity: 0.7;
+    }
+
+    /* --- Footer --- */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 20px 48px;
+      background: var(--surface);
+    }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-text { font-size: 12px; color: var(--text-tertiary); }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a { font-size: 12px; color: var(--text-tertiary); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* --- Responsive --- */
+    @media (max-width: 1100px) {
+      .bento { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-inner { padding: 0 20px; }
+      .nav-logo-text { display: none; }
+      .page-header { padding: 20px 20px; }
+      .grid-container { padding: 20px; }
+      .bento { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .card { padding: 18px; }
+      .page-footer-quote { padding: 20px; }
+      footer { padding: 20px; }
+      .footer-inner { flex-direction: column; gap: 12px; }
+      .progress-bar-wrap { width: 120px; }
+    }
+    @media (max-width: 500px) {
+      .bento { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- --- Nav --- -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-mark">A</div>
+          <span class="nav-logo-text">Abhay Tyagi</span>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="https://github.com/lampiiii" class="nav-icon-btn" target="_blank" rel="noopener" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <button class="nav-icon-btn" id="theme-toggle" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- --- Sidebar --- -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Pages</div>
+      <a href="/profile" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Profile</a>
+      <a href="/claude-code" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Claude Code</a>
+    </div>
+    <hr class="sidebar-divider">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Tools</div>
+      <a href="/playbook" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Playbook</a>
+    </div>
+    <hr class="sidebar-divider">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Quick Links</div>
+      <a href="resources/Abhay.pdf" class="sidebar-link" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download Resume</a>
+      <a href="mailto:mail4abhaytyagi@gmail.com" class="sidebar-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Email</a>
+      <a href="https://www.linkedin.com/in/abhay-tyagi-iimu/" class="sidebar-link" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn</a>
+    </div>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-footer"><div class="sidebar-footer-text">PM Workspace v1.0</div></div>
+  </aside>
+
+  <div class="page">
+
+    <!-- --- Compact Header with Progress Bar --- -->
+    <div class="page-header">
+      <div class="page-header-left">
+        <div class="page-title-group">
+          <div class="page-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Strategic Apex
+          </div>
+          <h1 class="page-title"><span>Proof</span> of Value</h1>
+        </div>
+      </div>
+      <div class="progress-strip">
+        <div class="progress-bar-wrap">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+        <div class="progress-label"><strong>4</strong> / 10 active</div>
+      </div>
+    </div>
+
+    <!-- --- Bento Grid --- -->
+    <div class="grid-container">
+      <div class="bento">
+
+        <!-- 1. Platform Thinking — ACTIVE -->
+        <a href="/proof-of-value/platform-thinking" class="card card--active">
+          <div class="card-accent-bar"></div>
+          <div class="card-icon card-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <div class="card-name">Platform Thinking</div>
+          <div class="card-desc">Cross-system orchestration, architecture design, developer ecosystem thinking</div>
+          <div class="card-footer">
+            <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
+            <div class="card-items">12 items</div>
+          </div>
+        </a>
+
+        <!-- 2. Agent Governance — ACTIVE -->
+        <a href="/proof-of-value/agent-governance" class="card card--active">
+          <div class="card-accent-bar"></div>
+          <div class="card-icon card-icon--red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>
+          </div>
+          <div class="card-name">Agent Governance</div>
+          <div class="card-desc">Eval frameworks, guardrails, decision boundaries for AI systems</div>
+          <div class="card-footer">
+            <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
+            <div class="card-items">9 items</div>
+          </div>
+        </a>
+
+        <!-- 3. Pricing Strategy — WATCHING -->
+        <div class="card card--watching">
+          <div class="card-icon card-icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <div class="card-name">Pricing Strategy</div>
+          <div class="card-desc">AI compute costs, SKU tradeoffs, margin compression</div>
+          <div class="card-footer">
+            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
+            <div class="card-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          </div>
+        </div>
+
+        <!-- 4. Domain Expertise — ACTIVE -->
+        <a href="/proof-of-value/domain-expertise" class="card card--active">
+          <div class="card-accent-bar"></div>
+          <div class="card-icon card-icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <div class="card-name">Domain Expertise</div>
+          <div class="card-desc">CSM workflows, compliance patterns, integration knowledge</div>
+          <div class="card-footer">
+            <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
+            <div class="card-items">2 items</div>
+          </div>
+        </a>
+
+        <!-- 5. Outcome Stories — WATCHING -->
+        <div class="card card--watching">
+          <div class="card-icon card-icon--accent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="card-name">Outcome Stories</div>
+          <div class="card-desc">Measurable customer and business outcomes over feature launches</div>
+          <div class="card-footer">
+            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
+            <div class="card-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          </div>
+        </div>
+
+        <!-- 6. Stakeholder Management — WATCHING -->
+        <div class="card card--watching">
+          <div class="card-icon card-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="card-name">Stakeholder Mgmt</div>
+          <div class="card-desc">Influence without authority, executive alignment, cross-functional leadership</div>
+          <div class="card-footer">
+            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
+            <div class="card-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          </div>
+        </div>
+
+        <!-- 7. Design Thinking — WATCHING -->
+        <div class="card card--watching">
+          <div class="card-icon card-icon--yellow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <div class="card-name">Design Thinking</div>
+          <div class="card-desc">Empathy-driven decisions, user research, observation over assumption</div>
+          <div class="card-footer">
+            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
+            <div class="card-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          </div>
+        </div>
+
+        <!-- 8. Ethical AI — WATCHING -->
+        <div class="card card--watching">
+          <div class="card-icon card-icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div class="card-name">Ethical AI</div>
+          <div class="card-desc">Trust, bias mitigation, transparency, responsible deployment</div>
+          <div class="card-footer">
+            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
+            <div class="card-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          </div>
+        </div>
+
+        <!-- 9. Navigating Ambiguity — WATCHING -->
+        <div class="card card--watching">
+          <div class="card-icon card-icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+          </div>
+          <div class="card-name">Navigating Ambiguity</div>
+          <div class="card-desc">Judgment calls with incomplete data, structured decision-making</div>
+          <div class="card-footer">
+            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
+            <div class="card-lock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+          </div>
+        </div>
+
+        <!-- 10. Reusable Architecture — ACTIVE -->
+        <a href="/proof-of-value/reusable-architecture" class="card card--active">
+          <div class="card-accent-bar"></div>
+          <div class="card-icon card-icon--yellow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <div class="card-name">Reusable Architecture</div>
+          <div class="card-desc">Templates, extensible patterns, customer-configurable systems</div>
+          <div class="card-footer">
+            <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
+            <div class="card-items">8 items</div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- --- Quote Strip --- -->
+    <div class="page-footer-quote">
+      <p>"Be the PM at the Strategic Apex: vision, AI governance, domain depth, proof of value — not the one writing tickets agents will replace."</p>
+      <div class="auto-note">This page updates automatically as new skills are demonstrated through daily work.</div>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-text">Abhay Tyagi — Built with Claude Code</span>
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/profile">Profile</a>
+          <a href="/claude-code">Claude Code</a>
+          <a href="https://github.com/lampiiii" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    // --- Sidebar ---
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('visible'); }
+    function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('visible'); }
+    sidebarToggle.addEventListener('click', () => { sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
+    overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
+
+    // --- Dark Mode ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('portfolio-theme', newTheme);
+    });
+
+    // --- Animate progress bar ---
+    window.addEventListener('load', () => {
+      requestAnimationFrame(() => {
+        document.getElementById('progress-fill').style.width = '40%';
+      });
+    });
+  </script>
+
+</body>
+</html>

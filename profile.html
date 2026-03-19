@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile — Abhay Tyagi | PM Workspace</title>
+  <meta name="description" content="Abhay Tyagi — Senior PM building AI-powered Customer Success at ServiceNow. Experience, skills, education, and achievements.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d97757'/><text x='50' y='68' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='60' fill='white'>A</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue: #d97757;
+      --blue-hover: #c4623f;
+      --blue-bg: rgba(217,119,87,0.1);
+      --green: #6b8f71;
+      --green-bg: rgba(107,143,113,0.08);
+      --purple: #8b7bb5;
+      --purple-bg: rgba(139,123,181,0.08);
+      --red: #c27165;
+      --red-bg: rgba(194,113,101,0.08);
+      --yellow: #b5924c;
+      --yellow-bg: rgba(181,146,76,0.08);
+      --text: #131314;
+      --text-secondary: #5a5a5f;
+      --text-tertiary: #8e8e93;
+      --surface: #faf9f0;
+      --surface-dim: #f2f1e8;
+      --border: #e5e4db;
+      --shadow-sm: 0 1px 3px rgba(19,19,20,0.06), 0 1px 2px rgba(19,19,20,0.04);
+      --shadow-md: 0 4px 6px rgba(19,19,20,0.07), 0 2px 4px rgba(19,19,20,0.06);
+      --sidebar-width: 260px;
+      --nav-height: 64px;
+    }
+
+    [data-theme="dark"] {
+      --blue: #e09070;
+      --blue-hover: #eba88e;
+      --blue-bg: rgba(224,144,112,0.12);
+      --green: #8fb896;
+      --green-bg: rgba(143,184,150,0.1);
+      --purple: #a99fd0;
+      --purple-bg: rgba(169,159,208,0.1);
+      --red: #d99690;
+      --red-bg: rgba(217,150,144,0.1);
+      --yellow: #d4b46e;
+      --yellow-bg: rgba(212,180,110,0.1);
+      --text: #ececec;
+      --text-secondary: #a0a0a5;
+      --text-tertiary: #6e6e73;
+      --surface: #1a1a1c;
+      --surface-dim: #232325;
+      --border: #333336;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.15);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    ::selection { background: rgba(217,119,87,0.25); color: #131314; }
+    [data-theme="dark"] ::selection { background: rgba(224,144,112,0.3); color: #ececec; }
+
+    /* ─── Top Nav ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(250,249,240,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      height: var(--nav-height);
+      transition: background 0.3s;
+    }
+    [data-theme="dark"] nav { background: rgba(26,26,28,0.92); }
+
+    .nav-inner {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-height);
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .nav-logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .nav-logo-text {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+    .nav-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-link--primary {
+      background: var(--blue);
+      color: white !important;
+      padding: 8px 20px;
+      border-radius: 48px;
+    }
+    .nav-link--primary:hover { background: var(--blue-hover); }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .nav-icon-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-secondary);
+      border-radius: 50%;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .nav-icon-btn:hover { background: var(--surface-dim); color: var(--text); }
+    .nav-icon-btn svg { width: 18px; height: 18px; }
+    .nav-icon-btn .icon-moon { display: none; }
+    [data-theme="dark"] .nav-icon-btn .icon-sun { display: none; }
+    [data-theme="dark"] .nav-icon-btn .icon-moon { display: block; }
+
+    /* ─── Sidebar Toggle ─── */
+    .sidebar-toggle {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .sidebar-toggle:hover { background: var(--surface-dim); color: var(--text); }
+
+    /* ─── Left Sidebar ─── */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.2);
+      z-index: 80;
+    }
+    .sidebar-overlay.visible { display: block; }
+    .sidebar {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      bottom: 0;
+      width: 260px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      z-index: 90;
+      transform: translateX(-100%);
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar.open { transform: translateX(0); }
+    .sidebar-section { padding: 16px 16px 8px; }
+    .sidebar-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-tertiary);
+      padding: 0 12px;
+      margin-bottom: 8px;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 48px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .sidebar-link:hover { background: var(--surface-dim); color: var(--text); }
+    .sidebar-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .sidebar-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 8px 16px;
+    }
+    .sidebar-spacer { flex: 1; }
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .sidebar-footer-text {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      text-align: center;
+    }
+
+    /* ─── Profile Layout ─── */
+    .profile-layout {
+      margin-top: var(--nav-height);
+    }
+
+    /* ─── Profile Header (Top Banner) ─── */
+    .profile-header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding: 24px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .profile-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border);
+      flex-shrink: 0;
+    }
+    .profile-identity {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      flex-shrink: 0;
+    }
+    .profile-name {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .profile-title {
+      font-size: 14px;
+      color: var(--blue);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+    .profile-company {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .profile-info {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      margin-left: auto;
+    }
+    .profile-info-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .profile-info-item svg {
+      width: 14px;
+      height: 14px;
+      color: var(--text-tertiary);
+      flex-shrink: 0;
+    }
+    .profile-info-item a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+    .profile-info-item a:hover { text-decoration: underline; }
+
+    /* ─── Body: Sidebar + Content ─── */
+    .profile-body {
+      display: grid;
+      grid-template-columns: 15% 85%;
+      min-height: calc(100vh - var(--nav-height) - 140px);
+    }
+
+    /* ─── Left Sidebar Nav ─── */
+    .profile-sidebar {
+      position: sticky;
+      top: var(--nav-height);
+      height: calc(100vh - var(--nav-height));
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      background: var(--surface);
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .profile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding: 0 12px;
+    }
+    .profile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .profile-nav-link:hover { background: var(--surface-dim); color: var(--text); }
+    .profile-nav-link.active { background: var(--blue-bg); color: var(--blue); font-weight: 600; }
+    .profile-nav-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+    .profile-sidebar-spacer { flex: 1; }
+
+    .profile-back {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-tertiary);
+      text-decoration: none;
+      padding: 10px 14px;
+      margin: 0 12px;
+      border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .profile-back:hover { background: var(--surface-dim); color: var(--text); }
+    .profile-back svg { width: 14px; height: 14px; }
+
+    /* ─── Profile Content ─── */
+    .profile-content {
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Metrics strip */
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+    .metric {
+      text-align: center;
+      padding: 24px 16px;
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .metric-value {
+      font-size: 32px;
+      font-weight: 500;
+      color: var(--blue);
+      margin-bottom: 4px;
+    }
+    .metric-label {
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+
+    /* Section */
+    .section {
+      width: 80%;
+      max-width: none;
+      padding: 60px 0;
+    }
+    .section-label {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .section h2 {
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 32px;
+    }
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      width: 80%;
+    }
+
+    /* About */
+    .about {
+      background: var(--surface-dim);
+      border-radius: 16px;
+      padding: 40px;
+    }
+    .about-bio {
+      font-size: 17px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .about-bio strong { color: var(--text); font-weight: 500; }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 32px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-date {
+      font-size: 14px;
+      color: var(--text-tertiary);
+      padding-top: 2px;
+    }
+    .timeline-content h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .timeline-company {
+      font-size: 15px;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .timeline-desc ul {
+      margin-top: 8px;
+      padding-left: 18px;
+    }
+    .timeline-desc li { margin-bottom: 4px; }
+    .timeline-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 48px;
+      margin-bottom: 8px;
+    }
+    .timeline-badge--current { background: var(--green-bg); color: var(--green); }
+    .timeline-badge--past { background: var(--surface-dim); color: var(--text-tertiary); }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: var(--shadow-sm); }
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .card-icon svg { width: 20px; height: 20px; }
+    .card-icon--blue { background: var(--blue-bg); color: var(--blue); }
+    .card-icon--green { background: var(--green-bg); color: var(--green); }
+    .card-icon--purple { background: var(--purple-bg); color: var(--purple); }
+    .card-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      font-size: 11px;
+      font-weight: 500;
+      border-radius: 48px;
+      margin-bottom: 12px;
+    }
+    .card-badge--blue { background: var(--blue-bg); color: var(--blue); }
+    .card-badge--green { background: var(--green-bg); color: var(--green); }
+    .card-badge--purple { background: var(--purple-bg); color: var(--purple); }
+    .card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 16px; }
+    .tag {
+      padding: 2px 10px;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      background: var(--surface-dim);
+      border-radius: 48px;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .skill-group h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skill-group h3 svg { width: 18px; height: 18px; color: var(--blue); }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .skill-tag {
+      padding: 4px 12px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      background: var(--surface-dim);
+      border-radius: 48px;
+      border: 1px solid var(--border);
+    }
+
+    /* Certifications */
+    .certs-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .cert-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 48px;
+    }
+    .cert-pill svg { width: 16px; height: 16px; color: var(--green); }
+
+    /* Education */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+    .edu-card h3 { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .edu-card .edu-degree { font-size: 15px; color: var(--blue); margin-bottom: 4px; }
+    .edu-card .edu-year { font-size: 14px; color: var(--text-tertiary); }
+
+    /* Achievements */
+    .achievements {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .achievement-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+    .achievement-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: var(--yellow-bg);
+      color: var(--yellow);
+    }
+    .achievement-icon svg { width: 18px; height: 18px; }
+    .achievement-text h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .achievement-text p { font-size: 14px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* Contact CTA */
+    .cta {
+      text-align: center;
+      padding: 60px 48px;
+      background: var(--surface-dim);
+      width: 100%;
+    }
+    .cta h2 {
+      font-size: clamp(28px, 3.5vw, 36px);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .cta p { font-size: 16px; color: var(--text-secondary); margin-bottom: 32px; }
+    .cta-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: inherit;
+      border-radius: 48px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+      min-height: 48px;
+    }
+    .btn--primary { background: var(--blue); color: white; }
+    .btn--primary:hover { background: var(--blue-hover); }
+    .btn--secondary { background: transparent; color: var(--blue); border: 1px solid var(--border); }
+    .btn--secondary:hover { background: var(--blue-bg); }
+    .btn svg { width: 18px; height: 18px; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+    }
+    .footer-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-text { font-size: 12px; color: var(--text-tertiary); }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a { font-size: 12px; color: var(--text-tertiary); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--blue); }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .profile-header {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 16px 20px;
+      }
+      .profile-info { margin-left: 0; }
+      .profile-body { grid-template-columns: 1fr; }
+      .profile-sidebar { display: none; }
+      .cards, .skills-grid { grid-template-columns: 1fr; }
+      .education-grid { grid-template-columns: 1fr; }
+      .achievements { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+      .section { padding: 40px 20px; }
+      .cta { padding: 40px 20px; }
+    }
+    @media (max-width: 600px) {
+      .nav-inner { padding: 0 16px; }
+      .nav-logo-text { display: none; }
+      .nav-link { display: none; }
+      .nav-link--primary { display: inline-flex; }
+      .footer-inner { flex-direction: column; gap: 12px; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .profile-avatar { width: 40px; height: 40px; }
+      .profile-name { font-size: 16px; }
+      .profile-info { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Top Nav ─── -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-mark">A</div>
+          <span class="nav-logo-text">Abhay Tyagi</span>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="https://github.com/lampiiii" class="nav-icon-btn" target="_blank" rel="noopener" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <button class="nav-icon-btn" id="theme-toggle" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── Sidebar Overlay ─── -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- ─── Left Sidebar ─── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Pages</div>
+      <a href="/profile" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Tools</div>
+      <a href="/playbook" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Playbook
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Quick Links</div>
+      <a href="resources/Abhay.pdf" class="sidebar-link" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Resume
+      </a>
+      <a href="mailto:mail4abhaytyagi@gmail.com" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/abhay-tyagi-iimu/" class="sidebar-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-text">PM Workspace v1.0</div>
+    </div>
+  </aside>
+
+  <!-- ─── Profile Layout ─── -->
+  <div class="profile-layout">
+
+    <!-- ─── Profile Header (Top Banner) ─── -->
+    <div class="profile-header">
+      <img src="resources/profile-photo.jpg" alt="Abhay Tyagi" class="profile-avatar">
+      <div class="profile-identity">
+        <div class="profile-name">Abhay Tyagi</div>
+        <div class="profile-title">Sr Inbound Product Manager</div>
+        <div class="profile-company">ServiceNow</div>
+      </div>
+      <div class="profile-info">
+        <div class="profile-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:mail4abhaytyagi@gmail.com">mail4abhaytyagi@gmail.com</a>
+        </div>
+        <div class="profile-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <a href="https://www.linkedin.com/in/abhay-tyagi-iimu/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── Sidebar + Content ─── -->
+    <div class="profile-body">
+
+      <!-- ─── Left Sidebar Nav ─── -->
+      <aside class="profile-sidebar">
+        <div class="profile-nav">
+          <a href="#about" class="profile-nav-link active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            About
+          </a>
+          <a href="#experience" class="profile-nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+            Experience
+          </a>
+          <a href="#products" class="profile-nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Products
+          </a>
+          <a href="#skills" class="profile-nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Skills
+          </a>
+          <a href="#education" class="profile-nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            Education
+          </a>
+          <a href="#achievements" class="profile-nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            Achievements
+          </a>
+          <a href="#contact" class="profile-nav-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Contact
+          </a>
+        </div>
+        <div class="profile-sidebar-spacer"></div>
+        <a href="/" class="profile-back">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back to Home
+        </a>
+      </aside>
+
+      <!-- ─── Profile Content ─── -->
+      <div class="profile-content">
+
+      <!-- About -->
+      <section class="section" id="about">
+        <div class="section-label">About</div>
+        <h2>Who I am</h2>
+        <div class="about">
+          <div class="about-bio">
+            <strong>Senior PM with 5+ years in B2B enterprise software.</strong> At ServiceNow, I own all GenAI and agentic AI capabilities for Customer Success — built a 19-agent system that drove 10+ competitive wins against Gainsight and helped grow ACV from $18M to $70M. Took Plus tier subscriptions from 0 to 120 accounts by shipping AI features worth paying more for.
+            <br><br>
+            Before product, I built data pipelines at a Y Combinator-backed startup and cut my teeth on analytics and business operations. I work best at the intersection of AI, data, and enterprise workflows. I hold an MBA from IIM Udaipur and a B.Tech from IET Lucknow.
+          </div>
+          <div class="metrics">
+            <div class="metric">
+              <div class="metric-value">290%</div>
+              <div class="metric-label">ACV Growth ($18M to $70M)</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">19</div>
+              <div class="metric-label">AI Agents Built</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">0→120</div>
+              <div class="metric-label">Plus Tier Upgrades</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">380+</div>
+              <div class="metric-label">Enterprise Accounts</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- Experience -->
+      <section class="section" id="experience">
+        <div class="section-label">Experience</div>
+        <h2>Career journey</h2>
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-date">Feb 2025 — Present</div>
+            <div class="timeline-content">
+              <span class="timeline-badge timeline-badge--current">Current</span>
+              <h3>Sr Inbound Product Manager</h3>
+              <div class="timeline-company">ServiceNow</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Own GenAI and agentic AI capabilities across CSM — drove 10+ enterprise displacement wins against Gainsight and Totango, contributing to 290% ACV growth</li>
+                  <li>Defined product vision for multi-agent AI system (19 agents across 5 workflows), replacing manual CSM processes consuming 200+ hrs/week; scaled to 120 enterprise accounts from zero</li>
+                  <li>Drove 0→120 enterprise upgrades to Plus tier by shipping GenAI and agentic capabilities compelling enough to justify premium pricing</li>
+                  <li>Prioritized renewal risk automation over manual reviews, reducing operations 40% while keeping human-in-loop for high-risk signals</li>
+                  <li>Built cross-application workflows connecting CSM with SPM, Sales, Order Management, and Digital Product Release</li>
+                  <li>Led integrations with Salesforce, Microsoft Dynamics, and GenAI APIs, expanding platform ecosystem reach by 3x</li>
+                  <li>Shipped ACL framework and least-privilege controls addressing security concerns blocking deals with regulated enterprises</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">May 2023 — Feb 2025</div>
+            <div class="timeline-content">
+              <span class="timeline-badge timeline-badge--past">Previous</span>
+              <h3>Inbound Product Manager</h3>
+              <div class="timeline-company">ServiceNow</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Built Customer Success product from inception, defining core workflows adopted by 300+ enterprise accounts</li>
+                  <li>Enabled 3x customer base growth (120→380 accounts) by closing top 5 feature gaps identified in lost deal analysis</li>
+                  <li>Established connected ecosystem linking CSM to 3+ ServiceNow apps, improving data flow and lifecycle tracking</li>
+                  <li>Designed end-to-end B2B onboarding workflows reducing customer TTV by 40% across 150+ MSP implementations</li>
+                  <li>Created scalable data import pipelines processing 100K+ records monthly</li>
+                  <li>Built analytics framework with auto-refresh dashboards tracking adoption across 5 products and 500+ enterprise users</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Oct 2021 — Feb 2023</div>
+            <div class="timeline-content">
+              <span class="timeline-badge timeline-badge--past">Leadership</span>
+              <h3>Branch President</h3>
+              <div class="timeline-company">CSRN, IIM Udaipur</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Oversaw progress of six live projects in the social sector sourced by CSRN</li>
+                  <li>Helped each student consultancy team deliver high-quality work on time</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Apr 2022 — Jun 2022</div>
+            <div class="timeline-content">
+              <span class="timeline-badge timeline-badge--past">Internship</span>
+              <h3>Product Management Intern</h3>
+              <div class="timeline-company">Zaggle Prepaid Ocean Services, Hyderabad</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Designed B2B customer onboarding workflows for Expense Management platform, reducing support workload</li>
+                  <li>Built interactive ROI calculator, increasing trial conversion requests by 35%</li>
+                  <li>Conducted 46-feature competitive analysis across 5 players, identifying whitespace opportunities for roadmap</li>
+                  <li>Built sales enablement kit: pitch decks, release notes template, 6 email templates</li>
+                  <li>Documented 100+ backlogs on JIRA with correct terminologies</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Feb 2019 — Jun 2021</div>
+            <div class="timeline-content">
+              <span class="timeline-badge timeline-badge--past">Startup</span>
+              <h3>Senior Business Analyst</h3>
+              <div class="timeline-company">MyScoot Tech Pvt. Ltd., Gurugram (Y Combinator backed)</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Owned end-to-end data operations at YC-backed startup, supporting 3x user growth over 28-month tenure</li>
+                  <li>Established Business Analytics department and designed 15+ interactive dashboards for C-suite and ops teams</li>
+                  <li>Analysed feature launches and marketing campaigns, identifying optimizations that improved conversion rates by 25%</li>
+                  <li>Reduced T.A.T. by ~27% from lead onboarding to final conversion</li>
+                  <li>Generated insights that increased G.M.V. of new users by ~109% MoM</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-date">Jun 2018 — Feb 2019</div>
+            <div class="timeline-content">
+              <span class="timeline-badge timeline-badge--past">Early Career</span>
+              <h3>Data Analyst</h3>
+              <div class="timeline-company">S.V.S Technologies Ltd., Noida</div>
+              <div class="timeline-desc">
+                <ul>
+                  <li>Helped the organization make data-driven decisions reducing risk in critical business decisions</li>
+                  <li>Tracked monthly & weekly lead conversion and retention KPIs</li>
+                  <li>Prepared marketing funnel for established and potential customers across different media channels</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- Products -->
+      <section class="section" id="products">
+        <div class="section-label">Products</div>
+        <h2>Active features in development</h2>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon card-icon--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+            </div>
+            <span class="card-badge card-badge--blue">Active</span>
+            <h3>AI Insights</h3>
+            <p>AI-generated charts and insight lines via Now Assist across five CSM pages.</p>
+            <div class="tags">
+              <span class="tag">Now Assist</span>
+              <span class="tag">Charts</span>
+              <span class="tag">Guardrails</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon card-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <span class="card-badge card-badge--green">Active</span>
+            <h3>Meeting Creation V2</h3>
+            <p>AI Agent-driven meeting creation with automated triggers, UI actions, and manual prompts.</p>
+            <div class="tags">
+              <span class="tag">AI Agent</span>
+              <span class="tag">Automation</span>
+              <span class="tag">UX</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon card-icon--purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            </div>
+            <span class="card-badge card-badge--purple">Research</span>
+            <h3>AI Web Agents</h3>
+            <p>Autonomous web agents for customer success workflows and intelligent task execution.</p>
+            <div class="tags">
+              <span class="tag">Agents</span>
+              <span class="tag">Research</span>
+              <span class="tag">Autonomy</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon card-icon--green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <span class="card-badge card-badge--green">Active</span>
+            <h3>Priority Plays Recommendation</h3>
+            <p>AI-driven prioritization of where CSMs should focus next based on health scores, risk indicators, and renewal timelines.</p>
+            <div class="tags">
+              <span class="tag">AI/ML</span>
+              <span class="tag">Prioritization</span>
+              <span class="tag">Proactive</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-icon card-icon--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <span class="card-badge card-badge--blue">Active</span>
+            <h3>Executive Briefing</h3>
+            <p>AI-generated executive briefing with account-level and engagement-level scoping for stakeholder meetings.</p>
+            <div class="tags">
+              <span class="tag">Now Assist</span>
+              <span class="tag">Executive</span>
+              <span class="tag">GenAI</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- Skills -->
+      <section class="section" id="skills">
+        <div class="section-label">Skills & Expertise</div>
+        <h2>What I bring to the table</h2>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+              Product & Strategy
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Product Strategy & Roadmap</span>
+              <span class="skill-tag">B2B Enterprise SaaS</span>
+              <span class="skill-tag">Competitive Analysis</span>
+              <span class="skill-tag">Agile & Scrum</span>
+              <span class="skill-tag">Cross-Functional Leadership</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              AI & Technical
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag">AI/ML Product Development</span>
+              <span class="skill-tag">GenAI & Agentic AI</span>
+              <span class="skill-tag">Platform Integrations & APIs</span>
+              <span class="skill-tag">Data Analytics & SQL</span>
+              <span class="skill-tag">Cross-Application Workflows</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h3>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              Customer Success
+            </h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Customer Onboarding & Activation</span>
+              <span class="skill-tag">Product Analytics & Telemetry</span>
+              <span class="skill-tag">Health Scoring</span>
+              <span class="skill-tag">Renewal & NRR Optimization</span>
+              <span class="skill-tag">Process Improvement</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px;">
+          <h3 style="font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 16px;">Certifications</h3>
+          <div class="certs-grid" style="margin-top: 0;">
+            <div class="cert-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Certified Scrum Product Owner (CSPO)
+            </div>
+            <div class="cert-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              CSM Implementation — ServiceNow
+            </div>
+            <div class="cert-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              CSM Fundamentals — ServiceNow
+            </div>
+            <div class="cert-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              People Analytics
+            </div>
+            <div class="cert-pill">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Excel Skills for Business Specialization
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- Education -->
+      <section class="section" id="education">
+        <div class="section-label">Education</div>
+        <h2>Academic background</h2>
+        <div class="education-grid">
+          <div class="edu-card">
+            <h3>Indian Institute of Management, Udaipur</h3>
+            <div class="edu-degree">Master of Business Administration (MBA)</div>
+            <div class="edu-year">2023</div>
+          </div>
+          <div class="edu-card">
+            <h3>Institute of Engineering and Technology, Lucknow</h3>
+            <div class="edu-degree">Bachelor of Technology (B.Tech) — Chemical Engineering</div>
+            <div class="edu-year">2018</div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="section-divider">
+
+      <!-- Achievements -->
+      <section class="section" id="achievements">
+        <div class="section-label">Achievements</div>
+        <h2>Highlights</h2>
+        <div class="achievements">
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <div class="achievement-text">
+              <h3>National 2nd — Accenture Strategy Challenge</h3>
+              <p>Placed 2nd nationally among 150+ competing teams in the Accenture Strategy Challenge.</p>
+            </div>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="achievement-text">
+              <h3>3x Expansion — Lebanon NGO</h3>
+              <p>Led expansion of a Lebanon-based NGO from 65 to 200+ members.</p>
+            </div>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            </div>
+            <div class="achievement-text">
+              <h3>Published Research Paper</h3>
+              <p>Flow Past Different Geometries Arranged in Triangular Pattern — published research work.</p>
+            </div>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            </div>
+            <div class="achievement-text">
+              <h3>S. Ramanujam Mathematics Award</h3>
+              <p>Marker cup holder in Mathematics (AISSCE) with 98% score.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact CTA -->
+      <div class="cta" id="contact">
+        <h2>Let's connect</h2>
+        <p>Interested in AI-driven product management, customer success, or enterprise SaaS? Let's talk.</p>
+        <div class="cta-buttons">
+          <a href="mailto:mail4abhaytyagi@gmail.com" class="btn btn--primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email Me
+          </a>
+          <a href="https://www.linkedin.com/in/abhay-tyagi-iimu/" target="_blank" rel="noopener" class="btn btn--secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <footer>
+        <div class="footer-inner">
+          <span class="footer-text">Abhay Tyagi — Senior Product Manager, ServiceNow</span>
+          <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="https://www.linkedin.com/in/abhay-tyagi-iimu/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+      </footer>
+
+      </div><!-- /profile-content -->
+    </div><!-- /profile-body -->
+  </div><!-- /profile-layout -->
+
+  <script>
+    // ─── Sidebar ───
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+
+    function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('visible'); }
+    function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('visible'); }
+
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+    overlay.addEventListener('click', closeSidebar);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
+
+    // ─── Dark Mode ───
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('portfolio-theme', newTheme);
+    });
+
+    // ─── Active section tracking ───
+    const sections = document.querySelectorAll('.section, .cta');
+    const navLinks = document.querySelectorAll('.profile-nav-link');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+
+    sections.forEach(section => {
+      if (section.id) observer.observe(section);
+    });
+  </script>
+
+</body>
+</html>
