@@ -22,15 +22,15 @@ const MIME = {
 };
 
 const ROUTES = {
-  '/':                                  'pm-workspace-home.html',
-  '/profile':                           'profile.html',
-  '/claude-code':                       'claude-code.html',
-  '/proof-of-value':                    'proof-of-value.html',
-  '/proof-of-value/platform-thinking':  'pov-platform-thinking.html',
-  '/proof-of-value/agent-governance':   'pov-agent-governance.html',
-  '/proof-of-value/domain-expertise':   'pov-domain-expertise.html',
-  '/proof-of-value/reusable-architecture': 'pov-reusable-architecture.html',
-  '/playbook':                          'strategic-playbook-dashboard.html',
+  '/':                                  'pages/home.html',
+  '/profile':                           'pages/profile.html',
+  '/claude-code':                       'pages/claude-code.html',
+  '/proof-of-value':                    'pages/proof-of-value.html',
+  '/proof-of-value/platform-thinking':  'pages/pov/platform-thinking.html',
+  '/proof-of-value/agent-governance':   'pages/pov/agent-governance.html',
+  '/proof-of-value/domain-expertise':   'pages/pov/domain-expertise.html',
+  '/proof-of-value/reusable-architecture': 'pages/pov/reusable-architecture.html',
+  '/playbook':                          'pages/playbook.html',
 };
 
 const SECURITY_HEADERS = {
@@ -58,7 +58,7 @@ const server = http.createServer((req, res) => {
   }
 
   // 404 — serve styled page
-  const notFoundPage = path.join(DIR, '404.html');
+  const notFoundPage = path.join(DIR, 'pages/404.html');
   if (fs.existsSync(notFoundPage)) {
     return serveFile(res, notFoundPage, '.html', 404);
   }

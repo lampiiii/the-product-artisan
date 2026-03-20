@@ -3,21 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agent Governance — Proof of Value</title>
-  <meta name="description" content="Agent governance, guardrails, decision boundaries, and automated enforcement — demonstrated through deterministic hooks, hierarchical CLAUDE.md context systems, and product-level governance decisions.">
-  <meta property="og:title" content="Agent Governance — Proof of Value">
-  <meta property="og:description" content="Agent governance, guardrails, decision boundaries, and automated enforcement — demonstrated through deterministic hooks and hierarchical context systems.">
+  <title>Proof of Value — Abhay Tyagi | The Product Artisan</title>
+  <meta name="description" content="Platform thinking and system-level thinking demonstrated through an AI-native PM Operating System — hooks, agents, skills, governance, and cross-system orchestration.">
+  <meta property="og:title" content="Platform Thinking — Proof of Value">
+  <meta property="og:description" content="Platform thinking and system-level thinking demonstrated through an AI-native PM Operating System — hooks, agents, skills, governance, and cross-system orchestration.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://github.com/lampiiii/portfolio">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Agent Governance — Proof of Value">
-  <meta name="twitter:description" content="Agent governance, guardrails, decision boundaries, and automated enforcement.">
+  <meta name="twitter:title" content="Platform Thinking — Proof of Value">
+  <meta name="twitter:description" content="Platform thinking and system-level thinking demonstrated through an AI-native PM Operating System.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d97757'/><text x='50' y='68' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='60' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/shared.css">
+  <link rel="stylesheet" href="/assets/css/shared.css">
   <style>
+    /* --- Breadcrumb --- */
+    .breadcrumb {
+      margin-top: var(--nav-height);
+      padding: 12px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-dim);
+    }
+    .breadcrumb a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .breadcrumb a:hover { color: var(--text); }
+
     /* --- Page Layout --- */
     .page { margin-top: 0; }
 
@@ -45,7 +63,7 @@
 
     /* --- Stats Strip --- */
     .stats {
-      display: grid; grid-template-columns: repeat(4, 1fr);
+      display: grid; grid-template-columns: repeat(6, 1fr);
       border-bottom: 1px solid var(--border);
     }
     .stat {
@@ -217,14 +235,6 @@
       font-style: normal; font-weight: 400;
     }
 
-    /* --- Coming Soon --- */
-    .coming-soon {
-      padding: 32px; background: var(--surface-card);
-      border: 1px dashed var(--border); border-radius: 8px;
-      text-align: center; color: var(--text-secondary);
-      font-size: 14px; line-height: 1.6;
-    }
-
     /* --- Pipeline Cards --- */
     .pipeline {
       padding: 20px; background: var(--surface-card);
@@ -264,8 +274,8 @@
     @media (max-width: 768px) {
       .hero { padding: 48px 20px 36px; }
       .content { padding: 0 20px; }
-      .stats { grid-template-columns: repeat(2, 1fr); }
-      .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--border); }
+      .stats { grid-template-columns: repeat(3, 1fr); }
+      .stat:nth-child(4), .stat:nth-child(5), .stat:nth-child(6) { border-top: 1px solid var(--border); }
       .grid { grid-template-columns: 1fr; }
       .split { grid-template-columns: 1fr; }
       .comparison-row { grid-template-columns: 1fr; }
@@ -288,10 +298,13 @@
         </button>
         <a href="/" class="nav-logo">
           <div class="nav-logo-mark">A</div>
-          <span class="nav-logo-text">Abhay Tyagi</span>
+          <span class="nav-logo-text">The Product Artisan</span>
         </a>
       </div>
       <div class="nav-right">
+        <a href="https://productartisan.substack.com" class="nav-icon-btn" target="_blank" rel="noopener" title="Substack">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        </a>
         <a href="https://github.com/lampiiii" class="nav-icon-btn" target="_blank" rel="noopener" title="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
@@ -316,7 +329,11 @@
       </a>
       <a href="/claude-code" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Claude Code
+        Powered by Claude Code
+      </a>
+      <a href="/proof-of-value" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Proof of Value
       </a>
     </div>
 
@@ -334,9 +351,9 @@
 
     <div class="sidebar-section">
       <div class="sidebar-section-label">Quick Links</div>
-      <a href="resources/Abhay.pdf" class="sidebar-link" download>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download Resume
+      <a href="https://productartisan.substack.com" class="sidebar-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        Substack
       </a>
       <a href="mailto:mail4abhaytyagi@gmail.com" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -351,13 +368,12 @@
     <div class="sidebar-spacer"></div>
 
     <div class="sidebar-footer">
-      <div class="sidebar-footer-text">PM Workspace v1.0</div>
+      <div class="sidebar-footer-text">The Product Artisan v1.0</div>
     </div>
   </aside>
 
-  <!-- --- Breadcrumb --- -->
-  <div style="margin-top: var(--nav-height); padding: 12px 48px; border-bottom: 1px solid var(--border); background: var(--surface-dim);">
-    <a href="/proof-of-value" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">
+  <div class="breadcrumb">
+    <a href="/proof-of-value">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
       Back to Proof of Value
     </a>
@@ -368,8 +384,8 @@
     <!-- --- Hero --- -->
     <div class="hero">
       <div class="hero-badge">Proof of Value</div>
-      <h1><span>Agent</span> Governance</h1>
-      <p>Defining guardrails, decision boundaries, and automated enforcement — the skill that separates senior PMs from task managers in the AI era.</p>
+      <h1><span>Platform Thinking</span> & System-Level Thinking</h1>
+      <p>How I apply the two hardest-to-replicate PM skills in the AI era — by building an AI-native PM Operating System where every component demonstrates judgment, governance, architecture design, and measurable proof of value.</p>
     </div>
 
     <!-- --- Stats --- -->
@@ -379,30 +395,130 @@
         <div class="stat-label">Lifecycle Hooks</div>
       </div>
       <div class="stat">
-        <div class="stat-value">23</div>
+        <div class="stat-value">2</div>
+        <div class="stat-label">Custom Agents</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">6</div>
+        <div class="stat-label">Custom Skills</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">24</div>
         <div class="stat-label">CLAUDE.md Files</div>
       </div>
       <div class="stat">
-        <div class="stat-value">7</div>
-        <div class="stat-label">Before/After Transitions</div>
+        <div class="stat-value">4</div>
+        <div class="stat-label">MCP Integrations</div>
       </div>
       <div class="stat">
-        <div class="stat-value">1</div>
-        <div class="stat-label">Hook System</div>
+        <div class="stat-value">7</div>
+        <div class="stat-label">Dashboards</div>
       </div>
     </div>
 
     <div class="content">
 
-      <!-- --- 1. The Hooks System: Deterministic Governance --- -->
+      <!-- --- 1. Strategic Apex --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="section-title">Why This Matters</div>
+        </div>
+        <div class="section-desc">The AI PM Strategic Playbook identifies a split: PMs either stay at the Task Execution layer — writing tickets, managing backlogs, increasingly automatable — or move to the Strategic Apex: vision, governance, system design. Irreplaceable.</div>
+
+        <div class="split">
+          <div class="split-card">
+            <div class="split-card-label split-card-label--dim">Increasingly Automatable</div>
+            <div class="split-card-title">Task Execution</div>
+            <div class="split-card-desc">Writing tickets, managing backlogs, status updates, routine documentation</div>
+          </div>
+          <div class="split-card" style="border-color: var(--accent);">
+            <div class="split-card-label split-card-label--accent">Irreplaceable</div>
+            <div class="split-card-title">Strategic Apex</div>
+            <div class="split-card-desc">Vision, governance, system design, architecture decisions, cross-platform thinking</div>
+          </div>
+        </div>
+
+        <div class="section-desc" style="margin-bottom: 12px;">Platform thinking and system-level thinking sit at the center of the Strategic Apex. They are about:</div>
+        <div class="pillars">
+          <div class="pillar">
+            <span class="pillar-icon" style="color: var(--blue);">&#9670;</span>
+            Understanding how systems talk to each other
+          </div>
+          <div class="pillar">
+            <span class="pillar-icon" style="color: var(--green);">&#9670;</span>
+            Designing products that work across platforms, not just within one
+          </div>
+          <div class="pillar">
+            <span class="pillar-icon" style="color: var(--purple);">&#9670;</span>
+            Knowing what is possible at the integration layer
+          </div>
+          <div class="pillar">
+            <span class="pillar-icon" style="color: var(--accent);">&#9670;</span>
+            Architecting guardrails, automation, and governance at scale
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 2. Architecture Decisions --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="section-title">PM Operating System</div>
+        </div>
+        <div class="section-desc">A markdown-based workspace orchestrated through Claude Code, serving 7+ interactive dashboards from a zero-dependency Node.js server. Not a toy project — this is my actual daily operating system for managing products, tasks, syncs, and strategy.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">Zero npm dependencies for the server</div>
+              <div class="item-desc">Reduces attack surface, eliminates supply chain risk, proves you can build production-grade infra with fundamentals.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">SSE (Server-Sent Events) for live updates</div>
+              <div class="item-desc">Real-time data flow between markdown files and dashboards without WebSocket complexity.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">Markdown as the data layer</div>
+              <div class="item-desc">Human-readable, version-controlled, AI-parseable — works across every tool in the ecosystem.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">File watchers triggering dashboard refreshes</div>
+              <div class="item-desc">Event-driven architecture at the OS level, not polling.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">Shared design system across 7+ HTML pages</div>
+              <div class="item-desc">Consistent UX without a framework — CSS custom properties as the API contract.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 3. Hooks: Deterministic Governance --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--red">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <div class="section-title">The Hooks System: Deterministic Governance</div>
+          <div class="section-title">Deterministic Governance: Hooks</div>
         </div>
-        <div class="section-desc">The most direct proof of governance thinking. Instead of relying on AI memory (probabilistic, lossy during compaction), I built deterministic automation that fires at key lifecycle events.</div>
+        <div class="section-desc">The most direct proof of system-level thinking. Instead of relying on AI memory (probabilistic, lossy during compaction), I built deterministic automation that fires at key lifecycle events. This is governance design — guardrails, decision boundaries, and automated enforcement.</div>
 
         <div class="comparison">
           <div class="comparison-row">
@@ -416,6 +532,10 @@
           <div class="comparison-row">
             <div class="comparison-cell comparison-cell--before">"Don't edit .env files"</div>
             <div class="comparison-cell comparison-cell--after">PreToolUse hook blocks the edit with an error, every time</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell comparison-cell--before">"Run Tailwind build after HTML changes"</div>
+            <div class="comparison-cell comparison-cell--after">PostToolUse hook compiles CSS automatically</div>
           </div>
           <div class="comparison-row">
             <div class="comparison-cell comparison-cell--before">"Validate markdown tables"</div>
@@ -432,10 +552,6 @@
           <div class="comparison-row">
             <div class="comparison-cell comparison-cell--before">"Notify me when Claude needs input"</div>
             <div class="comparison-cell comparison-cell--after">Notification hook sends macOS alert with sound</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comparison-cell comparison-cell--before">"Log activity before stopping"</div>
-            <div class="comparison-cell comparison-cell--after">Stop hook checks activity log and proof-of-value evidence</div>
           </div>
         </div>
 
@@ -459,7 +575,15 @@
           <div class="item">
             <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">3. Markdown Table Validator</div>
+              <div class="item-name">3. Auto-Rebuild Tailwind</div>
+              <div class="item-desc">Compiles CSS after any HTML/CSS edit.</div>
+              <div class="item-tags"><span class="item-tag">PostToolUse</span><span class="item-tag">Build</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--red"></div>
+            <div>
+              <div class="item-name">4. Markdown Table Validator</div>
               <div class="item-desc">Checks column consistency in task/sync/backlog files.</div>
               <div class="item-tags"><span class="item-tag">PostToolUse</span><span class="item-tag">Data Integrity</span></div>
             </div>
@@ -467,7 +591,7 @@
           <div class="item">
             <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">4. Server Syntax Check</div>
+              <div class="item-name">5. Server Syntax Check</div>
               <div class="item-desc">Runs node --check on server.js after edits.</div>
               <div class="item-tags"><span class="item-tag">PostToolUse</span><span class="item-tag">Validation</span></div>
             </div>
@@ -475,7 +599,7 @@
           <div class="item">
             <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">5. Package Install Reminder</div>
+              <div class="item-name">6. Package Install Reminder</div>
               <div class="item-desc">Deterministic reminder to update installed-packages.md.</div>
               <div class="item-tags"><span class="item-tag">PostToolUse</span><span class="item-tag">Bash</span></div>
             </div>
@@ -483,31 +607,113 @@
           <div class="item">
             <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">6. Context Re-Injection</div>
-              <div class="item-desc">Restores LNO framework, task lifecycle, date formats after compaction.</div>
+              <div class="item-name">7. Context Re-Injection</div>
+              <div class="item-desc">Restores LNO framework, task lifecycle, date formats, career growth rules after compaction.</div>
               <div class="item-tags"><span class="item-tag">SessionStart</span><span class="item-tag">Compact</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">7. Activity Log &amp; Proof-of-Value Check</div>
-              <div class="item-desc">Mandatory documentation before session ends.</div>
-              <div class="item-tags"><span class="item-tag">Stop</span><span class="item-tag">Documentation</span></div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- --- 2. CLAUDE.md Context System --- -->
+      <!-- --- 4. Custom Agents --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </div>
+          <div class="section-title">Custom Agents</div>
+        </div>
+        <div class="section-desc">Two specialized agents that demonstrate reusable architecture and domain expertise deepening — encoding competitive intelligence and risk analysis as queryable systems, not tribal knowledge.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">Competitive Strategic Lens</div>
+              <div class="item-desc">Analyzes any CSM feature against the competitive landscape. 7-step analysis covering feature comparison (vs. Gainsight, Totango, ChurnZero, Planhat, Vitally, Salesforce), differentiation classification, moat assessment, AI disruption threats, and sustainable advantage scoring.</div>
+              <div class="item-tags"><span class="item-tag">Strategy</span><span class="item-tag">Competitive Intel</span><span class="item-tag">Opus</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">PRD Edge Case Analyzer</div>
+              <div class="item-desc">Systematic risk analysis across 10 dimensions before engineering handoff — user/actor edge cases, data/input, state/flow, integration risks, security/privacy, performance, compliance, UX, operations, and a mandatory CSM Impact Assessment.</div>
+              <div class="item-tags"><span class="item-tag">Quality</span><span class="item-tag">Risk Analysis</span><span class="item-tag">Opus</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 5. Custom Skills --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="section-title">Custom Skills</div>
+        </div>
+        <div class="section-desc">Eight skills that automate repeatable PM workflows with zero-questions execution. Each demonstrates a strategic skill that compounds over time.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/epic-creator</div>
+              <div class="item-desc">Generates structured epics with acceptance criteria, personas, outcomes, and telemetry.</div>
+              <div class="item-tags"><span class="item-tag">Domain Expertise</span><span class="item-tag">CSM-specific structure</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/story-creator</div>
+              <div class="item-desc">Creates user stories with constrained descriptions and acceptance criteria.</div>
+              <div class="item-tags"><span class="item-tag">Reusable Architecture</span><span class="item-tag">Templated, consistent</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/meeting-prep</div>
+              <div class="item-desc">Produces prioritized agendas from free-form input.</div>
+              <div class="item-tags"><span class="item-tag">Stakeholder Management</span><span class="item-tag">Structured prep</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/doc-refiner</div>
+              <div class="item-desc">Refines unstructured markdown in a single pass.</div>
+              <div class="item-tags"><span class="item-tag">System-Level Thinking</span><span class="item-tag">Information architecture</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/design-thinker</div>
+              <div class="item-desc">Asks empathy-driven questions before building.</div>
+              <div class="item-tags"><span class="item-tag">Design Thinking</span><span class="item-tag">The moat skill</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/figma-console</div>
+              <div class="item-desc">Connects to Figma for design-to-code workflows.</div>
+              <div class="item-tags"><span class="item-tag">Platform Thinking</span><span class="item-tag">Cross-tool integration</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 6. CLAUDE.md Context System --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--yellow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
-          <div class="section-title">CLAUDE.md Context System — Multi-Layered Governance</div>
+          <div class="section-title">CLAUDE.md Context System</div>
         </div>
-        <div class="section-desc">24 CLAUDE.md files create a hierarchical instruction system. This is organizational design for AI — each file scopes Claude's knowledge and behavior to the right context, like defining team charters and domain boundaries for an AI agent system.</div>
+        <div class="section-desc">24 CLAUDE.md files create a hierarchical instruction system — organizational design for AI. Each file scopes Claude's knowledge and behavior to the right context, like defining team charters and domain boundaries for an AI agent system.</div>
         <div class="file-tree">
           <div class="tree-item tree-item--l1">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
@@ -549,16 +755,6 @@
             <span class="tree-name">AI Web Agents</span>
             <span class="tree-desc">45+ use cases, Edge Agent model</span>
           </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <span class="tree-name">Priority Plays Recommendation</span>
-            <span class="tree-desc">Health scores, risk, renewal</span>
-          </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <span class="tree-name">Executive Briefing</span>
-            <span class="tree-desc">Account &amp; engagement scoping</span>
-          </div>
           <div class="tree-item tree-item--l3">
             <div class="tree-icon tree-icon--feature"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
             <span class="tree-name">Portfolio</span>
@@ -577,28 +773,144 @@
           <div class="tree-item tree-item--l3">
             <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
             <span class="tree-name">+ 7 more...</span>
-            <span class="tree-desc">Resources, styles, stakeholders, etc.</span>
+            <span class="tree-desc">Resources, styles, stakeholders, claude-code-reference</span>
           </div>
         </div>
       </div>
 
-      <!-- --- 3. Product Work --- -->
+      <!-- --- 7. Cross-System Orchestration --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="section-title">Cross-System Orchestration</div>
+        </div>
+        <div class="section-desc">MCP integrations that form a connected system — not standalone tools. A single Claude Code session can read a Figma design, generate a feature spec in Google Docs, create tasks in the action tracker, and update the portfolio through orchestrated connections.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">Figma Console MCP</div>
+              <div class="item-desc">56+ tools for full read-write Figma access — design token extraction, component instantiation, screenshots, plugin debugging. Enables design-to-code workflows without leaving the terminal.</div>
+              <div class="item-tags"><span class="item-tag">Design</span><span class="item-tag">56+ Tools</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">Google Workspace MCP</div>
+              <div class="item-desc">Gmail, Docs, Sheets, Slides, Calendar, Drive, Forms — 100+ tools. Document creation, email drafting, and calendar management from within Claude Code.</div>
+              <div class="item-tags"><span class="item-tag">Productivity</span><span class="item-tag">100+ Tools</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">Anthropic Plugin Marketplace</div>
+              <div class="item-desc">10+ plugins including PDF/DOCX/PPTX generation, frontend design, skill creation — extending Claude Code's native capabilities.</div>
+              <div class="item-tags"><span class="item-tag">Ecosystem</span><span class="item-tag">10+ Plugins</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 8. The Compound Effect --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--accent">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
-          <div class="section-title">Product Work</div>
+          <div class="section-title">The Compound Effect</div>
         </div>
-        <div class="section-desc">Agent governance proof from product feature design decisions.</div>
-        <div class="coming-soon">Product work entries coming soon — governance decisions from AI Insights guardrails, Meeting Creation agent boundaries, and Priority Plays recommendation thresholds.</div>
+        <div class="section-desc">None of these components exist in isolation. The power is in how they compose. This is system-level thinking: seeing the full pipeline, not just one step.</div>
+
+        <div class="pipeline">
+          <div class="pipeline-label">Pipeline 1 — Task Lifecycle</div>
+          <div class="pipeline-flow">Task added <span class="arrow">&rarr;</span> Dashboard updates via SSE <span class="arrow">&rarr;</span> LNO priority via memory rules <span class="arrow">&rarr;</span> Career growth nudge connects to playbook</div>
+        </div>
+        <div class="pipeline">
+          <div class="pipeline-label">Pipeline 2 — Feature Spec</div>
+          <div class="pipeline-flow">Spec written <span class="arrow">&rarr;</span> PRD Edge Case Analyzer reviews <span class="arrow">&rarr;</span> Competitive Lens evaluates positioning <span class="arrow">&rarr;</span> Epic creator generates formal epic</div>
+        </div>
+        <div class="pipeline">
+          <div class="pipeline-label">Pipeline 3 — Code Edit</div>
+          <div class="pipeline-flow">Code edited <span class="arrow">&rarr;</span> Hooks validate syntax, rebuild CSS, check tables <span class="arrow">&rarr;</span> Notifications alert if input needed <span class="arrow">&rarr;</span> Context re-injection preserves rules</div>
+        </div>
+        <div class="pipeline">
+          <div class="pipeline-label">Pipeline 4 — Meeting Flow</div>
+          <div class="pipeline-flow">Meeting scheduled <span class="arrow">&rarr;</span> Meeting prep skill generates agenda <span class="arrow">&rarr;</span> Sync dashboard tracks points <span class="arrow">&rarr;</span> Discussed points archive with outcomes</div>
+        </div>
       </div>
 
-      <!-- --- Quote Block --- -->
+      <!-- --- 9. Strategic Apex Mapping --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0022 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <div class="section-title">Strategic Apex Mapping</div>
+        </div>
+        <div class="section-desc">Every component maps to a skill the AI PM Strategic Playbook identifies as irreplaceable.</div>
+
+        <table class="mapping-table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Playbook Skill</th>
+              <th>How It Demonstrates the Skill</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hooks system</td>
+              <td>Agent Supervision & Governance</td>
+              <td>Defined guardrails, decision boundaries, automated enforcement</td>
+            </tr>
+            <tr>
+              <td>Custom agents</td>
+              <td>Domain Expertise Deepening</td>
+              <td>Encoded competitive intelligence and risk analysis as reusable systems</td>
+            </tr>
+            <tr>
+              <td>CLAUDE.md hierarchy</td>
+              <td>Organizational Design</td>
+              <td>Scoped AI behavior across 24 contexts — team charters for agents</td>
+            </tr>
+            <tr>
+              <td>MCP integrations</td>
+              <td>Platform Thinking</td>
+              <td>Cross-system orchestration (Figma + Google + Terminal)</td>
+            </tr>
+            <tr>
+              <td>Skills</td>
+              <td>Reusable Architecture</td>
+              <td>Templated workflows that scale across features and products</td>
+            </tr>
+            <tr>
+              <td>Memory + Growth nudge</td>
+              <td>Proof of Value</td>
+              <td>Every session ties work to measurable career outcomes</td>
+            </tr>
+            <tr>
+              <td>Dashboard standardization</td>
+              <td>System-Level Thinking</td>
+              <td>Consistent UX patterns (sort, headers, dark mode) across 7+ pages</td>
+            </tr>
+            <tr>
+              <td>Markdown as data layer</td>
+              <td>Platform Thinking</td>
+              <td>Human-readable, version-controlled, AI-parseable — universal data format</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- --- 10. One-Line Summary --- -->
       <div class="section">
         <blockquote class="quote-block">
-          A PM who defines what AI can decide vs. what it must escalate — and builds deterministic systems to enforce those boundaries — is doing the governance work that agents themselves cannot do.
-          <div class="quote-block-footer">Last updated: 2026-03-19</div>
+          A PM who can architect AI governance systems, design cross-platform integrations, encode domain expertise as reusable agents, and build deterministic automation replacing probabilistic memory — is operating at the Strategic Apex that agents cannot reach.
+          <div class="quote-block-footer">Last updated: 2026-03-16</div>
         </blockquote>
       </div>
 
@@ -611,6 +923,7 @@
           <a href="/">Home</a>
           <a href="/profile">Profile</a>
           <a href="/claude-code">Claude Code</a>
+          <a href="https://productartisan.substack.com" target="_blank" rel="noopener">Substack</a>
           <a href="https://github.com/lampiiii" target="_blank" rel="noopener">GitHub</a>
         </div>
       </div>
@@ -618,7 +931,7 @@
 
   </div>
 
-  <script src="/shared.js"></script>
+  <script src="/assets/js/shared.js"></script>
 
 </body>
 </html>
