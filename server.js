@@ -16,6 +16,7 @@ const MIME = {
   '.jpeg': 'image/jpeg',
   '.gif': 'image/gif',
   '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
   '.pdf': 'application/pdf',
   '.ico': 'image/x-icon',
 };
@@ -30,6 +31,14 @@ const ROUTES = {
   '/proof-of-value/domain-expertise':   'pov-domain-expertise.html',
   '/proof-of-value/reusable-architecture': 'pov-reusable-architecture.html',
   '/playbook':                          'strategic-playbook-dashboard.html',
+};
+
+const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'X-XSS-Protection': '1; mode=block',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
 };
 
 const server = http.createServer((req, res) => {
@@ -48,17 +57,25 @@ const server = http.createServer((req, res) => {
     return serveFile(res, safePath, path.extname(safePath));
   }
 
-  res.writeHead(404, { 'Content-Type': 'text/plain' });
+  // 404 — serve styled page
+  const notFoundPage = path.join(DIR, '404.html');
+  if (fs.existsSync(notFoundPage)) {
+    return serveFile(res, notFoundPage, '.html', 404);
+  }
+  res.writeHead(404, { 'Content-Type': 'text/plain', ...SECURITY_HEADERS });
   res.end('Not Found');
 });
 
-function serveFile(res, filePath, ext) {
+function serveFile(res, filePath, ext, statusCode = 200) {
   try {
     const content = fs.readFileSync(filePath);
-    res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' });
+    res.writeHead(statusCode, {
+      'Content-Type': MIME[ext] || 'application/octet-stream',
+      ...SECURITY_HEADERS,
+    });
     res.end(content);
   } catch {
-    res.writeHead(500, { 'Content-Type': 'text/plain' });
+    res.writeHead(500, { 'Content-Type': 'text/plain', ...SECURITY_HEADERS });
     res.end('Internal Server Error');
   }
 }

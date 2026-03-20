@@ -4,13 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Strategic Playbook — PM Workspace</title>
+  <meta name="description" content="AI PM Strategic Playbook — a dashboard for navigating the evolving landscape of product management in the age of AI.">
+  <meta property="og:title" content="Strategic Playbook — Abhay Tyagi">
+  <meta property="og:description" content="AI PM Strategic Playbook — navigating the evolving landscape of product management in the age of AI.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/lampiiii/portfolio">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Strategic Playbook — Abhay Tyagi">
+  <meta name="twitter:description" content="AI PM Strategic Playbook — navigating the evolving landscape of product management in the age of AI.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d97757'/><text x='50' y='68' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='60' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/shared.css">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
       --blue: #d97757;
       --blue-hover: #c4623f;
@@ -77,8 +84,6 @@
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-
-    /* ─── Global Nav ─── */
     .global-nav {
       position: fixed;
       top: 0;
@@ -175,8 +180,6 @@
     .theme-toggle .icon-moon { display: none; }
     [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
     [data-theme="dark"] .theme-toggle .icon-moon { display: block; }
-
-    /* ─── Left Sidebar ─── */
     .sidebar-overlay {
       display: none;
       position: fixed;
@@ -230,20 +233,6 @@
     .sidebar-spacer { flex: 1; }
     .sidebar-footer { padding: 16px; border-top: 1px solid var(--border); }
     .sidebar-footer-text { font-size: 12px; color: var(--text-muted); text-align: center; }
-    .sidebar-toggle {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      background: transparent;
-      color: var(--text-secondary);
-      border-radius: 50%;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-    .sidebar-toggle:hover { background: var(--surface-dim); color: var(--text); }
     @media (max-width: 768px) {
       .global-nav-btn span { display: none; }
       .global-nav-btn { padding: 8px 12px; min-height: 36px; }
@@ -739,8 +728,6 @@
       color: var(--text-secondary);
       padding: 6px 0;
     }
-
-    /* Footer */
     .footer {
       max-width: 1200px;
       margin: 0 auto;
@@ -1070,28 +1057,6 @@
     Last updated: Mar 2026 | AI PM Strategic Playbook
   </footer>
 
-<script>
-    // ─── Sidebar Toggle ───
-    (function() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('sidebar-overlay');
-      const toggle = document.getElementById('sidebar-toggle');
-      function openSidebar() { sidebar.classList.add('open'); overlay.classList.add('visible'); }
-      function closeSidebar() { sidebar.classList.remove('open'); overlay.classList.remove('visible'); }
-      toggle.addEventListener('click', () => { sidebar.classList.contains('open') ? closeSidebar() : openSidebar(); });
-      overlay.addEventListener('click', closeSidebar);
-    })();
-
-    // Dark Mode
-    const themeToggle = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
-    themeToggle.addEventListener('click', () => {
-      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const newTheme = isDark ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('portfolio-theme', newTheme);
-    });
-</script>
+<script src="/shared.js"></script>
 </body>
 </html>

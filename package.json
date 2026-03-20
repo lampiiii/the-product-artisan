@@ -1,0 +1,26 @@
+{
+  "name": "abhay-tyagi-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio site for Abhay Tyagi — Senior PM at ServiceNow, showcasing AI-native product management.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "portfolio",
+    "product-management",
+    "ai-native",
+    "servicenow",
+    "customer-success"
+  ],
+  "author": "Abhay Tyagi",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lampiiii/portfolio.git"
+  }
+}
