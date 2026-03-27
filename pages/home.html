@@ -68,8 +68,8 @@
       background-image:
         linear-gradient(var(--border) 1px, transparent 1px),
         linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: 0.35;
+      background-size: 24px 24px;
+      opacity: 0.22;
       pointer-events: none;
     }
 
@@ -322,6 +322,93 @@
       color: var(--text-tertiary);
     }
 
+    /* ─── Radar Chart Section ─── */
+    .radar-section {
+      padding: 80px 40px;
+      background: var(--surface);
+    }
+    .radar-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .radar-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-tertiary);
+      margin-bottom: 8px;
+    }
+    .radar-subtitle {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 40px;
+    }
+    .radar-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+    }
+    .radar-chart-wrap {
+      flex-shrink: 0;
+    }
+    .radar-chart-wrap svg text {
+      font-family: 'Inter', sans-serif;
+    }
+    .radar-legend {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .radar-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .radar-legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .radar-legend-dot--active { background: var(--blue); }
+    .radar-legend-dot--watching { background: var(--text-tertiary); }
+    .radar-legend-label { font-weight: 500; color: var(--text); }
+    .radar-legend-status {
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+    .radar-legend-status--active {
+      background: rgba(107,143,113,0.1);
+      color: #6b8f71;
+    }
+    [data-theme="dark"] .radar-legend-status--active {
+      background: rgba(143,184,150,0.12);
+      color: #8fb896;
+    }
+    .radar-legend-status--watching {
+      background: var(--blue-bg);
+      color: var(--text-tertiary);
+    }
+
+    @media (max-width: 768px) {
+      .radar-section { padding: 60px 20px; }
+      .radar-container {
+        flex-direction: column;
+        gap: 32px;
+      }
+      .radar-chart-wrap svg {
+        width: 320px;
+        height: 320px;
+      }
+    }
+
     /* ─── Substack CTA ─── */
     .substack-cta {
       padding: 80px 40px;
@@ -372,11 +459,10 @@
     <div class="nav-inner">
       <div class="nav-left">
         <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle navigation">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="9" x2="16" y2="9"/><line x1="4" y1="15" x2="12" y2="15"/></svg>
         </button>
         <a href="/" class="nav-logo">
-          <div class="nav-logo-mark">A</div>
-          <span class="nav-logo-text">The Product Artisan</span>
+          <span class="nav-logo-text">Abhay Tyagi</span>
         </a>
       </div>
       <div class="nav-right">
@@ -536,6 +622,20 @@
     </div>
   </section>
 
+  <!-- ─── Proof of Value Radar ─── -->
+  <section class="radar-section">
+    <div class="radar-inner">
+      <h2 class="radar-title">Proof of Value</h2>
+      <p class="radar-subtitle">10 strategic PM skills that agents can't replace — mapped by demonstrated capability.</p>
+      <div class="radar-container">
+        <div class="radar-chart-wrap">
+          <svg id="radar-chart" width="420" height="420" viewBox="0 0 420 420"></svg>
+        </div>
+        <div class="radar-legend" id="radar-legend"></div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── Substack CTA ─── -->
   <section class="substack-cta">
     <div class="substack-cta-inner">
@@ -561,6 +661,122 @@
   </footer>
 
   <script src="/assets/js/shared.js"></script>
+
+  <script>
+  (function() {
+    const skills = [
+      { name: 'Platform Thinking',      value: 95, active: true },
+      { name: 'Reusable Architecture',  value: 92, active: true },
+      { name: 'Agent Governance',        value: 88, active: true },
+      { name: 'Domain Expertise',        value: 78, active: true },
+      { name: 'Design Thinking',         value: 68, active: true },
+      { name: 'Navigating Ambiguity',    value: 62, active: true },
+      { name: 'Stakeholder Mgmt',        value: 45, active: false },
+      { name: 'Pricing Strategy',        value: 40, active: false },
+      { name: 'Outcome Stories',         value: 38, active: false },
+      { name: 'Ethical AI',              value: 32, active: false },
+    ];
+
+    const svg = document.getElementById('radar-chart');
+    const cx = 210, cy = 210, maxR = 160;
+    const n = skills.length;
+    const levels = 5;
+
+    function getThemeColors() {
+      const s = getComputedStyle(document.documentElement);
+      return {
+        accent: s.getPropertyValue('--blue').trim() || '#d97757',
+        border: s.getPropertyValue('--border').trim() || '#e5e4db',
+        textSecondary: s.getPropertyValue('--text-secondary').trim() || '#5a5a5f',
+        textTertiary: s.getPropertyValue('--text-tertiary').trim() || '#8e8e93',
+        text: s.getPropertyValue('--text').trim() || '#131314',
+      };
+    }
+
+    function polarToXY(angleDeg, r) {
+      const rad = (angleDeg - 90) * Math.PI / 180;
+      return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+    }
+
+    function drawRadar() {
+      const c = getThemeColors();
+      const angleStep = 360 / n;
+      let svgContent = '';
+
+      // Grid rings
+      for (let l = 1; l <= levels; l++) {
+        const r = (maxR / levels) * l;
+        let points = '';
+        for (let i = 0; i < n; i++) {
+          const p = polarToXY(i * angleStep, r);
+          points += `${p.x},${p.y} `;
+        }
+        svgContent += `<polygon points="${points.trim()}" fill="none" stroke="${c.border}" stroke-width="1"/>`;
+      }
+
+      // Axis lines
+      for (let i = 0; i < n; i++) {
+        const p = polarToXY(i * angleStep, maxR);
+        svgContent += `<line x1="${cx}" y1="${cy}" x2="${p.x}" y2="${p.y}" stroke="${c.border}" stroke-width="1"/>`;
+      }
+
+      // Data polygon
+      let dataPoints = '';
+      const dots = [];
+      for (let i = 0; i < n; i++) {
+        const r = (skills[i].value / 100) * maxR;
+        const p = polarToXY(i * angleStep, r);
+        dataPoints += `${p.x},${p.y} `;
+        dots.push(p);
+      }
+
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const fillOpacity = isDark ? '0.15' : '0.1';
+      svgContent += `<polygon points="${dataPoints.trim()}" fill="${c.accent}" fill-opacity="${fillOpacity}" stroke="${c.accent}" stroke-width="2"/>`;
+
+      // Data dots
+      dots.forEach((p, i) => {
+        const dotColor = skills[i].active ? c.accent : c.textTertiary;
+        svgContent += `<circle cx="${p.x}" cy="${p.y}" r="4" fill="${dotColor}" stroke="white" stroke-width="1.5"/>`;
+      });
+
+      // Labels
+      for (let i = 0; i < n; i++) {
+        const labelR = maxR + 24;
+        const p = polarToXY(i * angleStep, labelR);
+        const angle = i * angleStep;
+        let anchor = 'middle';
+        let dx = 0;
+        if (angle > 10 && angle < 170) { anchor = 'start'; dx = 4; }
+        else if (angle > 190 && angle < 350) { anchor = 'end'; dx = -4; }
+        const labelColor = skills[i].active ? c.text : c.textTertiary;
+        const fontSize = 11;
+        svgContent += `<text x="${p.x + dx}" y="${p.y}" text-anchor="${anchor}" dominant-baseline="central" fill="${labelColor}" font-size="${fontSize}" font-weight="${skills[i].active ? 500 : 400}">${skills[i].name}</text>`;
+      }
+
+      svg.innerHTML = svgContent;
+    }
+
+    // Legend
+    function buildLegend() {
+      const legend = document.getElementById('radar-legend');
+      legend.innerHTML = skills.map(s => `
+        <div class="radar-legend-item">
+          <span class="radar-legend-dot radar-legend-dot--${s.active ? 'active' : 'watching'}"></span>
+          <span class="radar-legend-label">${s.name}</span>
+          <span class="radar-legend-status radar-legend-status--${s.active ? 'active' : 'watching'}">${s.active ? 'Active' : 'Watching'}</span>
+        </div>
+      `).join('');
+    }
+
+    drawRadar();
+    buildLegend();
+
+    // Re-draw on theme change
+    const observer = new MutationObserver(() => { drawRadar(); });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  })();
+  </script>
 
 </body>
 </html>
