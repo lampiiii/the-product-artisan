@@ -12,24 +12,25 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Profile — Abhay Tyagi">
   <meta name="twitter:description" content="Senior PM building AI-powered Customer Success at ServiceNow. Experience, skills, education, and achievements.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d97757'/><text x='50' y='68' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='60' fill='white'>A</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('portfolio-theme')||'dark');</script>
   <link rel="stylesheet" href="/assets/css/shared.css">
   <style>
     /* Page-specific: remap --blue to accent orange, add extra vars */
     :root {
-      --blue: #d97757;
-      --blue-hover: #c4623f;
-      --blue-bg: rgba(217,119,87,0.1);
+      --blue: #1a73e8;
+      --blue-hover: #1765cc;
+      --blue-bg: rgba(26,115,232,0.10);
       --shadow-md: 0 4px 6px rgba(19,19,20,0.07), 0 2px 4px rgba(19,19,20,0.06);
       --sidebar-width: 260px;
     }
     [data-theme="dark"] {
-      --blue: #e09070;
-      --blue-hover: #eba88e;
-      --blue-bg: rgba(224,144,112,0.12);
+      --blue: #4285f4;
+      --blue-hover: #5e97f6;
+      --blue-bg: rgba(66,133,244,0.16);
       --shadow-md: 0 4px 6px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.2);
     }
 
@@ -38,7 +39,7 @@
     .nav-link { font-weight: 600; }
     .nav-icon-btn { transition: background 0.2s, color 0.2s, border-color 0.2s; }
     .nav-logo-text { letter-spacing: 0; }
-    .nav-logo-mark { background: var(--blue); }
+    .nav-logo-mark { background: var(--grad-spectrum); }
     .nav-link--primary { background: var(--blue); }
     .nav-link--primary:hover { background: var(--blue-hover); }
     .sidebar-section-label { font-weight: 600; }
@@ -320,8 +321,8 @@
     }
     .card-icon svg { width: 20px; height: 20px; }
     .card-icon--blue { background: var(--blue-bg); color: var(--blue); }
-    .card-icon--green { background: var(--green-bg); color: var(--green); }
-    .card-icon--purple { background: var(--purple-bg); color: var(--purple); }
+    .card-icon--green { background: var(--blue-bg); color: var(--blue); }
+    .card-icon--purple { background: var(--blue-bg); color: var(--blue); }
     .card-badge {
       display: inline-block;
       padding: 2px 10px;
@@ -331,8 +332,8 @@
       margin-bottom: 12px;
     }
     .card-badge--blue { background: var(--blue-bg); color: var(--blue); }
-    .card-badge--green { background: var(--green-bg); color: var(--green); }
-    .card-badge--purple { background: var(--purple-bg); color: var(--purple); }
+    .card-badge--green { background: var(--blue-bg); color: var(--blue); }
+    .card-badge--purple { background: var(--blue-bg); color: var(--blue); }
     .card h3 {
       font-size: 18px;
       font-weight: 600;
@@ -444,8 +445,8 @@
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      background: var(--yellow-bg);
-      color: var(--yellow);
+      background: var(--blue-bg);
+      color: var(--blue);
     }
     .achievement-icon svg { width: 18px; height: 18px; }
     .achievement-text h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
