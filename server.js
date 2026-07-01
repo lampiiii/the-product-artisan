@@ -30,6 +30,9 @@ const ROUTES = {
   '/proof-of-value/agent-governance':   'artisan/pov/agent-governance.html',
   '/proof-of-value/domain-expertise':   'artisan/pov/domain-expertise.html',
   '/proof-of-value/reusable-architecture': 'artisan/pov/reusable-architecture.html',
+  '/proof-of-value/outcome-stories':     'artisan/pov/outcome-stories.html',
+  '/proof-of-value/stakeholder-management': 'artisan/pov/stakeholder-management.html',
+  '/proof-of-value/pricing-strategy':    'artisan/pov/pricing-strategy.html',
   '/playbook':                          'artisan/playbook.html',
 };
 

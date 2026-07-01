@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Domain Expertise — The Product Artisan</title>
-  <meta name="description" content="Deep CSM domain knowledge encoded into reusable, queryable systems — competitive intelligence, risk analysis, and customer success workflows as scalable infrastructure.">
+  <meta name="description" content="Domain knowledge encoded as reusable, cited infrastructure — spanning four ServiceNow product lines — rather than tribal knowledge locked in one person's head.">
   <meta property="og:title" content="Domain Expertise — Proof of Value">
-  <meta property="og:description" content="Deep CSM domain knowledge encoded into reusable, queryable systems — competitive intelligence, risk analysis, and customer success workflows.">
+  <meta property="og:description" content="Domain knowledge encoded as reusable, cited infrastructure across four product lines.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://github.com/lampiiii/the-product-artisan">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Domain Expertise — Proof of Value">
-  <meta name="twitter:description" content="Deep CSM domain knowledge encoded into reusable, queryable systems.">
+  <meta name="twitter:description" content="Domain knowledge encoded as reusable, cited infrastructure across four product lines.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d97757'/><text x='50' y='68' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='60' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +45,7 @@
 
     /* --- Stats Strip --- */
     .stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
+      display: grid; grid-template-columns: repeat(4, 1fr);
       border-bottom: 1px solid var(--border);
     }
     .stat {
@@ -107,6 +107,17 @@
       background: var(--surface-dim); color: var(--text-tertiary); font-weight: 500;
     }
 
+    /* --- Grid Cards --- */
+    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .grid-card {
+      padding: 20px; background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 8px; transition: box-shadow 0.2s, transform 0.15s;
+    }
+    .grid-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+    .grid-card-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .grid-card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
     /* --- Quote Block --- */
     .quote-block {
       padding: 32px 40px; margin: 0;
@@ -120,18 +131,12 @@
       margin-top: 16px; font-size: 12px; color: var(--text-tertiary);
       font-style: normal; font-weight: 400;
     }
-
-    /* --- Coming Soon Message --- */
-    .coming-soon {
-      padding: 24px; background: var(--surface-card);
-      border: 1px dashed var(--border); border-radius: 8px;
-      font-size: 14px; color: var(--text-tertiary); line-height: 1.6;
-      text-align: center;
-    }
     @media (max-width: 768px) {
       .hero { padding: 48px 20px 36px; }
       .content { padding: 0 20px; }
-      .stats { grid-template-columns: repeat(3, 1fr); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--border); }
+      .grid { grid-template-columns: 1fr; }
       footer { padding: 24px 20px; }
     }
   </style>
@@ -235,134 +240,135 @@
     <div class="hero">
       <div class="hero-badge">Proof of Value</div>
       <h1><span>Domain</span> Expertise</h1>
-      <p>Deep CSM domain knowledge encoded into reusable, queryable systems — not tribal knowledge locked in someone's head.</p>
+      <p>Domain knowledge encoded into reusable, cited systems — spanning four ServiceNow product lines — instead of tribal knowledge that lives in one person's head and leaves when they do.</p>
     </div>
 
     <!-- --- Stats --- -->
     <div class="stats">
       <div class="stat">
+        <div class="stat-value">4</div>
+        <div class="stat-label">Product Lines</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">73</div>
+        <div class="stat-label">Tracked Features</div>
+      </div>
+      <div class="stat">
         <div class="stat-value">2</div>
-        <div class="stat-label">Custom Agents</div>
+        <div class="stat-label">Domain Knowledge Packs</div>
       </div>
       <div class="stat">
-        <div class="stat-value">5</div>
-        <div class="stat-label">Active Features</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">CSM</div>
-        <div class="stat-label">Domain</div>
+        <div class="stat-value">7</div>
+        <div class="stat-label">Release Cycles</div>
       </div>
     </div>
 
     <div class="content">
 
-      <!-- --- 1. Encoded Domain Intelligence --- -->
+      <!-- --- 1. Domain Knowledge as Infrastructure --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
           </div>
-          <div class="section-title">Encoded Domain Intelligence</div>
+          <div class="section-title">Domain Knowledge as Cited Infrastructure</div>
         </div>
-        <div class="section-desc">The Competitive Strategic Lens agent and PRD Edge Case Analyzer both encode CSM-specific domain knowledge — health scores, CXOR risk records, engagement models, renewal workflows — as reusable, queryable systems.</div>
-        <div class="items">
-          <div class="item">
-            <div class="item-dot item-dot--purple"></div>
-            <div>
-              <div class="item-name">Competitive Strategic Lens</div>
-              <div class="item-desc">Analyzes any CSM feature against Gainsight, Totango, ChurnZero, Planhat, Vitally, and Salesforce. 7-step analysis: feature comparison, differentiation classification, moat assessment, AI disruption threats, sustainable advantage scoring. Encodes competitive intelligence as a reusable system.</div>
-              <div class="item-tags"><span class="item-tag">Strategy</span><span class="item-tag">Competitive Intel</span><span class="item-tag">Opus</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--purple"></div>
-            <div>
-              <div class="item-name">PRD Edge Case Analyzer</div>
-              <div class="item-desc">Systematic risk analysis across 10 dimensions before engineering handoff. Includes a mandatory CSM Impact Assessment that evaluates health score effects, renewal risk, and customer lifecycle implications. Domain knowledge baked into the analysis framework.</div>
-              <div class="item-tags"><span class="item-tag">Quality</span><span class="item-tag">Risk Analysis</span><span class="item-tag">CSM-Specific</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--purple"></div>
-            <div>
-              <div class="item-name">Persona Drip System</div>
-              <div class="item-desc">Daily B2B persona immersion scenarios encoding deep CSM operational reality — stale health scores, cross-functional triage gaps, manual workarounds across Gainsight/Snowflake/Jira/Gong. Each drip surfaces invisible friction as product signal that only someone embedded in the CSM workflow would identify.</div>
-              <div class="item-tags"><span class="item-tag">Empathy</span><span class="item-tag">CSM Ops</span><span class="item-tag">Pain Points</span></div>
-            </div>
-          </div>
-        </div>
+        <div class="section-desc">Two domain knowledge packs — one covering CRM-style customer, service, and entitlement concepts, one covering field-service operations — feed every research and spec-writing skill on the platform. They're consulted and <strong>cited like any other source</strong> when a spec makes a domain claim, not freehanded from memory. That's the difference between "I happen to know this" and "here's where this comes from" — the latter survives a team change, the former doesn't.</div>
       </div>
 
-      <!-- --- 2. CSM Product Features --- -->
+      <!-- --- 2. Four Product Lines, One Platform --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--green">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           </div>
-          <div class="section-title">CSM Product Features</div>
+          <div class="section-title">Four Product Lines, Real Depth in Each</div>
         </div>
-        <div class="section-desc">Five active features that demonstrate deep domain expertise in customer success management workflows, data models, and AI-powered decision making.</div>
-        <div class="items">
-          <div class="item">
-            <div class="item-dot item-dot--green"></div>
-            <div>
-              <div class="item-name">AI Insights</div>
-              <div class="item-desc">AI-generated charts and insight lines via Now Assist across five CSM pages — account 360, engagement, health score, renewal, and playbook views.</div>
-              <div class="item-tags"><span class="item-tag">Now Assist</span><span class="item-tag">Charts</span><span class="item-tag">Guardrails</span></div>
-            </div>
+        <div class="section-desc">The domain footprint isn't one narrow specialty — it spans four live ServiceNow product lines, each with its own real, tracked feature portfolio rather than a shallow surface-level familiarity.</div>
+        <div class="grid">
+          <div class="grid-card">
+            <div class="grid-card-title">Customer Success Management</div>
+            <div class="grid-card-desc">The deepest footprint — 73 tracked features across 7 release cycles, the majority already shipped.</div>
           </div>
-          <div class="item">
-            <div class="item-dot item-dot--green"></div>
-            <div>
-              <div class="item-name">Meeting Creation V2</div>
-              <div class="item-desc">AI Agent-driven meeting creation with three entry points: automated triggers, UI actions, manual prompts. Built on the "propose, don't ask" philosophy.</div>
-              <div class="item-tags"><span class="item-tag">AI Agent</span><span class="item-tag">Automation</span></div>
-            </div>
+          <div class="grid-card">
+            <div class="grid-card-title">Product Support for Tech</div>
+            <div class="grid-card-desc">Shares the same CRM domain foundation and knowledge pack as CSM.</div>
           </div>
-          <div class="item">
-            <div class="item-dot item-dot--green"></div>
-            <div>
-              <div class="item-name">AI Web Agents</div>
-              <div class="item-desc">Autonomous web agents for 45+ CSM use cases — from data entry to multi-step workflows. Edge Agent model with learn-by-demo architecture.</div>
-              <div class="item-tags"><span class="item-tag">Research</span><span class="item-tag">Autonomy</span></div>
-            </div>
+          <div class="grid-card">
+            <div class="grid-card-title">Service Exchange for Providers</div>
+            <div class="grid-card-desc">A newer product line, brought into the same tracked-feature model as the others.</div>
           </div>
-          <div class="item">
-            <div class="item-dot item-dot--green"></div>
-            <div>
-              <div class="item-name">Priority Plays Recommendation</div>
-              <div class="item-desc">AI-driven prioritization of where CSMs should focus next based on health scores, risk indicators, and renewal timelines.</div>
-              <div class="item-tags"><span class="item-tag">AI/ML</span><span class="item-tag">Prioritization</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--green"></div>
-            <div>
-              <div class="item-name">Executive Briefing</div>
-              <div class="item-desc">AI-generated executive briefing scoped to the account level for all personas — CSMs, account executives, salespersons, support engineers, CS leaders.</div>
-              <div class="item-tags"><span class="item-tag">Now Assist</span><span class="item-tag">GenAI</span></div>
-            </div>
+          <div class="grid-card">
+            <div class="grid-card-title">TMT-AI Agent Collection</div>
+            <div class="grid-card-desc">An AI-agent-focused product line spanning both CSM and Product Support surfaces.</div>
           </div>
         </div>
       </div>
 
-      <!-- --- 3. Product Work Evidence --- -->
+      <!-- --- 3. Deep Feature-Level Domain Modeling --- -->
       <div class="section">
         <div class="section-header">
-          <div class="section-icon section-icon--accent">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <div class="section-icon section-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </div>
-          <div class="section-title">Product Work Evidence</div>
+          <div class="section-title">Domain Modeling That Goes Past the Surface</div>
         </div>
-        <div class="section-desc">Concrete domain expertise demonstrated through product feature decisions.</div>
-        <div class="coming-soon">Product work entries coming soon — specific domain expertise evidence from feature design decisions, data model choices, and CSM workflow optimizations.</div>
+        <div class="section-desc">A few examples of what "deep" actually looks like at the feature level:</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">A precisely-triggered AI executive briefing</div>
+              <div class="item-desc">Built around dozens of distinct business triggers spanning support, success, sales, and market signals — each with a defined UX category and, for externally-sourced signals, a source-confidence tier (an SEC filing is treated very differently from an unconfirmed blog post). That's domain modeling of what actually makes a signal exec-worthy, not a generic "summarize recent activity" prompt.</div>
+              <div class="item-tags"><span class="item-tag">GenAI</span><span class="item-tag">Signal Design</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">A portfolio view that knows scale changes the story</div>
+              <div class="item-desc">The same underlying signals get one of four distinct narrative treatments depending on how many accounts are affected — a single account gets a specific, personal framing; a mid-size pattern gets a grouped card; a large pattern gets LLM-identified sub-themes; and a genuinely systemic event (a widescale outage, say) gets treated as an incident with entirely different language and a different call to action. Conflating "a pattern across 40 accounts" with "an event affecting 140 accounts" is a real domain mistake — this model doesn't make it.</div>
+              <div class="item-tags"><span class="item-tag">Leadership UX</span><span class="item-tag">Scale-Aware Design</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">A discovery pipeline that classifies requests, not just logs them</div>
+              <div class="item-desc">Real customer call transcripts are converted into individual use cases, and every one is evaluated against what the product actually ships today — already supported, partially supported (a real gap), or genuinely net-new. Net-new requests then get scored for uniqueness and strategic fit before a disposition is recommended. "The customer asked for X" becomes a structured judgment instead of an assumption that every request is equally novel.</div>
+              <div class="item-tags"><span class="item-tag">Customer Discovery</span><span class="item-tag">Gap Analysis</span></div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- --- 4. Quote Block --- -->
+      <!-- --- 4. Adaptive Competitive Lens --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>
+          </div>
+          <div class="section-title">A Competitive Lens That Adapts Per Product</div>
+        </div>
+        <div class="section-desc">Domain expertise isn't one static competitive framework applied everywhere. For the most mature product line, competitive analysis runs against a curated, maintained competitor set (Gainsight, Salesforce, Totango, and others in that category). For the newer product lines, where the competitive landscape is still forming, the same capability derives the competitor set through research instead of assuming a fixed list — the domain knowledge adapts itself to how mature the market actually is.</div>
+      </div>
+
+      <!-- --- 5. Grounded in the Real Data Model --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--yellow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          </div>
+          <div class="section-title">Every Claim Checked Against the Real Schema</div>
+        </div>
+        <div class="section-desc">A live table-dictionary reference exists per product line, and every spec claim gets checked against it before it's treated as valid — so a requirements doc can't casually reference a field or table that doesn't actually exist. Domain grounding enforced structurally, not left to whoever happens to remember the schema correctly.</div>
+      </div>
+
+      <!-- --- 6. Quote --- -->
       <div class="section">
         <blockquote class="quote-block">
-          Domain expertise isn't knowing the product — it's encoding that knowledge into systems that scale. When competitive intelligence lives in an agent and risk analysis lives in a framework, domain expertise becomes infrastructure.
-          <div class="quote-block-footer">Last updated: 2026-03-19</div>
+          Domain expertise that only exists in someone's head is a single point of failure. Domain expertise encoded as a cited pack, a per-product competitor model, and a schema the system checks itself against is infrastructure — it survives the person who built it.
+          <div class="quote-block-footer">Last updated: 2026-07-01</div>
         </blockquote>
       </div>
 

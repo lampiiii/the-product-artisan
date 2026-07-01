@@ -13,11 +13,14 @@ A multi-page static site showcasing my profile, AI-native PM operating system (b
 | **Home** | `/` | Full-screen hero, explore cards, key metrics, Substack CTA |
 | **Profile** | `/profile` | Career timeline, skills, products, certifications, education, achievements |
 | **Powered by Claude Code** | `/claude-code` | 8 custom skills, 2 agents, 7 hooks, 4 MCP integrations — my AI-native PM OS |
-| **Proof of Value** | `/proof-of-value` | Hub for 10 strategic PM skills with bento grid (4 active, 6 watching) |
-| **Platform Thinking** | `/proof-of-value/platform-thinking` | Cross-application workflow design case study |
+| **Proof of Value** | `/proof-of-value` | Hub for 10 strategic PM skills with bento grid (9 active, 1 watching) |
+| **Platform Thinking** | `/proof-of-value/platform-thinking` | Team-wide operating system architecture case study |
 | **Agent Governance** | `/proof-of-value/agent-governance` | Multi-agent AI system governance case study |
-| **Domain Expertise** | `/proof-of-value/domain-expertise` | Customer Success domain knowledge case study |
+| **Domain Expertise** | `/proof-of-value/domain-expertise` | Cross-product domain knowledge case study |
 | **Reusable Architecture** | `/proof-of-value/reusable-architecture` | Scalable, reusable product architecture case study |
+| **Outcome Stories** | `/proof-of-value/outcome-stories` | Measurable delivery-outcome case study |
+| **Stakeholder Management** | `/proof-of-value/stakeholder-management` | Audience-aware comms & ceremony case study |
+| **Pricing Strategy** | `/proof-of-value/pricing-strategy` | GenAI compute-cost architecture case study |
 | **Playbook** | `/playbook` | AI PM Strategic Playbook dashboard |
 | **404** | `/*` | Styled error page |
 
@@ -59,7 +62,10 @@ the-product-artisan/
 │       ├── platform-thinking.html     # PoV: Platform Thinking
 │       ├── agent-governance.html      # PoV: Agent Governance
 │       ├── domain-expertise.html      # PoV: Domain Expertise
-│       └── reusable-architecture.html # PoV: Reusable Architecture
+│       ├── reusable-architecture.html # PoV: Reusable Architecture
+│       ├── outcome-stories.html       # PoV: Outcome Stories
+│       ├── stakeholder-management.html # PoV: Stakeholder Management
+│       └── pricing-strategy.html      # PoV: Pricing Strategy
 ├── assets/
 │   ├── css/
 │   │   └── shared.css                 # Shared design system (variables, nav, sidebar, footer)

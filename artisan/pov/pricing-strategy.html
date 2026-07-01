@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing Strategy — The Product Artisan</title>
+  <meta name="description" content="Treating GenAI compute cost as a designed-for input to product architecture — cache-vs-regenerate tradeoffs, bounded prompts, and cadence chosen by volume and value.">
+  <meta property="og:title" content="Pricing Strategy — Proof of Value">
+  <meta property="og:description" content="Treating GenAI compute cost as a designed-for input to product architecture, not an afterthought.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/lampiiii/the-product-artisan">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Pricing Strategy — Proof of Value">
+  <meta name="twitter:description" content="Treating GenAI compute cost as a designed-for input to product architecture, not an afterthought.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d97757'/><text x='50' y='68' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='60' fill='white'>A</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/shared.css">
+  <style>
+    .page { margin-top: 0; }
+    .hero { text-align: center; padding: 72px 40px 56px; border-bottom: 1px solid var(--border); }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px; font-size: 12px; font-weight: 600;
+      color: var(--accent); background: var(--accent-bg);
+      border-radius: 48px; margin-bottom: 24px; letter-spacing: 0.3px;
+    }
+    .hero h1 { font-size: clamp(32px, 4.5vw, 52px); font-weight: 400; line-height: 1.12; color: var(--text); margin-bottom: 16px; letter-spacing: -0.5px; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: clamp(16px, 1.8vw, 18px); color: var(--text-secondary); line-height: 1.65; max-width: 700px; margin: 0 auto; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--border); }
+    .stat { text-align: center; padding: 24px 16px; border-right: 1px solid var(--border); }
+    .stat:last-child { border-right: none; }
+    .stat-value { font-size: 28px; font-weight: 600; color: var(--accent); margin-bottom: 2px; }
+    .stat-label { font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
+    .content { max-width: 960px; margin: 0 auto; padding: 0 40px; }
+    .section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+    .section-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .section-icon svg { width: 20px; height: 20px; }
+    .section-icon--blue { background: var(--blue-bg); color: var(--blue); }
+    .section-icon--green { background: var(--green-bg); color: var(--green); }
+    .section-icon--purple { background: var(--purple-bg); color: var(--purple); }
+    .section-icon--yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .section-icon--red { background: var(--red-bg); color: var(--red); }
+    .section-icon--accent { background: var(--accent-bg); color: var(--accent); }
+    .section-title { font-size: 22px; font-weight: 600; color: var(--text); letter-spacing: -0.3px; }
+    .section-desc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 24px; }
+    .items { display: flex; flex-direction: column; gap: 12px; }
+    .item { display: flex; align-items: flex-start; gap: 16px; padding: 20px; background: var(--surface-card); border: 1px solid var(--border); border-radius: 8px; transition: box-shadow 0.2s, transform 0.15s; }
+    .item:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+    .item-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+    .item-dot--blue { background: var(--blue); }
+    .item-dot--green { background: var(--green); }
+    .item-dot--purple { background: var(--purple); }
+    .item-dot--red { background: var(--red); }
+    .item-dot--accent { background: var(--accent); }
+    .item-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .item-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+    .comparison { display: flex; flex-direction: column; gap: 2px; margin-bottom: 8px; }
+    .comparison-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .comparison-header { padding: 12px 16px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; text-align: center; }
+    .comparison-header--before { background: var(--red-bg); color: var(--red); border-radius: 8px 0 0 0; }
+    .comparison-header--after { background: var(--green-bg); color: var(--green); border-radius: 0 8px 0 0; }
+    .comparison-cell { padding: 12px 16px; font-size: 13px; line-height: 1.5; background: var(--surface-card); border: 1px solid var(--border); color: var(--text-secondary); }
+    .comparison-cell--before { border-left: 3px solid var(--red); }
+    .comparison-cell--after { border-left: 3px solid var(--green); }
+    .comparison-row:last-child .comparison-cell--before { border-radius: 0 0 0 8px; }
+    .comparison-row:last-child .comparison-cell--after { border-radius: 0 0 8px 0; }
+    .quote-block { padding: 32px 40px; margin: 0; background: var(--accent-bg); border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.65; font-style: italic; }
+    .quote-block-footer { margin-top: 16px; font-size: 12px; color: var(--text-tertiary); font-style: normal; font-weight: 400; }
+    @media (max-width: 768px) {
+      .hero { padding: 48px 20px 36px; }
+      .content { padding: 0 20px; }
+      .comparison-row { grid-template-columns: 1fr; }
+      .comparison-header--before { border-radius: 8px 8px 0 0; }
+      .comparison-header--after { border-radius: 0; }
+      .comparison-row:last-child .comparison-cell--before { border-radius: 0; }
+      .comparison-row:last-child .comparison-cell--after { border-radius: 0 0 8px 8px; }
+      footer { padding: 24px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-mark">A</div>
+          <span class="nav-logo-text">The Product Artisan</span>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="https://productartisan.substack.com" class="nav-icon-btn" target="_blank" rel="noopener" title="Substack">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        </a>
+        <a href="https://github.com/lampiiii" class="nav-icon-btn" target="_blank" rel="noopener" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <button class="nav-icon-btn" id="theme-toggle" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Pages</div>
+      <a href="/profile" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+      <a href="/claude-code" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Powered by Claude Code
+      </a>
+      <a href="/proof-of-value" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Proof of Value
+      </a>
+    </div>
+    <hr class="sidebar-divider">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Tools</div>
+      <a href="/playbook" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Playbook
+      </a>
+    </div>
+    <hr class="sidebar-divider">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Quick Links</div>
+      <a href="https://productartisan.substack.com" class="sidebar-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        Substack
+      </a>
+      <a href="mailto:mail4abhaytyagi@gmail.com" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/abhay-tyagi-iimu/" class="sidebar-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <div class="sidebar-spacer"></div>
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-text">The Product Artisan v1.0</div>
+    </div>
+  </aside>
+
+  <div style="margin-top: var(--nav-height); padding: 12px 48px; border-bottom: 1px solid var(--border); background: var(--surface-dim);">
+    <a href="/proof-of-value" style="display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-secondary); text-decoration: none; transition: color 0.2s;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to Proof of Value
+    </a>
+  </div>
+
+  <div class="page">
+
+    <div class="hero">
+      <div class="hero-badge">Proof of Value</div>
+      <h1><span>Pricing</span> Strategy</h1>
+      <p>AI compute cost is a per-call, per-user variable cost that scales with adoption — a cost-of-goods-sold input, not a rounding error. Treating it that way is a pricing decision as much as an engineering one.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">2</div>
+        <div class="stat-label">Cadence Models, Chosen By Volume</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">15-day</div>
+        <div class="stat-label">Cache Expiry Ceiling</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">7-day</div>
+        <div class="stat-label">Bounded Activity Window</div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <div class="section-title">Compute Cost Is a Unit-Economics Problem Now</div>
+        </div>
+        <div class="section-desc">Traditional software features cost roughly the same to serve whether one user or a thousand use them. A GenAI feature that calls a large language model on every interaction doesn't work that way — every single use has a real, variable cost attached. That changes what "just ship it" means: a feature that looks free to use can be quietly unsustainable at scale. Recognizing that, and designing around it before the bill arrives, is unit-economics thinking applied directly to product architecture — not a finance team's problem to catch after launch.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+          </div>
+          <div class="section-title">Cache First, Regenerate Deliberately</div>
+        </div>
+        <div class="section-desc">A GenAI insight-generation feature within the Customer Success Management product line was heading toward a pattern where every page view triggered a fresh LLM call — cost scaling linearly with usage, with no ceiling. The fix was a cache-first architecture with a deliberately bounded regeneration path:</div>
+        <div class="comparison">
+          <div class="comparison-row">
+            <div class="comparison-header comparison-header--before">Before</div>
+            <div class="comparison-header comparison-header--after">After</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell comparison-cell--before">Every page view triggers a fresh LLM call</div>
+            <div class="comparison-cell comparison-cell--after">Check cache first — most views cost nothing in LLM calls</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell comparison-cell--before">No bound on how much history the prompt considers</div>
+            <div class="comparison-cell comparison-cell--after">Regeneration is scoped to a fixed 7-day activity window — bounds both cost and prompt size</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell comparison-cell--before">No ceiling on how stale a cached result could get</div>
+            <div class="comparison-cell comparison-cell--after">A 15-day expiry forces a fresh generation automatically — no cache lives forever</div>
+          </div>
+          <div class="comparison-row">
+            <div class="comparison-cell comparison-cell--before">Users can't tell if what they're seeing is current</div>
+            <div class="comparison-cell comparison-cell--after">A visible "last generated" timestamp shows freshness at a glance</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <div class="section-title">Two Surfaces, Two Deliberate Answers</div>
+        </div>
+        <div class="section-desc">A second, related GenAI surface in the same product area kept a simpler daily-regeneration model instead of adopting the cache-and-refresh pattern — because it's lower-volume and more trigger-driven, and daily generation is still affordable there. Same underlying cost concern, two different chosen answers, based on each surface's actual volume and value — not one uniform policy applied everywhere for convenience. That's the pricing-strategy instinct: match the cost model to the economics of the specific surface, not to what's easiest to build once.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--accent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="section-title">The Operating Principle</div>
+        </div>
+        <div class="section-desc">The line that drove the whole redesign: <strong>you can't push unconstrained compute cost onto the customer.</strong> Whatever a GenAI feature costs to run has to be designed for up front — through caching, bounded context windows, explicit expiry, and a cadence chosen deliberately by volume — the same way a packaging or SKU decision would be, not bolted on reactively once the bill arrives.</div>
+      </div>
+
+      <div class="section">
+        <blockquote class="quote-block">
+          A feature that's technically "free" to the user but unbounded in compute cost isn't a pricing problem for later — it's a pricing decision being made by default, right now, by whoever wrote the architecture. Owning that decision on purpose is the job.
+          <div class="quote-block-footer">Last updated: 2026-07-01</div>
+        </blockquote>
+      </div>
+
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-text">Abhay Tyagi — Built with Claude Code</span>
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/profile">Profile</a>
+          <a href="/claude-code">Claude Code</a>
+          <a href="https://productartisan.substack.com" target="_blank" rel="noopener">Substack</a>
+          <a href="https://github.com/lampiiii" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="/assets/js/shared.js"></script>
+
+</body>
+</html>

@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reusable Architecture — The Product Artisan</title>
-  <meta name="description" content="Building templated, composable systems that scale across features and products — not one-off solutions. Every component designed to compose with others.">
+  <meta name="description" content="One information architecture, applied identically across four product lines and 73 features — templated, composable, and reused rather than rebuilt per team.">
   <meta property="og:title" content="Reusable Architecture — Proof of Value">
-  <meta property="og:description" content="Building templated, composable systems that scale across features and products — not one-off solutions.">
+  <meta property="og:description" content="One information architecture, applied identically across four product lines and 73 features.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://github.com/lampiiii/the-product-artisan">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Reusable Architecture — Proof of Value">
-  <meta name="twitter:description" content="Building templated, composable systems that scale across features and products — not one-off solutions.">
+  <meta name="twitter:description" content="One information architecture, applied identically across four product lines and 73 features.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d97757'/><text x='50' y='68' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='60' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,6 +107,32 @@
       background: var(--surface-dim); color: var(--text-tertiary); font-weight: 500;
     }
 
+    /* --- File Tree --- */
+    .file-tree {
+      background: var(--surface-card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 0; overflow: hidden;
+    }
+    .tree-item {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 16px; font-size: 14px; color: var(--text-secondary);
+      transition: background 0.1s;
+    }
+    .tree-item:hover { background: var(--surface-dim); }
+    .tree-item--l1 { padding-left: 16px; }
+    .tree-item--l2 { padding-left: 44px; }
+    .tree-item--l3 { padding-left: 72px; }
+    .tree-icon {
+      width: 18px; height: 18px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tree-icon--folder { color: var(--accent); }
+    .tree-icon--file { color: var(--text-tertiary); }
+    .tree-name { font-weight: 600; color: var(--text); white-space: nowrap; font-family: 'Source Code Pro', monospace; font-size: 13px; }
+    .tree-desc {
+      font-size: 12px; color: var(--text-tertiary);
+      margin-left: auto; padding-left: 12px; white-space: nowrap;
+    }
+
     /* --- Grid Cards --- */
     .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .grid-card {
@@ -117,7 +143,6 @@
     .grid-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
     .grid-card-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
     .grid-card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
-    .grid-card-path { font-size: 11px; color: var(--text-tertiary); margin-top: 8px; font-family: 'Source Code Pro', monospace; }
 
     /* --- Quote Block --- */
     .quote-block {
@@ -241,276 +266,160 @@
     <div class="hero">
       <div class="hero-badge">Proof of Value</div>
       <h1><span>Reusable</span> Architecture</h1>
-      <p>Building templated, composable systems that scale across features and products — not one-off solutions. Every component designed to compose with others.</p>
+      <p>One information architecture, applied identically across four product lines and 73 features — not a bespoke process per team, and not one-off solutions rebuilt from scratch every time.</p>
     </div>
 
     <!-- --- Stats --- -->
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">2</div>
-        <div class="stat-label">Custom Agents</div>
+        <div class="stat-value">4</div>
+        <div class="stat-label">Product Lines, One Shape</div>
       </div>
       <div class="stat">
-        <div class="stat-value">8</div>
-        <div class="stat-label">Custom Skills</div>
+        <div class="stat-value">73</div>
+        <div class="stat-label">Features, One Architecture</div>
       </div>
       <div class="stat">
-        <div class="stat-value">5</div>
-        <div class="stat-label">Memory Files</div>
+        <div class="stat-value">70+</div>
+        <div class="stat-label">Reusable Skills</div>
       </div>
       <div class="stat">
-        <div class="stat-value">7+</div>
-        <div class="stat-label">Dashboards</div>
+        <div class="stat-value">~30</div>
+        <div class="stat-label">Specialized Agents</div>
       </div>
     </div>
 
     <div class="content">
 
-      <!-- --- 1. Custom Agents --- -->
+      <!-- --- 1. Canonical Feature Record --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--purple">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
-          <div class="section-title">Custom Agents</div>
+          <div class="section-title">One Canonical Record Per Feature</div>
         </div>
-        <div class="section-desc">Specialized autonomous agents that encode competitive intelligence and risk analysis as reusable, queryable systems — not tribal knowledge locked in someone's head.</div>
-        <div class="items">
-          <div class="item">
-            <div class="item-dot item-dot--purple"></div>
-            <div>
-              <div class="item-name">Competitive Strategic Lens</div>
-              <div class="item-desc">Analyze any CSM feature against the competitive landscape. 7-step analysis covering feature comparison (vs. Gainsight, Totango, ChurnZero, Planhat, Vitally, Salesforce), differentiation classification, moat assessment, AI disruption threats, and sustainable advantage scoring.</div>
-              <div class="item-tags"><span class="item-tag">Strategy</span><span class="item-tag">Competitive Intel</span><span class="item-tag">Opus</span></div>
-            </div>
+        <div class="section-desc">Every feature — all 73 of them, across every product line — maps to exactly one structured metadata file: owners across PM, engineering, design, and research; current status and target date; every linked item in the team's internal work-tracking system; and any linked team communication channel. This single file is the join point every dashboard, every automation, and every teammate reads from — there's no second source of truth to keep in sync.</div>
+      </div>
+
+      <!-- --- 2. The Same Lifecycle, Every Time --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           </div>
-          <div class="item">
-            <div class="item-dot item-dot--purple"></div>
-            <div>
-              <div class="item-name">PRD Edge Case Analyzer</div>
-              <div class="item-desc">Systematic risk analysis across 10 dimensions before engineering handoff. User/Actor edge cases, Data/Input, State/Flow, Integration risks, Security/Privacy, Performance, Compliance, UX, Operations, and a mandatory CSM Impact Assessment.</div>
-              <div class="item-tags"><span class="item-tag">Quality</span><span class="item-tag">Risk Analysis</span><span class="item-tag">Opus</span></div>
-            </div>
+          <div class="section-title">The Same Folder Shape, Every Feature</div>
+        </div>
+        <div class="section-desc">A feature's lifecycle runs through the same five stages regardless of which product line it belongs to — so a new teammate can navigate any feature in the system without being told where to look.</div>
+        <div class="file-tree">
+          <div class="tree-item tree-item--l1">
+            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
+            <span class="tree-name">Inputs</span>
+            <span class="tree-desc">Designs, research, meeting notes, feasibility findings, reference docs</span>
+          </div>
+          <div class="tree-item tree-item--l1">
+            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
+            <span class="tree-name">Spec</span>
+            <span class="tree-desc">The PRD and any prototypes, pre-handoff</span>
+          </div>
+          <div class="tree-item tree-item--l1">
+            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
+            <span class="tree-name">Shipped</span>
+            <span class="tree-desc">Release notes, explicit scope-cut documentation, tech specs, real UI screenshots</span>
+          </div>
+          <div class="tree-item tree-item--l1">
+            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
+            <span class="tree-name">Handoff</span>
+            <span class="tree-desc">Cross-team docs so other teams don't need a live meeting for context</span>
+          </div>
+          <div class="tree-item tree-item--l1">
+            <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <span class="tree-name">Backlog</span>
+            <span class="tree-desc">Running "what's next" — carries forward anything cut or newly requested</span>
           </div>
         </div>
       </div>
 
-      <!-- --- 2. Custom Skills --- -->
+      <!-- --- 3. Scaffolding Automation --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
-          <div class="section-title">Custom Skills</div>
+          <div class="section-title">Scaffolding, Not Copy-Paste</div>
         </div>
-        <div class="section-desc">Eight skills that automate repeatable PM workflows with zero-questions execution. Each is a self-contained, reusable module.</div>
-        <div class="items">
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
-              <div class="item-name">/epic-creator</div>
-              <div class="item-desc">Generates structured epics with AC, personas, outcomes, telemetry.</div>
-              <div class="item-tags"><span class="item-tag">Domain Expertise</span><span class="item-tag">CSM-specific</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
-              <div class="item-name">/story-creator</div>
-              <div class="item-desc">Creates user stories with constrained descriptions and AC.</div>
-              <div class="item-tags"><span class="item-tag">Reusable Architecture</span><span class="item-tag">Templated</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
-              <div class="item-name">/meeting-prep</div>
-              <div class="item-desc">Produces prioritized agendas from free-form input.</div>
-              <div class="item-tags"><span class="item-tag">Stakeholder Mgmt</span><span class="item-tag">Structured prep</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
-              <div class="item-name">/doc-refiner</div>
-              <div class="item-desc">Refines unstructured markdown in a single pass.</div>
-              <div class="item-tags"><span class="item-tag">System-Level Thinking</span><span class="item-tag">Info architecture</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
-              <div class="item-name">/design-thinker</div>
-              <div class="item-desc">Asks empathy-driven questions before building.</div>
-              <div class="item-tags"><span class="item-tag">Design Thinking</span><span class="item-tag">Moat skill</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
-              <div class="item-name">/figma-console</div>
-              <div class="item-desc">Connects to Figma for design-to-code workflows.</div>
-              <div class="item-tags"><span class="item-tag">Platform Thinking</span><span class="item-tag">Cross-tool</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
-              <div class="item-name">/linkedin-post</div>
-              <div class="item-desc">Writes LinkedIn posts in authentic voice and proven format.</div>
-              <div class="item-tags"><span class="item-tag">Content</span><span class="item-tag">Personal Brand</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
-              <div class="item-name">/team-message</div>
-              <div class="item-desc">Converts rough thoughts into clear professional messages.</div>
-              <div class="item-tags"><span class="item-tag">Communication</span><span class="item-tag">Productivity</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
-              <div class="item-name">persona-drip agent</div>
-              <div class="item-desc">Generates daily B2B persona immersion scenarios with category/segment rotation, drip log tracking, and file-per-drip output. Reusable pattern for any daily content generation system.</div>
-              <div class="item-tags"><span class="item-tag">Domain Expertise</span><span class="item-tag">Design Thinking</span><span class="item-tag">Empathy</span></div>
-            </div>
-          </div>
-        </div>
+        <div class="section-desc">The folder shape above is never assembled by hand. A scaffolding command instantly creates a new feature's full skeleton, pre-populated with its canonical metadata file; another creates a new dated instance of a recurring ceremony — same input-to-deck pipeline every cycle, never rebuilt from scratch; and a third can bootstrap an <strong>entire product's existing backlog</strong> into this structure automatically, grouping already-existing work into features — and it's safely idempotent, so re-running it never duplicates anything already mapped.</div>
       </div>
 
-      <!-- --- 3. Persistent Memory --- -->
-      <div class="section">
-        <div class="section-header">
-          <div class="section-icon section-icon--red">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-          </div>
-          <div class="section-title">Persistent Memory — Cross-Session Intelligence</div>
-        </div>
-        <div class="section-desc">Memory files that persist user preferences, feedback, and workflow patterns across sessions — so Claude remembers context without re-explaining.</div>
-        <div class="items">
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Session Start Reminder</div>
-              <div class="item-desc">Always pull latest code before work.</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Proactive Career Growth</div>
-              <div class="item-desc">Every task cross-referenced against the Strategic Playbook.</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Ironman UI Quality Bar</div>
-              <div class="item-desc">Design quality standards from direct user feedback (rated 1/100).</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Strategic PM Partner Style</div>
-              <div class="item-desc">Structured, copy-ready, CSM-domain-aware response mode.</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Hook Delegation Registry</div>
-              <div class="item-desc">Tracks what's handled by hooks vs. memory to prevent duplication.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- --- 4. Dashboard Standardization --- -->
+      <!-- --- 4. A Reusable Skill Library, By Bucket --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--yellow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           </div>
-          <div class="section-title">Dashboard Standardization</div>
+          <div class="section-title">Built Once, Reused Across Every Product Line</div>
         </div>
-        <div class="section-desc">Consistent UX patterns across 7+ interactive dashboards — sort controls, table headers, dark mode toggle, responsive layouts. A shared design system without a framework.</div>
+        <div class="section-desc">70+ skills and roughly 30 specialized agents live in shared buckets rather than being rebuilt per team — every product line draws from the same library instead of improvising its own process.</div>
         <div class="grid">
           <div class="grid-card">
-            <div class="grid-card-title">Action Tracker Dashboard</div>
-            <div class="grid-card-desc">LNO-prioritized task management</div>
+            <div class="grid-card-title">Research</div>
+            <div class="grid-card-desc">Customer, market, competitive, and feasibility sweeps</div>
           </div>
           <div class="grid-card">
-            <div class="grid-card-title">Weekly Sync Dashboard</div>
-            <div class="grid-card-desc">1:1 discussion point tracking</div>
+            <div class="grid-card-title">PRD Authoring</div>
+            <div class="grid-card-desc">Problem definition through a scored fidelity check</div>
           </div>
           <div class="grid-card">
-            <div class="grid-card-title">Strategic Playbook Dashboard</div>
-            <div class="grid-card-desc">Career framework visualization</div>
+            <div class="grid-card-title">Planning & Records</div>
+            <div class="grid-card-desc">Roadmaps, OKRs, and internal work-tracking records</div>
           </div>
           <div class="grid-card">
-            <div class="grid-card-title">Product Backlog Dashboard</div>
-            <div class="grid-card-desc">Backlog management and prioritization</div>
+            <div class="grid-card-title">Communications</div>
+            <div class="grid-card-desc">Status updates, meeting prep, gated reply drafting</div>
           </div>
           <div class="grid-card">
-            <div class="grid-card-title">Proof of Value Hub</div>
-            <div class="grid-card-desc">10 strategic skill categories</div>
+            <div class="grid-card-title">Presentations</div>
+            <div class="grid-card-desc">One deck-building pipeline, several content sources</div>
           </div>
           <div class="grid-card">
-            <div class="grid-card-title">Profile Page</div>
-            <div class="grid-card-desc">Professional portfolio with sidebar nav</div>
-          </div>
-          <div class="grid-card">
-            <div class="grid-card-title">Claude Code Showcase</div>
-            <div class="grid-card-desc">System architecture documentation</div>
+            <div class="grid-card-title">Design & Prototyping</div>
+            <div class="grid-card-desc">Shared design-system foundation loaded by every design skill</div>
           </div>
         </div>
       </div>
 
-      <!-- --- 5. Product Work --- -->
+      <!-- --- 5. Build Discipline --- -->
       <div class="section">
         <div class="section-header">
-          <div class="section-icon section-icon--accent">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          <div class="section-icon section-icon--red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
           </div>
-          <div class="section-title">Product Work</div>
+          <div class="section-title">Reusable Doesn't Mean Unmaintained</div>
         </div>
-        <div class="section-desc">Reusable architecture demonstrated in product feature decisions.</div>
+        <div class="section-desc">Two disciplines keep the library from drifting or shipping half-finished:</div>
         <div class="items">
           <div class="item">
-            <div class="item-dot item-dot--accent"></div>
+            <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">Executive Briefing (2026-03-18)</div>
-              <div class="item-desc">Separated the briefing (informational — "what happened") from recommendations (actionable — "what to do") into two independent capabilities. The briefing uses a Now Assist Skill for synthesis; recommendations will live in a separate experience. Each capability stands alone and can evolve independently.</div>
-              <div class="item-tags"><span class="item-tag">Modular Separation</span><span class="item-tag">2026-03-18</span></div>
+              <div class="item-name">A shared foundation layer, loaded first</div>
+              <div class="item-desc">Every design-related skill loads a common foundation (design tokens, components, accessibility rules) before generating anything — so outputs stay consistent with each other instead of drifting apart over time.</div>
             </div>
           </div>
           <div class="item">
-            <div class="item-dot item-dot--accent"></div>
+            <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">Column-Level Filter System (2026-03-21)</div>
-              <div class="item-desc">Toggle-able filter row for any table-based dashboard — text inputs for free-text search, dropdowns for enum fields. Hidden by default behind a funnel icon, auto-clears when toggled off. Pattern reusable across all workspace dashboards.</div>
-              <div class="item-tags"><span class="item-tag">Extensible Pattern</span><span class="item-tag">2026-03-21</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--accent"></div>
-            <div>
-              <div class="item-name">Rich Text Notes Editor (2026-03-21)</div>
-              <div class="item-desc">ContentEditable modal with formatting toolbar (bold, italic, underline, strikethrough, lists, alignment, links). Stores HTML in the notes field, renders previews with 2-line clamp in the list. Reusable component pattern for any workspace page needing rich text input.</div>
-              <div class="item-tags"><span class="item-tag">Reusable Component</span><span class="item-tag">2026-03-21</span></div>
+              <div class="item-name">Stubs are labeled, not hidden</div>
+              <div class="item-desc">Several newer pieces are explicitly marked as unconfirmed stubs and gated behind an ownership-confirmation step before they're allowed to go live — the platform doesn't silently present half-built capabilities as finished.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- --- 6. Quote Block --- -->
+      <!-- --- 6. Quote --- -->
       <div class="section">
         <blockquote class="quote-block">
-          The best architecture isn't the one that solves today's problem — it's the one where today's solution becomes tomorrow's building block. Every agent, skill, and dashboard in this system is designed to compose, not just exist.
-          <div class="quote-block-footer">Last updated: 2026-03-21</div>
+          The best architecture isn't the one that solves today's feature — it's the one where the 74th feature costs the same to onboard as the 1st. Every canonical record, folder shape, and scaffolding command here is designed to compose across product lines, not just work for one.
+          <div class="quote-block-footer">Last updated: 2026-07-01</div>
         </blockquote>
       </div>
 

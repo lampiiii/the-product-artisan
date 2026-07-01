@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Governance — The Product Artisan</title>
-  <meta name="description" content="Agent governance, guardrails, decision boundaries, and automated enforcement — demonstrated through deterministic hooks, hierarchical CLAUDE.md context systems, and product-level governance decisions.">
+  <meta name="description" content="Role-based access control, fail-safe design, and human sign-off gates for a multi-agent AI system used by a 61-person team across four product lines.">
   <meta property="og:title" content="Agent Governance — Proof of Value">
-  <meta property="og:description" content="Agent governance, guardrails, decision boundaries, and automated enforcement — demonstrated through deterministic hooks and hierarchical context systems.">
+  <meta property="og:description" content="Role-based access control, fail-safe design, and human sign-off gates for a multi-agent AI system.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://github.com/lampiiii/the-product-artisan">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Agent Governance — Proof of Value">
-  <meta name="twitter:description" content="Agent governance, guardrails, decision boundaries, and automated enforcement.">
+  <meta name="twitter:description" content="Role-based access control, fail-safe design, and human sign-off gates for a multi-agent AI system.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23d97757'/><text x='50' y='68' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='60' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,45 +107,24 @@
       background: var(--surface-dim); color: var(--text-tertiary); font-weight: 500;
     }
 
-    /* --- Grid Cards --- */
-    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .grid-card {
-      padding: 20px; background: var(--surface-card);
-      border: 1px solid var(--border);
-      border-radius: 8px; transition: box-shadow 0.2s, transform 0.15s;
+    /* --- Split Layout --- */
+    .split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      margin-bottom: 24px;
     }
-    .grid-card:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
-    .grid-card-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-    .grid-card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
-    .grid-card-path { font-size: 11px; color: var(--text-tertiary); margin-top: 8px; font-family: 'Source Code Pro', monospace; }
-
-    /* --- File Tree --- */
-    .file-tree {
-      background: var(--surface-card); border: 1px solid var(--border);
-      border-radius: 8px; padding: 8px 0; overflow: hidden;
+    .split-card {
+      padding: 24px; background: var(--surface-card);
+      border: 1px solid var(--border); border-radius: 8px;
+      text-align: center;
     }
-    .tree-item {
-      display: flex; align-items: center; gap: 8px;
-      padding: 6px 16px; font-size: 14px; color: var(--text-secondary);
-      transition: background 0.1s;
+    .split-card-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.8px; margin-bottom: 8px;
     }
-    .tree-item:hover { background: var(--surface-dim); }
-    .tree-item--l1 { padding-left: 16px; }
-    .tree-item--l2 { padding-left: 44px; }
-    .tree-item--l3 { padding-left: 72px; }
-    .tree-item--l4 { padding-left: 100px; }
-    .tree-icon {
-      width: 18px; height: 18px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .tree-icon--folder { color: var(--accent); }
-    .tree-icon--file { color: var(--text-tertiary); }
-    .tree-icon--feature { color: var(--green); }
-    .tree-name { font-weight: 600; color: var(--text); white-space: nowrap; font-family: 'Source Code Pro', monospace; font-size: 13px; }
-    .tree-desc {
-      font-size: 12px; color: var(--text-tertiary);
-      margin-left: auto; padding-left: 12px; white-space: nowrap;
-    }
+    .split-card-label--dim { color: var(--text-tertiary); }
+    .split-card-label--accent { color: var(--accent); }
+    .split-card-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .split-card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
 
     /* --- Before/After Comparison --- */
     .comparison { display: flex; flex-direction: column; gap: 2px; margin-bottom: 24px; }
@@ -172,37 +151,6 @@
     .comparison-row:last-child .comparison-cell--before { border-radius: 0 0 0 8px; }
     .comparison-row:last-child .comparison-cell--after { border-radius: 0 0 8px 0; }
 
-    /* --- Pillar List --- */
-    .pillars { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
-    .pillar {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 20px; background: var(--surface-card);
-      border: 1px solid var(--border); border-radius: 8px;
-      font-size: 14px; color: var(--text); font-weight: 500;
-      transition: box-shadow 0.2s, transform 0.15s;
-    }
-    .pillar:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
-    .pillar-icon { font-size: 16px; width: 24px; text-align: center; flex-shrink: 0; }
-
-    /* --- Split Layout --- */
-    .split {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-      margin-bottom: 24px;
-    }
-    .split-card {
-      padding: 24px; background: var(--surface-card);
-      border: 1px solid var(--border); border-radius: 8px;
-      text-align: center;
-    }
-    .split-card-label {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.8px; margin-bottom: 8px;
-    }
-    .split-card-label--dim { color: var(--text-tertiary); }
-    .split-card-label--accent { color: var(--accent); }
-    .split-card-title { font-size: 18px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-    .split-card-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
-
     /* --- Quote Block --- */
     .quote-block {
       padding: 32px 40px; margin: 0;
@@ -216,31 +164,6 @@
       margin-top: 16px; font-size: 12px; color: var(--text-tertiary);
       font-style: normal; font-weight: 400;
     }
-
-    /* --- Coming Soon --- */
-    .coming-soon {
-      padding: 32px; background: var(--surface-card);
-      border: 1px dashed var(--border); border-radius: 8px;
-      text-align: center; color: var(--text-secondary);
-      font-size: 14px; line-height: 1.6;
-    }
-
-    /* --- Pipeline Cards --- */
-    .pipeline {
-      padding: 20px; background: var(--surface-card);
-      border: 1px solid var(--border); border-radius: 8px;
-      margin-bottom: 12px; transition: box-shadow 0.2s, transform 0.15s;
-    }
-    .pipeline:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
-    .pipeline-label {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.6px; color: var(--accent); margin-bottom: 8px;
-    }
-    .pipeline-flow {
-      font-size: 13px; color: var(--text-secondary); line-height: 1.7;
-      font-family: 'Source Code Pro', monospace;
-    }
-    .pipeline-flow .arrow { color: var(--accent); font-weight: 600; }
 
     /* --- Mapping Table --- */
     .mapping-table {
@@ -266,7 +189,6 @@
       .content { padding: 0 20px; }
       .stats { grid-template-columns: repeat(2, 1fr); }
       .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--border); }
-      .grid { grid-template-columns: 1fr; }
       .split { grid-template-columns: 1fr; }
       .comparison-row { grid-template-columns: 1fr; }
       .comparison-header--before { border-radius: 8px 8px 0 0; }
@@ -376,245 +298,285 @@
     <div class="hero">
       <div class="hero-badge">Proof of Value</div>
       <h1><span>Agent</span> Governance</h1>
-      <p>Defining guardrails, decision boundaries, and automated enforcement — the skill that separates senior PMs from task managers in the AI era.</p>
+      <p>Defining who — and what — is allowed to call which AI agent, under what conditions, with what data access, and what happens when the rules themselves fail. This is the governance layer for a real multi-agent system a 61-person team uses daily, not a policy document nobody reads.</p>
     </div>
 
     <!-- --- Stats --- -->
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">7</div>
-        <div class="stat-label">Lifecycle Hooks</div>
+        <div class="stat-value">2</div>
+        <div class="stat-label">Caller Roles</div>
       </div>
       <div class="stat">
-        <div class="stat-value">23</div>
-        <div class="stat-label">CLAUDE.md Files</div>
+        <div class="stat-value">3</div>
+        <div class="stat-label">Data Access Tiers</div>
       </div>
       <div class="stat">
-        <div class="stat-value">7</div>
-        <div class="stat-label">Before/After Transitions</div>
+        <div class="stat-value">~70</div>
+        <div class="stat-label">Registered Capabilities</div>
       </div>
       <div class="stat">
-        <div class="stat-value">1</div>
-        <div class="stat-label">Hook System</div>
+        <div class="stat-value">5</div>
+        <div class="stat-label">Self-Protected Files</div>
       </div>
     </div>
 
     <div class="content">
 
-      <!-- --- 1. The Hooks System: Deterministic Governance --- -->
+      <!-- --- 1. Why This Matters --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--red">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <div class="section-title">The Hooks System: Deterministic Governance</div>
+          <div class="section-title">Governance Is a Design Decision, Not a Wrapper</div>
         </div>
-        <div class="section-desc">The most direct proof of governance thinking. Instead of relying on AI memory (probabilistic, lossy during compaction), I built deterministic automation that fires at key lifecycle events.</div>
-
-        <div class="comparison">
-          <div class="comparison-row">
-            <div class="comparison-header comparison-header--before">Before (Memory-Based)</div>
-            <div class="comparison-header comparison-header--after">After (Hook-Based)</div>
+        <div class="section-desc">Once a team has dozens of specialized AI agents instead of one chatbot, "can this caller invoke this agent, with this data, right now?" stops being a hypothetical and becomes a real access-control problem — the same shape as any multi-tenant system, just with a model in the loop instead of a person. I designed and built that layer for a platform roughly 70 capabilities deep.</div>
+        <div class="split">
+          <div class="split-card">
+            <div class="split-card-label split-card-label--dim">Naive Approach</div>
+            <div class="split-card-title">Any Caller, Any Agent</div>
+            <div class="split-card-desc">Whoever can type a prompt can invoke any capability with any data — fine for a demo, unsafe at team scale</div>
           </div>
-          <div class="comparison-row">
-            <div class="comparison-cell comparison-cell--before">"Remember to update packages.md after installs"</div>
-            <div class="comparison-cell comparison-cell--after">Hook fires automatically on every npm install / pip install</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comparison-cell comparison-cell--before">"Don't edit .env files"</div>
-            <div class="comparison-cell comparison-cell--after">PreToolUse hook blocks the edit with an error, every time</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comparison-cell comparison-cell--before">"Validate markdown tables"</div>
-            <div class="comparison-cell comparison-cell--after">PostToolUse hook checks column consistency, blocks malformed edits</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comparison-cell comparison-cell--before">"Check server.js syntax after edits"</div>
-            <div class="comparison-cell comparison-cell--after">PostToolUse hook runs node --check immediately</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comparison-cell comparison-cell--before">"Re-inject context after compaction"</div>
-            <div class="comparison-cell comparison-cell--after">SessionStart hook restores all critical rules deterministically</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comparison-cell comparison-cell--before">"Notify me when Claude needs input"</div>
-            <div class="comparison-cell comparison-cell--after">Notification hook sends macOS alert with sound</div>
-          </div>
-          <div class="comparison-row">
-            <div class="comparison-cell comparison-cell--before">"Log activity before stopping"</div>
-            <div class="comparison-cell comparison-cell--after">Stop hook checks activity log and proof-of-value evidence</div>
+          <div class="split-card" style="border-color: var(--accent);">
+            <div class="split-card-label split-card-label--accent">What I Built</div>
+            <div class="split-card-title">Resolved Role, Explicit Grant</div>
+            <div class="split-card-desc">Every call resolves to a role, checks a registry entry, and defaults to deny on anything ambiguous</div>
           </div>
         </div>
+      </div>
 
+      <!-- --- 2. Role-Based Access --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div class="section-title">Two Roles, and a Deliberate Third State</div>
+        </div>
+        <div class="section-desc">Every caller resolves to <code>core</code> (a small set of trusted authors) or <code>consumer</code> (everyone else, by default). But the design doesn't stop there — an identity that can't be resolved at all doesn't fall back to "consumer," it becomes its own <code>unknown</code> state and is <strong>always denied</strong>. Most access-control bugs happen at the edges; this system treats "I couldn't figure out who you are" as the least permissive case, not a shrug.</div>
         <div class="items">
           <div class="item">
-            <div class="item-dot item-dot--red"></div>
+            <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">1. Desktop Notifications</div>
-              <div class="item-desc">macOS native alert + Glass sound when Claude needs input.</div>
-              <div class="item-tags"><span class="item-tag">Notification</span><span class="item-tag">macOS</span></div>
+              <div class="item-name">Most-restrictive-on-ambiguity, as a running principle</div>
+              <div class="item-desc">Unknown caller, unknown agent, unresolved role, missing grant — every one of these resolves to deny, never to allow. The system never guesses permissive.</div>
             </div>
           </div>
           <div class="item">
-            <div class="item-dot item-dot--red"></div>
+            <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">2. Secret File Protection</div>
-              <div class="item-desc">Hard block on .env file edits — prevents API key exposure.</div>
-              <div class="item-tags"><span class="item-tag">PreToolUse</span><span class="item-tag">Security</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">3. Markdown Table Validator</div>
-              <div class="item-desc">Checks column consistency in task/sync/backlog files.</div>
-              <div class="item-tags"><span class="item-tag">PostToolUse</span><span class="item-tag">Data Integrity</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">4. Server Syntax Check</div>
-              <div class="item-desc">Runs node --check on server.js after edits.</div>
-              <div class="item-tags"><span class="item-tag">PostToolUse</span><span class="item-tag">Validation</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">5. Package Install Reminder</div>
-              <div class="item-desc">Deterministic reminder to update installed-packages.md.</div>
-              <div class="item-tags"><span class="item-tag">PostToolUse</span><span class="item-tag">Bash</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">6. Context Re-Injection</div>
-              <div class="item-desc">Restores LNO framework, task lifecycle, date formats after compaction.</div>
-              <div class="item-tags"><span class="item-tag">SessionStart</span><span class="item-tag">Compact</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">7. Activity Log &amp; Proof-of-Value Check</div>
-              <div class="item-desc">Mandatory documentation before session ends.</div>
-              <div class="item-tags"><span class="item-tag">Stop</span><span class="item-tag">Documentation</span></div>
+              <div class="item-name">Role isn't a permission set someone can request</div>
+              <div class="item-desc">Roles are assigned centrally in a policy file, deliberately separate from the org roster — so editing the "who's on the team" list can never silently change what anyone is allowed to do.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- --- 2. CLAUDE.md Context System --- -->
+      <!-- --- 3. The Front Door --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="section-title">One Front Door, Explicit Side Doors</div>
+        </div>
+        <div class="section-desc">Most specialized agents aren't directly callable by a general user — a request has to be routed through a single orchestrating front door, which resolves what's actually needed and dispatches to the right capability. An agent's registry entry can explicitly whitelist which roles may call it directly (a "side door"), but that's an opt-in exception per agent, not the default. This keeps the access <em>path</em> itself governed, not just the destination.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">A routing signal the model can't forge in normal operation</div>
+              <div class="item-desc">When the front door routes a request onward, it stamps the outgoing call with a marker the receiving gate checks for. A caller can't just claim to have been routed — the marker has to actually be present.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">Unregistered agents are unreachable, period</div>
+              <div class="item-desc">If a capability isn't in the registry at all, no role and no routing path can reach it — there's no fallback "allow if unsure" branch anywhere in the decision logic.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 4. Three-Tier Data Access --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <div class="section-title">Data Access Is Governed Independently of Routing</div>
+        </div>
+        <div class="section-desc">Being allowed to <em>call</em> an agent and being allowed to see the <em>data</em> it touches are two separate checks, evaluated independently. Every capability sits at one of three tiers — <code>public</code>, <code>private</code>, or <code>vault</code>. The first two follow the caller's resolved role; <code>vault</code> is fail-closed by design — denied by default even for an otherwise-trusted role, unless a specific, named grant exists for that person and that exact resource. Vault access is opt-in per person, never assumed from role alone.</div>
+      </div>
+
+      <!-- --- 5. Fail-Open vs. Fail-Closed --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--yellow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           </div>
-          <div class="section-title">CLAUDE.md Context System — Multi-Layered Governance</div>
+          <div class="section-title">A Deliberately Asymmetric Fail Posture</div>
         </div>
-        <div class="section-desc">24 CLAUDE.md files create a hierarchical instruction system. This is organizational design for AI — each file scopes Claude's knowledge and behavior to the right context, like defining team charters and domain boundaries for an AI agent system.</div>
-        <div class="file-tree">
-          <div class="tree-item tree-item--l1">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">Root</span>
-            <span class="tree-desc">Repo conventions, server config, git rules</span>
+        <div class="section-desc">Not every failure should behave the same way, and treating them identically is its own bug. This system draws a sharp line between a <em>missing</em> configuration and a <em>present-but-broken</em> one:</div>
+        <div class="comparison">
+          <div class="comparison-row">
+            <div class="comparison-header comparison-header--before">Config File Missing</div>
+            <div class="comparison-header comparison-header--after">Config File Present but Corrupted</div>
           </div>
-          <div class="tree-item tree-item--l2">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">Workspace</span>
-            <span class="tree-desc">Daily/weekly workflows, data analysis, communication styles</span>
+          <div class="comparison-row">
+            <div class="comparison-cell comparison-cell--before">Fails OPEN — agent calls proceed</div>
+            <div class="comparison-cell comparison-cell--after">Fails CLOSED — all agent calls blocked</div>
           </div>
-          <div class="tree-item tree-item--l3">
-            <div class="tree-icon tree-icon--feature"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">Action Tracker</span>
-            <span class="tree-desc">LNO framework, task lifecycle, API routes</span>
-          </div>
-          <div class="tree-item tree-item--l3">
-            <div class="tree-icon tree-icon--feature"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">Manager Guidance</span>
-            <span class="tree-desc">Sync workflows, strategic playbook reference</span>
-          </div>
-          <div class="tree-item tree-item--l3">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">Products</span>
-            <span class="tree-desc">CSM product structure, feature pipeline</span>
-          </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <span class="tree-name">AI Insights</span>
-            <span class="tree-desc">Data model changes, PA indicators, guardrails</span>
-          </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <span class="tree-name">Meeting Creation V2</span>
-            <span class="tree-desc">3 entry points, "propose don't ask" principle</span>
-          </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <span class="tree-name">AI Web Agents</span>
-            <span class="tree-desc">45+ use cases, Edge Agent model</span>
-          </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <span class="tree-name">Priority Plays Recommendation</span>
-            <span class="tree-desc">Health scores, risk, renewal</span>
-          </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <span class="tree-name">Executive Briefing</span>
-            <span class="tree-desc">Account &amp; engagement scoping</span>
-          </div>
-          <div class="tree-item tree-item--l3">
-            <div class="tree-icon tree-icon--feature"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">Portfolio</span>
-            <span class="tree-desc">Design system, page descriptions</span>
-          </div>
-          <div class="tree-item tree-item--l3">
-            <div class="tree-icon tree-icon--feature"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">Skills</span>
-            <span class="tree-desc">Module descriptions, execution guidelines</span>
-          </div>
-          <div class="tree-item tree-item--l3">
-            <div class="tree-icon tree-icon--feature"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">Orbis / Ironman</span>
-            <span class="tree-desc">App-specific design system, quality bar</span>
-          </div>
-          <div class="tree-item tree-item--l3">
-            <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <span class="tree-name">+ 7 more...</span>
-            <span class="tree-desc">Resources, styles, stakeholders, etc.</span>
+          <div class="comparison-row">
+            <div class="comparison-cell comparison-cell--before">Read as a misconfiguration — shouldn't brick the platform for everyone</div>
+            <div class="comparison-cell comparison-cell--after">Read as possible tampering — a broken gate must never silently stop enforcing</div>
           </div>
         </div>
+        <div class="section-desc" style="margin-bottom: 0;">Getting this distinction backwards is a classic real-world governance failure: either the platform becomes unusable on a routine typo, or a corrupted policy file quietly turns off enforcement for everyone. Designing for both failure modes, differently, on purpose, is the actual work.</div>
       </div>
 
-      <!-- --- 3. Product Work --- -->
+      <!-- --- 6. The Policy Protects Itself --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1"/></svg>
+          </div>
+          <div class="section-title">A Self-Protecting Policy</div>
+        </div>
+        <div class="section-desc">A short, explicit list of the governance system's own configuration and enforcement files can only be edited by a <code>core</code>-role caller. A <code>consumer</code> cannot edit the rules that grant access — including the file that assigns roles in the first place. Without this, "governance" is just a suggestion anyone with edit access could quietly turn off.</div>
+      </div>
+
+      <!-- --- 7. An Audit Trail, Not a Black Box --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--accent">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
-          <div class="section-title">Product Work</div>
+          <div class="section-title">Every Decision Leaves a Trace</div>
         </div>
-        <div class="section-desc">Agent governance proof from product feature design decisions.</div>
+        <div class="section-desc">Every single agent invocation — allowed or denied — is appended to an audit log: who called it, what role they resolved to, whether the call was routed through the front door, the decision, and the reason. "The AI did something" stops being a black box and becomes something you can actually reconstruct after the fact.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--accent"></div>
             <div>
-              <div class="item-name">Markdown Table Parser Guardrails</div>
-              <div class="item-desc">Built 3-layer defense for action tracker data integrity: continuation-line recovery (handles accidental newlines), output sanitization (prevents broken table rows on write), input sanitization (cleans API submissions). Prevents silent data loss where tasks would disappear from the UI without warning.</div>
-              <div class="item-tags"><span class="item-tag">Data Integrity</span><span class="item-tag">Defensive Design</span><span class="item-tag">2026-03-21</span></div>
+              <div class="item-name">Handle validation as a companion control</div>
+              <div class="item-desc">A separate check runs on every document before it's written: if it @-mentions a teammate who isn't on the live roster, the write is blocked — preventing a stale or typo'd mention from ever reaching a real document.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- --- Quote Block --- -->
+      <!-- --- 8. Human Sign-Off Gates --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 12 12 15 16 10"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="section-title">Human Sign-Off, Baked Into the Pipelines</div>
+        </div>
+        <div class="section-desc">Access control is the floor, not the whole system. On top of it, the actual multi-step workflows built on this platform have explicit human checkpoints designed in — not as an afterthought, but as a required step the automation cannot skip.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">A required classification decision, mid-pipeline</div>
+              <div class="item-desc">A "problem to requirements doc" pipeline stops partway through and requires an explicit human classification call before it will continue drafting — it can't talk itself into a category on its own.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">A scored fidelity check before engineering handoff</div>
+              <div class="item-desc">Any requirements doc has to clear a multi-dimension scored review before it's considered ready to hand off — not just a spellcheck, a structured pass/fail gate.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">Research insights are never auto-published</div>
+              <div class="item-desc">Newly synthesized research findings sit for explicit review and approval by a research lead before they're published anywhere else in the system.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">Nothing external sends itself</div>
+              <div class="item-desc">Every drafted email or chat reply is exactly that — a draft. It is never sent without an explicit human clicking send, regardless of how confident the draft is.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">Writes to the system of record require confirmation</div>
+              <div class="item-desc">Any write to the team's internal work-tracking system requires an explicit confirmation step before it happens — no silent writes to shared, load-bearing records.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- --- 9. Mapping --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0022 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          </div>
+          <div class="section-title">Governance Components, Mapped</div>
+        </div>
+        <table class="mapping-table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Governance Principle</th>
+              <th>Why It's Hard to Get Right</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Role resolution</td>
+              <td>Deny on Ambiguity</td>
+              <td>An unresolvable identity must never read as permissive</td>
+            </tr>
+            <tr>
+              <td>Front-door routing</td>
+              <td>Access Path Control</td>
+              <td>Being callable and being reachable are different guarantees</td>
+            </tr>
+            <tr>
+              <td>Three-tier data access</td>
+              <td>Least Privilege</td>
+              <td>Vault-tier data needs an explicit, named grant — never an inference</td>
+            </tr>
+            <tr>
+              <td>Fail-open vs. fail-closed</td>
+              <td>Asymmetric Failure Design</td>
+              <td>Misconfiguration and tampering need opposite default behaviors</td>
+            </tr>
+            <tr>
+              <td>Self-protected policy files</td>
+              <td>Policy Integrity</td>
+              <td>A rule that can edit itself isn't a rule</td>
+            </tr>
+            <tr>
+              <td>Append-only audit log</td>
+              <td>Accountability</td>
+              <td>Every allow/deny needs a reason someone can review later</td>
+            </tr>
+            <tr>
+              <td>Human sign-off gates</td>
+              <td>Human-in-the-Loop by Design</td>
+              <td>Automation should accelerate judgment, not replace the point where it's needed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- --- 10. Quote --- -->
       <div class="section">
         <blockquote class="quote-block">
-          A PM who defines what AI can decide vs. what it must escalate — and builds deterministic systems to enforce those boundaries — is doing the governance work that agents themselves cannot do.
-          <div class="quote-block-footer">Last updated: 2026-03-21</div>
+          Governance isn't a policy doc bolted onto an AI system after launch — it's a set of design decisions made up front about who can do what, what happens when the rules break, and where a human has to stay in the loop. That's the work agents themselves cannot do for you.
+          <div class="quote-block-footer">Last updated: 2026-07-01</div>
         </blockquote>
       </div>
 
