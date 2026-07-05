@@ -35,7 +35,7 @@
       min-height: 100vh;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center;
-      padding: 140px 32px 90px;
+      padding: 116px 32px 64px;
       overflow: hidden;
       background: var(--surface);
     }
@@ -64,36 +64,40 @@
     .hero > *:not(.orb) { position: relative; z-index: 1; }
 
     .hero-mark {
-      width: 84px; height: 84px; border-radius: 24px;
+      width: 148px; height: 148px; border-radius: 50%;
+      padding: 4px;
       background: var(--grad-spectrum);
       background-size: 200% 200%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Google Sans Display', sans-serif; font-weight: 700; font-size: 40px; color: #fff;
-      margin-bottom: 32px;
+      margin-bottom: 22px;
       box-shadow: 0 12px 40px rgba(66,133,244,0.35);
       animation: shift 8s ease infinite;
+    }
+    .hero-mark img {
+      width: 100%; height: 100%; border-radius: 50%;
+      object-fit: cover; display: block;
+      border: 3px solid var(--surface);
     }
     @keyframes shift { 0%,100%{ background-position: 0% 50%; } 50%{ background-position: 100% 50%; } }
 
     .hero-pill {
       display: inline-flex; align-items: center; gap: 9px;
-      padding: 8px 18px; font-size: 14px; color: var(--text-secondary);
+      padding: 7px 16px; font-size: 13px; color: var(--text-secondary);
       background: var(--surface-card); border: 1px solid var(--border);
-      border-radius: var(--radius-pill); margin-bottom: 28px;
+      border-radius: var(--radius-pill); margin-bottom: 22px;
       font-family: 'Google Sans', sans-serif;
     }
     .hero-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--g-green); box-shadow: 0 0 0 4px rgba(52,168,83,0.2); }
 
     .hero h1 {
-      font-size: clamp(46px, 7vw, 88px);
-      font-weight: 500; line-height: 1.04; letter-spacing: -2px;
-      color: var(--text); margin-bottom: 26px; max-width: 15ch;
+      font-size: clamp(38px, 5.2vw, 68px);
+      font-weight: 500; line-height: 1.08; letter-spacing: -1.5px;
+      color: var(--text); margin-bottom: 20px; max-width: 20ch;
     }
 
     .hero-sub {
-      font-size: clamp(17px, 2vw, 21px);
+      font-size: clamp(15.5px, 1.4vw, 18px);
       color: var(--text-secondary); line-height: 1.6;
-      max-width: 640px; margin-bottom: 40px;
+      max-width: 700px; margin-bottom: 32px;
     }
 
     .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
@@ -112,8 +116,8 @@
     @keyframes scroll-dot { 0%,100%{ opacity: 1; transform: translateY(0);} 50%{ opacity: 0.3; transform: translateY(12px);} }
 
     /* ─── Section scaffolding ─── */
-    .section { padding: 96px 32px; }
-    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section { padding: 108px 40px; }
+    .section-inner { max-width: 1360px; margin: 0 auto; }
     .eyebrow {
       font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px;
       color: var(--text-tertiary); margin-bottom: 14px; font-family: 'Google Sans', sans-serif;
@@ -126,8 +130,8 @@
 
     /* ─── Metrics ─── */
     .metrics { background: var(--surface-dim); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-    .metrics-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
-    .metric { text-align: center; padding: 52px 20px; border-right: 1px solid var(--border); }
+    .metrics-inner { max-width: 1360px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+    .metric { text-align: center; padding: 64px 20px; border-right: 1px solid var(--border); }
     .metric:last-child { border-right: none; }
     .metric-value {
       font-family: 'Google Sans Display', sans-serif; font-size: clamp(34px, 4vw, 46px);
@@ -137,10 +141,10 @@
     .metric-label { font-size: 13.5px; color: var(--text-secondary); line-height: 1.4; }
 
     /* ─── Explore cards ─── */
-    .explore-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 36px; }
+    .explore-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 48px; }
     .explore-card {
-      display: flex; flex-direction: column; gap: 16px;
-      padding: 28px; background: var(--surface-card);
+      display: flex; flex-direction: column; gap: 18px;
+      padding: 36px; background: var(--surface-card);
       border: 1px solid var(--border); border-radius: var(--radius-card);
       text-decoration: none; color: inherit; position: relative; overflow: hidden;
       transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), border-color 0.2s, box-shadow 0.2s, background 0.2s;
@@ -165,7 +169,7 @@
 
     /* ─── Radar ─── */
     .radar-section { background: var(--surface); border-top: 1px solid var(--border); }
-    .radar-container { display: flex; align-items: center; justify-content: center; gap: 56px; margin-top: 40px; }
+    .radar-container { display: flex; align-items: center; justify-content: center; gap: 72px; margin-top: 52px; }
     .radar-chart-wrap { flex-shrink: 0; }
     .radar-chart-wrap svg text { font-family: 'Google Sans Text', sans-serif; }
     .radar-legend { display: flex; flex-direction: column; gap: 10px; }
@@ -290,7 +294,7 @@
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
 
-    <div class="hero-mark">A</div>
+    <div class="hero-mark"><img src="/resources/profile-photo.jpg" alt="Abhay Tyagi"></div>
     <div class="hero-pill">
       <span class="dot"></span>
       Senior Product Manager @ ServiceNow

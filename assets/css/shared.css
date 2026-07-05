@@ -143,7 +143,7 @@ nav {
 }
 nav.scrolled { border-bottom-color: var(--border); }
 .nav-inner {
-  max-width: 1200px; margin: 0 auto; padding: 0 32px;
+  max-width: 1440px; margin: 0 auto; padding: 0 32px;
   display: flex; align-items: center; justify-content: space-between; height: var(--nav-height);
   gap: 16px;
 }
@@ -279,7 +279,7 @@ nav.scrolled { border-bottom-color: var(--border); }
    ============================================================ */
 footer { border-top: 1px solid var(--border); padding: 28px 32px; background: var(--surface-dim); }
 .footer-inner {
-  max-width: 1200px; margin: 0 auto;
+  max-width: 1440px; margin: 0 auto;
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
 }
 .footer-text { font-size: 13px; color: var(--text-tertiary); font-family: 'Google Sans Text', sans-serif; }

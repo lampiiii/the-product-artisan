@@ -67,7 +67,6 @@
       --shadow-sm: 0 1px 3px rgba(0,0,0,0.2), 0 1px 2px rgba(0,0,0,0.15);
       --shadow-md: 0 4px 6px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.2);
     }
-    [data-theme="dark"] .global-nav { background: rgba(19,19,20,0.82); }
     [data-theme="dark"] .header { background: rgba(19,19,20,0.82); }
     [data-theme="dark"] .hero-card { background: var(--surface-dim); border-color: var(--border); }
     [data-theme="dark"] ::selection { background: rgba(224,144,112,0.3); color: #ececec; }
@@ -85,102 +84,6 @@
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-    .global-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
-      background: rgba(255,255,255,0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
-      height: 64px;
-    }
-    .global-nav-inner {
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 0 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-    }
-    .global-nav-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .global-nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text);
-    }
-    .global-nav-logo-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--grad-spectrum);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 14px;
-      font-weight: 500;
-    }
-    .global-nav-logo-text {
-      font-size: 16px;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-    .global-nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .global-nav-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 24px;
-      font-size: 14px;
-      font-weight: 500;
-      font-family: inherit;
-      text-decoration: none;
-      border-radius: 48px;
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      min-height: 40px;
-    }
-    .global-nav-btn svg { width: 16px; height: 16px; }
-    .global-nav-btn--primary {
-      background: var(--blue);
-      color: white;
-    }
-    .global-nav-btn--primary:hover { background: var(--blue-hover); }
-    .global-nav-btn--outlined {
-      background: transparent;
-      color: var(--blue);
-      border: 1px solid var(--border);
-    }
-    .global-nav-btn--outlined:hover { background: var(--blue-bg); border-color: var(--blue-bg); }
-    .global-nav-btn--active {
-      background: var(--blue-bg);
-      color: var(--blue);
-      border: 1px solid var(--blue);
-    }
-
-    .nav-icon-btn { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); border-radius: 50%; cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s; }
-    .nav-icon-btn:hover { background: var(--surface-dim); color: var(--text); }
-    .theme-toggle { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); background: transparent; color: var(--text-secondary); border-radius: 50%; cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s; }
-    .theme-toggle:hover { background: var(--surface-dim); color: var(--text); }
-    .theme-toggle svg { width: 18px; height: 18px; }
-    .theme-toggle .icon-moon { display: none; }
-    [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
-    [data-theme="dark"] .theme-toggle .icon-moon { display: block; }
     .sidebar-overlay {
       display: none;
       position: fixed;
@@ -189,22 +92,6 @@
       z-index: 150;
     }
     .sidebar-overlay.visible { display: block; }
-    .sidebar {
-      position: fixed;
-      top: 64px;
-      left: 0;
-      bottom: 0;
-      width: 260px;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      z-index: 160;
-      transform: translateX(-100%);
-      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-    }
-    .sidebar.open { transform: translateX(0); }
     .sidebar-section { padding: 16px 16px 8px; }
     .sidebar-section-label {
       font-size: 11px;
@@ -234,10 +121,6 @@
     .sidebar-spacer { flex: 1; }
     .sidebar-footer { padding: 16px; border-top: 1px solid var(--border); }
     .sidebar-footer-text { font-size: 12px; color: var(--text-muted); text-align: center; }
-    @media (max-width: 768px) {
-      .global-nav-btn span { display: none; }
-      .global-nav-btn { padding: 8px 12px; min-height: 36px; }
-    }
 
     /* Header */
     .header {
@@ -247,7 +130,7 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       position: sticky;
-      top: 64px;
+      top: var(--nav-height);
       z-index: 100;
       max-width: 1200px;
       margin: 0 auto;
@@ -742,21 +625,28 @@
 </head>
 <body>
 
-<nav class="global-nav">
-  <div class="global-nav-inner">
-    <div class="global-nav-left">
+<nav>
+  <div class="nav-inner">
+    <div class="nav-left">
       <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle navigation">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
       </button>
-      <a href="/" class="global-nav-logo">
-        <div class="global-nav-logo-mark">A</div>
-        <span class="global-nav-logo-text">The Product Artisan</span>
+      <a href="/" class="nav-logo">
+        <div class="nav-logo-mark">A</div>
+        <span class="nav-logo-text">Abhay Tyagi</span>
       </a>
     </div>
-    <div class="global-nav-actions">
-      <a href="https://productartisan.substack.com" class="nav-icon-btn" target="_blank" rel="noopener" title="Substack"><svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg></a>
-      <a href="https://github.com/lampiiii" class="nav-icon-btn" target="_blank" rel="noopener" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></a>
-      <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode"><svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></button>
+    <div class="nav-right">
+      <a href="https://productartisan.substack.com" class="nav-icon-btn" target="_blank" rel="noopener" title="Substack">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+      </a>
+      <a href="https://github.com/lampiiii" class="nav-icon-btn" target="_blank" rel="noopener" title="GitHub">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+      <button class="nav-icon-btn" id="theme-toggle" title="Toggle dark mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
     </div>
   </div>
 </nav>
@@ -810,7 +700,7 @@
     <div class="sidebar-spacer"></div>
 
     <div class="sidebar-footer">
-      <div class="sidebar-footer-text">The Product Artisan v1.0</div>
+      <div class="sidebar-footer-text">The Product Artisan v2.0</div>
     </div>
   </aside>
 
