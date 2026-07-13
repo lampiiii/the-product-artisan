@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Governance — The Product Artisan</title>
-  <meta name="description" content="Role-based access control, fail-safe design, and human sign-off gates for a multi-agent AI system used by a 61-person team across four product lines.">
+  <meta name="description" content="Role-based access control, fail-safe design, and human sign-off gates for a multi-agent AI system used by a 60+ person team across four product lines.">
   <meta property="og:title" content="Agent Governance — Proof of Value">
   <meta property="og:description" content="Role-based access control, fail-safe design, and human sign-off gates for a multi-agent AI system.">
   <meta property="og:type" content="website">
@@ -196,6 +196,7 @@
       .comparison-header--after { border-radius: 0; }
       .comparison-row:last-child .comparison-cell--before { border-radius: 0; }
       .comparison-row:last-child .comparison-cell--after { border-radius: 0 0 8px 8px; }
+      .mapping-table { display: block; overflow-x: auto; }
       footer { padding: 24px 20px; }
     }
   </style>
@@ -235,28 +236,64 @@
   <!-- --- Left Sidebar --- -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Pages</div>
+      <div class="sidebar-section-label">Overview</div>
       <a href="/profile" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Profile
       </a>
-      <a href="/claude-code" class="sidebar-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Powered by Claude Code
-      </a>
-      <a href="/proof-of-value" class="sidebar-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        Proof of Value
+      <a href="/career-timeline" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Career Timeline
       </a>
     </div>
 
     <hr class="sidebar-divider">
 
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Tools</div>
+      <div class="sidebar-section-label">Proof of Work</div>
+      <a href="/proof-of-value" class="sidebar-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Proof of Value
+      </a>
+      <a href="/case-studies/case-study-1" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Case Study 01
+      </a>
+      <a href="/metrics-dashboard" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Metrics Dashboard
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Craft & Thinking</div>
+      <a href="/skills-tools" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Skills &amp; Tools
+      </a>
+      <a href="/frameworks" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Frameworks
+      </a>
       <a href="/playbook" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         Playbook
+      </a>
+      <a href="/claude-code" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Powered by Claude Code
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Reading & Influences</div>
+      <a href="/reading-list" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        Reading List
       </a>
     </div>
 
@@ -299,7 +336,7 @@
     <div class="hero">
       <div class="hero-badge">Proof of Value</div>
       <h1><span>Agent</span> Governance</h1>
-      <p>Defining who — and what — is allowed to call which AI agent, under what conditions, with what data access, and what happens when the rules themselves fail. This is the governance layer for a real multi-agent system a 61-person team uses daily, not a policy document nobody reads.</p>
+      <p>Deciding who — person or AI agent — is allowed to use which AI capability, under what conditions, with what data access, and what happens if the rules themselves break. This is a working safety system that a 60+ person team relies on every day, not a policy document nobody reads.</p>
     </div>
 
     <!-- --- Stats --- -->
@@ -332,17 +369,17 @@
           </div>
           <div class="section-title">Governance Is a Design Decision, Not a Wrapper</div>
         </div>
-        <div class="section-desc">Once a team has dozens of specialized AI agents instead of one chatbot, "can this caller invoke this agent, with this data, right now?" stops being a hypothetical and becomes a real access-control problem — the same shape as any multi-tenant system, just with a model in the loop instead of a person. I designed and built that layer for a platform roughly 70 capabilities deep.</div>
+        <div class="section-desc">Once a team is using dozens of specialized AI agents instead of one chatbot, "should this person or agent be allowed to do this, with this data, right now?" becomes a real question that needs a real answer — the same problem any shared software system has to solve, just with an AI in the loop instead of only people. I designed and built that safety layer for a platform with roughly 70 AI capabilities.</div>
         <div class="split">
           <div class="split-card">
-            <div class="split-card-label split-card-label--dim">Naive Approach</div>
-            <div class="split-card-title">Any Caller, Any Agent</div>
-            <div class="split-card-desc">Whoever can type a prompt can invoke any capability with any data — fine for a demo, unsafe at team scale</div>
+            <div class="split-card-label split-card-label--dim">The Risky Way</div>
+            <div class="split-card-title">Anyone Can Use Anything</div>
+            <div class="split-card-desc">Whoever can type a request can use any AI capability with any data — fine for a demo, unsafe once a whole team relies on it</div>
           </div>
           <div class="split-card" style="border-color: var(--accent);">
-            <div class="split-card-label split-card-label--accent">What I Built</div>
-            <div class="split-card-title">Resolved Role, Explicit Grant</div>
-            <div class="split-card-desc">Every call resolves to a role, checks a registry entry, and defaults to deny on anything ambiguous</div>
+            <div class="split-card-label split-card-label--accent">What I Built Instead</div>
+            <div class="split-card-title">Check Identity, Then Grant Access</div>
+            <div class="split-card-desc">Every request is checked against who's asking, and if anything is unclear, access is denied by default</div>
           </div>
         </div>
       </div>
@@ -353,22 +390,22 @@
           <div class="section-icon section-icon--blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
           </div>
-          <div class="section-title">Two Roles, and a Deliberate Third State</div>
+          <div class="section-title">Two Access Levels, and a Deliberate Third "Unknown" State</div>
         </div>
-        <div class="section-desc">Every caller resolves to <code>core</code> (a small set of trusted authors) or <code>consumer</code> (everyone else, by default). But the design doesn't stop there — an identity that can't be resolved at all doesn't fall back to "consumer," it becomes its own <code>unknown</code> state and is <strong>always denied</strong>. Most access-control bugs happen at the edges; this system treats "I couldn't figure out who you are" as the least permissive case, not a shrug.</div>
+        <div class="section-desc">Every request lands in one of two groups: a small set of trusted people (<code>core</code>), or everyone else by default (<code>consumer</code>). But the design goes one step further — if someone's identity can't be confirmed at all, they don't default to "everyone else." They land in a separate <code>unknown</code> state that is <strong>always denied</strong>. Most security holes happen at these edge cases; this system treats "I can't tell who this is" as the most locked-down case, not a shrug.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">Most-restrictive-on-ambiguity, as a running principle</div>
-              <div class="item-desc">Unknown caller, unknown agent, unresolved role, missing grant — every one of these resolves to deny, never to allow. The system never guesses permissive.</div>
+              <div class="item-name">When in doubt, deny — every time</div>
+              <div class="item-desc">Unknown person, unknown AI agent, unclear access level, missing permission — every one of these results in "no," never "yes." The system never guesses in favor of letting something through.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">Role isn't a permission set someone can request</div>
-              <div class="item-desc">Roles are assigned centrally in a policy file, deliberately separate from the org roster — so editing the "who's on the team" list can never silently change what anyone is allowed to do.</div>
+              <div class="item-name">Access level isn't something you can just request</div>
+              <div class="item-desc">Who has which access level is set centrally in one file, kept separate from the regular team roster — so updating "who's on the team" can never accidentally change what anyone is allowed to do.</div>
             </div>
           </div>
         </div>
@@ -380,22 +417,22 @@
           <div class="section-icon section-icon--purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
-          <div class="section-title">One Front Door, Explicit Side Doors</div>
+          <div class="section-title">One Main Entry Point, With Rare Approved Exceptions</div>
         </div>
-        <div class="section-desc">Most specialized agents aren't directly callable by a general user — a request has to be routed through a single orchestrating front door, which resolves what's actually needed and dispatches to the right capability. An agent's registry entry can explicitly whitelist which roles may call it directly (a "side door"), but that's an opt-in exception per agent, not the default. This keeps the access <em>path</em> itself governed, not just the destination.</div>
+        <div class="section-desc">Most specialized AI agents can't be reached directly by a regular user — a request first goes through one central point that figures out what's actually needed and hands it off to the right agent. A specific agent can be pre-approved for direct access in rare cases, but that's an exception someone has to explicitly turn on, not the default. This means the path a request takes is controlled, not just what it's allowed to touch at the end.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
-              <div class="item-name">A routing signal the model can't forge in normal operation</div>
-              <div class="item-desc">When the front door routes a request onward, it stamps the outgoing call with a marker the receiving gate checks for. A caller can't just claim to have been routed — the marker has to actually be present.</div>
+              <div class="item-name">A routing stamp that can't be faked</div>
+              <div class="item-desc">When the central entry point hands a request off, it attaches a marker that the receiving agent checks for. A request can't just claim it came through the right path — the marker actually has to be there.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
-              <div class="item-name">Unregistered agents are unreachable, period</div>
-              <div class="item-desc">If a capability isn't in the registry at all, no role and no routing path can reach it — there's no fallback "allow if unsure" branch anywhere in the decision logic.</div>
+              <div class="item-name">Unlisted agents simply can't be reached</div>
+              <div class="item-desc">If an AI capability isn't on the approved list, nothing can reach it — no access level and no routing path gets you there. There's no "allow it if you're not sure" fallback anywhere.</div>
             </div>
           </div>
         </div>
@@ -409,7 +446,7 @@
           </div>
           <div class="section-title">Data Access Is Governed Independently of Routing</div>
         </div>
-        <div class="section-desc">Being allowed to <em>call</em> an agent and being allowed to see the <em>data</em> it touches are two separate checks, evaluated independently. Every capability sits at one of three tiers — <code>public</code>, <code>private</code>, or <code>vault</code>. The first two follow the caller's resolved role; <code>vault</code> is fail-closed by design — denied by default even for an otherwise-trusted role, unless a specific, named grant exists for that person and that exact resource. Vault access is opt-in per person, never assumed from role alone.</div>
+        <div class="section-desc">Being allowed to <em>use</em> an AI agent and being allowed to <em>see the data</em> it touches are two separate checks. Every capability sits at one of three levels — everyone can see it (<code>public</code>), only your access level determines it (<code>private</code>), or nobody sees it by default (<code>vault</code>). Even a trusted person is denied vault-level data unless they've been individually and explicitly granted access to that exact piece of data — access is never assumed just because someone is generally trusted.</div>
       </div>
 
       <!-- --- 5. Fail-Open vs. Fail-Closed --- -->
@@ -418,24 +455,24 @@
           <div class="section-icon section-icon--yellow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           </div>
-          <div class="section-title">A Deliberately Asymmetric Fail Posture</div>
+          <div class="section-title">Two Kinds of Failure, Handled on Purpose Differently</div>
         </div>
-        <div class="section-desc">Not every failure should behave the same way, and treating them identically is its own bug. This system draws a sharp line between a <em>missing</em> configuration and a <em>present-but-broken</em> one:</div>
+        <div class="section-desc">Not every failure should be handled the same way — treating them identically is its own bug. This system draws a sharp line between the safety-rules file being <em>missing</em> versus being <em>present but broken</em>:</div>
         <div class="comparison">
           <div class="comparison-row">
-            <div class="comparison-header comparison-header--before">Config File Missing</div>
-            <div class="comparison-header comparison-header--after">Config File Present but Corrupted</div>
+            <div class="comparison-header comparison-header--before">Rules File Missing</div>
+            <div class="comparison-header comparison-header--after">Rules File Present but Corrupted</div>
           </div>
           <div class="comparison-row">
-            <div class="comparison-cell comparison-cell--before">Fails OPEN — agent calls proceed</div>
-            <div class="comparison-cell comparison-cell--after">Fails CLOSED — all agent calls blocked</div>
+            <div class="comparison-cell comparison-cell--before">Stays open — AI agent requests still go through</div>
+            <div class="comparison-cell comparison-cell--after">Locks down — all AI agent requests get blocked</div>
           </div>
           <div class="comparison-row">
-            <div class="comparison-cell comparison-cell--before">Read as a misconfiguration — shouldn't brick the platform for everyone</div>
-            <div class="comparison-cell comparison-cell--after">Read as possible tampering — a broken gate must never silently stop enforcing</div>
+            <div class="comparison-cell comparison-cell--before">Treated as a simple setup mistake — shouldn't break the whole platform for everyone</div>
+            <div class="comparison-cell comparison-cell--after">Treated as possible tampering — a broken safety check must never silently stop working</div>
           </div>
         </div>
-        <div class="section-desc" style="margin-bottom: 0;">Getting this distinction backwards is a classic real-world governance failure: either the platform becomes unusable on a routine typo, or a corrupted policy file quietly turns off enforcement for everyone. Designing for both failure modes, differently, on purpose, is the actual work.</div>
+        <div class="section-desc" style="margin-bottom: 0;">Getting this backwards is a common real-world mistake: either the platform breaks over a routine typo, or a corrupted rules file quietly turns off protection for everyone. Handling these two failure types differently, on purpose, is the actual work.</div>
       </div>
 
       <!-- --- 6. The Policy Protects Itself --- -->
@@ -444,9 +481,9 @@
           <div class="section-icon section-icon--red">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/><circle cx="12" cy="16" r="1"/></svg>
           </div>
-          <div class="section-title">A Self-Protecting Policy</div>
+          <div class="section-title">The Safety Rules Protect Themselves</div>
         </div>
-        <div class="section-desc">A short, explicit list of the governance system's own configuration and enforcement files can only be edited by a <code>core</code>-role caller. A <code>consumer</code> cannot edit the rules that grant access — including the file that assigns roles in the first place. Without this, "governance" is just a suggestion anyone with edit access could quietly turn off.</div>
+        <div class="section-desc">A short, specific list of the files that define these safety rules can only be edited by someone in the trusted <code>core</code> group. Anyone outside that group cannot edit the rules that grant access — including the file that decides who's trusted in the first place. Without this, the whole system would just be a suggestion anyone with edit access could quietly switch off.</div>
       </div>
 
       <!-- --- 7. An Audit Trail, Not a Black Box --- -->
@@ -455,15 +492,15 @@
           <div class="section-icon section-icon--accent">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
-          <div class="section-title">Every Decision Leaves a Trace</div>
+          <div class="section-title">Every Decision Leaves a Record</div>
         </div>
-        <div class="section-desc">Every single agent invocation — allowed or denied — is appended to an audit log: who called it, what role they resolved to, whether the call was routed through the front door, the decision, and the reason. "The AI did something" stops being a black box and becomes something you can actually reconstruct after the fact.</div>
+        <div class="section-desc">Every single AI agent request — whether allowed or blocked — gets logged: who asked, what access level they had, whether it went through the right entry point, the decision, and why. "The AI did something" stops being a mystery and becomes something anyone can look up afterward.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--accent"></div>
             <div>
-              <div class="item-name">Handle validation as a companion control</div>
-              <div class="item-desc">A separate check runs on every document before it's written: if it @-mentions a teammate who isn't on the live roster, the write is blocked — preventing a stale or typo'd mention from ever reaching a real document.</div>
+              <div class="item-name">A backup check on who gets mentioned</div>
+              <div class="item-desc">A separate check runs on every document before it's saved: if it mentions a teammate who isn't actually on the current team list, the save is blocked — preventing an outdated or mistyped name from ever reaching a real document.</div>
             </div>
           </div>
         </div>
@@ -475,43 +512,50 @@
           <div class="section-icon section-icon--purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 12 12 15 16 10"/><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <div class="section-title">Human Sign-Off, Baked Into the Pipelines</div>
+          <div class="section-title">A Person Always Signs Off, Built Into the Process</div>
         </div>
-        <div class="section-desc">Access control is the floor, not the whole system. On top of it, the actual multi-step workflows built on this platform have explicit human checkpoints designed in — not as an afterthought, but as a required step the automation cannot skip.</div>
+        <div class="section-desc">Access control is just the baseline. On top of it, the actual multi-step workflows on this platform have specific points where a human has to step in and approve — not as an afterthought, but as a required step the automation cannot skip past.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
-              <div class="item-name">A required classification decision, mid-pipeline</div>
-              <div class="item-desc">A "problem to requirements doc" pipeline stops partway through and requires an explicit human classification call before it will continue drafting — it can't talk itself into a category on its own.</div>
+              <div class="item-name">A required human decision partway through</div>
+              <div class="item-desc">The process that turns a customer problem into a requirements document stops partway and requires a person to make a specific classification call before it continues — the AI can't decide that on its own.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
-              <div class="item-name">A scored fidelity check before engineering handoff</div>
-              <div class="item-desc">Any requirements doc has to clear a multi-dimension scored review before it's considered ready to hand off — not just a spellcheck, a structured pass/fail gate.</div>
+              <div class="item-name">A scored quality check before handing off to engineers</div>
+              <div class="item-desc">Every requirements document has to pass a structured, multi-part quality review before it's considered ready to hand off — not just a spellcheck, a real pass/fail check.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
-              <div class="item-name">Research insights are never auto-published</div>
-              <div class="item-desc">Newly synthesized research findings sit for explicit review and approval by a research lead before they're published anywhere else in the system.</div>
+              <div class="item-name">Research findings are never published automatically</div>
+              <div class="item-desc">New research findings wait for a research lead to review and approve them before they're shared anywhere else.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--purple"></div>
+            <div>
+              <div class="item-name">A rejected draft doesn't leave a mess behind</div>
+              <div class="item-desc">Every AI agent that adds to the shared research library — customer profiles, use cases, glossary terms, open questions — submits a pending suggestion only. A permanent ID is only created once a human approves it, so a rejected draft doesn't leave a broken reference behind.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
               <div class="item-name">Nothing external sends itself</div>
-              <div class="item-desc">Every drafted email or chat reply is exactly that — a draft. It is never sent without an explicit human clicking send, regardless of how confident the draft is.</div>
+              <div class="item-desc">Every drafted email or chat reply is exactly that — a draft. It never sends without a person explicitly clicking send, no matter how confident the AI is.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
-              <div class="item-name">Writes to the system of record require confirmation</div>
-              <div class="item-desc">Any write to the team's internal work-tracking system requires an explicit confirmation step before it happens — no silent writes to shared, load-bearing records.</div>
+              <div class="item-name">Updates to shared team records need confirmation</div>
+              <div class="item-desc">Any update to the team's internal work-tracking system requires an explicit confirmation step first — nothing gets silently written to records the whole team relies on.</div>
             </div>
           </div>
         </div>
@@ -529,45 +573,45 @@
           <thead>
             <tr>
               <th>Component</th>
-              <th>Governance Principle</th>
+              <th>What It Ensures</th>
               <th>Why It's Hard to Get Right</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Role resolution</td>
-              <td>Deny on Ambiguity</td>
-              <td>An unresolvable identity must never read as permissive</td>
+              <td>Identity checks</td>
+              <td>Deny when unclear</td>
+              <td>An identity that can't be confirmed must never be treated as trusted</td>
             </tr>
             <tr>
-              <td>Front-door routing</td>
-              <td>Access Path Control</td>
-              <td>Being callable and being reachable are different guarantees</td>
+              <td>Central entry point</td>
+              <td>Control the path, not just the destination</td>
+              <td>Being allowed to use something and being able to reach it directly are different guarantees</td>
             </tr>
             <tr>
               <td>Three-tier data access</td>
-              <td>Least Privilege</td>
-              <td>Vault-tier data needs an explicit, named grant — never an inference</td>
+              <td>Minimum necessary access</td>
+              <td>The most sensitive data needs an explicit, named permission — never an assumption</td>
             </tr>
             <tr>
-              <td>Fail-open vs. fail-closed</td>
-              <td>Asymmetric Failure Design</td>
-              <td>Misconfiguration and tampering need opposite default behaviors</td>
+              <td>Different failure responses</td>
+              <td>Handle each failure type on purpose</td>
+              <td>A simple mistake and a broken/tampered system need opposite default responses</td>
             </tr>
             <tr>
-              <td>Self-protected policy files</td>
-              <td>Policy Integrity</td>
-              <td>A rule that can edit itself isn't a rule</td>
+              <td>Self-protected rules files</td>
+              <td>Rules can't edit themselves</td>
+              <td>A rule that can quietly change itself isn't a rule</td>
             </tr>
             <tr>
-              <td>Append-only audit log</td>
+              <td>Complete activity log</td>
               <td>Accountability</td>
-              <td>Every allow/deny needs a reason someone can review later</td>
+              <td>Every allow/deny decision needs a reason someone can review later</td>
             </tr>
             <tr>
-              <td>Human sign-off gates</td>
-              <td>Human-in-the-Loop by Design</td>
-              <td>Automation should accelerate judgment, not replace the point where it's needed</td>
+              <td>Human sign-off points</td>
+              <td>Keep a person in the loop by design</td>
+              <td>Automation should speed up judgment calls, not replace the person making them</td>
             </tr>
           </tbody>
         </table>
@@ -576,7 +620,7 @@
       <!-- --- 10. Quote --- -->
       <div class="section">
         <blockquote class="quote-block">
-          Governance isn't a policy doc bolted onto an AI system after launch — it's a set of design decisions made up front about who can do what, what happens when the rules break, and where a human has to stay in the loop. That's the work agents themselves cannot do for you.
+          Good governance for AI isn't a policy document bolted on after launch — it's a set of decisions made up front about who can do what, what happens when the rules break, and where a human has to stay in the loop. That's the part of the work that agents themselves cannot do for you.
           <div class="quote-block-footer">Last updated: 2026-07-01</div>
         </blockquote>
       </div>

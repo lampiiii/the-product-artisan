@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile — Abhay Tyagi | The Product Artisan</title>
-  <meta name="description" content="Abhay Tyagi — Senior PM building AI-powered Customer Success at ServiceNow. Experience, skills, education, and achievements.">
+  <meta name="description" content="Abhay Tyagi — Senior PM building AI-powered Customer Success at a global enterprise SaaS company. Experience, skills, education, and achievements.">
   <meta property="og:title" content="Profile — Abhay Tyagi">
-  <meta property="og:description" content="Senior PM building AI-powered Customer Success at ServiceNow. Experience, skills, education, and achievements.">
+  <meta property="og:description" content="Senior PM building AI-powered Customer Success at a global enterprise SaaS company. Experience, skills, education, and achievements.">
   <meta property="og:type" content="profile">
   <meta property="og:url" content="https://github.com/lampiiii/the-product-artisan">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Profile — Abhay Tyagi">
-  <meta name="twitter:description" content="Senior PM building AI-powered Customer Success at ServiceNow. Experience, skills, education, and achievements.">
+  <meta name="twitter:description" content="Senior PM building AI-powered Customer Success at a global enterprise SaaS company. Experience, skills, education, and achievements.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,8 +34,6 @@
       --shadow-md: 0 4px 6px rgba(0,0,0,0.25), 0 2px 4px rgba(0,0,0,0.2);
     }
 
-    /* Page-specific nav override */
-    .nav-inner { padding: 0 24px; }
     .nav-link { font-weight: 600; }
     .nav-icon-btn { transition: background 0.2s, color 0.2s, border-color 0.2s; }
     .nav-logo-text { letter-spacing: 0; }
@@ -507,13 +505,16 @@
       .cta { padding: 40px 20px; }
     }
     @media (max-width: 600px) {
-      .nav-inner { padding: 0 16px; }
       .nav-link { display: none; }
       .nav-link--primary { display: inline-flex; }
-      .metrics { grid-template-columns: 1fr 1fr; }
+      .metrics { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .about { padding: 24px; }
       .profile-avatar { width: 40px; height: 40px; }
       .profile-name { font-size: 16px; }
       .profile-info { gap: 10px; }
+    }
+    @media (max-width: 380px) {
+      .metrics { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -552,28 +553,64 @@
   <!-- ─── Left Sidebar ─── -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Pages</div>
-      <a href="/profile" class="sidebar-link">
+      <div class="sidebar-section-label">Overview</div>
+      <a href="/profile" class="sidebar-link active">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Profile
       </a>
-      <a href="/claude-code" class="sidebar-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Powered by Claude Code
-      </a>
-      <a href="/proof-of-value" class="sidebar-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        Proof of Value
+      <a href="/career-timeline" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Career Timeline
       </a>
     </div>
 
     <hr class="sidebar-divider">
 
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Tools</div>
+      <div class="sidebar-section-label">Proof of Work</div>
+      <a href="/proof-of-value" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Proof of Value
+      </a>
+      <a href="/case-studies/case-study-1" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Case Study 01
+      </a>
+      <a href="/metrics-dashboard" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Metrics Dashboard
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Craft & Thinking</div>
+      <a href="/skills-tools" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Skills &amp; Tools
+      </a>
+      <a href="/frameworks" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Frameworks
+      </a>
       <a href="/playbook" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         Playbook
+      </a>
+      <a href="/claude-code" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Powered by Claude Code
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Reading & Influences</div>
+      <a href="/reading-list" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        Reading List
       </a>
     </div>
 
@@ -610,8 +647,8 @@
       <img src="/resources/profile-photo.jpg" alt="Abhay Tyagi" class="profile-avatar">
       <div class="profile-identity">
         <div class="profile-name">Abhay Tyagi</div>
-        <div class="profile-title">Sr Inbound Product Manager</div>
-        <div class="profile-company">ServiceNow</div>
+        <div class="profile-title">Senior Product Manager</div>
+        <div class="profile-company">Global Enterprise SaaS Company</div>
       </div>
       <div class="profile-info">
         <div class="profile-info-item">
@@ -625,6 +662,10 @@
         <div class="profile-info-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4H2v2h20V4zM2 8h20v2H2V8zM2 14h20l-10 8L2 14z"/></svg>
           <a href="https://productartisan.substack.com" target="_blank" rel="noopener">Substack</a>
+        </div>
+        <div class="profile-info-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <a href="/resources/Abhay.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
         </div>
       </div>
     </div>
@@ -680,14 +721,16 @@
         <h2>Who I am</h2>
         <div class="about">
           <div class="about-bio">
-            <strong>Senior PM with 5+ years in B2B enterprise software.</strong> At ServiceNow, I own all GenAI and agentic AI capabilities for Customer Success — built a 19-agent system that drove 10+ competitive wins against Gainsight and helped grow ACV from $18M to $70M. Took Plus tier subscriptions from 0 to 120 accounts by shipping AI features worth paying more for. I help enterprises achieve measurable customer success without drowning in manual processes by building AI-driven workflows.
+            <strong>Senior Product Manager with 5+ years in B2B enterprise software.</strong> At a global enterprise SaaS company, I lead all AI features — including AI agents that work on their own — for the Customer Success product. I built a system of 19 AI agents that helped win 10+ competitive deals against Gainsight, while the product's yearly contract revenue grew from $18M to $70M. I also grew our premium subscription tier from 0 to 120 paying accounts by shipping AI features good enough that customers wanted to pay more for them. My focus is building AI tools that give enterprises real, measurable results — without adding more manual work for their teams.
             <br><br>
-            Before product, I built data pipelines at a Y Combinator-backed startup and cut my teeth on analytics and business operations. I work best at the intersection of AI, data, and enterprise workflows. I hold an MBA from IIM Udaipur and a B.Tech from IET Lucknow.
+            Beyond the product itself, I built an AI-powered operating system for how my own team works. It's a set of 30+ automated helpers, 70+ ready-made routines, and 40+ shortcuts, built on the AI coding tool Claude Code, that handles writing product specs, summarizing research, tracking plans, drafting stakeholder updates, and checking project health — automatically, instead of by hand.
+            <br><br>
+            Before product management, I built data pipelines at a Y Combinator-backed startup and started my career in analytics and business operations. I work best where AI, data, and enterprise software meet. I hold an MBA from IIM Udaipur and a B.Tech from IET Lucknow.
           </div>
           <div class="metrics">
             <div class="metric">
               <div class="metric-value">290%</div>
-              <div class="metric-label">ACV Growth ($18M to $70M)</div>
+              <div class="metric-label">Growth in Yearly Contract Revenue ($18M to $70M)</div>
             </div>
             <div class="metric">
               <div class="metric-value">19</div>
@@ -695,7 +738,7 @@
             </div>
             <div class="metric">
               <div class="metric-value">0→120</div>
-              <div class="metric-label">Plus Tier Upgrades</div>
+              <div class="metric-label">Premium-Tier Upgrades Driven by AI Features</div>
             </div>
             <div class="metric">
               <div class="metric-value">380+</div>
@@ -717,18 +760,20 @@
             <div class="timeline-date">Feb 2025 — Present</div>
             <div class="timeline-content">
               <span class="timeline-badge timeline-badge--current">Current</span>
-              <h3>Sr Inbound Product Manager</h3>
-              <div class="timeline-company">ServiceNow</div>
+              <h3>Senior Product Manager</h3>
+              <div class="timeline-company">Global Enterprise SaaS Company</div>
               <div class="timeline-desc">
                 <ul>
-                  <li>Owned GenAI and agentic AI capabilities across CSM, building differentiated features that became primary competitive advantage — drove 10+ enterprise displacement wins against Gainsight and Totango, contributing to 290% ACV growth</li>
-                  <li>Defined product vision and requirements for multi-agent AI system (19 agents across 5 workflows), replacing manual CSM processes that consumed 200+ hours/week; scaled to 120 enterprise accounts in 12 months from zero</li>
-                  <li>Drove 0→120 enterprise upgrades to Plus tier by shipping GenAI and agentic capabilities compelling enough to justify premium pricing — AI agents and automation became key reasons customers upgraded from base TPSM</li>
-                  <li>Prioritized renewal risk automation over manual reviews based on CSM time-study data, reducing operations 40% (200+ hrs/week) while keeping human-in-loop for high-risk signals requiring judgment</li>
-                  <li>Built cross-application workflows connecting Customer Success Management with SPM, Sales and Order Management, and Digital Product Release, enabling end-to-end customer lifecycle visibility across the ServiceNow ecosystem</li>
-                  <li>Built analytics framework with auto-refresh dashboards tracking adoption across 5 products and 500+ enterprise users</li>
-                  <li>Led integrations with Salesforce, Microsoft Dynamics, and GenAI APIs, expanding platform ecosystem reach by 3x</li>
-                  <li>Shipped ACL framework and least-privilege controls that prevented unauthorized data access and cross-scope leakage — directly addressed security concerns blocking deals with regulated enterprises in banking and finance sectors</li>
+                  <li>Led all AI features for the Customer Success product, including AI agents that work on their own — these became a top reason customers chose us over Gainsight and Totango in 10+ competitive deals, helping grow yearly contract revenue by 290%</li>
+                  <li>Set the product direction for a system of 19 AI agents covering 5 different workflows, replacing manual support work that took 200+ hours per week; grew from 0 to 120 enterprise accounts using it within 12 months</li>
+                  <li>Grew our premium subscription tier from 0 to 120 accounts by shipping AI features good enough that customers chose to pay more for them</li>
+                  <li>Used real usage data to decide that automating renewal-risk reviews mattered more than manual check-ins, cutting that workload by 40% (200+ hours/week) while still having a person review anything high-risk</li>
+                  <li>Connected Customer Success tools with sales, order management, and release-planning systems, so teams could see a customer's full journey in one place instead of piecing it together across tools</li>
+                  <li>Built a live dashboard system tracking product usage across 5 products and 500+ enterprise users</li>
+                  <li>Led integrations with Salesforce, Microsoft Dynamics, and AI providers, tripling how many other systems our product could connect to</li>
+                  <li>Built data-access controls that only give people and AI agents the minimum access they need — this resolved security concerns that had been blocking deals with regulated banking and finance customers</li>
+                  <li>Built, from scratch, an AI-powered operating system for how my team works — 30+ automated helpers, 70+ ready-made routines, and 40+ shortcuts that write product specs, summarize customer research, track plans, draft stakeholder updates, and check project health automatically instead of by hand</li>
+                  <li>Shipped a steady stream of new Customer Success features across six releases — including a customizable success-plan tool, a way to map account relationships and timelines, risk visualization, more detailed admin controls, automatic meeting-note capture, and a major accessibility upgrade for users with visual impairments — while also strengthening security and compliance every release</li>
                 </ul>
               </div>
             </div>
@@ -738,16 +783,16 @@
             <div class="timeline-date">May 2023 — Feb 2025</div>
             <div class="timeline-content">
               <span class="timeline-badge timeline-badge--past">Previous</span>
-              <h3>Inbound Product Manager</h3>
-              <div class="timeline-company">ServiceNow</div>
+              <h3>Product Manager</h3>
+              <div class="timeline-company">Global Enterprise SaaS Company</div>
               <div class="timeline-desc">
                 <ul>
-                  <li>Built Customer Success product from inception, defining core workflows adopted by 300+ enterprise accounts</li>
-                  <li>Enabled 3x customer base growth (120→380 accounts) by closing top 5 feature gaps identified in lost deal analysis, including value delivery framework and health scoring framework that became must-have in enterprise evaluations</li>
-                  <li>Established connected ecosystem linking CSM to 3+ ServiceNow apps, improving data flow and customer lifecycle tracking</li>
-                  <li>Designed end-to-end B2B onboarding workflows reducing customer TTV by 40% across 150+ MSP implementations</li>
-                  <li>Created scalable data import pipelines processing 100K+ records monthly, enabling seamless enterprise onboarding</li>
-                  <li>Aligned onboarding telemetry with renewal metrics, reducing lifecycle handoff friction and improving NRR by 8 points</li>
+                  <li>Built the Customer Success product from the ground up, creating core workflows that 300+ enterprise accounts now use</li>
+                  <li>Tripled the customer base (120→380 accounts) by fixing the top 5 gaps that were costing us deals, including a way to show customers the value they were getting and a tool that scores account health</li>
+                  <li>Connected the Customer Success product with 3+ other platform tools, so customer data and activity could be tracked in one continuous view</li>
+                  <li>Designed onboarding workflows that got new customers to their first value 40% faster, across 150+ implementation partners</li>
+                  <li>Built data pipelines that process 100,000+ records a month, so large customers could onboard smoothly</li>
+                  <li>Connected onboarding data with renewal data so problems could be caught earlier, improving customer retention revenue by 8 percentage points</li>
                 </ul>
               </div>
             </div>
@@ -780,7 +825,6 @@
                   <li>Built interactive ROI calculator, increasing trial conversion requests by 35%</li>
                   <li>Conducted 46-feature competitive analysis across 5 players, identifying whitespace opportunities for roadmap</li>
                   <li>Built sales enablement kit: pitch decks, release notes template, 6 email templates</li>
-                  <li>Documented 100+ backlogs on JIRA with correct terminologies</li>
                 </ul>
               </div>
             </div>
@@ -793,13 +837,7 @@
               <h3>Senior Business Analyst</h3>
               <div class="timeline-company">MyScoot Tech Pvt. Ltd., Gurugram (Y Combinator backed)</div>
               <div class="timeline-desc">
-                <ul>
-                  <li>Owned end-to-end data operations at YC-backed startup, supporting 3x user growth over 28-month tenure</li>
-                  <li>Established Business Analytics department and designed 15+ interactive dashboards for C-suite and ops teams</li>
-                  <li>Analysed feature launches and marketing campaigns, identifying optimizations that improved conversion rates by 25%</li>
-                  <li>Reduced T.A.T. by ~27% from lead onboarding to final conversion</li>
-                  <li>Generated insights that increased G.M.V. of new users by ~109% MoM</li>
-                </ul>
+                Established the Business Analytics function at a YC-backed startup — owned end-to-end data operations through 3x user growth, with dashboards and campaign analysis that improved conversion rates by 25%.
               </div>
             </div>
           </div>
@@ -811,11 +849,7 @@
               <h3>Data Analyst</h3>
               <div class="timeline-company">S.V.S Technologies Ltd., Noida</div>
               <div class="timeline-desc">
-                <ul>
-                  <li>Helped the organization make data-driven decisions reducing risk in critical business decisions</li>
-                  <li>Tracked monthly & weekly lead conversion and retention KPIs</li>
-                  <li>Prepared marketing funnel for established and potential customers across different media channels</li>
-                </ul>
+                Tracked lead conversion and retention KPIs and built marketing funnels across media channels to support data-driven decisions.
               </div>
             </div>
           </div>
@@ -828,18 +862,18 @@
       <!-- Products -->
       <section class="section" id="products">
         <div class="section-label">Products</div>
-        <h2>Active features in development</h2>
+        <h2>Capability areas I own</h2>
         <div class="cards">
           <div class="card">
             <div class="card-icon card-icon--blue">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
             </div>
-            <span class="card-badge card-badge--blue">Active</span>
-            <h3>AI Insights</h3>
-            <p>AI-generated charts and insight lines via Now Assist across five CSM pages.</p>
+            <span class="card-badge card-badge--blue">GenAI</span>
+            <h3>AI-Powered Insights</h3>
+            <p>AI-generated charts, summaries, and insights built directly into everyday Customer Success work — with checks in place from day one to keep the AI's output accurate.</p>
             <div class="tags">
-              <span class="tag">Now Assist</span>
-              <span class="tag">Charts</span>
+              <span class="tag">GenAI Assist</span>
+              <span class="tag">Insights</span>
               <span class="tag">Guardrails</span>
             </div>
           </div>
@@ -848,55 +882,27 @@
             <div class="card-icon card-icon--green">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
-            <span class="card-badge card-badge--green">Active</span>
-            <h3>Meeting Creation V2</h3>
-            <p>AI Agent-driven meeting creation with automated triggers, UI actions, and manual prompts.</p>
+            <span class="card-badge card-badge--green">Agentic AI</span>
+            <h3>Agentic Workflow Automation</h3>
+            <p>A team of AI agents that automates high-volume Customer Success work — meeting prep, renewal-risk reviews, and lifecycle alerts — with a person still reviewing anything that needs judgment.</p>
             <div class="tags">
-              <span class="tag">AI Agent</span>
+              <span class="tag">AI Agents</span>
               <span class="tag">Automation</span>
-              <span class="tag">UX</span>
+              <span class="tag">Human-in-loop</span>
             </div>
           </div>
 
           <div class="card">
             <div class="card-icon card-icon--purple">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-            </div>
-            <span class="card-badge card-badge--purple">Research</span>
-            <h3>AI Web Agents</h3>
-            <p>Autonomous web agents for customer success workflows and intelligent task execution.</p>
-            <div class="tags">
-              <span class="tag">Agents</span>
-              <span class="tag">Research</span>
-              <span class="tag">Autonomy</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-icon card-icon--green">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
             </div>
-            <span class="card-badge card-badge--green">Active</span>
-            <h3>Priority Plays Recommendation</h3>
-            <p>AI-driven prioritization of where CSMs should focus next based on health scores, risk indicators, and renewal timelines.</p>
+            <span class="card-badge card-badge--purple">AI/ML</span>
+            <h3>Proactive Success Intelligence</h3>
+            <p>Health scores and risk signals, prioritized by AI, that tell support teams which accounts need attention before they become problems.</p>
             <div class="tags">
-              <span class="tag">AI/ML</span>
+              <span class="tag">Health Scoring</span>
               <span class="tag">Prioritization</span>
               <span class="tag">Proactive</span>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-icon card-icon--blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-            </div>
-            <span class="card-badge card-badge--blue">Active</span>
-            <h3>Executive Briefing</h3>
-            <p>AI-generated executive briefing with account-level and engagement-level scoping for stakeholder meetings.</p>
-            <div class="tags">
-              <span class="tag">Now Assist</span>
-              <span class="tag">Executive</span>
-              <span class="tag">GenAI</span>
             </div>
           </div>
         </div>
@@ -944,7 +950,7 @@
               <span class="skill-tag">Customer Onboarding & Activation</span>
               <span class="skill-tag">Product Analytics & Telemetry</span>
               <span class="skill-tag">Health Scoring</span>
-              <span class="skill-tag">Renewal & NRR Optimization</span>
+              <span class="skill-tag">Renewal & Retention Revenue Optimization</span>
               <span class="skill-tag">Process Improvement</span>
             </div>
           </div>
@@ -959,19 +965,15 @@
             </div>
             <div class="cert-pill">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              CSM Implementation — ServiceNow
+              Customer Success Management Implementation
             </div>
             <div class="cert-pill">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              CSM Fundamentals — ServiceNow
+              Customer Success Management Fundamentals
             </div>
             <div class="cert-pill">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               People Analytics
-            </div>
-            <div class="cert-pill">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              Excel Skills for Business Specialization
             </div>
           </div>
         </div>
@@ -1006,38 +1008,20 @@
         <div class="achievements">
           <div class="achievement-card">
             <div class="achievement-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <div class="achievement-text">
+              <h3>Built an AI-Powered Operating System for My Team (30+ Agents)</h3>
+              <p>Built a system of 30+ automated helpers, 70+ ready-made routines, and 40+ shortcuts that runs my team's product specs, research, planning, and stakeholder updates — start to finish, with minimal manual work.</p>
+            </div>
+          </div>
+          <div class="achievement-card">
+            <div class="achievement-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             </div>
             <div class="achievement-text">
               <h3>National 2nd — Accenture Strategy Challenge</h3>
               <p>Placed 2nd nationally among 150+ competing teams in the Accenture Strategy Challenge.</p>
-            </div>
-          </div>
-          <div class="achievement-card">
-            <div class="achievement-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-            </div>
-            <div class="achievement-text">
-              <h3>3x Expansion — Lebanon NGO</h3>
-              <p>Led expansion of a Lebanon-based NGO from 65 to 200+ members.</p>
-            </div>
-          </div>
-          <div class="achievement-card">
-            <div class="achievement-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-            </div>
-            <div class="achievement-text">
-              <h3>Published Research Paper</h3>
-              <p>Flow Past Different Geometries Arranged in Triangular Pattern — published research work.</p>
-            </div>
-          </div>
-          <div class="achievement-card">
-            <div class="achievement-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-            </div>
-            <div class="achievement-text">
-              <h3>S. Ramanujam Mathematics Award</h3>
-              <p>Marker cup holder in Mathematics (AISSCE) with 98% score.</p>
             </div>
           </div>
         </div>
@@ -1065,7 +1049,7 @@
 
       <footer>
         <div class="footer-inner">
-          <span class="footer-text">Abhay Tyagi — Senior Product Manager, ServiceNow</span>
+          <span class="footer-text">Abhay Tyagi — Senior Product Manager, Enterprise SaaS</span>
           <div class="footer-links">
             <a href="/">Home</a>
             <a href="https://www.linkedin.com/in/abhay-tyagi-iimu/" target="_blank" rel="noopener">LinkedIn</a>

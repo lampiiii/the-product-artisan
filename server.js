@@ -34,6 +34,12 @@ const ROUTES = {
   '/proof-of-value/stakeholder-management': 'artisan/pov/stakeholder-management.html',
   '/proof-of-value/pricing-strategy':    'artisan/pov/pricing-strategy.html',
   '/playbook':                          'artisan/playbook.html',
+  '/career-timeline':                   'artisan/career-timeline.html',
+  '/skills-tools':                      'artisan/skills-tools.html',
+  '/reading-list':                      'artisan/reading-list.html',
+  '/frameworks':                        'artisan/frameworks.html',
+  '/metrics-dashboard':                 'artisan/metrics-dashboard.html',
+  '/case-studies/case-study-1':         'artisan/case-studies/case-study-1.html',
 };
 
 const SECURITY_HEADERS = {

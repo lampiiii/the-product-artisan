@@ -284,6 +284,12 @@
       .comparison-header--after { border-radius: 0; }
       .comparison-row:last-child .comparison-cell--before { border-radius: 0; }
       .comparison-row:last-child .comparison-cell--after { border-radius: 0 0 8px 8px; }
+      .tree-item { flex-wrap: wrap; }
+      .tree-desc { white-space: normal; margin-left: 0; padding-left: 26px; flex-basis: 100%; }
+      .tree-name { white-space: normal; }
+      .tree-item--l3 { padding-left: 56px; }
+      .tree-item--l4 { padding-left: 68px; }
+      .mapping-table { display: block; overflow-x: auto; }
       footer { padding: 24px 20px; }
     }
   </style>
@@ -323,28 +329,64 @@
   <!-- --- Left Sidebar --- -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Pages</div>
+      <div class="sidebar-section-label">Overview</div>
       <a href="/profile" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Profile
       </a>
-      <a href="/claude-code" class="sidebar-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Powered by Claude Code
-      </a>
-      <a href="/proof-of-value" class="sidebar-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        Proof of Value
+      <a href="/career-timeline" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Career Timeline
       </a>
     </div>
 
     <hr class="sidebar-divider">
 
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Tools</div>
+      <div class="sidebar-section-label">Proof of Work</div>
+      <a href="/proof-of-value" class="sidebar-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Proof of Value
+      </a>
+      <a href="/case-studies/case-study-1" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Case Study 01
+      </a>
+      <a href="/metrics-dashboard" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Metrics Dashboard
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Craft & Thinking</div>
+      <a href="/skills-tools" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Skills &amp; Tools
+      </a>
+      <a href="/frameworks" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Frameworks
+      </a>
       <a href="/playbook" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         Playbook
+      </a>
+      <a href="/claude-code" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Powered by Claude Code
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Reading & Influences</div>
+      <a href="/reading-list" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        Reading List
       </a>
     </div>
 
@@ -386,7 +428,7 @@
     <div class="hero">
       <div class="hero-badge">Proof of Value</div>
       <h1><span>Platform Thinking</span> & System-Level Thinking</h1>
-      <p>How I apply the two hardest-to-replicate PM skills in the AI era — by architecting a team-wide operating system that spans four product lines, one canonical record per feature, and a cross-system orchestration layer that keeps 20 live dashboards in sync with zero manual re-entry.</p>
+      <p>How I apply the two hardest skills for a product manager to replace with AI — by building a team-wide operating system that spans four product lines, gives every feature one single source of truth, and keeps 20 live dashboards in sync automatically, with no manual data entry.</p>
     </div>
 
     <!-- --- Stats --- -->
@@ -396,7 +438,7 @@
         <div class="stat-label">Product Lines</div>
       </div>
       <div class="stat">
-        <div class="stat-value">73</div>
+        <div class="stat-value">70+</div>
         <div class="stat-label">Tracked Features</div>
       </div>
       <div class="stat">
@@ -412,7 +454,7 @@
         <div class="stat-label">Connected Systems</div>
       </div>
       <div class="stat">
-        <div class="stat-value">61</div>
+        <div class="stat-value">60+</div>
         <div class="stat-label">People Served</div>
       </div>
     </div>
@@ -427,38 +469,38 @@
           </div>
           <div class="section-title">Why This Matters</div>
         </div>
-        <div class="section-desc">PMs either stay at the Task Execution layer — writing tickets, chasing status, formatting the same deck every quarter — or move to the Strategic Apex: designing the system that makes execution self-organizing. I built the second one, for a full team, not just myself.</div>
+        <div class="section-desc">A product manager's time either goes into doing individual tasks — writing tickets, chasing status updates, rebuilding the same deck every quarter — or into designing a system that keeps itself organized. I built the second one, for a whole team, not just myself.</div>
 
         <div class="split">
           <div class="split-card">
             <div class="split-card-label split-card-label--dim">Increasingly Automatable</div>
-            <div class="split-card-title">Task Execution</div>
+            <div class="split-card-title">Doing Individual Tasks</div>
             <div class="split-card-desc">Writing tickets, chasing status updates, rebuilding the same deck, re-explaining context every session</div>
           </div>
           <div class="split-card" style="border-color: var(--accent);">
-            <div class="split-card-label split-card-label--accent">Irreplaceable</div>
-            <div class="split-card-title">Strategic Apex</div>
-            <div class="split-card-desc">Designing the information architecture, governance, and automation a whole team runs on</div>
+            <div class="split-card-label split-card-label--accent">Where I Invest</div>
+            <div class="split-card-title">Designing the System</div>
+            <div class="split-card-desc">Designing the shared structure, rules, and automation a whole team runs on</div>
           </div>
         </div>
 
-        <div class="section-desc" style="margin-bottom: 12px;">Platform thinking and system-level thinking sit at the center of the Strategic Apex. They are about:</div>
+        <div class="section-desc" style="margin-bottom: 12px;">This kind of "big picture" thinking is about:</div>
         <div class="pillars">
           <div class="pillar">
             <span class="pillar-icon" style="color: var(--blue);">&#9670;</span>
-            Designing one information architecture that works across every product line, not a bespoke one per team
+            Designing one shared way of organizing information that works across every product line, instead of a different one for each team
           </div>
           <div class="pillar">
             <span class="pillar-icon" style="color: var(--blue);">&#9670;</span>
-            Knowing what's possible at the integration layer — where systems can and can't talk to each other
+            Knowing what's actually possible when connecting different systems together — and what isn't
           </div>
           <div class="pillar">
             <span class="pillar-icon" style="color: var(--blue);">&#9670;</span>
-            Architecting guardrails, automation, and governance that scale past one person's attention
+            Building safety checks and automation that keep working as more people use the system, not just for one person
           </div>
           <div class="pillar">
             <span class="pillar-icon" style="color: var(--blue);">&#9670;</span>
-            Treating the platform itself as a product — with its own roadmap, QA passes, and health checks
+            Treating the internal tooling itself like a real product — with its own roadmap, quality checks, and health checks
           </div>
         </div>
       </div>
@@ -471,41 +513,55 @@
           </div>
           <div class="section-title">A Team Operating System, Not a Personal Tool</div>
         </div>
-        <div class="section-desc">A markdown-based workspace, orchestrated through an AI coding agent, that every PM, designer, engineer, and reviewer on the team uses to find or contribute the latest context for a feature. It now covers four product lines and 73 tracked features across seven release cycles — this is the daily operating system for how the team ships, not a side project.</div>
+        <div class="section-desc">A simple text-file-based workspace, run through an AI coding assistant, that every product manager, designer, engineer, and reviewer on the team uses to find or add the latest information on a feature. It now covers four product lines and 70+ tracked features across seven releases — this is the actual daily system the team ships with, not a side project.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">One canonical record per feature</div>
-              <div class="item-desc">A single structured file maps every feature to its owners, its linked work items, and every external system it touches — replacing status meetings with a file everyone already has open.</div>
+              <div class="item-name">One single source of truth per feature</div>
+              <div class="item-desc">One file lists every feature's owners, linked work items, and every other system it touches — replacing status meetings with a file everyone already has open.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">Markdown as the shared data layer</div>
-              <div class="item-desc">Human-readable, version-controlled, and machine-parseable — dashboards and AI tooling read the exact same source the team edits by hand, so nothing drifts out of sync.</div>
+              <div class="item-name">Every feature's folder tells its own story from start to finish</div>
+              <div class="item-desc">Reference materials (designs, research, meeting notes, early findings) → the actual spec → what was shipped (release notes, scope cuts, screenshots) → handoff docs for other teams → what's next. Opening any feature's folder in order shows the full decision trail without asking anyone.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">File-driven, event-triggered dashboards</div>
-              <div class="item-desc">Editing a record automatically regenerates every dashboard that depends on it — no separate CMS, no admin panel, no "someone forgot to update the tracker."</div>
+              <div class="item-name">Releases are tracked as their own thing</div>
+              <div class="item-desc">One master list tracks every release's status (planned / in progress / shipped), and every feature is filed under its release rather than loosely under the product — so "what shipped when" is built into the file structure itself, not a separate spreadsheet.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">A cross-product rollup, not four silos</div>
-              <div class="item-desc">One dashboard shows every feature across all four product lines, bucketed by lifecycle stage (scoping / active / shipped) and automatically flagged by delivery risk.</div>
+              <div class="item-name">Plain text as the one shared source</div>
+              <div class="item-desc">Easy for people to read, tracked for changes over time, and easy for AI tools to read too — dashboards and AI tools read the exact same file the team edits by hand, so nothing goes out of sync.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">Shared design system across 20 pages</div>
-              <div class="item-desc">Consistent UX — dark mode, sort, search, sidebar nav — without a frontend framework. CSS custom properties as the API contract.</div>
+              <div class="item-name">Dashboards that update themselves</div>
+              <div class="item-desc">Editing one file automatically updates every dashboard that depends on it — no separate admin tool, no "someone forgot to update the tracker."</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">One combined view, not four separate ones</div>
+              <div class="item-desc">One dashboard shows every feature across all four product lines, grouped by stage (scoping / active / shipped) and automatically flagged if it's at risk.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">One consistent look across 20 pages</div>
+              <div class="item-desc">The same look and feel — dark mode, sorting, search, side navigation — across every page, kept simple and consistent by design.</div>
             </div>
           </div>
         </div>
@@ -517,36 +573,36 @@
           <div class="section-icon section-icon--red">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <div class="section-title">Deterministic Governance, Not Tribal Memory</div>
+          <div class="section-title">Automatic Checks, Not Relying on Memory</div>
         </div>
-        <div class="section-desc">Lifecycle hooks fire automatically at key moments instead of relying on anyone remembering a rule. This is platform-level automation that keeps the system honest as more people use it — the full access-control layer built on top of these hooks is its own proof point. <a href="/proof-of-value/agent-governance" style="color: var(--accent); font-weight: 600;">See Agent Governance &rarr;</a></div>
+        <div class="section-desc">Automatic checks run at key moments instead of relying on anyone remembering to do them. This is system-level automation that keeps things running correctly as more people use it — the full access-control system built on top of these checks is its own proof point. <a href="/proof-of-value/agent-governance" style="color: var(--accent); font-weight: 600;">See Agent Governance &rarr;</a></div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">Auto-regenerating dashboards</div>
-              <div class="item-desc">Editing a feature record, the roster, or the tool catalog regenerates every dependent dashboard — no manual "refresh the site" step.</div>
+              <div class="item-name">Dashboards that update themselves</div>
+              <div class="item-desc">Editing a feature record, the team roster, or the tool list updates every dashboard that depends on it — no manual "refresh the site" step.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">Self-cataloging tooling</div>
-              <div class="item-desc">Adding a new reusable skill or agent automatically rebuilds the tool catalog other teammates browse — the catalog can never silently go stale.</div>
+              <div class="item-name">A tool catalog that stays current on its own</div>
+              <div class="item-desc">Adding a new reusable tool or AI agent automatically updates the catalog other teammates browse — it can never silently go out of date.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">Handle validation</div>
-              <div class="item-desc">Any document that @-mentions a teammate is checked against the live roster before it's written — no more pinging someone who left the team or a typo'd name.</div>
+              <div class="item-name">Checking who gets mentioned</div>
+              <div class="item-desc">Any document that mentions a teammate is checked against the current team list before it's saved — no more pinging someone who left the team or a mistyped name.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">Usage analytics, captured automatically</div>
-              <div class="item-desc">Every skill and agent invocation across the team is logged and rolled into a usage dashboard — adoption data nobody has to manually compile.</div>
+              <div class="item-name">Usage data, captured automatically</div>
+              <div class="item-desc">Every use of a tool or AI agent across the team is logged and rolled into a usage dashboard — adoption data nobody has to manually compile.</div>
             </div>
           </div>
         </div>
@@ -558,39 +614,39 @@
           <div class="section-icon section-icon--purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
           </div>
-          <div class="section-title">A Roster of Specialized Agents</div>
+          <div class="section-title">A Team of Specialized AI Agents</div>
         </div>
-        <div class="section-desc">Roughly 30 specialized agents, each scoped to one job, composed together rather than one generalist doing everything. A few examples across the roster:</div>
+        <div class="section-desc">Roughly 30 specialized AI agents, each focused on one job, working together rather than one generalist trying to do everything. A few examples:</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
-              <div class="item-name">Per-product competitive lens</div>
-              <div class="item-desc">Resolves which product line a feature belongs to, then runs it against that product's specific competitor set — curated for the mature product, research-derived for the newer ones.</div>
+              <div class="item-name">A competitive-analysis agent that adapts per product</div>
+              <div class="item-desc">Figures out which product line a feature belongs to, then compares it against that product's specific competitors — a maintained list for the mature product, freshly researched for the newer ones.</div>
               <div class="item-tags"><span class="item-tag">Strategy</span><span class="item-tag">Competitive Intel</span></div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
-              <div class="item-name">Platform QA and repo-health auditors</div>
-              <div class="item-desc">One agent ruthlessly tests the platform's own dashboards end-to-end before a leadership review; another audits the repo across nine health categories — structure, metadata, stale content, naming — and writes a trended, prioritized fix list.</div>
+              <div class="item-name">Quality and health-check agents</div>
+              <div class="item-desc">One agent thoroughly tests every dashboard before a leadership review; another checks the whole workspace across nine health areas — organization, up-to-date info, naming — and writes a prioritized fix list.</div>
               <div class="item-tags"><span class="item-tag">Quality</span><span class="item-tag">Self-Auditing</span></div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
-              <div class="item-name">Claude-usage coach</div>
-              <div class="item-desc">Audits how the team is actually using the AI tooling and returns prioritized, concrete improvements — the platform watches its own adoption, not just its uptime.</div>
+              <div class="item-name">A coach for how the team uses AI tools</div>
+              <div class="item-desc">Reviews how the team is actually using the AI tools and returns specific, prioritized suggestions for improvement — the system watches its own adoption, not just whether it's running.</div>
               <div class="item-tags"><span class="item-tag">Adoption</span><span class="item-tag">Coaching</span></div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
-              <div class="item-name">Design-domain review chain</div>
-              <div class="item-desc">A requirements-completeness check, a design/spec critic, and a handoff-readiness gate run in sequence before any design goes to engineering — each one scoped narrowly enough to stay reliable.</div>
+              <div class="item-name">A chain of design reviewers</div>
+              <div class="item-desc">A completeness check, a design critic, and a final readiness check run one after another before any design goes to engineers — each one focused narrowly enough to stay reliable.</div>
               <div class="item-tags"><span class="item-tag">Design</span><span class="item-tag">Handoff Quality</span></div>
             </div>
           </div>
@@ -603,9 +659,9 @@
           <div class="section-icon section-icon--blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
-          <div class="section-title">A Reusable Skill Library</div>
+          <div class="section-title">A Library of Reusable Shortcuts</div>
         </div>
-        <div class="section-desc">70+ self-contained skills cover the PM lifecycle end to end — a portion adopted from a shared cross-team pack, the rest purpose-built here, and a handful explicitly marked as stubs until they're confirmed production-ready. Organized into clear buckets rather than one flat list:</div>
+        <div class="section-desc">70+ self-contained shortcuts cover the product manager's job end to end — some adopted from a shared cross-team set, the rest built specifically here, and a few clearly marked as "not fully ready yet" until confirmed. Organized into clear groups rather than one long list:</div>
         <div class="grid">
           <div class="grid-card">
             <div class="grid-card-title">Research</div>
@@ -640,9 +696,9 @@
           <div class="section-icon section-icon--yellow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
-          <div class="section-title">Hierarchical Context System</div>
+          <div class="section-title">Layered Context Files</div>
         </div>
-        <div class="section-desc">26 scoped context files form an inheritance tree — organizational design for AI. Each file bounds the agent's knowledge and behavior to the right layer, the same way a team charter or domain boundary would for a human org.</div>
+        <div class="section-desc">26 context files, organized from broad to specific, like organizing a company into teams and sub-teams. Each file limits what the AI knows and does at the right level — the same way a team charter or clear job boundary would for a person.</div>
         <div class="file-tree">
           <div class="tree-item tree-item--l1">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
@@ -661,7 +717,7 @@
           </div>
           <div class="tree-item tree-item--l4">
             <div class="tree-icon tree-icon--file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <span class="tree-name">73 Feature Records</span>
+            <span class="tree-name">70+ Feature Records</span>
             <span class="tree-desc">One canonical metadata file per feature, across 7 release cycles</span>
           </div>
           <div class="tree-item tree-item--l3">
@@ -688,9 +744,9 @@
           <div class="section-icon section-icon--green">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
           </div>
-          <div class="section-title">Cross-System Orchestration</div>
+          <div class="section-title">Connecting Systems Together</div>
         </div>
-        <div class="section-desc">10+ connected systems reachable from one interface — not standalone tools bolted together. A single session can search a shared mailbox and chat history, pull real usage and market data, generate a branded deck, and update the team's canonical records, all without re-entering the same fact twice.</div>
+        <div class="section-desc">10+ different tools reachable from one place — not separate tools bolted together after the fact. A single working session can search shared email and chat, pull real usage and market data, generate a branded presentation, and update the team's records — all without re-entering the same information twice.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--green"></div>
@@ -731,84 +787,84 @@
           </div>
           <div class="section-title">The Compound Effect</div>
         </div>
-        <div class="section-desc">None of these components exist in isolation. The power is in how they compose. This is system-level thinking: seeing the full pipeline, not just one step.</div>
+        <div class="section-desc">None of these pieces work in isolation — the value is in how they work together. This is what "seeing the whole system" actually means in practice.</div>
 
         <div class="pipeline">
-          <div class="pipeline-label">Pipeline 1 — Feature Lifecycle</div>
-          <div class="pipeline-flow">Feature scoped <span class="arrow">&rarr;</span> canonical record created <span class="arrow">&rarr;</span> spec drafted <span class="arrow">&rarr;</span> shipped and frozen <span class="arrow">&rarr;</span> handoff doc generated for other teams</div>
+          <div class="pipeline-label">Example 1 — A Feature, Start to Finish</div>
+          <div class="pipeline-flow">Feature scoped <span class="arrow">&rarr;</span> record created <span class="arrow">&rarr;</span> spec drafted <span class="arrow">&rarr;</span> shipped and finalized <span class="arrow">&rarr;</span> handoff doc generated for other teams</div>
         </div>
         <div class="pipeline">
-          <div class="pipeline-label">Pipeline 2 — Research to Roadmap</div>
-          <div class="pipeline-flow">Customer signal gathered <span class="arrow">&rarr;</span> synthesized into evidence <span class="arrow">&rarr;</span> human review gate <span class="arrow">&rarr;</span> rolled into the next planning cycle</div>
+          <div class="pipeline-label">Example 2 — Research to Roadmap</div>
+          <div class="pipeline-flow">Customer signal gathered <span class="arrow">&rarr;</span> turned into evidence <span class="arrow">&rarr;</span> reviewed by a person <span class="arrow">&rarr;</span> rolled into the next planning cycle</div>
         </div>
         <div class="pipeline">
-          <div class="pipeline-label">Pipeline 3 — Problem to Engineering</div>
-          <div class="pipeline-flow">Problem defined <span class="arrow">&rarr;</span> research dispatched in parallel <span class="arrow">&rarr;</span> insight brief synthesized <span class="arrow">&rarr;</span> PRD drafted <span class="arrow">&rarr;</span> fidelity-checked <span class="arrow">&rarr;</span> handed to engineering</div>
+          <div class="pipeline-label">Example 3 — Problem to Engineering</div>
+          <div class="pipeline-flow">Problem defined <span class="arrow">&rarr;</span> research run in parallel <span class="arrow">&rarr;</span> findings summarized <span class="arrow">&rarr;</span> requirements doc drafted <span class="arrow">&rarr;</span> quality-checked <span class="arrow">&rarr;</span> handed to engineering</div>
         </div>
         <div class="pipeline">
-          <div class="pipeline-label">Pipeline 4 — Ceremony Cadence</div>
-          <div class="pipeline-flow">Cycle opens <span class="arrow">&rarr;</span> live status pulled from the system of record <span class="arrow">&rarr;</span> thin or owner-less items auto-flagged <span class="arrow">&rarr;</span> narrative and deck generated from the same data</div>
+          <div class="pipeline-label">Example 4 — Recurring Team Reviews</div>
+          <div class="pipeline-flow">Cycle opens <span class="arrow">&rarr;</span> live status pulled automatically <span class="arrow">&rarr;</span> gaps or missing owners auto-flagged <span class="arrow">&rarr;</span> summary and deck generated from the same data</div>
         </div>
       </div>
 
-      <!-- --- 9. Strategic Apex Mapping --- -->
+      <!-- --- 9. Skill Mapping --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0022 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
           </div>
-          <div class="section-title">Strategic Apex Mapping</div>
+          <div class="section-title">Skill Mapping</div>
         </div>
-        <div class="section-desc">Every component maps to a skill that stays irreplaceable as AI handles more of the execution layer.</div>
+        <div class="section-desc">Every part of the system maps to a core product-management skill it demonstrates.</div>
 
         <table class="mapping-table">
           <thead>
             <tr>
               <th>Component</th>
-              <th>Strategic Skill</th>
+              <th>Skill It Shows</th>
               <th>How It Demonstrates the Skill</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Lifecycle hooks</td>
+              <td>Automatic checks</td>
               <td>Governance & Guardrails</td>
-              <td>Defined boundaries and automated enforcement, not a "please remember" rule</td>
+              <td>Rules that are enforced automatically, not just a "please remember" note</td>
             </tr>
             <tr>
-              <td>Specialized agent roster</td>
+              <td>Specialized AI agents</td>
               <td>Domain Expertise Deepening</td>
-              <td>Encoded competitive intelligence, QA, and design review as reusable systems</td>
+              <td>Turned competitive research, quality checks, and design review into reusable systems</td>
             </tr>
             <tr>
-              <td>Context hierarchy</td>
+              <td>Layered context files</td>
               <td>Organizational Design</td>
-              <td>Scoped behavior across 26 layers — team charters for an AI system</td>
+              <td>Clearly scoped responsibilities across 26 layers — like team charters, but for an AI system</td>
             </tr>
             <tr>
-              <td>Cross-system orchestration</td>
+              <td>Connected systems</td>
               <td>Platform Thinking</td>
-              <td>One interface spanning 10+ connected systems, not siloed tools</td>
+              <td>One place to work across 10+ connected tools, instead of switching between them</td>
             </tr>
             <tr>
-              <td>Skill library</td>
+              <td>Shortcut library</td>
               <td>Reusable Architecture</td>
               <td>Templated workflows that scale across four product lines</td>
             </tr>
             <tr>
-              <td>Feature-progress rollup</td>
+              <td>Feature-progress dashboard</td>
               <td>Proof of Value</td>
               <td>Every feature's delivery status and risk visible without a status meeting</td>
             </tr>
             <tr>
-              <td>Dashboard standardization</td>
+              <td>Consistent dashboard design</td>
               <td>System-Level Thinking</td>
-              <td>Consistent UX (sort, headers, dark mode) across 20 pages</td>
+              <td>The same look and feel (sorting, headers, dark mode) across 20 pages</td>
             </tr>
             <tr>
-              <td>Markdown as data layer</td>
+              <td>Plain text as the data source</td>
               <td>Platform Thinking</td>
-              <td>Human-readable, version-controlled, AI-parseable — one format, every consumer</td>
+              <td>Easy for people to read, tracked for changes, and easy for AI to read — one format for everyone</td>
             </tr>
           </tbody>
         </table>
@@ -817,7 +873,7 @@
       <!-- --- 10. One-Line Summary --- -->
       <div class="section">
         <blockquote class="quote-block">
-          A PM who can architect governance for a multi-agent system, design one information model that scales across four product lines, and build deterministic automation a whole team relies on — is operating at the Strategic Apex agents cannot reach.
+          Build safety systems for a team of AI agents, design one shared structure that scales across four product lines, and build automation a whole team relies on — that's the job now.
           <div class="quote-block-footer">Last updated: 2026-07-01</div>
         </blockquote>
       </div>

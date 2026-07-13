@@ -10,12 +10,32 @@
 })();
 
 // --- Primary navigation (injected once, site-wide) ---
-const NAV_LINKS = [
-  { href: '/profile',        label: 'Profile' },
-  { href: '/proof-of-value', label: 'Proof of Value' },
-  { href: '/claude-code',    label: 'Claude Code' },
-  { href: '/playbook',       label: 'Playbook' },
+// Grouped so the top nav matches the sidebar's Overview / Proof of Work /
+// Craft & Thinking / Reading & Influences structure exactly.
+const NAV_GROUPS = [
+  { label: 'Overview', items: [
+    { href: '/profile',          label: 'Profile' },
+    { href: '/career-timeline',  label: 'Career Timeline' },
+  ]},
+  { label: 'Proof of Work', items: [
+    { href: '/proof-of-value',              label: 'Proof of Value' },
+    { href: '/case-studies/case-study-1',   label: 'Case Study 01' },
+    { href: '/metrics-dashboard',           label: 'Metrics Dashboard' },
+  ]},
+  { label: 'Craft & Thinking', items: [
+    { href: '/skills-tools', label: 'Skills & Tools' },
+    { href: '/frameworks',   label: 'Frameworks' },
+    { href: '/playbook',     label: 'Playbook' },
+    { href: '/claude-code',  label: 'Powered by Claude Code' },
+  ]},
+  { label: 'Reading & Influences', items: [
+    { href: '/reading-list', label: 'Reading List' },
+  ]},
 ];
+
+function isActivePath(path, href) {
+  return path === href || (href !== '/' && path.startsWith(href));
+}
 
 (function injectNav() {
   const inner = document.querySelector('.nav-inner, .global-nav-inner');
@@ -24,18 +44,43 @@ const NAV_LINKS = [
   const path = location.pathname.replace(/\/+$/, '') || '/';
   const center = document.createElement('div');
   center.className = 'nav-center';
-  center.innerHTML = NAV_LINKS.map(l => {
-    const active = path === l.href || (l.href !== '/' && path.startsWith(l.href));
-    return `<a class="nav-center-link${active ? ' active' : ''}" href="${l.href}">${l.label}</a>`;
+  center.innerHTML = NAV_GROUPS.map(group => {
+    const groupActive = group.items.some(i => isActivePath(path, i.href));
+    const itemsHtml = group.items.map(i => {
+      const active = isActivePath(path, i.href);
+      return `<a class="nav-group-item${active ? ' active' : ''}" href="${i.href}">${i.label}</a>`;
+    }).join('');
+    return `
+      <div class="nav-group">
+        <button type="button" class="nav-center-link nav-group-trigger${groupActive ? ' active' : ''}" aria-haspopup="true" aria-expanded="false">
+          ${group.label}
+          <svg class="nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="nav-group-menu" role="menu">${itemsHtml}</div>
+      </div>`;
   }).join('');
 
   const right = inner.querySelector('.nav-right, .global-nav-actions');
   right ? inner.insertBefore(center, right) : inner.appendChild(center);
 
+  // Touch/click support alongside hover (hover-only doesn't work well on tap devices)
+  center.querySelectorAll('.nav-group-trigger').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const group = btn.closest('.nav-group');
+      const wasOpen = group.classList.contains('open');
+      center.querySelectorAll('.nav-group.open').forEach(g => { g.classList.remove('open'); g.querySelector('.nav-group-trigger').setAttribute('aria-expanded', 'false'); });
+      if (!wasOpen) { group.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+  document.addEventListener('click', () => {
+    center.querySelectorAll('.nav-group.open').forEach(g => { g.classList.remove('open'); g.querySelector('.nav-group-trigger').setAttribute('aria-expanded', 'false'); });
+  });
+
   // Highlight the matching sidebar link too
   document.querySelectorAll('.sidebar-link').forEach(a => {
     const href = (a.getAttribute('href') || '').replace(/\/+$/, '');
-    if (href && (path === href || (href !== '/' && path.startsWith(href)))) a.classList.add('active');
+    if (href && isActivePath(path, href)) a.classList.add('active');
   });
 })();
 

@@ -28,7 +28,7 @@ A multi-page static site showcasing my profile, AI-native PM operating system (b
 
 ## Key Metrics
 
-- **290%** ACV growth ($18M → $70M)
+- **290%** product ACV growth during my tenure ($18M → $70M)
 - **19** AI agents built across 5 workflows
 - **0 → 120** enterprise Plus tier upgrades
 - **380+** enterprise accounts on the platform
@@ -51,7 +51,7 @@ A multi-page static site showcasing my profile, AI-native PM operating system (b
 the-product-artisan/
 ├── server.js                          # Zero-dependency Node.js server with route mapping
 ├── package.json                       # Project metadata and scripts
-├── pages/
+├── artisan/
 │   ├── home.html                      # Homepage — hero, explore cards, metrics, Substack CTA
 │   ├── profile.html                   # Profile — career, skills, products, achievements
 │   ├── claude-code.html               # Claude Code architecture showcase
@@ -72,7 +72,7 @@ the-product-artisan/
 │   └── js/
 │       └── shared.js                  # Shared JS (sidebar toggle, dark mode)
 ├── resources/
-│   ├── Abhay.pdf                      # Resume
+│   ├── Abhay.pdf                      # Resume (linked from /profile)
 │   └── profile-photo.jpg              # Profile photo
 ├── styles/
 │   └── executive-email.md             # Writing style guide

@@ -170,7 +170,15 @@
       .stats { grid-template-columns: repeat(3, 1fr); }
       .stat:nth-child(4), .stat:nth-child(5) { border-top: 1px solid var(--border); }
       .grid { grid-template-columns: 1fr; }
+      .tree-item { flex-wrap: wrap; }
+      .tree-desc { white-space: normal; margin-left: 0; padding-left: 26px; flex-basis: 100%; }
+      .tree-item--l3 { padding-left: 56px; }
+      .tree-item--l4 { padding-left: 68px; }
       footer { padding: 24px 20px; }
+    }
+    @media (max-width: 400px) {
+      .stat { padding: 20px 8px; }
+      .stat-label { letter-spacing: 0.4px; }
     }
   </style>
 </head>
@@ -209,28 +217,64 @@
   <!-- ─── Left Sidebar ─── -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Pages</div>
+      <div class="sidebar-section-label">Overview</div>
       <a href="/profile" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Profile
       </a>
-      <a href="/claude-code" class="sidebar-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Powered by Claude Code
-      </a>
-      <a href="/proof-of-value" class="sidebar-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        Proof of Value
+      <a href="/career-timeline" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Career Timeline
       </a>
     </div>
 
     <hr class="sidebar-divider">
 
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Tools</div>
+      <div class="sidebar-section-label">Proof of Work</div>
+      <a href="/proof-of-value" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Proof of Value
+      </a>
+      <a href="/case-studies/case-study-1" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Case Study 01
+      </a>
+      <a href="/metrics-dashboard" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Metrics Dashboard
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Craft & Thinking</div>
+      <a href="/skills-tools" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Skills &amp; Tools
+      </a>
+      <a href="/frameworks" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Frameworks
+      </a>
       <a href="/playbook" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         Playbook
+      </a>
+      <a href="/claude-code" class="sidebar-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Powered by Claude Code
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Reading & Influences</div>
+      <a href="/reading-list" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        Reading List
       </a>
     </div>
 
@@ -265,18 +309,19 @@
     <div class="hero">
       <div class="hero-badge">Powered by Claude Code</div>
       <h1>My <span>AI-Native</span> PM Operating System</h1>
-      <p>This entire workspace — task management, product strategy, feature specs, weekly syncs, and this portfolio — is built and operated through Claude Code with custom skills, agents, and MCP integrations.</p>
+      <p>This entire workspace — task management, product strategy, feature specs, weekly syncs, and this portfolio — is built and run using Claude Code (an AI coding assistant), with custom shortcuts, automated helpers, and connections to outside tools.</p>
+      <p style="margin-top: 14px; font-size: 13px; color: var(--text-tertiary);">This page documents version 1 — where the system started. It has since grown into a team-wide setup of 30+ automated helpers, 70+ ready-made routines, 40+ shortcuts, and 12 self-maintaining checks, covered in <a href="/proof-of-value/platform-thinking" style="color: var(--accent);">Platform Thinking</a>.</p>
     </div>
 
     <!-- ─── Stats ─── -->
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">8</div>
-        <div class="stat-label">Custom Skills</div>
+        <div class="stat-value">7</div>
+        <div class="stat-label">v1 Custom Skills</div>
       </div>
       <div class="stat">
         <div class="stat-value">2</div>
-        <div class="stat-label">Custom Agents</div>
+        <div class="stat-label">v1 Custom Agents</div>
       </div>
       <div class="stat">
         <div class="stat-value">24</div>
@@ -284,7 +329,7 @@
       </div>
       <div class="stat">
         <div class="stat-value">7</div>
-        <div class="stat-label">Lifecycle Hooks</div>
+        <div class="stat-label">v1 Lifecycle Hooks</div>
       </div>
       <div class="stat">
         <div class="stat-value">4</div>
@@ -306,7 +351,7 @@
           </div>
           <div class="section-title">Custom Skills</div>
         </div>
-        <div class="section-desc">Slash commands that automate repeatable PM workflows. Each skill is a self-contained module with zero-questions execution — invoke it and get a polished output immediately.</div>
+        <div class="section-desc">Ready-made shortcuts that automate repeat product-management tasks. Run one and get a finished, polished result right away — no back-and-forth needed.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--blue"></div>
@@ -359,14 +404,6 @@
           <div class="item">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/linkedin-post</div>
-              <div class="item-desc">Writes high-engagement LinkedIn posts in Abhay's authentic voice — proven hook-problem-solution-result format, no hashtags, no emojis, 150-250 words. Ready to copy-paste and publish.</div>
-              <div class="item-tags"><span class="item-tag">Content</span><span class="item-tag">LinkedIn</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
               <div class="item-name">/team-message</div>
               <div class="item-desc">Converts rough thoughts into clear, professional messages for Teams, Slack, or email — structured with context, key points, and clear ask. Saves to conversation log.</div>
               <div class="item-tags"><span class="item-tag">Communication</span><span class="item-tag">Productivity</span></div>
@@ -383,13 +420,13 @@
           </div>
           <div class="section-title">Custom Agents</div>
         </div>
-        <div class="section-desc">Specialized autonomous agents that run deep analysis tasks. Each agent has persistent memory across sessions, domain-specific knowledge, and structured output frameworks.</div>
+        <div class="section-desc">AI agents that work on their own to run deep analysis. Each one remembers past context, has specialized knowledge of the product, and produces consistently structured results.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--purple"></div>
             <div>
               <div class="item-name">Competitive Strategic Lens</div>
-              <div class="item-desc">Elite competitive intelligence strategist for CSM platforms. Analyzes features against Gainsight, Totango, ChurnZero, Planhat, Vitally, and Salesforce. Outputs differentiation analysis, moat assessment, AI disruption threats, and SCA scoring.</div>
+              <div class="item-desc">A competitive-intelligence expert for Customer Success platforms. Compares our features against Gainsight, Totango, ChurnZero, Planhat, Vitally, and Salesforce, and scores how defensible each advantage is.</div>
               <div class="item-tags"><span class="item-tag">Strategy</span><span class="item-tag">Competitive Intel</span><span class="item-tag">Opus</span></div>
             </div>
           </div>
@@ -397,7 +434,7 @@
             <div class="item-dot item-dot--purple"></div>
             <div>
               <div class="item-name">PRD Edge Case Analyzer</div>
-              <div class="item-desc">Reviews PRDs across 10 dimensions — user behavior, data/input, state/flow, integrations, security, performance, business logic, error handling, operations, and metrics. CSM-domain specialized with dedicated impact assessment.</div>
+              <div class="item-desc">Reviews product requirement documents (PRDs) across 10 dimensions — user behavior, data, integrations, security, performance, error handling, and more — specialized for Customer Success Management features.</div>
               <div class="item-tags"><span class="item-tag">Quality</span><span class="item-tag">Risk Analysis</span><span class="item-tag">Opus</span></div>
             </div>
           </div>
@@ -412,7 +449,7 @@
           </div>
           <div class="section-title">MCP Integrations</div>
         </div>
-        <div class="section-desc">Model Context Protocol servers that extend Claude Code with external tool access — connecting design tools, plugin ecosystems, and document generation capabilities.</div>
+        <div class="section-desc">MCP (Model Context Protocol) is a standard that lets Claude Code plug into outside tools directly — connecting design software, plugin libraries, and document-generation tools.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--green"></div>
@@ -457,7 +494,7 @@
           </div>
           <div class="section-title">Lifecycle Hooks</div>
         </div>
-        <div class="section-desc">Deterministic automation that fires at key lifecycle events — formatting code, blocking dangerous edits, validating data integrity, and re-injecting context. Hooks replace reliance on memory with guaranteed execution.</div>
+        <div class="section-desc">Automatic checks that run every time, at the right moment — formatting code, blocking risky edits, catching data errors, and restoring context. These run without fail, instead of relying on remembering to do them manually.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--red"></div>
@@ -503,7 +540,7 @@
             <div class="item-dot item-dot--red"></div>
             <div>
               <div class="item-name">Context Re-Injection on Compaction</div>
-              <div class="item-desc">Restores critical workflow rules (LNO framework, task lifecycle, date formats, career growth nudge) when conversation context compacts — prevents Claude from losing key instructions mid-session.</div>
+              <div class="item-desc">Restores key working rules (like how tasks are prioritized and tracked) whenever a long conversation gets automatically summarized — so Claude doesn't lose instructions mid-session.</div>
               <div class="item-tags"><span class="item-tag">SessionStart</span><span class="item-tag">Compact</span></div>
             </div>
           </div>
@@ -540,33 +577,18 @@
           </div>
           <div class="grid-card">
             <div class="grid-card-title">Customer Success Management</div>
-            <div class="grid-card-desc">Product workspace — strategy, features (backlog → active → shipped), U2 data platform, research organization.</div>
+            <div class="grid-card-desc">Product workspace — strategy, features (backlog → active → shipped), telemetry data, research organization.</div>
             <div class="grid-card-path">products/customer-success-management/CLAUDE.md</div>
           </div>
           <div class="grid-card">
-            <div class="grid-card-title">AI Insights Feature</div>
-            <div class="grid-card-desc">AI-generated charts on 5 CSM pages — data model changes, PA indicators, accuracy guardrails framework.</div>
-            <div class="grid-card-path">features/2026/active/ai-insights/CLAUDE.md</div>
+            <div class="grid-card-title">Feature Workspaces</div>
+            <div class="grid-card-desc">Every in-flight feature gets its own CLAUDE.md — requirements, data model notes, design principles, and accuracy guardrails scoped to that feature alone.</div>
+            <div class="grid-card-path">features/&lt;release&gt;/active/*/CLAUDE.md</div>
           </div>
           <div class="grid-card">
-            <div class="grid-card-title">Meeting Creation V2</div>
-            <div class="grid-card-desc">AI agent-driven meetings — 3 entry points, 10 AI-populated fields, "propose-don't-ask" design principle.</div>
-            <div class="grid-card-path">features/2026/active/meeting-creation-v2/CLAUDE.md</div>
-          </div>
-          <div class="grid-card">
-            <div class="grid-card-title">AI Web Agents</div>
-            <div class="grid-card-desc">Autonomous UI interaction research — 45+ CSM use cases, Edge Agent model, learn-by-demo architecture.</div>
-            <div class="grid-card-path">features/2026/active/ai-web-agents/CLAUDE.md</div>
-          </div>
-          <div class="grid-card">
-            <div class="grid-card-title">Priority Plays Recommendation</div>
-            <div class="grid-card-desc">AI-driven prioritization of CSM focus areas — health scores, risk indicators, renewal timelines, proactive play ranking.</div>
-            <div class="grid-card-path">features/2026/active/priority-plays-recommendation/CLAUDE.md</div>
-          </div>
-          <div class="grid-card">
-            <div class="grid-card-title">Executive Briefing</div>
-            <div class="grid-card-desc">AI-generated executive briefing with account-level and engagement-level scoping for customer stakeholder meetings.</div>
-            <div class="grid-card-path">features/2026/active/executive-briefing/CLAUDE.md</div>
+            <div class="grid-card-title">Research Workspaces</div>
+            <div class="grid-card-desc">Early-stage explorations get the same treatment — use-case inventories, architecture options, and open questions captured before a single ticket exists.</div>
+            <div class="grid-card-path">research/*/CLAUDE.md</div>
           </div>
         </div>
       </div>
@@ -599,7 +621,7 @@
             <div class="item-dot item-dot--red"></div>
             <div>
               <div class="item-name">UI Quality Feedback</div>
-              <div class="item-desc">Remembers past design feedback (rated first UI 1/100) — ensures clean layout, intentional placement, and high design quality for all future UI work.</div>
+              <div class="item-desc">Accumulates design feedback across sessions — ensures clean layout, intentional placement, and high design quality for all future UI work.</div>
             </div>
           </div>
           <div class="item">
@@ -629,7 +651,7 @@
           <div class="tree-item tree-item--l2">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
             <span class="tree-name">action-tracker/</span>
-            <span class="tree-desc">LNO-prioritized task management</span>
+            <span class="tree-desc">Task management, prioritized by effort/impact (Leverage-Neutral-Overhead)</span>
           </div>
           <div class="tree-item tree-item--l2">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
@@ -663,7 +685,7 @@
           <div class="tree-item tree-item--l4">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
             <span class="tree-name">strategy/</span>
-            <span class="tree-desc">Vision, mission, OKRs</span>
+            <span class="tree-desc">Vision, mission, goals and progress metrics (OKRs)</span>
           </div>
           <div class="tree-item tree-item--l4">
             <div class="tree-icon tree-icon--feature"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>

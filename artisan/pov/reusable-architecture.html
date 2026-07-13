@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reusable Architecture — The Product Artisan</title>
-  <meta name="description" content="One information architecture, applied identically across four product lines and 73 features — templated, composable, and reused rather than rebuilt per team.">
+  <meta name="description" content="One information architecture, applied identically across four product lines and 70+ features — templated, composable, and reused rather than rebuilt per team.">
   <meta property="og:title" content="Reusable Architecture — Proof of Value">
-  <meta property="og:description" content="One information architecture, applied identically across four product lines and 73 features.">
+  <meta property="og:description" content="One information architecture, applied identically across four product lines and 70+ features.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://github.com/lampiiii/the-product-artisan">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Reusable Architecture — Proof of Value">
-  <meta name="twitter:description" content="One information architecture, applied identically across four product lines and 73 features.">
+  <meta name="twitter:description" content="One information architecture, applied identically across four product lines and 70+ features.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -164,6 +164,9 @@
       .stats { grid-template-columns: repeat(2, 1fr); }
       .stat:nth-child(3), .stat:nth-child(4) { border-top: 1px solid var(--border); }
       .grid { grid-template-columns: 1fr; }
+      .tree-item { flex-wrap: wrap; }
+      .tree-desc { white-space: normal; margin-left: 0; padding-left: 26px; flex-basis: 100%; }
+      .tree-item--l3 { padding-left: 56px; }
       footer { padding: 24px 20px; }
     }
   </style>
@@ -211,28 +214,64 @@
   <!-- --- Left Sidebar --- -->
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Pages</div>
+      <div class="sidebar-section-label">Overview</div>
       <a href="/profile" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Profile
       </a>
-      <a href="/claude-code" class="sidebar-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Powered by Claude Code
-      </a>
-      <a href="/proof-of-value" class="sidebar-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        Proof of Value
+      <a href="/career-timeline" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Career Timeline
       </a>
     </div>
 
     <hr class="sidebar-divider">
 
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Tools</div>
+      <div class="sidebar-section-label">Proof of Work</div>
+      <a href="/proof-of-value" class="sidebar-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Proof of Value
+      </a>
+      <a href="/case-studies/case-study-1" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Case Study 01
+      </a>
+      <a href="/metrics-dashboard" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Metrics Dashboard
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Craft & Thinking</div>
+      <a href="/skills-tools" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Skills &amp; Tools
+      </a>
+      <a href="/frameworks" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Frameworks
+      </a>
       <a href="/playbook" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         Playbook
+      </a>
+      <a href="/claude-code" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Powered by Claude Code
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Reading & Influences</div>
+      <a href="/reading-list" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        Reading List
       </a>
     </div>
 
@@ -267,7 +306,7 @@
     <div class="hero">
       <div class="hero-badge">Proof of Value</div>
       <h1><span>Reusable</span> Architecture</h1>
-      <p>One information architecture, applied identically across four product lines and 73 features — not a bespoke process per team, and not one-off solutions rebuilt from scratch every time.</p>
+      <p>One consistent way of organizing work, applied the same way across four product lines and 70+ features — not a different process per team, and not one-off solutions rebuilt from scratch every time.</p>
     </div>
 
     <!-- --- Stats --- -->
@@ -277,7 +316,7 @@
         <div class="stat-label">Product Lines, One Shape</div>
       </div>
       <div class="stat">
-        <div class="stat-value">73</div>
+        <div class="stat-value">70+</div>
         <div class="stat-label">Features, One Architecture</div>
       </div>
       <div class="stat">
@@ -298,9 +337,9 @@
           <div class="section-icon section-icon--purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
           </div>
-          <div class="section-title">One Canonical Record Per Feature</div>
+          <div class="section-title">One Single Source of Truth Per Feature</div>
         </div>
-        <div class="section-desc">Every feature — all 73 of them, across every product line — maps to exactly one structured metadata file: owners across PM, engineering, design, and research; current status and target date; every linked item in the team's internal work-tracking system; and any linked team communication channel. This single file is the join point every dashboard, every automation, and every teammate reads from — there's no second source of truth to keep in sync.</div>
+        <div class="section-desc">Every feature — 70+ of them, across every product line — maps to exactly one file that lists: owners across product, engineering, design, and research; current status and target date; every linked item in the team's work-tracking system; and any related team communication channel. This one file is what every dashboard, every automation, and every teammate reads from — there's no second copy of the truth to keep in sync.</div>
       </div>
 
       <!-- --- 2. The Same Lifecycle, Every Time --- -->
@@ -341,15 +380,26 @@
         </div>
       </div>
 
+      <!-- --- 2.5 Organizing Principle --- -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--accent">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="section-title">One Simple Rule Decides Where Anything Goes</div>
+        </div>
+        <div class="section-desc">Not everything is a feature. One simple set of questions decides where any new piece of content belongs, so the system can't slowly turn into a dumping ground: is this about one specific feature? Product-wide context, like roadmap or customers? Product-wide reference material, like architecture or data structure? Team-wide reference material, like the design system? Is it about people, a repeatable practice, a recurring team review, or the platform itself? Each answer points to exactly one folder — "where does this go" always has one right answer, not a fresh judgment call each time.</div>
+      </div>
+
       <!-- --- 3. Scaffolding Automation --- -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </div>
-          <div class="section-title">Scaffolding, Not Copy-Paste</div>
+          <div class="section-title">Automatically Set Up, Never Rebuilt by Hand</div>
         </div>
-        <div class="section-desc">The folder shape above is never assembled by hand. A scaffolding command instantly creates a new feature's full skeleton, pre-populated with its canonical metadata file; another creates a new dated instance of a recurring ceremony — same input-to-deck pipeline every cycle, never rebuilt from scratch; and a third can bootstrap an <strong>entire product's existing backlog</strong> into this structure automatically, grouping already-existing work into features — and it's safely idempotent, so re-running it never duplicates anything already mapped.</div>
+        <div class="section-desc">The folder structure above is never assembled manually. One shortcut instantly creates a new feature's full folder set, already filled in with its core file; another creates a new dated instance of a recurring team review — the same setup every cycle, never rebuilt from scratch; and a third can automatically sort an <strong>entire product's existing backlog</strong> into this structure, grouping existing work into features — and it's safe to run more than once, so it never creates duplicates of work already sorted.</div>
       </div>
 
       <!-- --- 4. A Reusable Skill Library, By Bucket --- -->
@@ -402,15 +452,15 @@
           <div class="item">
             <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">A shared foundation layer, loaded first</div>
-              <div class="item-desc">Every design-related skill loads a common foundation (design tokens, components, accessibility rules) before generating anything — so outputs stay consistent with each other instead of drifting apart over time.</div>
+              <div class="item-name">A shared foundation, loaded first</div>
+              <div class="item-desc">Every design-related tool loads a common set of building blocks (colors, components, accessibility rules) before creating anything — so results stay consistent with each other instead of drifting apart over time.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--red"></div>
             <div>
-              <div class="item-name">Stubs are labeled, not hidden</div>
-              <div class="item-desc">Several newer pieces are explicitly marked as unconfirmed stubs and gated behind an ownership-confirmation step before they're allowed to go live — the platform doesn't silently present half-built capabilities as finished.</div>
+              <div class="item-name">Unfinished parts are labeled, not hidden</div>
+              <div class="item-desc">Several newer pieces are clearly marked as not-yet-confirmed and require someone to sign off before they're allowed to go live — the system never silently presents half-built work as finished.</div>
             </div>
           </div>
         </div>
@@ -419,7 +469,7 @@
       <!-- --- 6. Quote --- -->
       <div class="section">
         <blockquote class="quote-block">
-          The best architecture isn't the one that solves today's feature — it's the one where the 74th feature costs the same to onboard as the 1st. Every canonical record, folder shape, and scaffolding command here is designed to compose across product lines, not just work for one.
+          The best system isn't the one that solves today's feature — it's the one where the 74th feature is just as easy to set up as the 1st. Every part of this — the records, the folder structure, the setup shortcuts — is designed to work across all product lines, not just one.
           <div class="quote-block-footer">Last updated: 2026-07-01</div>
         </blockquote>
       </div>
