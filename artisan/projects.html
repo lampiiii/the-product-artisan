@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Abhay Tyagi | The Product Artisan</title>
+  <meta name="description" content="Two open-source operating systems for how a PM and a whole product team can run on markdown and Claude Code — architecture, stats, and the repos behind them.">
+  <meta property="og:title" content="Projects — Abhay Tyagi">
+  <meta property="og:description" content="Two open-source operating systems for how a PM and a whole product team can run on markdown and Claude Code.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/lampiiii/the-product-artisan">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Projects — Abhay Tyagi">
+  <meta name="twitter:description" content="Two open-source operating systems for how a PM and a whole product team can run on markdown and Claude Code.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('portfolio-theme')||'dark');</script>
+  <link rel="stylesheet" href="/assets/css/shared.css">
+  <style>
+    body { overflow-x: hidden; }
+
+    .page {
+      margin-top: var(--nav-height);
+      min-height: calc(100vh - var(--nav-height));
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- Header --- */
+    .page-header {
+      padding: 48px 48px 32px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface-dim);
+    }
+    .page-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--accent); margin-bottom: 10px;
+    }
+    .page-badge svg { width: 14px; height: 14px; }
+    .page-title { font-size: 32px; font-weight: 400; color: var(--text); letter-spacing: -0.5px; margin-bottom: 8px; }
+    .page-title span { color: var(--accent); }
+    .page-sub { font-size: 15px; color: var(--text-secondary); max-width: 640px; line-height: 1.6; }
+
+    .stage { flex: 1; padding: 40px 48px 56px; max-width: 1180px; width: 100%; margin: 0 auto; }
+
+    /* ============================================================
+       PROJECT SWITCHER — radio-driven, zero JS
+       ============================================================ */
+    .project-radio { position: absolute; opacity: 0; pointer-events: none; }
+
+    .project-tabs {
+      display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 28px;
+    }
+    .project-tab {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 20px; border-radius: 14px;
+      background: var(--surface-card); border: 1px solid var(--border);
+      cursor: pointer; flex: 1; min-width: 220px;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .project-tab:hover { border-color: var(--border-strong); transform: translateY(-2px); }
+    .tab-dot {
+      width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+      background: var(--text-tertiary); transition: background 0.2s, box-shadow 0.2s;
+    }
+    .tab-copy { display: flex; flex-direction: column; gap: 2px; }
+    .tab-name { font-size: 14px; font-weight: 600; color: var(--text); font-family: 'Google Sans', sans-serif; }
+    .tab-tag { font-size: 12px; color: var(--text-tertiary); }
+    .tab-soon { opacity: 0.55; }
+    .tab-soon .tab-name { color: var(--text-secondary); }
+
+    /* Active tab state, keyed off each radio */
+    #tab-pmos:checked ~ .project-tabs label[for="tab-pmos"],
+    #tab-teamos:checked ~ .project-tabs label[for="tab-teamos"],
+    #tab-next:checked ~ .project-tabs label[for="tab-next"] {
+      border-color: var(--accent);
+      background: var(--accent-bg);
+    }
+    #tab-pmos:checked ~ .project-tabs label[for="tab-pmos"] .tab-dot,
+    #tab-teamos:checked ~ .project-tabs label[for="tab-teamos"] .tab-dot,
+    #tab-next:checked ~ .project-tabs label[for="tab-next"] .tab-dot {
+      background: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-bg);
+    }
+
+    /* Panels — hidden unless their radio is checked */
+    .project-panel { display: none; }
+    @keyframes panelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    #tab-pmos:checked ~ .project-panels .panel-pmos,
+    #tab-teamos:checked ~ .project-panels .panel-teamos,
+    #tab-next:checked ~ .project-panels .panel-next {
+      display: block;
+      animation: panelIn 0.4s ease;
+    }
+
+    /* --- Detail panel layout --- */
+    .detail {
+      background: var(--surface-card); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden;
+    }
+    .detail-top {
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 24px;
+      padding: 32px 36px; border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .detail-icon {
+      width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+      background: var(--accent-bg); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .detail-icon svg { width: 26px; height: 26px; }
+    .detail-heading { display: flex; align-items: flex-start; gap: 18px; flex: 1; min-width: 260px; }
+    .detail-name { font-size: 22px; font-weight: 500; color: var(--text); font-family: 'Google Sans', sans-serif; margin-bottom: 4px; }
+    .detail-tag { font-size: 14px; color: var(--text-secondary); line-height: 1.5; max-width: 560px; }
+    .detail-links { display: flex; gap: 10px; flex-shrink: 0; }
+    .detail-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 18px; border-radius: var(--radius-pill);
+      font-size: 13.5px; font-weight: 500; font-family: 'Google Sans', sans-serif;
+      text-decoration: none; white-space: nowrap;
+      border: 1px solid var(--border-strong); color: var(--text);
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .detail-link:hover { background: var(--surface-card-hover); transform: translateY(-1px); }
+    .detail-link--primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .detail-link--primary:hover { background: var(--accent-hover); }
+    .detail-link svg { width: 15px; height: 15px; }
+
+    .detail-body { padding: 32px 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    @media (max-width: 860px) { .detail-body { grid-template-columns: 1fr; } }
+
+    .detail-desc { font-size: 14.5px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 24px; }
+
+    .stat-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+    .stat-chip {
+      display: flex; flex-direction: column; gap: 2px;
+      padding: 10px 14px; border-radius: 10px; background: var(--surface-dim); border: 1px solid var(--border);
+      min-width: 84px;
+    }
+    .stat-chip-value { font-size: 17px; font-weight: 600; color: var(--accent); font-family: 'Google Sans', sans-serif; }
+    .stat-chip-label { font-size: 10.5px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.4px; }
+
+    .detail-section-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px;
+      color: var(--text-tertiary); margin-bottom: 10px;
+    }
+
+    .decision-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
+    .decision-list li { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; padding-left: 18px; position: relative; }
+    .decision-list li::before { content: '—'; position: absolute; left: 0; color: var(--text-tertiary); }
+    .decision-list strong { color: var(--text); font-weight: 500; }
+
+    .tree {
+      font-family: 'Source Code Pro', 'Roboto Mono', monospace;
+      font-size: 12.5px; line-height: 1.75; color: var(--text-secondary);
+      background: var(--surface-dim); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px 20px; white-space: pre; overflow-x: auto;
+    }
+    .tree .dir { color: var(--accent); }
+    .tree .comment { color: var(--text-tertiary); }
+
+    .stack-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .stack-pill {
+      font-size: 12px; font-weight: 500; color: var(--text-secondary);
+      background: var(--surface-dim); border: 1px solid var(--border);
+      padding: 6px 12px; border-radius: var(--radius-pill); font-family: 'Google Sans', sans-serif;
+    }
+
+    /* --- Carousel prev/next --- */
+    .detail-nav { display: flex; justify-content: space-between; padding: 18px 36px; border-top: 1px solid var(--border); background: var(--surface-dim); }
+    .nav-arrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500; color: var(--text-secondary);
+      text-decoration: none; cursor: pointer; font-family: 'Google Sans', sans-serif;
+      padding: 8px 12px; border-radius: 10px; transition: background 0.15s, color 0.15s;
+    }
+    .nav-arrow:hover { background: var(--surface-card); color: var(--text); }
+    .nav-arrow svg { width: 16px; height: 16px; }
+
+    /* --- "Not yet public" note (Team OS badge) --- */
+    .note-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11.5px; color: var(--text-tertiary);
+      background: var(--surface-dim); border: 1px solid var(--border);
+      padding: 5px 10px; border-radius: var(--radius-pill); margin-top: 8px;
+    }
+
+    /* --- Coming soon panel --- */
+    .soon-body { padding: 60px 36px; text-align: center; }
+    .soon-icon {
+      width: 48px; height: 48px; border-radius: 12px; margin: 0 auto 18px;
+      background: var(--surface-dim); border: 1px solid var(--border); color: var(--text-tertiary);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .soon-body h3 { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 8px; font-family: 'Google Sans', sans-serif; }
+    .soon-body p { font-size: 13.5px; color: var(--text-tertiary); max-width: 380px; margin: 0 auto; line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .page-header { padding: 32px 20px 24px; }
+      .stage { padding: 28px 20px 40px; }
+      .detail-top, .detail-body, .detail-nav { padding-left: 20px; padding-right: 20px; }
+      .detail-body { padding-top: 24px; padding-bottom: 24px; gap: 24px; }
+    }
+
+    footer { padding: 20px 48px; background: var(--surface); }
+    .footer-inner { max-width: 1280px; }
+  </style>
+</head>
+<body>
+
+  <!-- --- Nav --- -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-mark">A</div>
+          <span class="nav-logo-text">Abhay Tyagi</span>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="https://productartisan.substack.com" class="nav-icon-btn" target="_blank" rel="noopener" title="Substack">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        </a>
+        <a href="https://github.com/lampiiii" class="nav-icon-btn" target="_blank" rel="noopener" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <button class="nav-icon-btn" id="theme-toggle" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- --- Sidebar --- -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Overview</div>
+      <a href="/profile" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+      <a href="/career-timeline" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Career Timeline
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Proof of Work</div>
+      <a href="/proof-of-value" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Proof of Value
+      </a>
+      <a href="/projects" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        Projects
+      </a>
+      <a href="/case-studies/case-study-1" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Case Study 01
+      </a>
+      <a href="/metrics-dashboard" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Metrics Dashboard
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Craft &amp; Thinking</div>
+      <a href="/skills-tools" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Skills &amp; Tools
+      </a>
+      <a href="/frameworks" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Frameworks
+      </a>
+      <a href="/playbook" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Playbook
+      </a>
+      <a href="/claude-code" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        Powered by Claude Code
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Reading &amp; Influences</div>
+      <a href="/reading-list" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        Reading List
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Quick Links</div>
+      <a href="https://productartisan.substack.com" class="sidebar-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        Substack
+      </a>
+      <a href="mailto:mail4abhaytyagi@gmail.com" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/abhay-tyagi-iimu/" class="sidebar-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-text">The Product Artisan v2.0</div>
+    </div>
+  </aside>
+
+  <div class="page">
+
+    <!-- --- Header --- -->
+    <div class="page-header">
+      <div class="page-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        Projects
+      </div>
+      <h1 class="page-title">Operating systems, <span>built and shipped</span></h1>
+      <p class="page-sub">Two open-source repos that put the ideas on this site into running code — one for a single PM, one stretched across a whole product team. Both markdown-based, zero dependencies, powered by Claude Code.</p>
+    </div>
+
+    <div class="stage">
+
+      <!-- Radios drive the switcher — no JS required -->
+      <input type="radio" name="project" id="tab-pmos" class="project-radio" checked>
+      <input type="radio" name="project" id="tab-teamos" class="project-radio">
+      <input type="radio" name="project" id="tab-next" class="project-radio">
+
+      <div class="project-tabs">
+        <label for="tab-pmos" class="project-tab">
+          <span class="tab-dot"></span>
+          <span class="tab-copy">
+            <span class="tab-name">PM Operating System</span>
+            <span class="tab-tag">Personal — one PM, terminal-run</span>
+          </span>
+        </label>
+        <label for="tab-teamos" class="project-tab">
+          <span class="tab-dot"></span>
+          <span class="tab-copy">
+            <span class="tab-name">Team Operating System</span>
+            <span class="tab-tag">Team-scale — PM, design, eng, research</span>
+          </span>
+        </label>
+        <label for="tab-next" class="project-tab tab-soon">
+          <span class="tab-dot"></span>
+          <span class="tab-copy">
+            <span class="tab-name">Next build</span>
+            <span class="tab-tag">In progress</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="project-panels">
+
+        <!-- ══════════ PANEL 1 — PM Operating System ══════════ -->
+        <div class="project-panel panel-pmos">
+          <div class="detail">
+            <div class="detail-top">
+              <div class="detail-heading">
+                <div class="detail-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+                </div>
+                <div>
+                  <div class="detail-name">PM Operating System</div>
+                  <div class="detail-tag">A markdown-based operating system for one Product Manager — task tracker, 1:1 sync hub, backlog, and strategic playbook, all served from a terminal with zero installs.</div>
+                </div>
+              </div>
+              <div class="detail-links">
+                <a href="https://github.com/lampiiii/pm-operating-system" target="_blank" rel="noopener" class="detail-link detail-link--primary">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  View Repo
+                </a>
+              </div>
+            </div>
+
+            <div class="detail-body">
+              <div>
+                <div class="detail-section-label">Overview</div>
+                <div class="stat-row">
+                  <div class="stat-chip"><span class="stat-chip-value">7</span><span class="stat-chip-label">Dashboards</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">11</span><span class="stat-chip-label">Skills</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">4</span><span class="stat-chip-label">AI Agents</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">24</span><span class="stat-chip-label">Governance Files</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">0</span><span class="stat-chip-label">npm Deps</span></div>
+                </div>
+                <div class="detail-desc">Runs entirely on markdown files served as live dashboards — task management, weekly 1:1 tracking, product backlog, and a strategic-playbook visualizer, all updating in real time over SSE with no build step and no external services.</div>
+
+                <div class="detail-section-label">Why It's Built This Way</div>
+                <ul class="decision-list">
+                  <li><strong>Zero npm dependencies</strong> — smaller attack surface, no supply-chain risk, proves out production infra with fundamentals only</li>
+                  <li><strong>Markdown as the data layer</strong> — human-readable, version-controlled, and directly parseable by an AI agent</li>
+                  <li><strong>Live updates via SSE</strong> — dashboards refresh the instant a markdown file changes, no polling</li>
+                  <li><strong>24 CLAUDE.md governance files</strong> — a hierarchical instruction system that scopes how AI behaves per directory, like a team charter for agents</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="detail-section-label">Workspace Layout</div>
+                <div class="tree">pm-operating-system/
+├── <span class="dir">pm-workspace/</span>
+│   ├── <span class="dir">action-tracker/</span>       <span class="comment"># LNO tasks + zero-dep server</span>
+│   ├── <span class="dir">growth-and-syncs/</span>      <span class="comment"># playbook, 1:1 sync hub</span>
+│   ├── <span class="dir">products/</span>              <span class="comment"># features, strategy, research</span>
+│   ├── <span class="dir">skills/</span>                <span class="comment"># custom slash commands</span>
+│   └── <span class="dir">persona-drip/</span>          <span class="comment"># daily persona immersion</span>
+├── <span class="dir">.claude/</span>
+│   ├── <span class="dir">agents/</span>                <span class="comment"># 4 specialized AI agents</span>
+│   └── <span class="dir">commands/</span>
+└── CLAUDE.md</div>
+
+                <div class="detail-section-label" style="margin-top: 20px;">Stack</div>
+                <div class="stack-row">
+                  <span class="stack-pill">Node.js (built-in modules only)</span>
+                  <span class="stack-pill">Markdown</span>
+                  <span class="stack-pill">Server-Sent Events</span>
+                  <span class="stack-pill">Vanilla HTML/CSS/JS</span>
+                  <span class="stack-pill">Claude Code</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-nav">
+              <span></span>
+              <label for="tab-teamos" class="nav-arrow">Team Operating System <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════ PANEL 2 — Team Operating System ══════════ -->
+        <div class="project-panel panel-teamos">
+          <div class="detail">
+            <div class="detail-top">
+              <div class="detail-heading">
+                <div class="detail-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <div>
+                  <div class="detail-name">Team Operating System</div>
+                  <div class="detail-tag">The team-scale extension of the PM Operating System — one shared, version-controlled workspace where PM, design, engineering, and research converge on the same feature instead of five disconnected tools.</div>
+                </div>
+              </div>
+              <div class="detail-links">
+                <a href="https://github.com/lampiiii/team-operating-system" target="_blank" rel="noopener" class="detail-link detail-link--primary">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  View Repo
+                </a>
+              </div>
+            </div>
+
+            <div class="detail-body">
+              <div>
+                <div class="detail-section-label">Overview</div>
+                <div class="stat-row">
+                  <div class="stat-chip"><span class="stat-chip-value">5</span><span class="stat-chip-label">Folder Stages</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">1</span><span class="stat-chip-label">Canonical Record</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">4+</span><span class="stat-chip-label">Roles Converged</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">0</span><span class="stat-chip-label">npm Deps</span></div>
+                </div>
+                <div class="detail-desc">Generalized as an open-source skeleton, not tied to any one company's internal system. Every feature — regardless of who's building it — gets the same folder shape, so a PM's spec, a designer's file, and a researcher's notes live next to each other instead of three tools apart.</div>
+
+                <div class="detail-section-label">Why It's Built This Way</div>
+                <ul class="decision-list">
+                  <li><strong>One canonical record per feature</strong> — <code>meta.yml</code> maps owners, tracker links, and dates; nothing else duplicates it</li>
+                  <li><strong>Structured consistency</strong> — every feature looks the same, so anyone (including an AI agent) can navigate any feature without being told where things are</li>
+                  <li><strong>Roles converge, not diverge</strong> — one shared workspace instead of five disconnected tools</li>
+                  <li><strong>Plain text, version-controlled</strong> — markdown and YAML, diffable in a PR like code, no vendor lock-in</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="detail-section-label">Feature Folder — the Core Pattern</div>
+                <div class="tree">features/&lt;release&gt;/&lt;feature-name&gt;/
+├── meta.yml              <span class="comment"># owners, tracker, dates, status</span>
+├── <span class="dir">01-references/</span>       <span class="comment"># designs, research, feasibility</span>
+├── <span class="dir">02-spec/</span>              <span class="comment"># PRD, prototypes, open questions</span>
+├── <span class="dir">03-shipped/</span>           <span class="comment"># release notes, tech spec, screenshots</span>
+├── <span class="dir">04-handoff/</span>            <span class="comment"># cross-team rollout transfer</span>
+└── v2-backlog.md         <span class="comment"># deferred scope, what's next</span></div>
+
+                <div class="detail-section-label" style="margin-top: 20px;">Stack</div>
+                <div class="stack-row">
+                  <span class="stack-pill">Node.js (built-in modules only)</span>
+                  <span class="stack-pill">Markdown + YAML</span>
+                  <span class="stack-pill">Vanilla HTML/CSS/JS</span>
+                  <span class="stack-pill">Claude Code</span>
+                </div>
+                <div class="note-pill">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                  Generalized skeleton — gutted of any specific company's example content
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-nav">
+              <label for="tab-pmos" class="nav-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> PM Operating System</label>
+              <label for="tab-next" class="nav-arrow">Next build <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════ PANEL 3 — Coming soon ══════════ -->
+        <div class="project-panel panel-next">
+          <div class="detail">
+            <div class="soon-body">
+              <div class="soon-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <h3>Something new is in the works</h3>
+              <p>Not ready to show yet — check back, or follow along on <a href="https://github.com/lampiiii" target="_blank" rel="noopener" style="color: var(--accent);">GitHub</a> in the meantime.</p>
+            </div>
+            <div class="detail-nav">
+              <label for="tab-teamos" class="nav-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Team Operating System</label>
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-text">Abhay Tyagi — Built with Claude Code</span>
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/profile">Profile</a>
+          <a href="/proof-of-value">Proof of Value</a>
+          <a href="https://productartisan.substack.com" target="_blank" rel="noopener">Substack</a>
+          <a href="https://github.com/lampiiii" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="/assets/js/shared.js"></script>
+</body>
+</html>

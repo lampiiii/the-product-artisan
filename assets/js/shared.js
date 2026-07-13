@@ -19,6 +19,7 @@ const NAV_GROUPS = [
   ]},
   { label: 'Proof of Work', items: [
     { href: '/proof-of-value',              label: 'Proof of Value' },
+    { href: '/projects',                    label: 'Projects' },
     { href: '/case-studies/case-study-1',   label: 'Case Study 01' },
     { href: '/metrics-dashboard',           label: 'Metrics Dashboard' },
   ]},

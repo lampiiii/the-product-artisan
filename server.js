@@ -26,6 +26,7 @@ const ROUTES = {
   '/profile':                           'artisan/profile.html',
   '/claude-code':                       'artisan/claude-code.html',
   '/proof-of-value':                    'artisan/proof-of-value.html',
+  '/projects':                          'artisan/projects.html',
   '/proof-of-value/platform-thinking':  'artisan/pov/platform-thinking.html',
   '/proof-of-value/agent-governance':   'artisan/pov/agent-governance.html',
   '/proof-of-value/domain-expertise':   'artisan/pov/domain-expertise.html',
