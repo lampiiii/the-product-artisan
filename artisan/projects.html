@@ -75,12 +75,16 @@
     /* Active tab state, keyed off each radio */
     #tab-pmos:checked ~ .project-tabs label[for="tab-pmos"],
     #tab-teamos:checked ~ .project-tabs label[for="tab-teamos"],
+    #tab-artisan:checked ~ .project-tabs label[for="tab-artisan"],
+    #tab-countdownr:checked ~ .project-tabs label[for="tab-countdownr"],
     #tab-next:checked ~ .project-tabs label[for="tab-next"] {
       border-color: var(--accent);
       background: var(--accent-bg);
     }
     #tab-pmos:checked ~ .project-tabs label[for="tab-pmos"] .tab-dot,
     #tab-teamos:checked ~ .project-tabs label[for="tab-teamos"] .tab-dot,
+    #tab-artisan:checked ~ .project-tabs label[for="tab-artisan"] .tab-dot,
+    #tab-countdownr:checked ~ .project-tabs label[for="tab-countdownr"] .tab-dot,
     #tab-next:checked ~ .project-tabs label[for="tab-next"] .tab-dot {
       background: var(--accent);
       box-shadow: 0 0 0 4px var(--accent-bg);
@@ -91,6 +95,8 @@
     @keyframes panelIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     #tab-pmos:checked ~ .project-panels .panel-pmos,
     #tab-teamos:checked ~ .project-panels .panel-teamos,
+    #tab-artisan:checked ~ .project-panels .panel-artisan,
+    #tab-countdownr:checked ~ .project-panels .panel-countdownr,
     #tab-next:checked ~ .project-panels .panel-next {
       display: block;
       animation: panelIn 0.4s ease;
@@ -167,6 +173,21 @@
       font-size: 12px; font-weight: 500; color: var(--text-secondary);
       background: var(--surface-dim); border: 1px solid var(--border);
       padding: 6px 12px; border-radius: var(--radius-pill); font-family: 'Google Sans', sans-serif;
+    }
+
+    /* --- Screenshot showcase --- */
+    .shot-row {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px;
+      padding: 28px 36px 4px;
+    }
+    .shot-card { display: flex; flex-direction: column; gap: 8px; }
+    .shot-card img {
+      width: 100%; display: block; border-radius: 14px; border: 1px solid var(--border);
+      box-shadow: var(--shadow-md, 0 6px 20px rgba(0,0,0,.12));
+    }
+    .shot-label { font-size: 11.5px; color: var(--text-tertiary); text-align: center; }
+    @media (max-width: 860px) {
+      .shot-row { grid-template-columns: repeat(2, 1fr); padding: 24px 20px 4px; }
     }
 
     /* --- Carousel prev/next --- */
@@ -349,6 +370,8 @@
       <!-- Radios drive the switcher — no JS required -->
       <input type="radio" name="project" id="tab-pmos" class="project-radio" checked>
       <input type="radio" name="project" id="tab-teamos" class="project-radio">
+      <input type="radio" name="project" id="tab-artisan" class="project-radio">
+      <input type="radio" name="project" id="tab-countdownr" class="project-radio">
       <input type="radio" name="project" id="tab-next" class="project-radio">
 
       <div class="project-tabs">
@@ -364,6 +387,20 @@
           <span class="tab-copy">
             <span class="tab-name">Team Operating System</span>
             <span class="tab-tag">Team-scale — PM, design, eng, research</span>
+          </span>
+        </label>
+        <label for="tab-artisan" class="project-tab">
+          <span class="tab-dot"></span>
+          <span class="tab-copy">
+            <span class="tab-name">The Product Artisan</span>
+            <span class="tab-tag">This site — portfolio, built with Claude Code</span>
+          </span>
+        </label>
+        <label for="tab-countdownr" class="project-tab">
+          <span class="tab-dot"></span>
+          <span class="tab-copy">
+            <span class="tab-name">Countdownr</span>
+            <span class="tab-tag">iOS + macOS — SwiftUI countdown app</span>
           </span>
         </label>
         <label for="tab-next" class="project-tab tab-soon">
@@ -518,12 +555,165 @@
 
             <div class="detail-nav">
               <label for="tab-pmos" class="nav-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> PM Operating System</label>
+              <label for="tab-artisan" class="nav-arrow">The Product Artisan <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════ PANEL 3 — The Product Artisan (this site) ══════════ -->
+        <div class="project-panel panel-artisan">
+          <div class="detail">
+            <div class="detail-top">
+              <div class="detail-heading">
+                <div class="detail-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20 15.3 15.3 0 010-20z"/></svg>
+                </div>
+                <div>
+                  <div class="detail-name">The Product Artisan</div>
+                  <div class="detail-tag">This portfolio itself — a zero-dependency, zero-build site with 20 hand-built pages, a JS-free radio-driven UI, and a Claude Code CLAUDE.md governing tone and content across the whole repo.</div>
+                </div>
+              </div>
+              <div class="detail-links">
+                <a href="https://github.com/lampiiii/the-product-artisan" target="_blank" rel="noopener" class="detail-link detail-link--primary">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  View Repo
+                </a>
+              </div>
+            </div>
+
+            <div class="detail-body">
+              <div>
+                <div class="detail-section-label">Overview</div>
+                <div class="stat-row">
+                  <div class="stat-chip"><span class="stat-chip-value">20</span><span class="stat-chip-label">Pages</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">~9.6k</span><span class="stat-chip-label">Lines of HTML</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">1</span><span class="stat-chip-label">Shared CSS File</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">95</span><span class="stat-chip-label">Lines, Node Server</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">0</span><span class="stat-chip-label">npm Deps</span></div>
+                </div>
+                <div class="detail-desc">Every page — Profile, Case Studies, Metrics Dashboard, Frameworks, this Projects page — is hand-authored HTML sharing one CSS system and one Node server with no framework, no bundler, and no runtime dependencies. Built and iterated on entirely in Claude Code, with a CLAUDE.md that scopes tone, claim-scoping, and content rules for the whole repo.</div>
+
+                <div class="detail-section-label">Why It's Built This Way</div>
+                <ul class="decision-list">
+                  <li><strong>Zero build step</strong> — plain HTML/CSS/JS served directly; edit a file, refresh, done</li>
+                  <li><strong>One shared design system</strong> — a single <code>shared.css</code> and <code>shared.js</code> keep 20 pages visually and behaviorally consistent</li>
+                  <li><strong>CSS-only interactivity where possible</strong> — this very page's project switcher runs on radio inputs, no JS required</li>
+                  <li><strong>Repo-level CLAUDE.md</strong> — governs writing style and content-accuracy rules so the site stays consistent as it grows</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="detail-section-label">Site Layout</div>
+                <div class="tree">the-product-artisan/
+├── <span class="dir">artisan/</span>              <span class="comment"># 20 HTML pages (profile, case studies, etc.)</span>
+│   ├── <span class="dir">case-studies/</span>
+│   └── <span class="dir">pov/</span>
+├── <span class="dir">assets/</span>
+│   ├── <span class="dir">css/</span>              <span class="comment"># shared.css — one design system</span>
+│   └── <span class="dir">js/</span>               <span class="comment"># shared.js — theme, sidebar, nav</span>
+├── server.js             <span class="comment"># zero-dep static server</span>
+└── CLAUDE.md</div>
+
+                <div class="detail-section-label" style="margin-top: 20px;">Stack</div>
+                <div class="stack-row">
+                  <span class="stack-pill">Node.js (built-in modules only)</span>
+                  <span class="stack-pill">Vanilla HTML/CSS/JS</span>
+                  <span class="stack-pill">CSS-only interactivity</span>
+                  <span class="stack-pill">Claude Code</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-nav">
+              <label for="tab-teamos" class="nav-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Team Operating System</label>
+              <label for="tab-countdownr" class="nav-arrow">Countdownr <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></label>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══════════ PANEL 4 — Countdownr ══════════ -->
+        <div class="project-panel panel-countdownr">
+          <div class="detail">
+            <div class="detail-top">
+              <div class="detail-heading">
+                <div class="detail-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <div class="detail-name">Countdownr</div>
+                  <div class="detail-tag">A day-counting app for iOS and macOS — track days since/until a date, with home screen widgets, a lock screen widget, and an Apple Watch face. SwiftUI multiplatform, one codebase for both targets.</div>
+                </div>
+              </div>
+              <div class="detail-links">
+                <a href="https://github.com/lampiiii/countdownr" target="_blank" rel="noopener" class="detail-link detail-link--primary">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  View Repo
+                </a>
+              </div>
+            </div>
+
+            <div class="shot-row">
+              <div class="shot-card"><img src="/assets/img/countdownr/home.png" alt="Countdownr home screen — hero countdown card and event list" loading="lazy"><span class="shot-label">Home</span></div>
+              <div class="shot-card"><img src="/assets/img/countdownr/detail.png" alt="Countdownr countdown detail — progress ring and milestones" loading="lazy"><span class="shot-label">Countdown detail</span></div>
+              <div class="shot-card"><img src="/assets/img/countdownr/detail-love.png" alt="Countdownr count-up detail for an anniversary event" loading="lazy"><span class="shot-label">Count-up detail</span></div>
+              <div class="shot-card"><img src="/assets/img/countdownr/detail-moment.png" alt="Countdownr live moment detail with ticking H:M:S" loading="lazy"><span class="shot-label">Live moment</span></div>
+              <div class="shot-card"><img src="/assets/img/countdownr/add.png" alt="Countdownr add-event sheet with category and direction pickers" loading="lazy"><span class="shot-label">Add sheet</span></div>
+            </div>
+
+            <div class="detail-body">
+              <div>
+                <div class="detail-section-label">Overview</div>
+                <div class="stat-row">
+                  <div class="stat-chip"><span class="stat-chip-value">2</span><span class="stat-chip-label">App Targets</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">5</span><span class="stat-chip-label">Categories</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">3</span><span class="stat-chip-label">Widget Sizes</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">1</span><span class="stat-chip-label">Watch Face</span></div>
+                  <div class="stat-chip"><span class="stat-chip-value">0</span><span class="stat-chip-label">3rd-Party Deps</span></div>
+                </div>
+                <div class="detail-desc">Events (birthdays, trips, deadlines, anniversaries, live "moments") count down or up with a progress ring, milestone chips, and a live-ticking H:M:S state for same-day moments. An App Group–backed store keeps the iOS/macOS app, the WidgetKit extension, and the Watch app reading the same data.</div>
+
+                <div class="detail-section-label">Why It's Built This Way</div>
+                <ul class="decision-list">
+                  <li><strong>SwiftUI multiplatform</strong> — one shared codebase drives both the iOS and macOS targets instead of maintaining two UIs</li>
+                  <li><strong>App Group–backed storage</strong> — <code>SharedStore</code> lets the widget extension and Watch app read live data without duplicating state</li>
+                  <li><strong>Generated, not hand-maintained, project file</strong> — XcodeGen builds <code>Countdownr.xcodeproj</code> from <code>project.yml</code> so target/build changes stay reviewable as a text diff</li>
+                  <li><strong>Direction-aware model</strong> — a single <code>CountdownEvent</code> type handles both count-down and count-up events, plus the same-day "moment" case that ticks live</li>
+                </ul>
+              </div>
+
+              <div>
+                <div class="detail-section-label">Workspace Layout</div>
+                <div class="tree">countdownr/
+├── <span class="dir">Countdownr/</span>              <span class="comment"># shared SwiftUI app (iOS + macOS)</span>
+│   ├── <span class="dir">Models/</span>               <span class="comment"># CountdownEvent</span>
+│   ├── <span class="dir">Views/</span>                <span class="comment"># list, detail, add/edit</span>
+│   └── <span class="dir">ViewModels/</span>           <span class="comment"># EventStore</span>
+├── <span class="dir">CountdownrWidget/</span>        <span class="comment"># WidgetKit extension</span>
+├── <span class="dir">CountdownrWatch/</span>         <span class="comment"># watchOS app + complication</span>
+├── <span class="dir">Shared/</span>                  <span class="comment"># App Group store, date math</span>
+├── project.yml            <span class="comment"># XcodeGen spec — source of truth</span>
+└── CLAUDE.md</div>
+
+                <div class="detail-section-label" style="margin-top: 20px;">Stack</div>
+                <div class="stack-row">
+                  <span class="stack-pill">SwiftUI</span>
+                  <span class="stack-pill">WidgetKit</span>
+                  <span class="stack-pill">watchOS</span>
+                  <span class="stack-pill">App Groups</span>
+                  <span class="stack-pill">XcodeGen</span>
+                  <span class="stack-pill">Claude Code</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-nav">
+              <label for="tab-artisan" class="nav-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> The Product Artisan</label>
               <label for="tab-next" class="nav-arrow">Next build <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></label>
             </div>
           </div>
         </div>
 
-        <!-- ══════════ PANEL 3 — Coming soon ══════════ -->
+        <!-- ══════════ PANEL 5 — Coming soon ══════════ -->
         <div class="project-panel panel-next">
           <div class="detail">
             <div class="soon-body">
@@ -534,7 +724,7 @@
               <p>Not ready to show yet — check back, or follow along on <a href="https://github.com/lampiiii" target="_blank" rel="noopener" style="color: var(--accent);">GitHub</a> in the meantime.</p>
             </div>
             <div class="detail-nav">
-              <label for="tab-teamos" class="nav-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Team Operating System</label>
+              <label for="tab-countdownr" class="nav-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Countdownr</label>
               <span></span>
             </div>
           </div>
