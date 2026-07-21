@@ -18,7 +18,14 @@ const NAV_GROUPS = [
     { href: '/career-timeline',  label: 'Career Timeline' },
   ]},
   { label: 'Proof of Work', items: [
-    { href: '/proof-of-value',              label: 'Proof of Value' },
+    { href: '/proof-of-value',                          label: 'Proof of Value' },
+    { href: '/proof-of-value/platform-thinking',        label: 'Platform Thinking', sub: true },
+    { href: '/proof-of-value/agent-governance',         label: 'Agent Governance', sub: true },
+    { href: '/proof-of-value/domain-expertise',         label: 'Domain Expertise', sub: true },
+    { href: '/proof-of-value/reusable-architecture',    label: 'Reusable Architecture', sub: true },
+    { href: '/proof-of-value/outcome-stories',          label: 'Outcome Stories', sub: true },
+    { href: '/proof-of-value/stakeholder-management',   label: 'Stakeholder Management', sub: true },
+    { href: '/proof-of-value/pricing-strategy',         label: 'Pricing Strategy', sub: true },
     { href: '/projects',                    label: 'Projects' },
     { href: '/case-studies/case-study-1',   label: 'Case Study 01' },
     { href: '/metrics-dashboard',           label: 'Metrics Dashboard' },
@@ -49,7 +56,8 @@ function isActivePath(path, href) {
     const groupActive = group.items.some(i => isActivePath(path, i.href));
     const itemsHtml = group.items.map(i => {
       const active = isActivePath(path, i.href);
-      return `<a class="nav-group-item${active ? ' active' : ''}" href="${i.href}">${i.label}</a>`;
+      const cls = ['nav-group-item', i.sub && 'nav-group-item--sub', active && 'active'].filter(Boolean).join(' ');
+      return `<a class="${cls}" href="${i.href}">${i.label}</a>`;
     }).join('');
     return `
       <div class="nav-group">
@@ -109,6 +117,53 @@ if (sidebarToggle) {
 }
 if (overlay) overlay.addEventListener('click', closeSidebar);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSidebar(); });
+
+// --- Scroll reveal (site-wide) ---
+// Any bento/card grid item gets a data-reveal attribute + staggered delay,
+// then fades/rises into place the first time it enters the viewport.
+(function scrollReveal() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const targets = document.querySelectorAll('.card, .bento > *, .cards > *');
+  if (!targets.length) return;
+
+  targets.forEach((el, i) => {
+    el.setAttribute('data-reveal', '');
+    el.style.setProperty('--reveal-delay', `${Math.min(i, 10) * 60}ms`);
+  });
+
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    targets.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  targets.forEach(el => io.observe(el));
+})();
+
+// --- Subtle pointer tilt on active cards (desktop, fine pointer only) ---
+(function cardTilt() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (reduceMotion || !finePointer) return;
+
+  document.querySelectorAll('.card--active').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `translateY(-4px) perspective(600px) rotateX(${(-py * 5).toFixed(2)}deg) rotateY(${(px * 5).toFixed(2)}deg)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+})();
 
 // --- Theme toggle ---
 const themeToggle = document.getElementById('theme-toggle');

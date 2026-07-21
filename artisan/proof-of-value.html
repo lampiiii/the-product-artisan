@@ -108,6 +108,93 @@
       font-size: 18px;
     }
 
+    /* --- Capability Radar --- */
+    .radar-section { padding: 32px 48px 0; }
+    .radar-panel {
+      max-width: 1280px; margin: 0 auto;
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 32px 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .radar-panel::before {
+      content: '';
+      position: absolute; inset: -40% -20% auto -20%; height: 60%;
+      background: radial-gradient(closest-side, var(--accent-bg), transparent 70%);
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .radar-panel-head { position: relative; text-align: center; margin-bottom: 8px; }
+    .radar-panel-title {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 15px; font-weight: 600; color: var(--text);
+      font-family: 'Google Sans', sans-serif;
+    }
+    .radar-panel-sub { margin-top: 6px; font-size: 13px; color: var(--text-tertiary); }
+    .radar-chart-wrap { position: relative; display: flex; justify-content: center; }
+    .radar-svg { width: 100%; max-width: 560px; height: auto; overflow: visible; }
+
+    .radar-ring { fill: none; stroke: var(--border); stroke-width: 1; }
+    .radar-spoke { stroke: var(--border); stroke-width: 1; }
+    .radar-shape {
+      fill: url(#radarFill);
+      stroke: var(--accent);
+      stroke-width: 2;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 10px var(--accent-bg));
+    }
+    .radar-point {
+      fill: var(--surface-card);
+      stroke: var(--point-color, var(--accent));
+      stroke-width: 2.5;
+      opacity: 0;
+      transform: scale(0.4);
+      transform-box: fill-box;
+      transform-origin: center;
+      transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1), r 0.15s ease;
+    }
+    .radar-panel.in-view .radar-point { opacity: 1; transform: scale(1); }
+    .radar-point:hover, .radar-point:focus {
+      r: 8;
+      fill: var(--point-color, var(--accent));
+      outline: none;
+      filter: drop-shadow(0 0 6px var(--point-color, var(--accent)));
+    }
+    .radar-label {
+      font-size: 11.5px; font-weight: 600; fill: var(--text-secondary);
+      font-family: 'Google Sans', sans-serif;
+      opacity: 0; transition: opacity 0.4s ease, fill 0.15s ease;
+      cursor: pointer;
+    }
+    .radar-panel.in-view .radar-label { opacity: 1; }
+    .radar-label:hover, .radar-label:focus { fill: var(--accent); outline: none; }
+
+    .radar-tooltip {
+      position: absolute; transform: translate(-50%, -130%);
+      background: var(--surface-dim); border: 1px solid var(--border-strong);
+      border-radius: 10px; padding: 8px 12px;
+      font-size: 12px; color: var(--text); white-space: nowrap;
+      box-shadow: var(--shadow-lg);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      z-index: 5;
+    }
+    .radar-tooltip.visible { opacity: 1; transform: translate(-50%, -145%); }
+    .radar-tooltip strong { display: block; color: var(--accent); font-size: 12.5px; }
+    .radar-tooltip span { color: var(--text-tertiary); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .radar-shape { transition: none !important; }
+      .radar-point, .radar-label { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+    @media (max-width: 768px) {
+      .radar-section { padding: 20px 20px 0; }
+      .radar-panel { padding: 24px 16px 8px; }
+      .radar-label { font-size: 9.5px; }
+    }
+
     /* --- Grid Container --- */
     .grid-container {
       flex: 1;
@@ -418,6 +505,33 @@
       </div>
     </div>
 
+    <!-- --- Capability Radar --- -->
+    <section class="radar-section" aria-label="Capability radar — 10 proof-of-value dimensions">
+      <div class="radar-panel">
+        <div class="radar-panel-head">
+          <div class="radar-panel-title"><span class="pulse-dot"></span> Capability Radar</div>
+          <p class="radar-panel-sub">10 dimensions, every one demonstrated through shipped work. Hover or tap a point for the evidence.</p>
+        </div>
+        <div class="radar-chart-wrap">
+          <svg class="radar-svg" viewBox="0 0 520 520" role="img" aria-labelledby="radar-title">
+            <title id="radar-title">Radar chart showing all 10 proof-of-value dimensions active</title>
+            <defs>
+              <linearGradient id="radarFill" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0.55"/>
+                <stop offset="100%" style="stop-color:var(--g-teal, #2daeb8);stop-opacity:0.22"/>
+              </linearGradient>
+            </defs>
+            <g id="radar-rings"></g>
+            <g id="radar-spokes"></g>
+            <polygon id="radar-shape" class="radar-shape"></polygon>
+            <g id="radar-points"></g>
+            <g id="radar-labels"></g>
+          </svg>
+          <div class="radar-tooltip" id="radar-tooltip"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- --- Bento Grid --- -->
     <div class="grid-container">
       <div class="bento">
@@ -594,6 +708,125 @@
         document.getElementById('progress-fill').style.width = '100%';
       });
     });
+
+    // --- Capability Radar: 10 axes, all active (matches the bento grid above 1:1) ---
+    (function capabilityRadar() {
+      const svg = document.querySelector('.radar-svg');
+      if (!svg) return;
+
+      const factors = [
+        { name: 'Platform Thinking',    desc: 'One system across 4 product lines',                 color: 'var(--blue)' },
+        { name: 'Agent Governance',     desc: '~70 registered AI capabilities, human sign-off',      color: 'var(--red)' },
+        { name: 'Pricing Strategy',     desc: '2 cost-aware cadence models',                         color: 'var(--green)' },
+        { name: 'Domain Expertise',     desc: '4 product lines, 70+ tracked features',                color: 'var(--purple)' },
+        { name: 'Delivery Discipline',  desc: '55+ features shipped, risk flagged early',             color: 'var(--accent)' },
+        { name: 'Stakeholder Mgmt',     desc: 'Repeatable process for a 60+ person team',             color: 'var(--blue)' },
+        { name: 'Design Thinking',      desc: 'User research over assumption',                        color: 'var(--yellow)' },
+        { name: 'Ethical AI',           desc: 'Minimum-necessary access, shipped in product',          color: 'var(--purple)' },
+        { name: 'Navigating Ambiguity', desc: 'Structured calls with incomplete data',                color: 'var(--green)' },
+        { name: 'Reusable Architecture',desc: 'One team OS reused across 4 product lines',            color: 'var(--yellow)' },
+      ];
+
+      const NS = 'http://www.w3.org/2000/svg';
+      const cx = 260, cy = 260, R = 170, N = factors.length;
+      const angle = i => (Math.PI * 2 * i) / N - Math.PI / 2;
+      const pt = (i, r) => [cx + r * Math.cos(angle(i)), cy + r * Math.sin(angle(i))];
+
+      const ringsG = svg.querySelector('#radar-rings');
+      [0.25, 0.5, 0.75, 1].forEach(f => {
+        const poly = document.createElementNS(NS, 'polygon');
+        poly.setAttribute('points', factors.map((_, i) => pt(i, R * f).join(',')).join(' '));
+        poly.setAttribute('class', 'radar-ring');
+        ringsG.appendChild(poly);
+      });
+
+      const spokesG = svg.querySelector('#radar-spokes');
+      factors.forEach((_, i) => {
+        const [x, y] = pt(i, R);
+        const line = document.createElementNS(NS, 'line');
+        line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+        line.setAttribute('x2', x); line.setAttribute('y2', y);
+        line.setAttribute('class', 'radar-spoke');
+        spokesG.appendChild(line);
+      });
+
+      const shape = svg.querySelector('#radar-shape');
+      shape.setAttribute('points', factors.map((_, i) => pt(i, R).join(',')).join(' '));
+
+      const pointsG = svg.querySelector('#radar-points');
+      const labelsG = svg.querySelector('#radar-labels');
+      const tooltip = document.getElementById('radar-tooltip');
+      const wrap = document.querySelector('.radar-chart-wrap');
+      const cards = document.querySelectorAll('.bento > .card');
+
+      function showTooltip(f, x, y) {
+        tooltip.innerHTML = `<strong>${f.name}</strong><span>${f.desc}</span>`;
+        const rect = wrap.getBoundingClientRect();
+        const scale = rect.width / 520;
+        tooltip.style.left = `${x * scale}px`;
+        tooltip.style.top = `${y * scale}px`;
+        tooltip.classList.add('visible');
+      }
+      function hideTooltip() { tooltip.classList.remove('visible'); }
+
+      factors.forEach((f, i) => {
+        const [x, y] = pt(i, R);
+        const dot = document.createElementNS(NS, 'circle');
+        dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', 6);
+        dot.setAttribute('class', 'radar-point');
+        dot.style.setProperty('--point-color', f.color);
+        dot.style.transitionDelay = `${i * 45}ms`;
+        dot.setAttribute('tabindex', '0');
+        pointsG.appendChild(dot);
+
+        const [lx, ly] = pt(i, R + 38);
+        const text = document.createElementNS(NS, 'text');
+        text.setAttribute('x', lx); text.setAttribute('y', ly);
+        text.setAttribute('class', 'radar-label');
+        text.setAttribute('text-anchor', lx > cx + 4 ? 'start' : lx < cx - 4 ? 'end' : 'middle');
+        text.setAttribute('dominant-baseline', ly > cy + 60 ? 'hanging' : ly < cy - 60 ? 'auto' : 'middle');
+        text.textContent = f.name;
+        text.style.transitionDelay = `${i * 45}ms`;
+        text.setAttribute('tabindex', '0');
+        labelsG.appendChild(text);
+
+        const card = cards[i];
+        const highlight = () => { showTooltip(f, x, y); card && card.classList.add('card--linked'); };
+        const unhighlight = () => { hideTooltip(); card && card.classList.remove('card--linked'); };
+        [dot, text].forEach(el => {
+          el.addEventListener('mouseenter', highlight);
+          el.addEventListener('mouseleave', unhighlight);
+          el.addEventListener('focus', highlight);
+          el.addEventListener('blur', unhighlight);
+          el.addEventListener('click', () => card && card.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+          el.style.cursor = 'pointer';
+        });
+      });
+
+      // Draw-in animation + stagger, once the panel enters view
+      const panel = document.querySelector('.radar-panel');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const len = shape.getTotalLength();
+      if (!reduceMotion) {
+        shape.style.strokeDasharray = len;
+        shape.style.strokeDashoffset = len;
+        shape.style.transition = 'stroke-dashoffset 1.1s cubic-bezier(0.22,1,0.36,1)';
+      }
+
+      function reveal() {
+        panel.classList.add('in-view');
+        if (!reduceMotion) requestAnimationFrame(() => { shape.style.strokeDashoffset = '0'; });
+      }
+
+      if ('IntersectionObserver' in window && !reduceMotion) {
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => { if (entry.isIntersecting) { reveal(); obs.disconnect(); } });
+        }, { threshold: 0.3 });
+        io.observe(panel);
+      } else {
+        reveal();
+      }
+    })();
   </script>
 
 </body>
