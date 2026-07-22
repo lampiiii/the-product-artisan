@@ -4,3 +4,5 @@ node_modules/
 resources/profile-photo-original.jpg
 scratch/
 .claude/settings.json
+dist/
+.wrangler/
