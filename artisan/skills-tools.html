@@ -4,7 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skills &amp; Tools — Abhay Tyagi | The Product Artisan</title>
-  <meta name="description" content="The stack, frameworks, and tools I reach for daily — coming soon.">
+  <meta name="description" content="The stack I actually reach for daily — Claude Code, Cursor, VS Code, Wispr Flow, GitHub, and the tools around them — and how often each one gets used.">
+  <meta property="og:title" content="Skills &amp; Tools — Abhay Tyagi">
+  <meta property="og:description" content="The stack I actually reach for daily — Claude Code, Cursor, VS Code, Wispr Flow, GitHub, and the tools around them — and how often each one gets used.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lampiiii.github.io/the-product-artisan/skills-tools">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,59 +23,68 @@
       display: flex;
       flex-direction: column;
     }
-    .coming-soon {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 24px;
+    .section { padding: clamp(44px, 4.5vw, 80px) clamp(24px, 2.6vw, 48px); }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px;
+      color: var(--text-tertiary); margin-bottom: 14px; font-family: 'Google Sans', sans-serif;
     }
-    .coming-soon-card {
-      text-align: center;
-      max-width: 480px;
+    .section-head h1, .section-head h2 {
+      font-size: clamp(26px, 2.8vw, 46px); font-weight: 500; letter-spacing: -0.8px;
+      line-height: 1.1; color: var(--text); margin-bottom: clamp(10px, 1vw, 16px);
     }
-    .coming-soon-icon {
-      width: 64px; height: 64px;
-      margin: 0 auto 24px;
-      border-radius: 16px;
+    .section-head p { font-size: clamp(14.5px, 1.1vw, 19px); color: var(--text-secondary); line-height: 1.6; max-width: 46em; }
+
+    /* ─── Frequency legend ─── */
+    .freq-legend {
+      display: flex; gap: clamp(16px, 2vw, 32px); flex-wrap: wrap;
+      margin-top: clamp(24px, 2vw, 36px);
+    }
+    .freq-legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-secondary); font-family: 'Google Sans', sans-serif; }
+    .freq-dots { display: flex; gap: 3px; }
+    .freq-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--border-strong); }
+    .freq-dots.freq-daily span { background: var(--accent); }
+    .freq-dots.freq-weekly span:nth-child(-n+2) { background: var(--accent); }
+    .freq-dots.freq-weekly span:nth-child(3) { background: var(--border-strong); }
+    .freq-dots.freq-asneeded span:first-child { background: var(--accent); }
+
+    /* ─── Tool cards ─── */
+    .tool-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 1.3vw, 22px);
+      margin-top: clamp(24px, 2.2vw, 40px);
+    }
+    .tool-card {
+      display: flex; flex-direction: column; gap: 12px;
+      padding: clamp(20px, 1.8vw, 28px); background: var(--surface-card);
+      border: 1px solid var(--border); border-radius: var(--radius-card);
+      position: relative; overflow: hidden;
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .tool-card::after {
+      content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+      background: var(--grad-spectrum); opacity: 0; transition: opacity 0.25s;
+    }
+    .tool-card:hover { transform: translateY(-4px); border-color: var(--border-strong); box-shadow: var(--shadow-lg); background: var(--surface-card-hover); }
+    .tool-card:hover::after { opacity: 1; }
+    .tool-card-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .tool-icon {
+      width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
-      background: var(--accent-bg, rgba(66,133,244,0.12));
-      color: var(--accent);
+      background: var(--accent-bg); color: var(--accent);
+      font-family: 'Google Sans Display', sans-serif; font-weight: 700; font-size: 15px;
     }
-    .coming-soon-icon svg { width: 30px; height: 30px; }
-    .coming-soon-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-tertiary);
-      background: var(--surface-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 6px 14px;
-      margin-bottom: 20px;
+    .tool-card h3 { font-family: 'Google Sans', sans-serif; font-size: 17px; font-weight: 500; color: var(--text); }
+    .tool-card-cat {
+      font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-tertiary);
+      font-family: 'Google Sans', sans-serif; margin-top: -6px;
     }
-    .coming-soon-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-tertiary); }
-    .coming-soon h1 {
-      font-size: 28px;
-      font-weight: 400;
-      color: var(--text);
-      letter-spacing: -0.3px;
-      margin-bottom: 12px;
+    .tool-card p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; }
+
+    @media (max-width: 900px) {
+      .tool-grid { grid-template-columns: repeat(2, 1fr); }
     }
-    .coming-soon h1 span { color: var(--accent); }
-    .coming-soon p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-    .coming-soon-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    @media (max-width: 768px) {
-      .coming-soon { padding: 32px 20px; }
+    @media (max-width: 620px) {
+      .tool-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -199,23 +212,147 @@
   </aside>
 
   <div class="page">
-    <div class="coming-soon">
-      <div class="coming-soon-card">
-        <div class="coming-soon-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
-        </div>
-        <div class="coming-soon-badge"><span class="dot"></span> Coming Soon</div>
-        <h1><span>Skills</span> &amp; Tools</h1>
-        <p>The stack, frameworks, and tools I reach for daily, and how deep that fluency actually goes — under construction.</p>
-        <div class="coming-soon-actions">
-          <a href="/profile" class="io-btn io-btn--primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            View Profile
-          </a>
-          <a href="/" class="io-btn io-btn--secondary">Back Home</a>
+
+    <!-- ─── Header ─── -->
+    <section class="section" style="padding-bottom: 0;">
+      <div class="section-inner section-head">
+        <div class="eyebrow">Craft &amp; Thinking</div>
+        <h1>Skills &amp; Tools</h1>
+        <p>Not a skills wall — the actual stack I open every day, grouped by how often I reach for it. A few of these get used every hour; a few only show up when the job calls for them.</p>
+        <div class="freq-legend">
+          <div class="freq-legend-item"><span class="freq-dots freq-daily"><span></span><span></span><span></span></span> Daily driver</div>
+          <div class="freq-legend-item"><span class="freq-dots freq-weekly"><span></span><span></span><span></span></span> Weekly rotation</div>
+          <div class="freq-legend-item"><span class="freq-dots freq-asneeded"><span></span><span></span><span></span></span> As-needed</div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- ─── Daily drivers ─── -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="eyebrow">Daily Driver</div>
+          <h2>What's open every day</h2>
+          <p>These don't leave the toolbar. Between them they cover writing, coding, and shipping — nothing here is optional.</p>
+        </div>
+        <div class="tool-grid cards">
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">CC</div>
+            </div>
+            <div class="tool-card-cat">AI Coding Agent</div>
+            <h3>Claude Code</h3>
+            <p>My primary AI coding agent — built the automated helpers, ready-made routines, and shortcuts that run my team's workflow, plus this entire portfolio site.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">Cu</div>
+            </div>
+            <div class="tool-card-cat">AI-Native IDE</div>
+            <h3>Cursor</h3>
+            <p>Where most day-to-day feature work and prototype code actually gets written, with AI assistance built into the editing loop.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">VS</div>
+            </div>
+            <div class="tool-card-cat">Editor</div>
+            <h3>VS Code</h3>
+            <p>The base editor underneath — extensions, config, and general dev work that doesn't need Cursor's AI layer.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">WF</div>
+            </div>
+            <div class="tool-card-cat">Voice Dictation</div>
+            <h3>Wispr Flow</h3>
+            <p>Voice-to-text for nearly everything I write — specs, messages, emails. Talking is faster than typing, so this runs constantly.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">Gh</div>
+            </div>
+            <div class="tool-card-cat">Version Control</div>
+            <h3>GitHub</h3>
+            <p>Everything I build gets owned and published here — personal projects, this site, side experiments. Nothing stays local.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">Xl</div>
+            </div>
+            <div class="tool-card-cat">Data Analysis</div>
+            <h3>Excel / Google Sheets</h3>
+            <p>Where most of my product data analysis happens — cohort cuts and funnel math, before a metric earns a place on a real dashboard.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Weekly rotation ─── -->
+    <section class="section" style="background: var(--surface-dim); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="eyebrow">Weekly Rotation</div>
+          <h2>A few times a week</h2>
+          <p>Research tools I turn to a couple times a week, mostly when scoping a new feature or checking where competitors already stand.</p>
+        </div>
+        <div class="tool-grid cards">
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">Gp</div>
+            </div>
+            <div class="tool-card-cat">AI Research</div>
+            <h3>ChatGPT</h3>
+            <p>First-pass research and competitive analysis while scoping a new feature, a couple times a week.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">Px</div>
+            </div>
+            <div class="tool-card-cat">AI Research</div>
+            <h3>Perplexity</h3>
+            <p>Same job as ChatGPT here — cross-checking research and competitive reads with cited sources.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── As-needed ─── -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="eyebrow">As-Needed</div>
+          <h2>When the job calls for it</h2>
+          <p>Lower frequency, not lower depth — the SQL fluency in particular runs deep; it just doesn't come up often day to day.</p>
+        </div>
+        <div class="tool-grid cards">
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">Lv</div>
+            </div>
+            <div class="tool-card-cat">AI App Builder</div>
+            <h3>Lovable</h3>
+            <p>The tool I reach for on weekend side projects, when I want an app live fast without hand-rolling a frontend.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">Fg</div>
+            </div>
+            <div class="tool-card-cat">Prototyping</div>
+            <h3>Figma</h3>
+            <p>Prototyping flows and screens before they go to engineering — the visual first draft of an idea.</p>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-top">
+              <div class="tool-icon">SQ</div>
+            </div>
+            <div class="tool-card-cat">Data Querying</div>
+            <h3>SQL</h3>
+            <p>Expert-level fluency, but day to day I lean on dashboards and Excel more than writing raw queries — this comes out for the harder data questions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer>
       <div class="footer-inner">

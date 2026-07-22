@@ -8,7 +8,7 @@
   <meta property="og:title" content="My Claude Code Stack — Abhay Tyagi">
   <meta property="og:description" content="Skills, agents, commands, hooks, and a CLAUDE.md governance system — how I actually run Claude Code across a personal and a team-wide operating system.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://github.com/lampiiii/the-product-artisan">
+  <meta property="og:url" content="https://lampiiii.github.io/the-product-artisan/claude-code">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="My Claude Code Stack — Abhay Tyagi">
   <meta name="twitter:description" content="Skills, agents, commands, hooks, and a CLAUDE.md governance system — how I actually run Claude Code across a personal and a team-wide operating system.">
@@ -520,7 +520,7 @@
             <div class="item-dot item-dot--blue"></div>
             <div>
               <div class="item-name">/cc-check</div>
-              <div class="item-desc">Runs a structured audit of my own Claude Code workflow against 8 best-practice pillars — plan mode, task tracking, memory, CLAUDE.md, skills, agents, prompts, context management.</div>
+              <div class="item-desc">Runs a structured audit of my own Claude Code workflow against a set of best-practice pillars — plan mode, task tracking, memory, CLAUDE.md, skills, agents, prompts, context management.</div>
               <div class="item-tags"><span class="item-tag">Workflow</span><span class="item-tag">Self-Audit</span></div>
             </div>
           </div>
@@ -568,7 +568,7 @@
               <div class="item-dot item-dot--purple"></div>
               <div>
                 <div class="item-name">PRD Edge Case Analyzer</div>
-                <div class="item-desc">Reviews a product requirements doc across 10 risk dimensions — user behavior, data, integrations, security, performance, error handling, and more — before it reaches engineering.</div>
+                <div class="item-desc">Reviews a product requirements doc across a set of risk dimensions — user behavior, data, integrations, security, performance, error handling, and more — before it reaches engineering.</div>
                 <div class="item-tags"><span class="item-tag">Quality</span><span class="item-tag">Risk Analysis</span></div>
               </div>
             </div>
@@ -591,7 +591,7 @@
               <div class="item-dot item-dot--purple"></div>
               <div>
                 <div class="item-name">Repo Health Doctor</div>
-                <div class="item-desc">Audits the repo across 9 categories — structure, metadata validity, cross-references, doc drift, content quality, naming, people/org hygiene, data-file sync, git hygiene — with a prioritized fix list and trend tracking vs. prior runs.</div>
+                <div class="item-desc">Audits the repo across categories like structure, metadata validity, cross-references, doc drift, content quality, and naming hygiene — with a prioritized fix list and trend tracking vs. prior runs.</div>
                 <div class="item-tags"><span class="item-tag">Governance</span><span class="item-tag">Scheduled</span></div>
               </div>
             </div>
@@ -606,10 +606,6 @@
           </div>
         </div>
 
-        <div class="pattern-group" style="margin-bottom: 0;">
-          <div class="pattern-label">Craft-ops agents <span style="font-weight: 400; color: var(--text-tertiary);">— emerging pattern</span></div>
-          <div class="pattern-desc">Watch how other agents perform over time and surface recurring quality issues, only proposing a doc update once a pattern repeats 2+ times — never on a single occurrence. Next pattern I'm building toward, not shipped yet.</div>
-        </div>
       </div>
 
       <!-- ─── Custom Commands ─── -->
@@ -704,21 +700,21 @@
               <div class="item-dot item-dot--red"></div>
               <div>
                 <div class="item-name">protect-governance-files</div>
-                <div class="item-desc">Restricts edits to the capability registry, the roster, and the hooks themselves to core authors only. Fails open on a missing roster so a misconfiguration doesn't brick all editing.</div>
+                <div class="item-desc">Restricts edits to core config files — the registry, the roster, the hooks themselves — to designated maintainers, with a safe default if config is missing.</div>
               </div>
             </div>
             <div class="item">
               <div class="item-dot item-dot--red"></div>
               <div>
                 <div class="item-name">protect-intake-paths</div>
-                <div class="item-desc">Blocks a specific agent type from reading files under the research intake directory — a "never read raw transcripts" policy enforced by path, not by prose instruction.</div>
+                <div class="item-desc">Blocks a specific agent type from reading raw research files directly — enforced by path, not by prose instruction, so it can't be forgotten.</div>
               </div>
             </div>
             <div class="item">
               <div class="item-dot item-dot--red"></div>
               <div>
                 <div class="item-name">govern-agent</div>
-                <div class="item-desc">Gates every sub-agent call against a capability registry — is the agent known, does the caller have access, is a sensitive path involved. Fails closed if the registry exists but is broken.</div>
+                <div class="item-desc">Gates every sub-agent call against a known-good registry — is the agent recognized, does the caller have access, is a sensitive path involved.</div>
               </div>
             </div>
           </div>
@@ -745,7 +741,7 @@
               <div class="item-dot item-dot--red"></div>
               <div>
                 <div class="item-name">sync-capability-registry</div>
-                <div class="item-desc">A new agent, skill, or command file gets a conservative auto-stub entry in the registry so it's discoverable — locked down until a core author reviews it.</div>
+                <div class="item-desc">A new agent, skill, or command file gets a conservative auto-stub entry in the registry so it's discoverable — locked down until reviewed.</div>
               </div>
             </div>
             <div class="item">
@@ -939,7 +935,7 @@
           </span>
           <span class="repo-chip" style="cursor: default;">
             <span class="repo-chip-name">offer-os</span>
-            <span class="repo-chip-desc">Job search operating system</span>
+            <span class="repo-chip-desc">Personal opportunity-tracking system</span>
           </span>
         </div>
       </div>

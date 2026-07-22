@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Career Timeline — Abhay Tyagi | The Product Artisan</title>
   <meta name="description" content="An interactive, chronological walk through Abhay Tyagi's journey — from a math-topper school kid to Senior Product Manager building AI-powered Customer Success at a global enterprise SaaS company.">
+  <meta property="og:title" content="Career Timeline — Abhay Tyagi">
+  <meta property="og:description" content="An interactive, chronological walk through Abhay Tyagi's journey — from a math-topper school kid to Senior Product Manager building AI-powered Customer Success at a global enterprise SaaS company.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lampiiii.github.io/the-product-artisan/career-timeline">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,6 +197,18 @@
 
     .tl-node:nth-child(odd) .tl-details ul { padding-left: 0; padding-right: 18px; list-style-position: inside; }
 
+    .tl-concurrent { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border); text-align: left; }
+    .tl-node:nth-child(odd) .tl-concurrent { text-align: right; }
+    .tl-concurrent-label {
+      font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+      color: var(--text-tertiary); margin-bottom: 8px; font-family: 'Google Sans', sans-serif;
+    }
+    .tl-concurrent-item { font-size: 13px; line-height: 1.55; margin-bottom: 6px; }
+    .tl-concurrent-item:last-child { margin-bottom: 0; }
+    .tl-concurrent-date { font-family: 'Roboto Mono', monospace; font-size: 11px; color: var(--text-tertiary); margin-right: 6px; }
+    .tl-concurrent-title { font-weight: 500; color: var(--text); }
+    .tl-concurrent-org { color: var(--text-secondary); }
+
     /* ---------- Mobile ---------- */
     @media (max-width: 760px) {
       .tl-stats { grid-template-columns: repeat(2, 1fr); }
@@ -356,7 +372,7 @@
     <!-- ─── Stats ─── -->
     <div class="tl-stats" id="tl-stats">
       <div class="tl-stat"><div class="tl-stat-value" data-count="8" data-suffix="+">0</div><div class="tl-stat-label">Years in the Industry</div></div>
-      <div class="tl-stat"><div class="tl-stat-value" data-count="13">0</div><div class="tl-stat-label">Milestones Logged</div></div>
+      <div class="tl-stat"><div class="tl-stat-value" data-count="10">0</div><div class="tl-stat-label">Milestones Logged</div></div>
       <div class="tl-stat"><div class="tl-stat-value" data-count="6">0</div><div class="tl-stat-label">Organizations</div></div>
       <div class="tl-stat"><div class="tl-stat-value" data-count="2">0</div><div class="tl-stat-label">Degrees Earned</div></div>
     </div>
@@ -366,8 +382,6 @@
       <button class="tl-chip active" data-filter="all"><span class="dot" style="background:var(--text-tertiary)"></span> All</button>
       <button class="tl-chip" data-filter="career"><span class="dot" style="color:var(--blue)"></span> Career</button>
       <button class="tl-chip" data-filter="education"><span class="dot" style="color:var(--purple)"></span> Education</button>
-      <button class="tl-chip" data-filter="leadership"><span class="dot" style="color:var(--orange)"></span> Leadership</button>
-      <button class="tl-chip" data-filter="certification"><span class="dot" style="color:var(--teal)"></span> Certifications</button>
       <button class="tl-chip" data-filter="milestone"><span class="dot" style="color:var(--yellow)"></span> Milestones</button>
     </div>
 
@@ -385,20 +399,20 @@
           <div class="tl-tags"><span class="tl-tag tl-tag--career">Career</span><span class="tl-tag tl-tag--current"><span class="pulse-dot" style="width:5px;height:5px;"></span>&nbsp;Current</span></div>
           <h3>Senior Product Manager</h3>
           <div class="tl-org">Global Enterprise SaaS Company</div>
-          <p class="tl-summary">Leading all AI features for Customer Success — a system of 19 agents that helped grow ACV 511% and win 10+ competitive deals.</p>
+          <p class="tl-summary">Leading all AI features for Customer Success — a system of 19 agents that helped grow ACV ~75% annually and win 10+ competitive deals against rival vendors.</p>
           <button class="tl-toggle" type="button" aria-expanded="false">Show details
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="tl-details">
             <ul>
-              <li>Led all AI features for the Customer Success product, including AI agents that work on their own — these became a top reason customers chose us over Gainsight and Totango in 10+ competitive deals, helping grow yearly contract revenue by 511%</li>
-              <li>Set the product direction for a system of 19 AI agents covering 5 different workflows, replacing manual support work that took 200+ hours per week; grew from 0 to 120 enterprise accounts using it within 12 months</li>
+              <li>Led all AI features for the Customer Success product, including AI agents that work on their own — these became a top reason customers chose us over rival vendors in 10+ competitive deals, helping grow yearly contract revenue ~75% annually ($18M&rarr;$110M)</li>
+              <li>Set the product direction for a system of 19 AI agents covering 5 different workflows, replacing manual support work that took 200+ hours per week</li>
               <li>Grew our premium subscription tier from 0 to 120 accounts by shipping AI features good enough that customers chose to pay more for them</li>
               <li>Used real usage data to decide that automating renewal-risk reviews mattered more than manual check-ins, cutting that workload by 40% (200+ hours/week) while still having a person review anything high-risk</li>
               <li>Connected Customer Success tools with sales, order management, and release-planning systems, so teams could see a customer's full journey in one place instead of piecing it together across tools</li>
               <li>Built a live dashboard system tracking product usage across 5 products and 500+ enterprise users</li>
-              <li>Led integrations with Salesforce, Microsoft Dynamics, and AI providers, tripling how many other systems our product could connect to</li>
-              <li>Built data-access controls that only give people and AI agents the minimum access they need — this resolved security concerns that had been blocking deals with regulated banking and finance customers</li>
+              <li>Led integrations with major CRM platforms and AI providers, tripling how many other systems our product could connect to</li>
+              <li>Built data-access controls that only give people and AI agents the minimum access they need — this resolved security concerns that had been blocking deals with customers in regulated industries</li>
               <li>Built, from scratch, an AI-powered operating system for how my team works — 30+ automated helpers, 70+ ready-made routines, and 40+ shortcuts that write product specs, summarize customer research, track plans, draft stakeholder updates, and check project health automatically instead of by hand</li>
               <li>Shipped a steady stream of new Customer Success features across six releases — including a customizable success-plan tool, a way to map account relationships and timelines, risk visualization, more detailed admin controls, automatic meeting-note capture, and a major accessibility upgrade for users with visual impairments — while also strengthening security and compliance every release</li>
             </ul>
@@ -406,33 +420,6 @@
         </div>
       </div>
 
-
-      <!-- 12 -->
-      <div class="tl-node" data-category="certification">
-        <div class="tl-marker tl-marker--certification">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-        </div>
-        <div class="tl-card">
-          <div class="tl-date">2023 &ndash; 2024</div>
-          <div class="tl-tags"><span class="tl-tag tl-tag--certification">Certifications</span></div>
-          <h3>Professional Certifications &amp; Continuous Learning</h3>
-          <div class="tl-org">Self-directed</div>
-          <p class="tl-summary">Certified Scrum Product Owner, Customer Success Management, and a personal-finance specialization — stacked while shipping.</p>
-          <button class="tl-toggle" type="button" aria-expanded="false">Show details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="tl-details">
-            <ul>
-              <li>Certified Scrum Product Owner&reg; (CSPO&reg;)</li>
-              <li>Customer Success Management — Fundamentals</li>
-              <li>Customer Success Management — Implementation</li>
-              <li>Excel Skills for Business Specialization</li>
-              <li>People Analytics</li>
-              <li>Personal Finance Mastery — 1% Club (Jul 2024)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
 
       <!-- 11 -->
       <div class="tl-node" data-category="career">
@@ -445,6 +432,13 @@
           <h3>Product Manager</h3>
           <div class="tl-org">Global Enterprise SaaS Company</div>
           <p class="tl-summary">Built the Customer Success product from the ground up — tripled the customer base and cut onboarding time by 40%.</p>
+          <div class="tl-concurrent">
+            <div class="tl-concurrent-label">Alongside this role</div>
+            <div class="tl-concurrent-item">
+              <span class="tl-concurrent-date">2023&ndash;2024</span>
+              <span class="tl-concurrent-title">Professional Certifications</span> &middot; <span class="tl-concurrent-org">CSPO&reg;, Customer Success Management, Excel for Business, People Analytics, Personal Finance Mastery</span>
+            </div>
+          </div>
           <button class="tl-toggle" type="button" aria-expanded="false">Show details
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
@@ -486,43 +480,6 @@
         </div>
       </div>
 
-      <!-- 9 -->
-      <div class="tl-node" data-category="leadership">
-        <div class="tl-marker tl-marker--leadership">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-        </div>
-        <div class="tl-card">
-          <div class="tl-date">Oct 2021 &ndash; Feb 2023</div>
-          <div class="tl-tags"><span class="tl-tag tl-tag--leadership">Leadership</span></div>
-          <h3>Branch President</h3>
-          <div class="tl-org">CSRN, IIM Udaipur</div>
-          <p class="tl-summary">Ran six live social-sector consulting projects in parallel, alongside the MBA.</p>
-          <button class="tl-toggle" type="button" aria-expanded="false">Show details
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
-          <div class="tl-details">
-            <ul>
-              <li>Oversaw progress of six live projects in the social sector sourced by CSRN</li>
-              <li>Helped each student consultancy team deliver high-quality work on time</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- 8 -->
-      <div class="tl-node" data-category="milestone">
-        <div class="tl-marker tl-marker--milestone">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <div class="tl-card">
-          <div class="tl-date">2022</div>
-          <div class="tl-tags"><span class="tl-tag tl-tag--milestone">Milestone</span></div>
-          <h3>National 2nd — Accenture Strategy Challenge</h3>
-          <div class="tl-org">IIM Udaipur</div>
-          <p class="tl-summary">Placed 2nd nationally among 150+ competing teams.</p>
-        </div>
-      </div>
-
       <!-- 7 -->
       <div class="tl-node" data-category="education">
         <div class="tl-marker tl-marker--education">
@@ -532,8 +489,15 @@
           <div class="tl-date">2021 &ndash; 2023</div>
           <div class="tl-tags"><span class="tl-tag tl-tag--education">Education</span></div>
           <h3>MBA</h3>
-          <div class="tl-org">Indian Institute of Management, Udaipur</div>
+          <div class="tl-org">Indian Institute of Management (IIM)</div>
           <p class="tl-summary">The pivot point — from analytics into product management, with a general-management foundation to match.</p>
+          <div class="tl-concurrent">
+            <div class="tl-concurrent-label">Alongside the MBA</div>
+            <div class="tl-concurrent-item">
+              <span class="tl-concurrent-date">2022</span>
+              <span class="tl-concurrent-title">National 2nd</span> &middot; <span class="tl-concurrent-org">Accenture Strategy Challenge, 150+ competing teams</span>
+            </div>
+          </div>
         </div>
       </div>
 
