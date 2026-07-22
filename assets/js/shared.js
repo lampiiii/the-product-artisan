@@ -19,13 +19,6 @@ const NAV_GROUPS = [
   ]},
   { label: 'Proof of Work', items: [
     { href: '/proof-of-value',                          label: 'Proof of Value' },
-    { href: '/proof-of-value/platform-thinking',        label: 'Platform Thinking', sub: true },
-    { href: '/proof-of-value/agent-governance',         label: 'Agent Governance', sub: true },
-    { href: '/proof-of-value/domain-expertise',         label: 'Domain Expertise', sub: true },
-    { href: '/proof-of-value/reusable-architecture',    label: 'Reusable Architecture', sub: true },
-    { href: '/proof-of-value/outcome-stories',          label: 'Outcome Stories', sub: true },
-    { href: '/proof-of-value/stakeholder-management',   label: 'Stakeholder Management', sub: true },
-    { href: '/proof-of-value/pricing-strategy',         label: 'Pricing Strategy', sub: true },
     { href: '/projects',                    label: 'Projects' },
     { href: '/case-studies/case-study-1',   label: 'Case Study 01' },
     { href: '/metrics-dashboard',           label: 'Metrics Dashboard' },
@@ -34,7 +27,7 @@ const NAV_GROUPS = [
     { href: '/skills-tools', label: 'Skills & Tools' },
     { href: '/frameworks',   label: 'Frameworks' },
     { href: '/playbook',     label: 'Playbook' },
-    { href: '/claude-code',  label: 'Powered by Claude Code' },
+    { href: '/claude-code',  label: 'My Claude Code Stack' },
   ]},
   { label: 'Reading & Influences', items: [
     { href: '/reading-list', label: 'Reading List' },

@@ -195,6 +195,58 @@
       .radar-label { font-size: 9.5px; }
     }
 
+    /* --- Card Modal --- */
+    .card-modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+    .card-modal-overlay.open { opacity: 1; visibility: visible; }
+    .card-modal {
+      background: var(--surface-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      width: 100%; max-width: 1296px; height: 85vh;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      transform: translateY(12px) scale(0.98);
+      transition: transform 0.22s cubic-bezier(0.22,1,0.36,1);
+    }
+    .card-modal-overlay.open .card-modal { transform: translateY(0) scale(1); }
+    .card-modal-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 18px 20px; border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .card-modal-head-title { display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: 700; }
+    .card-modal-head-title .card-icon { width: 32px; height: 32px; border-radius: 9px; margin-bottom: 0; }
+    .card-modal-head-title .card-icon svg { width: 17px; height: 17px; }
+    .card-modal-close {
+      background: none; border: 1px solid var(--border); border-radius: 8px;
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); cursor: pointer; flex-shrink: 0;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .card-modal-close:hover, .card-modal-close:focus { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); outline: none; }
+    .card-modal-body { overflow-y: auto; flex: 1; padding: 24px; }
+    .card-modal-body .page { padding: 0; }
+    .card-modal-desc { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin-bottom: 20px; }
+    .card-modal-footer { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .card-modal-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--accent); font-size: 13.5px; font-weight: 600; text-decoration: none;
+    }
+    .card-modal-link:hover { text-decoration: underline; }
+    @media (max-width: 640px) {
+      .card-modal-overlay { padding: 0; }
+      .card-modal { max-width: 100%; max-height: 100%; height: 100%; border-radius: 0; }
+    }
+
     /* --- Grid Container --- */
     .grid-container {
       flex: 1;
@@ -445,7 +497,7 @@
       </a>
       <a href="/claude-code" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Powered by Claude Code
+        My Claude Code Stack
       </a>
     </div>
 
@@ -510,11 +562,11 @@
       <div class="radar-panel">
         <div class="radar-panel-head">
           <div class="radar-panel-title"><span class="pulse-dot"></span> Capability Radar</div>
-          <p class="radar-panel-sub">10 dimensions, every one demonstrated through shipped work. Hover or tap a point for the evidence.</p>
+          <p class="radar-panel-sub">10 dimensions, benchmarked against standard industry maturity models for each — nothing scored as fully mastered. Hover or tap a point for the evidence.</p>
         </div>
         <div class="radar-chart-wrap">
           <svg class="radar-svg" viewBox="0 0 520 520" role="img" aria-labelledby="radar-title">
-            <title id="radar-title">Radar chart showing all 10 proof-of-value dimensions active</title>
+            <title id="radar-title">Radar chart showing proof-of-value depth across 10 dimensions, benchmarked against industry maturity models</title>
             <defs>
               <linearGradient id="radarFill" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" style="stop-color:var(--accent);stop-opacity:0.55"/>
@@ -537,7 +589,7 @@
       <div class="bento">
 
         <!-- 1. Platform Thinking — ACTIVE -->
-        <a href="/proof-of-value/platform-thinking" class="card card--active">
+        <a href="/proof-of-value/platform-thinking" data-src="/artisan/pov/platform-thinking.html" class="card card--active">
           <div class="card-accent-bar"></div>
           <div class="card-icon card-icon--blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
@@ -551,7 +603,7 @@
         </a>
 
         <!-- 2. Agent Governance — ACTIVE -->
-        <a href="/proof-of-value/agent-governance" class="card card--active">
+        <a href="/proof-of-value/agent-governance" data-src="/artisan/pov/agent-governance.html" class="card card--active">
           <div class="card-accent-bar"></div>
           <div class="card-icon card-icon--red">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>
@@ -565,7 +617,7 @@
         </a>
 
         <!-- 3. Pricing Strategy — ACTIVE -->
-        <a href="/proof-of-value/pricing-strategy" class="card card--active">
+        <a href="/proof-of-value/pricing-strategy" data-src="/artisan/pov/pricing-strategy.html" class="card card--active">
           <div class="card-accent-bar"></div>
           <div class="card-icon card-icon--green">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
@@ -579,7 +631,7 @@
         </a>
 
         <!-- 4. Domain Expertise — ACTIVE -->
-        <a href="/proof-of-value/domain-expertise" class="card card--active">
+        <a href="/proof-of-value/domain-expertise" data-src="/artisan/pov/domain-expertise.html" class="card card--active">
           <div class="card-accent-bar"></div>
           <div class="card-icon card-icon--purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
@@ -593,7 +645,7 @@
         </a>
 
         <!-- 5. Delivery Discipline — ACTIVE -->
-        <a href="/proof-of-value/outcome-stories" class="card card--active">
+        <a href="/proof-of-value/outcome-stories" data-src="/artisan/pov/outcome-stories.html" class="card card--active">
           <div class="card-accent-bar"></div>
           <div class="card-icon card-icon--accent">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
@@ -607,7 +659,7 @@
         </a>
 
         <!-- 6. Stakeholder Management — ACTIVE -->
-        <a href="/proof-of-value/stakeholder-management" class="card card--active">
+        <a href="/proof-of-value/stakeholder-management" data-src="/artisan/pov/stakeholder-management.html" class="card card--active">
           <div class="card-accent-bar"></div>
           <div class="card-icon card-icon--blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
@@ -663,7 +715,7 @@
         </div>
 
         <!-- 10. Reusable Architecture — ACTIVE -->
-        <a href="/proof-of-value/reusable-architecture" class="card card--active">
+        <a href="/proof-of-value/reusable-architecture" data-src="/artisan/pov/reusable-architecture.html" class="card card--active">
           <div class="card-accent-bar"></div>
           <div class="card-icon card-icon--yellow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
@@ -676,6 +728,19 @@
           </div>
         </a>
 
+      </div>
+    </div>
+
+    <!-- --- Card Modal --- -->
+    <div class="card-modal-overlay" id="card-modal-overlay">
+      <div class="card-modal" role="dialog" aria-modal="true" aria-labelledby="card-modal-title">
+        <div class="card-modal-head">
+          <div class="card-modal-head-title" id="card-modal-title"></div>
+          <button type="button" class="card-modal-close" id="card-modal-close" aria-label="Close">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="card-modal-body" id="card-modal-body"></div>
       </div>
     </div>
 
@@ -715,16 +780,16 @@
       if (!svg) return;
 
       const factors = [
-        { name: 'Platform Thinking',    desc: 'One system across 4 product lines',                 color: 'var(--blue)' },
-        { name: 'Agent Governance',     desc: '~70 registered AI capabilities, human sign-off',      color: 'var(--red)' },
-        { name: 'Pricing Strategy',     desc: '2 cost-aware cadence models',                         color: 'var(--green)' },
-        { name: 'Domain Expertise',     desc: '4 product lines, 70+ tracked features',                color: 'var(--purple)' },
-        { name: 'Delivery Discipline',  desc: '55+ features shipped, risk flagged early',             color: 'var(--accent)' },
-        { name: 'Stakeholder Mgmt',     desc: 'Repeatable process for a 60+ person team',             color: 'var(--blue)' },
-        { name: 'Design Thinking',      desc: 'User research over assumption',                        color: 'var(--yellow)' },
-        { name: 'Ethical AI',           desc: 'Minimum-necessary access, shipped in product',          color: 'var(--purple)' },
-        { name: 'Navigating Ambiguity', desc: 'Structured calls with incomplete data',                color: 'var(--green)' },
-        { name: 'Reusable Architecture',desc: 'One team OS reused across 4 product lines',            color: 'var(--yellow)' },
+        { name: 'Platform Thinking',    desc: 'One system across 4 product lines — Integrated tier, not yet org-wide strategic layer', color: 'var(--blue)',   value: 0.82 },
+        { name: 'Agent Governance',     desc: '~70 registered AI capabilities, human sign-off — Managed tier, no external audit or governance board yet', color: 'var(--red)',    value: 0.65 },
+        { name: 'Pricing Strategy',     desc: 'Cost-aware cadence models — Stage 2 SaaS pricing maturity, no willingness-to-pay research yet', color: 'var(--green)',  value: 0.55 },
+        { name: 'Domain Expertise',     desc: '4 product lines, 70+ tracked features — deep but scoped to one company’s product suite', color: 'var(--purple)', value: 0.8 },
+        { name: 'Delivery Discipline',  desc: '55+ features shipped, risk flagged early — consistent execution across 7 releases', color: 'var(--accent)', value: 0.78 },
+        { name: 'Stakeholder Mgmt',     desc: 'Repeatable process for a 60+ person team — one org proven, not yet cross-company', color: 'var(--blue)',   value: 0.72 },
+        { name: 'Design Thinking',      desc: 'User research over assumption — no dedicated case study yet', color: 'var(--yellow)', value: 0.5 },
+        { name: 'Ethical AI',           desc: 'Minimum-necessary access, shipped in product — no formal review board or audit yet', color: 'var(--purple)', value: 0.48 },
+        { name: 'Navigating Ambiguity', desc: 'Structured calls with incomplete data — no dedicated case study yet', color: 'var(--green)', value: 0.52 },
+        { name: 'Reusable Architecture',desc: 'One team OS reused across 4 product lines, ~30 agents, 70+ skills', color: 'var(--yellow)', value: 0.85 },
       ];
 
       const NS = 'http://www.w3.org/2000/svg';
@@ -751,7 +816,7 @@
       });
 
       const shape = svg.querySelector('#radar-shape');
-      shape.setAttribute('points', factors.map((_, i) => pt(i, R).join(',')).join(' '));
+      shape.setAttribute('points', factors.map((f, i) => pt(i, R * f.value).join(',')).join(' '));
 
       const pointsG = svg.querySelector('#radar-points');
       const labelsG = svg.querySelector('#radar-labels');
@@ -760,7 +825,7 @@
       const cards = document.querySelectorAll('.bento > .card');
 
       function showTooltip(f, x, y) {
-        tooltip.innerHTML = `<strong>${f.name}</strong><span>${f.desc}</span>`;
+        tooltip.innerHTML = `<strong>${f.name} — ${Math.round(f.value * 100)}%</strong><span>${f.desc}</span>`;
         const rect = wrap.getBoundingClientRect();
         const scale = rect.width / 520;
         tooltip.style.left = `${x * scale}px`;
@@ -770,7 +835,7 @@
       function hideTooltip() { tooltip.classList.remove('visible'); }
 
       factors.forEach((f, i) => {
-        const [x, y] = pt(i, R);
+        const [x, y] = pt(i, R * f.value);
         const dot = document.createElementNS(NS, 'circle');
         dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.setAttribute('r', 6);
         dot.setAttribute('class', 'radar-point');
@@ -826,6 +891,115 @@
       } else {
         reveal();
       }
+    })();
+
+    // --- Card Modal: click any bento card to open its full detail in a popup ---
+    (function cardModal() {
+      const overlay = document.getElementById('card-modal-overlay');
+      const modalTitle = document.getElementById('card-modal-title');
+      const modalBody = document.getElementById('card-modal-body');
+      const closeBtn = document.getElementById('card-modal-close');
+      const cards = document.querySelectorAll('.bento > .card');
+      const pageCache = new Map();
+      const injectedStyles = new Set();
+      let lastFocused = null;
+      let requestToken = 0;
+
+      function renderSimpleCard(card) {
+        const desc = card.querySelector('.card-desc')?.textContent || '';
+        const items = card.querySelector('.card-items')?.textContent || '';
+        modalBody.innerHTML = `
+          <p class="card-modal-desc">${desc}</p>
+          <div class="card-modal-footer">
+            <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
+            <div class="card-items">${items}</div>
+          </div>`;
+      }
+
+      async function renderCaseStudy(src, prettyHref) {
+        const token = ++requestToken;
+        modalBody.innerHTML = `<p class="card-modal-desc">Loading…</p>`;
+
+        try {
+          let data = pageCache.get(src);
+          if (!data) {
+            const res = await fetch(src);
+            if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+            const html = await res.text();
+            const doc = new DOMParser().parseFromString(html, 'text/html');
+            const pageEl = doc.querySelector('.page');
+            pageEl?.querySelector('footer')?.remove();
+            pageEl?.querySelector('.breadcrumb')?.remove();
+            data = {
+              styles: Array.from(doc.querySelectorAll('style')).map(s => s.textContent).join('\n'),
+              html: pageEl ? pageEl.innerHTML : null,
+            };
+            if (!data.html) throw new Error('No .page content found');
+            pageCache.set(src, data);
+          }
+          if (token !== requestToken) return; // a newer card was opened meanwhile
+
+          if (!injectedStyles.has(src)) {
+            const styleTag = document.createElement('style');
+            styleTag.textContent = data.styles;
+            styleTag.dataset.povSource = src;
+            document.head.appendChild(styleTag);
+            injectedStyles.add(src);
+          }
+
+          modalBody.innerHTML = `
+            <a class="card-modal-link" href="${prettyHref}" target="_blank" rel="noopener" style="margin-bottom:16px;">
+              Open as full page ↗
+            </a>
+            ${data.html}`;
+        } catch (err) {
+          if (token !== requestToken) return;
+          modalBody.innerHTML = `<p class="card-modal-desc">Couldn’t load this case study (${err.message}). <a class="card-modal-link" href="${prettyHref}">Open it directly ↗</a></p>`;
+        }
+      }
+
+      function openModal(card) {
+        const href = card.getAttribute('href');
+        const src = card.dataset.src || href;
+        const iconHtml = card.querySelector('.card-icon')?.outerHTML || '';
+        const name = card.querySelector('.card-name')?.textContent || '';
+
+        modalTitle.innerHTML = `${iconHtml}<span>${name}</span>`;
+        modalBody.className = 'card-modal-body';
+
+        if (src) {
+          renderCaseStudy(src, href);
+        } else {
+          renderSimpleCard(card);
+        }
+
+        lastFocused = document.activeElement;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function closeModal() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        modalBody.innerHTML = '';
+        if (lastFocused) lastFocused.focus();
+      }
+
+      cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal(card);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+      });
     })();
   </script>
 

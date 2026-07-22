@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Powered by Claude Code — Abhay Tyagi | The Product Artisan</title>
-  <meta name="description" content="How I use Claude Code to build an AI-powered PM operating system — custom skills, agents, MCP servers, and more.">
-  <meta property="og:title" content="Powered by Claude Code — Abhay Tyagi">
-  <meta property="og:description" content="How I use Claude Code to build an AI-powered PM operating system — custom skills, agents, MCP servers, and more.">
+  <title>My Claude Code Stack — Abhay Tyagi | The Product Artisan</title>
+  <meta name="description" content="Skills, agents, commands, hooks, and a CLAUDE.md governance system — how I actually run Claude Code across a personal and a team-wide operating system.">
+  <meta property="og:title" content="My Claude Code Stack — Abhay Tyagi">
+  <meta property="og:description" content="Skills, agents, commands, hooks, and a CLAUDE.md governance system — how I actually run Claude Code across a personal and a team-wide operating system.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://github.com/lampiiii/the-product-artisan">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Powered by Claude Code — Abhay Tyagi">
-  <meta name="twitter:description" content="How I use Claude Code to build an AI-powered PM operating system — custom skills, agents, MCP servers, and more.">
+  <meta name="twitter:title" content="My Claude Code Stack — Abhay Tyagi">
+  <meta name="twitter:description" content="Skills, agents, commands, hooks, and a CLAUDE.md governance system — how I actually run Claude Code across a personal and a team-wide operating system.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,20 +48,20 @@
 
     /* ─── Stats Strip ─── */
     .stats {
-      display: grid; grid-template-columns: repeat(5, 1fr);
+      display: grid; grid-template-columns: repeat(6, 1fr);
       border-bottom: 1px solid var(--border);
     }
     .stat {
       text-align: center; padding: 24px 16px;
       border-right: 1px solid var(--border);
     }
-    .stat:last-child { border-right: none; }
+    .stat:nth-child(6n) { border-right: none; }
     .stat-value { font-size: 28px; font-weight: 600; color: var(--accent); margin-bottom: 2px; }
     .stat-label { font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
 
     /* ─── Content ─── */
     .content {
-      max-width: 960px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 0 40px;
     }
@@ -93,10 +93,13 @@
     }
 
     /* ─── Item Cards ─── */
-    .items { display: flex; flex-direction: column; gap: 12px; }
+    .items {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 12px; align-items: stretch;
+    }
     .item {
-      display: flex; align-items: flex-start; gap: 16px;
-      padding: 20px; background: var(--surface-card);
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 18px; background: var(--surface-card);
       border: 1px solid var(--border);
       border-radius: 8px; transition: box-shadow 0.2s, transform 0.15s;
     }
@@ -106,11 +109,11 @@
       margin-top: 7px; flex-shrink: 0;
     }
     .item-dot--blue { background: var(--blue); }
-    .item-dot--green { background: var(--blue); }
-    .item-dot--purple { background: var(--blue); }
-    .item-dot--yellow { background: var(--blue); }
-    .item-dot--red { background: var(--blue); }
-    .item-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+    .item-dot--green { background: var(--green); }
+    .item-dot--purple { background: var(--purple); }
+    .item-dot--yellow { background: var(--yellow); }
+    .item-dot--red { background: var(--red); }
+    .item-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
     .item-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
     .item-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
     .item-tag {
@@ -168,7 +171,8 @@
       .hero { padding: 48px 20px 36px; }
       .content { padding: 0 20px; }
       .stats { grid-template-columns: repeat(3, 1fr); }
-      .stat:nth-child(4), .stat:nth-child(5) { border-top: 1px solid var(--border); }
+      .stat:nth-child(3n) { border-right: none; }
+      .stat:nth-child(n+4) { border-top: 1px solid var(--border); }
       .grid { grid-template-columns: 1fr; }
       .tree-item { flex-wrap: wrap; }
       .tree-desc { white-space: normal; margin-left: 0; padding-left: 26px; flex-basis: 100%; }
@@ -179,6 +183,84 @@
     @media (max-width: 400px) {
       .stat { padding: 20px 8px; }
       .stat-label { letter-spacing: 0.4px; }
+    }
+
+    /* ─── Distinction Table ─── */
+    .distinction-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--surface-card); border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden; margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .distinction-table th {
+      text-align: left; padding: 12px 16px; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.6px; font-weight: 600;
+      color: var(--text-tertiary); background: var(--surface-dim);
+      border-bottom: 1px solid var(--border);
+    }
+    .distinction-table td {
+      padding: 14px 16px; border-bottom: 1px solid var(--border);
+      color: var(--text-secondary); line-height: 1.5; vertical-align: top;
+    }
+    .distinction-table tr:last-child td { border-bottom: none; }
+    .distinction-table td:first-child { font-weight: 600; color: var(--text); white-space: nowrap; }
+
+    /* ─── Pattern Groups (agents) ─── */
+    .pattern-group { margin-bottom: 20px; }
+    .pattern-group:last-child { margin-bottom: 0; }
+    .pattern-label {
+      font-size: 13px; font-weight: 600; color: var(--text);
+      margin-bottom: 4px;
+    }
+    .pattern-desc {
+      font-size: 13px; color: var(--text-tertiary); line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    /* ─── Recommendation List ─── */
+    .reco-list { display: flex; flex-direction: column; gap: 14px; }
+    .reco {
+      display: flex; gap: 14px; padding: 16px 20px;
+      background: var(--surface-card); border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .reco-num {
+      flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+      background: var(--accent-bg); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+    }
+    .reco-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .reco-text strong { color: var(--text); }
+
+    /* ─── Repo Chips ─── */
+    .repo-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .repo-chip {
+      display: flex; flex-direction: column; gap: 2px;
+      padding: 12px 16px; background: var(--surface-card);
+      border: 1px solid var(--border); border-radius: 8px;
+      text-decoration: none; transition: box-shadow 0.2s, transform 0.15s;
+      min-width: 180px;
+    }
+    .repo-chip:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+    .repo-chip-name { font-size: 13px; font-weight: 600; color: var(--text); font-family: 'Source Code Pro', monospace; }
+    .repo-chip-desc { font-size: 12px; color: var(--text-tertiary); }
+
+    /* ─── Callout ─── */
+    .callout {
+      padding: 18px 20px;
+      background: var(--surface-card); border: 1px solid var(--border);
+      border-left: 3px solid var(--red); border-radius: 8px;
+      font-size: 13px; color: var(--text-secondary); line-height: 1.7;
+    }
+    .callout code {
+      font-family: 'Source Code Pro', monospace; font-size: 12px;
+      background: var(--surface-dim); padding: 1px 6px; border-radius: 4px;
+      color: var(--text);
+    }
+    @media (max-width: 768px) {
+      .distinction-table { font-size: 13px; }
+      .distinction-table th, .distinction-table td { padding: 10px 12px; }
     }
   </style>
 </head>
@@ -268,7 +350,7 @@
       </a>
       <a href="/claude-code" class="sidebar-link active">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Powered by Claude Code
+        My Claude Code Stack
       </a>
     </div>
 
@@ -311,21 +393,29 @@
 
     <!-- ─── Hero ─── -->
     <div class="hero">
-      <div class="hero-badge">Powered by Claude Code</div>
-      <h1>My <span>AI-Native</span> PM Operating System</h1>
-      <p>This entire workspace — task management, product strategy, feature specs, weekly syncs, and this portfolio — is built and run using Claude Code (an AI coding assistant), with custom shortcuts, automated helpers, and connections to outside tools.</p>
-      <p style="margin-top: 14px; font-size: 13px; color: var(--text-tertiary);">This page documents version 1 — where the system started. It has since grown into a team-wide setup of 30+ automated helpers, 70+ ready-made routines, 40+ shortcuts, and 12 self-maintaining checks, covered in <a href="/proof-of-value/platform-thinking" style="color: var(--accent);">Platform Thinking</a>.</p>
+      <div class="hero-badge">My Claude Code Stack</div>
+      <h1>How I Actually <span>Use</span> Claude Code</h1>
+      <p>I run two operating systems on Claude Code — a personal PM workspace and a team-wide one — both entirely markdown and Git, no Notion or Jira. Skills, agents, hooks, and a directory-scoped CLAUDE.md system do the work a stack of SaaS tools usually does.</p>
+      <p style="margin-top: 14px; font-size: 13px; color: var(--text-tertiary);">Everything below is real and verifiable — pulled directly from my public and private repos, generalized where the original was scoped to a specific product domain.</p>
     </div>
 
     <!-- ─── Stats ─── -->
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">7</div>
-        <div class="stat-label">v1 Custom Skills</div>
+        <div class="stat-value">9</div>
+        <div class="stat-label">Custom Skills</div>
       </div>
       <div class="stat">
-        <div class="stat-value">2</div>
-        <div class="stat-label">v1 Custom Agents</div>
+        <div class="stat-value">5</div>
+        <div class="stat-label">Custom Agents</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">5</div>
+        <div class="stat-label">Custom Commands</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">11</div>
+        <div class="stat-label">Lifecycle Hooks</div>
       </div>
       <div class="stat">
         <div class="stat-value">24</div>
@@ -333,19 +423,32 @@
       </div>
       <div class="stat">
         <div class="stat-value">7</div>
-        <div class="stat-label">v1 Lifecycle Hooks</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">4</div>
-        <div class="stat-label">MCP Integrations</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value">3</div>
-        <div class="stat-label">Memory Files</div>
+        <div class="stat-label">Repos Built With It</div>
       </div>
     </div>
 
     <div class="content">
+
+      <!-- ─── The Big Idea ─── -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="section-title">The Big Idea</div>
+        </div>
+        <div class="section-desc">I treat Claude Code as a team operating system, not a coding assistant. Everything — specs, notes, generated dashboards, slash commands, agents, hooks — lives in one Git repo. The repo <em>is</em> the context: Claude Code reads from it, writes to it, and keeps it coherent. A well-organized repo with strong CLAUDE.md files works the same way a well-documented codebase does for a new engineer.</div>
+        <table class="distinction-table">
+          <thead>
+            <tr><th>Type</th><th>When I use it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Skill</td><td>A structured, repeatable output task — loaded into context and followed inline. Skills compose: one can invoke another.</td></tr>
+            <tr><td>Command</td><td>A short, opinionated action — scaffolding, data pulls, orchestrating skills or agents in a defined sequence.</td></tr>
+            <tr><td>Agent</td><td>Long-horizon, multi-step work that needs its own context window and judgment calls — autonomous within a scoped domain.</td></tr>
+          </tbody>
+        </table>
+      </div>
 
       <!-- ─── Custom Skills ─── -->
       <div class="section">
@@ -355,13 +458,13 @@
           </div>
           <div class="section-title">Custom Skills</div>
         </div>
-        <div class="section-desc">Ready-made shortcuts that automate repeat product-management tasks. Run one and get a finished, polished result right away — no back-and-forth needed.</div>
+        <div class="section-desc">Ready-made shortcuts that automate repeat product-management tasks. Run one and get a finished, polished result immediately — zero back-and-forth by design.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--blue"></div>
             <div>
               <div class="item-name">/epic-creator</div>
-              <div class="item-desc">Creates structured product epics with Subject, Description, and Acceptance Criteria (problem statement, personas, design engagement, functional details, outcomes, pricing, telemetry). Outputs as .docx.</div>
+              <div class="item-desc">Drafts a structured product epic — subject, description, acceptance criteria — from a feature doc or a single sentence. Domain-configurable; outputs as a formatted document.</div>
               <div class="item-tags"><span class="item-tag">Product</span><span class="item-tag">Documentation</span></div>
             </div>
           </div>
@@ -369,7 +472,7 @@
             <div class="item-dot item-dot--blue"></div>
             <div>
               <div class="item-name">/story-creator</div>
-              <div class="item-desc">Generates user stories with Short Description, Description, and Acceptance Criteria — structured for engineering handoff with functional details and user interaction flows.</div>
+              <div class="item-desc">Breaks an epic or feature description into engineering-ready user stories with short description, description, and acceptance criteria.</div>
               <div class="item-tags"><span class="item-tag">Product</span><span class="item-tag">Agile</span></div>
             </div>
           </div>
@@ -377,7 +480,7 @@
             <div class="item-dot item-dot--blue"></div>
             <div>
               <div class="item-name">/meeting-prep</div>
-              <div class="item-desc">Generates concise meeting subject lines (max 8 words) and structured, priority-ranked agendas from free-form input.</div>
+              <div class="item-desc">Turns free-form notes into a concise subject line (max 8 words) and a priority-ranked agenda — nothing the input mentions gets dropped.</div>
               <div class="item-tags"><span class="item-tag">Meetings</span><span class="item-tag">Productivity</span></div>
             </div>
           </div>
@@ -385,32 +488,48 @@
             <div class="item-dot item-dot--blue"></div>
             <div>
               <div class="item-name">/doc-refiner</div>
-              <div class="item-desc">Refines unstructured markdown — adds TL;DR, structures with headings, removes duplication, fixes grammar while preserving author voice. Single-pass execution.</div>
+              <div class="item-desc">Refines unstructured markdown — adds a TL;DR, structures with headings, removes duplication — while preserving the author's original voice. Single-pass.</div>
               <div class="item-tags"><span class="item-tag">Writing</span><span class="item-tag">Documentation</span></div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/design-thinker</div>
-              <div class="item-desc">Design thinking and customer empathy expert using Stanford d.school and IDEO methodologies. Asks 3-5 clarifying questions per round before proposing solutions — built for feature ideation and UX decisions.</div>
-              <div class="item-tags"><span class="item-tag">Design</span><span class="item-tag">Empathy</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
-              <div class="item-name">/figma-console</div>
-              <div class="item-desc">Connects to Figma via MCP for design spec extraction, component searching, variable/token management, screenshots, and plugin debugging. 56+ tools for read-write Figma access.</div>
-              <div class="item-tags"><span class="item-tag">Design</span><span class="item-tag">Figma</span><span class="item-tag">MCP</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--blue"></div>
-            <div>
               <div class="item-name">/team-message</div>
-              <div class="item-desc">Converts rough thoughts into clear, professional messages for Teams, Slack, or email — structured with context, key points, and clear ask. Saves to conversation log.</div>
+              <div class="item-desc">Converts rough thoughts into a clear, conversational message for Slack, Teams, or email — in a real voice, not a template.</div>
               <div class="item-tags"><span class="item-tag">Communication</span><span class="item-tag">Productivity</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/image-to-spec</div>
+              <div class="item-desc">Reads a screenshot, whiteboard photo, or mockup and extracts a complete, structured markdown feature spec — no clarifying questions asked.</div>
+              <div class="item-tags"><span class="item-tag">Design</span><span class="item-tag">Product</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/linkedin-post</div>
+              <div class="item-desc">Drafts a ready-to-publish LinkedIn post from any topic or rough notes, matching a proven hook → context → payoff structure and my own voice.</div>
+              <div class="item-tags"><span class="item-tag">Writing</span><span class="item-tag">Personal Brand</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/cc-check</div>
+              <div class="item-desc">Runs a structured audit of my own Claude Code workflow against 8 best-practice pillars — plan mode, task tracking, memory, CLAUDE.md, skills, agents, prompts, context management.</div>
+              <div class="item-tags"><span class="item-tag">Workflow</span><span class="item-tag">Self-Audit</span></div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--blue"></div>
+            <div>
+              <div class="item-name">/spin-up</div>
+              <div class="item-desc">Offloads a research-heavy or exploratory task to a fresh sub-agent with its own context window, so the main session's journey (dead ends, intermediate results) doesn't consume it.</div>
+              <div class="item-tags"><span class="item-tag">Context Mgmt</span><span class="item-tag">Delegation</span></div>
             </div>
           </div>
         </div>
@@ -424,67 +543,118 @@
           </div>
           <div class="section-title">Custom Agents</div>
         </div>
-        <div class="section-desc">AI agents that work on their own to run deep analysis. Each one remembers past context, has specialized knowledge of the product, and produces consistently structured results.</div>
-        <div class="items">
-          <div class="item">
-            <div class="item-dot item-dot--purple"></div>
-            <div>
-              <div class="item-name">Competitive Strategic Lens</div>
-              <div class="item-desc">A competitive-intelligence expert for Customer Success platforms. Compares our features against Gainsight, Totango, ChurnZero, Planhat, Vitally, and Salesforce, and scores how defensible each advantage is.</div>
-              <div class="item-tags"><span class="item-tag">Strategy</span><span class="item-tag">Competitive Intel</span><span class="item-tag">Opus</span></div>
+        <div class="section-desc">Agents are long-horizon, multi-step workers — each a scoped `.md` spec with its own model, tools, and system prompt. I group them by the pattern they serve, not just what they're called.</div>
+
+        <div class="pattern-group">
+          <div class="pattern-label">Stewardship agents</div>
+          <div class="pattern-desc">Own a corpus and keep it consistent over time — propose changes, a human approves before anything is written.</div>
+          <div class="items">
+            <div class="item">
+              <div class="item-dot item-dot--purple"></div>
+              <div>
+                <div class="item-name">Persona Drip</div>
+                <div class="item-desc">Generates one vivid, realistic B2B persona workday scenario daily — building intuitive empathy for roles I haven't lived, logged to a running corpus that never repeats a category consecutively.</div>
+                <div class="item-tags"><span class="item-tag">Empathy</span><span class="item-tag">Daily</span></div>
+              </div>
             </div>
           </div>
-          <div class="item">
-            <div class="item-dot item-dot--purple"></div>
-            <div>
-              <div class="item-name">PRD Edge Case Analyzer</div>
-              <div class="item-desc">Reviews product requirement documents (PRDs) across 10 dimensions — user behavior, data, integrations, security, performance, error handling, and more — specialized for Customer Success Management features.</div>
-              <div class="item-tags"><span class="item-tag">Quality</span><span class="item-tag">Risk Analysis</span><span class="item-tag">Opus</span></div>
+        </div>
+
+        <div class="pattern-group">
+          <div class="pattern-label">Critic agents</div>
+          <div class="pattern-desc">Independent review pass, run in a fresh context so they aren't anchored to the author's framing.</div>
+          <div class="items">
+            <div class="item">
+              <div class="item-dot item-dot--purple"></div>
+              <div>
+                <div class="item-name">PRD Edge Case Analyzer</div>
+                <div class="item-desc">Reviews a product requirements doc across 10 risk dimensions — user behavior, data, integrations, security, performance, error handling, and more — before it reaches engineering.</div>
+                <div class="item-tags"><span class="item-tag">Quality</span><span class="item-tag">Risk Analysis</span></div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-dot item-dot--purple"></div>
+              <div>
+                <div class="item-name">Competitive Strategic Lens</div>
+                <div class="item-desc">Runs a 7-step competitive analysis on any feature or roadmap decision — positioning, differentiation, moat defensibility, and disruption risk from AI-native entrants.</div>
+                <div class="item-tags"><span class="item-tag">Strategy</span><span class="item-tag">Competitive Intel</span></div>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div class="pattern-group">
+          <div class="pattern-label">QA / health agents</div>
+          <div class="pattern-desc">Dedicated agents that audit the platform or the repo itself, on demand or on a schedule.</div>
+          <div class="items">
+            <div class="item">
+              <div class="item-dot item-dot--purple"></div>
+              <div>
+                <div class="item-name">Repo Health Doctor</div>
+                <div class="item-desc">Audits the repo across 9 categories — structure, metadata validity, cross-references, doc drift, content quality, naming, people/org hygiene, data-file sync, git hygiene — with a prioritized fix list and trend tracking vs. prior runs.</div>
+                <div class="item-tags"><span class="item-tag">Governance</span><span class="item-tag">Scheduled</span></div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-dot item-dot--purple"></div>
+              <div>
+                <div class="item-name">Claude Code Coach</div>
+                <div class="item-desc">The engine behind /cc-check — reads the activity log, memory, and existing skills/commands to score workflow health and surface specific, actionable improvements.</div>
+                <div class="item-tags"><span class="item-tag">Workflow</span><span class="item-tag">Coaching</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pattern-group" style="margin-bottom: 0;">
+          <div class="pattern-label">Craft-ops agents <span style="font-weight: 400; color: var(--text-tertiary);">— emerging pattern</span></div>
+          <div class="pattern-desc">Watch how other agents perform over time and surface recurring quality issues, only proposing a doc update once a pattern repeats 2+ times — never on a single occurrence. Next pattern I'm building toward, not shipped yet.</div>
         </div>
       </div>
 
-      <!-- ─── MCP Servers ─── -->
+      <!-- ─── Custom Commands ─── -->
       <div class="section">
         <div class="section-header">
           <div class="section-icon section-icon--green">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
           </div>
-          <div class="section-title">MCP Integrations</div>
+          <div class="section-title">Custom Commands</div>
         </div>
-        <div class="section-desc">MCP (Model Context Protocol) is a standard that lets Claude Code plug into outside tools directly — connecting design software, plugin libraries, and document-generation tools.</div>
+        <div class="section-desc">Short, opinionated actions — scaffolding, data pulls, and orchestration. Commands call skills and agents in a defined sequence rather than doing the work themselves.</div>
         <div class="items">
           <div class="item">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">Figma Console MCP</div>
-              <div class="item-desc">Full read-write Figma access via 56+ tools — navigation, component instantiation, variable management, design token systems, screenshots, and plugin debugging. Enables design-to-code workflows.</div>
-              <div class="item-tags"><span class="item-tag">Design</span><span class="item-tag">56+ Tools</span></div>
+              <div class="item-name">/commit-push</div>
+              <div class="item-desc">Stages relevant changes, writes a commit message matching the repo's existing style, and pushes — automatically excludes secrets and lockfiles.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">Anthropic Agent Skills</div>
-              <div class="item-desc">Example and document skill plugins from the Anthropic marketplace — PDF generation, PPTX/DOCX creation, spreadsheet manipulation, frontend design, and algorithmic art.</div>
-              <div class="item-tags"><span class="item-tag">Documents</span><span class="item-tag">Skills</span></div>
+              <div class="item-name">/claude-md-init-all</div>
+              <div class="item-desc">Scans a repo top to bottom for directories missing a CLAUDE.md and drafts one for each — keeps the governance hierarchy complete as the repo grows.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">Google Workspace MCP</div>
-              <div class="item-desc">Full Google Workspace integration — Gmail, Google Docs, Sheets, Slides, Calendar, Drive, and Forms access for reading, creating, and managing documents and communications.</div>
-              <div class="item-tags"><span class="item-tag">Productivity</span><span class="item-tag">100+ Tools</span></div>
+              <div class="item-name">/new-feature</div>
+              <div class="item-desc">Scaffolds a new feature folder from a template — copies structure, fills metadata, prompts for owners — for the team-wide operating system.</div>
             </div>
           </div>
           <div class="item">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">Claude Plugins Marketplace</div>
-              <div class="item-desc">10+ plugins including claude-code-setup, skill-creator, frontend-design, hookify, and playground — extending Claude Code's native capabilities.</div>
-              <div class="item-tags"><span class="item-tag">Ecosystem</span><span class="item-tag">10+ Plugins</span></div>
+              <div class="item-name">/update-activity-log</div>
+              <div class="item-desc">Reviews the current session and appends a polished entry to the activity log — checks for duplicates against what the Stop hook already auto-captured.</div>
+            </div>
+          </div>
+          <div class="item">
+            <div class="item-dot item-dot--green"></div>
+            <div>
+              <div class="item-name">/flip-a-coin</div>
+              <div class="item-desc">Flips a coin, 50/50, no explanation. Not everything needs to be productive.</div>
             </div>
           </div>
         </div>
@@ -498,64 +668,108 @@
           </div>
           <div class="section-title">Lifecycle Hooks</div>
         </div>
-        <div class="section-desc">Automatic checks that run every time, at the right moment — formatting code, blocking risky edits, catching data errors, and restoring context. These run without fail, instead of relying on remembering to do them manually.</div>
-        <div class="items">
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Desktop Notifications</div>
-              <div class="item-desc">macOS native notification with Glass sound whenever Claude Code is waiting for input — so you never miss a prompt while working in another app.</div>
-              <div class="item-tags"><span class="item-tag">Notification</span><span class="item-tag">macOS</span></div>
+        <div class="section-desc">Deterministic automation at the harness level — no LLM involved, no chance of forgetting. My rule: if I find myself repeating an instruction every session, it belongs in a hook, not in memory.</div>
+
+        <div class="pattern-group">
+          <div class="pattern-label">Stop — run after every session ends</div>
+          <div class="items">
+            <div class="item">
+              <div class="item-dot item-dot--red"></div>
+              <div>
+                <div class="item-name">log-activity</div>
+                <div class="item-desc">Auto-captures every session into a JSON activity ledger, tagged "auto." Never overwrites an entry I've since polished by hand — atomic writes so a partial run can't corrupt the feed.</div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-dot item-dot--red"></div>
+              <div>
+                <div class="item-name">nudge-compact</div>
+                <div class="item-desc">Tracks tool-call count from the transcript and nudges toward /compact or /clear at 30 / 75 / 150 calls, once per threshold — before quality degrades.</div>
+              </div>
             </div>
           </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Secret File Protection</div>
-              <div class="item-desc">Blocks any Edit or Write to .env files — a hard guardrail preventing API keys and secrets from being accidentally modified or exposed through commits.</div>
-              <div class="item-tags"><span class="item-tag">PreToolUse</span><span class="item-tag">Security</span></div>
+        </div>
+
+        <div class="pattern-group">
+          <div class="pattern-label">PreToolUse — run before specific tool calls</div>
+          <div class="items">
+            <div class="item">
+              <div class="item-dot item-dot--red"></div>
+              <div>
+                <div class="item-name">validate-teams-handles</div>
+                <div class="item-desc">Blocks an edit to any markdown file if it contains an @handle that doesn't match the team roster. Catches typos before they ship; code blocks are exempt.</div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-dot item-dot--red"></div>
+              <div>
+                <div class="item-name">protect-governance-files</div>
+                <div class="item-desc">Restricts edits to the capability registry, the roster, and the hooks themselves to core authors only. Fails open on a missing roster so a misconfiguration doesn't brick all editing.</div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-dot item-dot--red"></div>
+              <div>
+                <div class="item-name">protect-intake-paths</div>
+                <div class="item-desc">Blocks a specific agent type from reading files under the research intake directory — a "never read raw transcripts" policy enforced by path, not by prose instruction.</div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-dot item-dot--red"></div>
+              <div>
+                <div class="item-name">govern-agent</div>
+                <div class="item-desc">Gates every sub-agent call against a capability registry — is the agent known, does the caller have access, is a sensitive path involved. Fails closed if the registry exists but is broken.</div>
+              </div>
             </div>
           </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Markdown Table Validator</div>
-              <div class="item-desc">Validates column consistency in pipe-delimited markdown tables after edits to task, sync, and backlog files — catches malformed tables before they break dashboards.</div>
-              <div class="item-tags"><span class="item-tag">PostToolUse</span><span class="item-tag">Data Integrity</span></div>
+        </div>
+
+        <div class="pattern-group" style="margin-bottom: 0;">
+          <div class="pattern-label">PostToolUse — run after specific tool calls</div>
+          <div class="items">
+            <div class="item">
+              <div class="item-dot item-dot--red"></div>
+              <div>
+                <div class="item-name">log-skill-usage / log-agent-usage</div>
+                <div class="item-desc">Every skill and agent invocation is logged and feeds a live tool-usage dashboard — no manual tracking.</div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-dot item-dot--red"></div>
+              <div>
+                <div class="item-name">regenerate-toolkit-guides</div>
+                <div class="item-desc">Rebuilds the guides catalog automatically whenever a skill, agent, command, or hook file changes.</div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-dot item-dot--red"></div>
+              <div>
+                <div class="item-name">sync-capability-registry</div>
+                <div class="item-desc">A new agent, skill, or command file gets a conservative auto-stub entry in the registry so it's discoverable — locked down until a core author reviews it.</div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="item-dot item-dot--red"></div>
+              <div>
+                <div class="item-name">regenerate-teamos</div>
+                <div class="item-desc">Watches specific file patterns and rebuilds the matching dashboard page — zero manual regeneration steps, ever.</div>
+              </div>
             </div>
           </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Server Syntax Check</div>
-              <div class="item-desc">Runs node --check on server.js after any edit — catches syntax errors immediately rather than at runtime when the server fails to start.</div>
-              <div class="item-tags"><span class="item-tag">PostToolUse</span><span class="item-tag">Validation</span></div>
-            </div>
+        </div>
+      </div>
+
+      <!-- ─── Guardrails ─── -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
           </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Package Install Reminder</div>
-              <div class="item-desc">Injects a deterministic reminder to update installed-packages.md whenever npm install or pip install runs — replacing a memory-based rule with guaranteed execution.</div>
-              <div class="item-tags"><span class="item-tag">PostToolUse</span><span class="item-tag">Bash</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Context Re-Injection on Compaction</div>
-              <div class="item-desc">Restores key working rules (like how tasks are prioritized and tracked) whenever a long conversation gets automatically summarized — so Claude doesn't lose instructions mid-session.</div>
-              <div class="item-tags"><span class="item-tag">SessionStart</span><span class="item-tag">Compact</span></div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Activity Log & Proof-of-Value Check</div>
-              <div class="item-desc">Fires when Claude stops — checks if today's activity has been logged and if proof-of-value evidence has been assessed. Mandatory reminders that ensure no session ends without documentation.</div>
-              <div class="item-tags"><span class="item-tag">Stop</span><span class="item-tag">Accountability</span></div>
-            </div>
-          </div>
+          <div class="section-title">Guardrails</div>
+        </div>
+        <div class="section-desc">Permission hardening at the harness level, so the model asks instead of guessing.</div>
+        <div class="callout">
+          Destructive commands are denied outright in <code>settings.json</code> — <code>rm -rf</code>, <code>sudo rm</code>, <code>git push --force</code>, <code>git reset --hard</code>. The model can't accidentally run them; it has to ask me instead. I can always approve one explicitly when I mean it — I can't un-run one I didn't.
         </div>
       </div>
 
@@ -565,187 +779,168 @@
           <div class="section-icon section-icon--yellow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
           </div>
-          <div class="section-title">CLAUDE.md Context System</div>
+          <div class="section-title">CLAUDE.md Governance System</div>
         </div>
-        <div class="section-desc">Multi-layered project context files that give Claude deep understanding at every scope — from workspace conventions down to individual feature requirements.</div>
-        <div class="grid">
-          <div class="grid-card">
-            <div class="grid-card-title">Workspace Root</div>
-            <div class="grid-card-desc">PM Operating System — directory structure, daily/weekly workflows, task management conventions, data analysis procedures.</div>
-            <div class="grid-card-path">pm-workspace/CLAUDE.md</div>
-          </div>
-          <div class="grid-card">
-            <div class="grid-card-title">Orbis (Personal Projects)</div>
-            <div class="grid-card-desc">Self-contained apps workspace — stack preferences, app isolation patterns, prototype conventions.</div>
-            <div class="grid-card-path">pm-workspace/orbis/CLAUDE.md</div>
-          </div>
-          <div class="grid-card">
-            <div class="grid-card-title">Customer Success Management</div>
-            <div class="grid-card-desc">Product workspace — strategy, features (backlog → active → shipped), telemetry data, research organization.</div>
-            <div class="grid-card-path">products/customer-success-management/CLAUDE.md</div>
-          </div>
-          <div class="grid-card">
-            <div class="grid-card-title">Feature Workspaces</div>
-            <div class="grid-card-desc">Every in-flight feature gets its own CLAUDE.md — requirements, data model notes, design principles, and accuracy guardrails scoped to that feature alone.</div>
-            <div class="grid-card-path">features/&lt;release&gt;/active/*/CLAUDE.md</div>
-          </div>
-          <div class="grid-card">
-            <div class="grid-card-title">Research Workspaces</div>
-            <div class="grid-card-desc">Early-stage explorations get the same treatment — use-case inventories, architecture options, and open questions captured before a single ticket exists.</div>
-            <div class="grid-card-path">research/*/CLAUDE.md</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ─── Memory System ─── -->
-      <div class="section">
-        <div class="section-header">
-          <div class="section-icon section-icon--red">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 00-6.88 17.23l-.38.38A1 1 0 005.46 21h13.08a1 1 0 00.72-1.69l-.38-.38A10 10 0 0012 2z"/><path d="M12 6v6l4 2"/></svg>
-          </div>
-          <div class="section-title">Persistent Memory</div>
-        </div>
-        <div class="section-desc">Cross-session memory that persists user preferences, feedback, and workflow patterns — so Claude remembers context across conversations without re-explaining.</div>
-        <div class="items">
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Session Start Reminders</div>
-              <div class="item-desc">Auto-reminds to pull latest code at the start of every session before any work begins.</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Proactive Career Growth</div>
-              <div class="item-desc">Every task gets cross-referenced against the AI PM Strategic Playbook — connecting daily work to skill areas like pricing strategy, agent governance, domain expertise, and platform thinking.</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">UI Quality Feedback</div>
-              <div class="item-desc">Accumulates design feedback across sessions — ensures clean layout, intentional placement, and high design quality for all future UI work.</div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="item-dot item-dot--red"></div>
-            <div>
-              <div class="item-name">Strategic PM Partner Style</div>
-              <div class="item-desc">Persists response style preferences — structured, copy-ready, CSM-domain-aware outputs with multiple functional modes (strategist, AI architect, competitive analyst). Executive-friendly, plug-and-play.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ─── Workspace Structure ─── -->
-      <div class="section">
-        <div class="section-header">
-          <div class="section-icon section-icon--blue">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>
-          </div>
-          <div class="section-title">Workspace Structure</div>
-        </div>
-        <div class="section-desc">A markdown-based PM operating system organized into clear functional areas — from daily task tracking to product strategy to leadership development.</div>
+        <div class="section-desc">Every folder gets a CLAUDE.md answering three questions: what is this folder for, what belongs here, and what doesn't (and where does it go instead). The root CLAUDE.md has a routing table — a decision tree mapping any content type to its correct home, so Claude almost never files something in the wrong place. 24 files total across my personal and team-wide systems, loaded in order: global user settings → project root → folder-level.</div>
         <div class="file-tree">
           <div class="tree-item tree-item--l1">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">pm-workspace/</span>
-          </div>
-          <div class="tree-item tree-item--l2">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">action-tracker/</span>
-            <span class="tree-desc">Task management, prioritized by effort/impact (Leverage-Neutral-Overhead)</span>
-          </div>
-          <div class="tree-item tree-item--l2">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">manager-guidance/</span>
-            <span class="tree-desc">Leadership frameworks & weekly syncs</span>
-          </div>
-          <div class="tree-item tree-item--l3">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">framework-and-mindset/</span>
-            <span class="tree-desc">AI PM Strategic Playbook, roadmap guide</span>
-          </div>
-          <div class="tree-item tree-item--l3">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">weekly-sync-log/</span>
-            <span class="tree-desc">Active & discussed points for 1:1s</span>
-          </div>
-          <div class="tree-item tree-item--l2">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">portfolio/</span>
-            <span class="tree-desc">This portfolio site</span>
+            <span class="tree-name">CLAUDE.md</span>
+            <span class="tree-desc">Root — what this repo is, repo conventions, routing table</span>
           </div>
           <div class="tree-item tree-item--l2">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
             <span class="tree-name">products/</span>
-            <span class="tree-desc">Product workspaces</span>
-          </div>
-          <div class="tree-item tree-item--l3">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">product-workspace/</span>
-          </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">strategy/</span>
-            <span class="tree-desc">Vision, mission, goals and progress metrics (OKRs)</span>
-          </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--feature"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">releases/features/</span>
-            <span class="tree-desc">Active feature specs & working docs</span>
-          </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">data-analysis/</span>
-            <span class="tree-desc">Platform exports & insights</span>
-          </div>
-          <div class="tree-item tree-item--l4">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">research/</span>
-            <span class="tree-desc">User research & competitive analysis</span>
+            <span class="tree-desc">Per-product context — roadmaps, features, references</span>
           </div>
           <div class="tree-item tree-item--l2">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">claude-code-reference/</span>
-            <span class="tree-desc">Tool guides & MCP documentation</span>
+            <span class="tree-name">team/</span>
+            <span class="tree-desc">Roster, stakeholder map, activity ledger</span>
+          </div>
+          <div class="tree-item tree-item--l2">
+            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
+            <span class="tree-name">guides/</span>
+            <span class="tree-desc">How the team works — practices, not tools</span>
+          </div>
+          <div class="tree-item tree-item--l2">
+            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
+            <span class="tree-name">ceremonies/</span>
+            <span class="tree-desc">Recurring ceremonies — inputs, data, output decks</span>
           </div>
           <div class="tree-item tree-item--l2">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
             <span class="tree-name">resources/</span>
-            <span class="tree-desc">Research materials & reference docs</span>
+            <span class="tree-desc">Team-wide reference material by function</span>
+          </div>
+          <div class="tree-item tree-item--l2">
+            <div class="tree-icon tree-icon--feature"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
+            <span class="tree-name">teamos/</span>
+            <span class="tree-desc">The dashboard — HTML pages auto-generated from the repo</span>
           </div>
           <div class="tree-item tree-item--l2">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">skills/</span>
-            <span class="tree-desc">Shared skill modules</span>
+            <span class="tree-name">.claude/</span>
+            <span class="tree-desc">settings.json, agents/, commands/, skills/, hooks/</span>
           </div>
-          <div class="tree-item tree-item--l2">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">styles/</span>
-            <span class="tree-desc">Writing guides (executive email, etc.)</span>
+        </div>
+      </div>
+
+      <!-- ─── How I Work ─── -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--yellow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <div class="tree-item tree-item--l2">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">orbis/</span>
-            <span class="tree-desc">Personal projects & side apps</span>
+          <div class="section-title">How I Work</div>
+        </div>
+        <div class="section-desc">A few habits that keep a long-running Claude Code practice from degrading over time.</div>
+        <div class="items">
+          <div class="item">
+            <div class="item-dot item-dot--yellow"></div>
+            <div>
+              <div class="item-name">Scoped reading</div>
+              <div class="item-desc">I tell Claude to read only what it needs. @file mentions pull specific files in rather than hoping Claude finds them; skills declare which repo files they should read in their own frontmatter.</div>
+            </div>
           </div>
-          <div class="tree-item tree-item--l2">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">conversations/</span>
-            <span class="tree-desc">Generated team messages</span>
+          <div class="item">
+            <div class="item-dot item-dot--yellow"></div>
+            <div>
+              <div class="item-name">/compact and /clear discipline</div>
+              <div class="item-desc">/compact when continuing the same topic (keeps the summary, drops the raw transcript); /clear on a genuine topic shift. The nudge-compact hook reminds me before I'd otherwise think to.</div>
+            </div>
           </div>
-          <div class="tree-item tree-item--l2">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">linkedin-posts/</span>
-            <span class="tree-desc">LinkedIn content & drafts</span>
+          <div class="item">
+            <div class="item-dot item-dot--yellow"></div>
+            <div>
+              <div class="item-name">Plan Mode for anything non-trivial</div>
+              <div class="item-desc">Multi-file changes or non-obvious sequencing go through Plan Mode first — Claude lays out the full plan before touching anything, catching "that's not what I meant" before edits land.</div>
+            </div>
           </div>
-          <div class="tree-item tree-item--l2">
-            <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
-            <span class="tree-name">stakeholders/</span>
-            <span class="tree-desc">Stakeholder mapping</span>
+          <div class="item">
+            <div class="item-dot item-dot--yellow"></div>
+            <div>
+              <div class="item-name">Fresh agents for review</div>
+              <div class="item-desc">Critic and QA agents always run in a fresh sub-agent context. An author reviewing their own work has anchoring bias; a fresh context doesn't.</div>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <!-- ─── What I'd Recommend ─── -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4z"/></svg>
+          </div>
+          <div class="section-title">What I'd Recommend to Anyone Starting</div>
+        </div>
+        <div class="reco-list">
+          <div class="reco">
+            <div class="reco-num">1</div>
+            <div class="reco-text"><strong>Write CLAUDE.md before you write anything else.</strong> A repo Claude Code can navigate confidently is worth more than dozens of individual prompts. Think of it as the README your AI colleague reads every session.</div>
+          </div>
+          <div class="reco">
+            <div class="reco-num">2</div>
+            <div class="reco-text"><strong>Put recurring behavior in hooks, not in memory.</strong> If you're repeating an instruction every session, it belongs in a hook or a CLAUDE.md. Memory is for facts; hooks are for behavior.</div>
+          </div>
+          <div class="reco">
+            <div class="reco-num">3</div>
+            <div class="reco-text"><strong>Deny the dangerous commands up front.</strong> Add rm -rf, git push --force, and git reset --hard to the deny list. You can always approve them explicitly when you mean to; you can't un-run them when you didn't.</div>
+          </div>
+          <div class="reco">
+            <div class="reco-num">4</div>
+            <div class="reco-text"><strong>Use separate agents for creation and critique.</strong> Don't ask the same context window that wrote a document to also review it. Spawn a fresh critic agent — it finds things the author context missed.</div>
+          </div>
+          <div class="reco">
+            <div class="reco-num">5</div>
+            <div class="reco-text"><strong>Log everything, polish selectively.</strong> Auto-capture every session with a Stop hook. Polish the entries that matter with a manual command. A complete record, without the overhead of journaling by hand.</div>
+          </div>
+          <div class="reco">
+            <div class="reco-num">6</div>
+            <div class="reco-text"><strong>Treat the repo as the source of truth, not the conversation.</strong> Anything important that comes out of a session should land in the repo — a file, a YAML update, a JSON entry. The conversation is ephemeral; the repo is not.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Built With This Stack ─── -->
+      <div class="section">
+        <div class="section-header">
+          <div class="section-icon section-icon--green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+          </div>
+          <div class="section-title">Built With This Stack</div>
+        </div>
+        <div class="section-desc">Every repo below was written entirely with Claude Code — no framework, no build step where one wasn't needed.</div>
+        <div class="repo-chips">
+          <a class="repo-chip" href="https://github.com/lampiiii/pm-operating-system" target="_blank" rel="noopener">
+            <span class="repo-chip-name">pm-operating-system</span>
+            <span class="repo-chip-desc">Personal PM workspace — public</span>
+          </a>
+          <a class="repo-chip" href="https://github.com/lampiiii/team-operating-system" target="_blank" rel="noopener">
+            <span class="repo-chip-name">team-operating-system</span>
+            <span class="repo-chip-desc">Team-wide extension — public</span>
+          </a>
+          <a class="repo-chip" href="https://github.com/lampiiii/the-product-artisan" target="_blank" rel="noopener">
+            <span class="repo-chip-name">the-product-artisan</span>
+            <span class="repo-chip-desc">This portfolio</span>
+          </a>
+          <span class="repo-chip" style="cursor: default;">
+            <span class="repo-chip-name">basecamp</span>
+            <span class="repo-chip-desc">Personal projects workspace</span>
+          </span>
+          <span class="repo-chip" style="cursor: default;">
+            <span class="repo-chip-name">countdownr</span>
+            <span class="repo-chip-desc">iOS + watchOS app</span>
+          </span>
+          <span class="repo-chip" style="cursor: default;">
+            <span class="repo-chip-name">recipe-book</span>
+            <span class="repo-chip-desc">Node.js side project</span>
+          </span>
+          <span class="repo-chip" style="cursor: default;">
+            <span class="repo-chip-name">offer-os</span>
+            <span class="repo-chip-desc">Job search operating system</span>
+          </span>
         </div>
       </div>
 

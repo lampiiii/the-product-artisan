@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Career Timeline — Abhay Tyagi | The Product Artisan</title>
-  <meta name="description" content="Chronological career journey — coming soon.">
+  <meta name="description" content="An interactive, chronological walk through Abhay Tyagi's journey — from a math-topper school kid to Senior Product Manager building AI-powered Customer Success at a global enterprise SaaS company.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans+Display:400,500,700|Google+Sans:400,500,700|Google+Sans+Text:400,500&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans+Display:400,500,700|Google+Sans:400,500,700|Google+Sans+Text:400,500|Roboto+Mono:400,500&display=swap" rel="stylesheet">
   <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('portfolio-theme')||'dark');</script>
   <link rel="stylesheet" href="/assets/css/shared.css">
   <style>
@@ -19,60 +19,206 @@
       display: flex;
       flex-direction: column;
     }
-    .coming-soon {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 24px;
-    }
-    .coming-soon-card {
+
+    /* ---------- Intro ---------- */
+    .tl-intro {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 56px 24px 8px;
       text-align: center;
-      max-width: 480px;
     }
-    .coming-soon-icon {
-      width: 64px; height: 64px;
-      margin: 0 auto 24px;
-      border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-      background: var(--accent-bg, rgba(66,133,244,0.12));
-      color: var(--accent);
+    .tl-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px;
+      color: var(--accent); background: var(--accent-bg);
+      border-radius: var(--radius-pill); padding: 6px 14px; margin-bottom: 20px;
+      font-family: 'Google Sans', sans-serif;
     }
-    .coming-soon-icon svg { width: 30px; height: 30px; }
-    .coming-soon-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-tertiary);
+    .tl-intro h1 {
+      font-family: 'Google Sans Display', sans-serif;
+      font-size: clamp(30px, 5vw, 44px);
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .tl-intro h1 span { color: var(--accent); }
+    .tl-intro p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ---------- Stats ---------- */
+    .tl-stats {
+      max-width: 900px;
+      margin: 40px auto 0;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .tl-stat {
       background: var(--surface-card);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 6px 14px;
-      margin-bottom: 20px;
+      border-radius: var(--radius-card);
+      padding: 20px 16px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
     }
-    .coming-soon-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-tertiary); }
-    .coming-soon h1 {
-      font-size: 28px;
-      font-weight: 400;
-      color: var(--text);
-      letter-spacing: -0.3px;
-      margin-bottom: 12px;
+    .tl-stat:hover { transform: translateY(-3px); border-color: var(--border-strong); }
+    .tl-stat-value {
+      font-family: 'Google Sans Display', sans-serif;
+      font-size: 30px; font-weight: 500; color: var(--accent);
+      letter-spacing: -0.5px; line-height: 1.1; margin-bottom: 6px;
     }
-    .coming-soon h1 span { color: var(--accent); }
-    .coming-soon p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 28px;
+    .tl-stat-label { font-size: 12px; color: var(--text-tertiary); font-family: 'Google Sans', sans-serif; }
+
+    /* ---------- Filters ---------- */
+    .tl-filters {
+      max-width: 900px;
+      margin: 36px auto 0;
+      padding: 0 24px;
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
     }
-    .coming-soon-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    @media (max-width: 768px) {
-      .coming-soon { padding: 32px 20px; }
+    .tl-chip {
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 9px 16px; border-radius: var(--radius-pill);
+      border: 1px solid var(--border); background: var(--surface-card);
+      color: var(--text-secondary); font-size: 13.5px; font-weight: 500;
+      font-family: 'Google Sans', sans-serif; cursor: pointer;
+      transition: all 0.18s ease;
     }
+    .tl-chip .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; opacity: 0.6; }
+    .tl-chip:hover { border-color: var(--border-strong); color: var(--text); }
+    .tl-chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .tl-chip.active .dot { background: #fff; opacity: 1; }
+
+    /* ---------- Timeline ---------- */
+    .tl-wrap { max-width: 980px; margin: 0 auto; padding: 56px 20px 40px; position: relative; }
+    .tl-spine {
+      position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+      background: var(--border); transform: translateX(-50%);
+    }
+    .tl-spine-fill {
+      position: absolute; top: 0; left: 0; width: 100%; height: 0%;
+      background: var(--grad-spectrum);
+      transition: height 0.1s linear;
+      border-radius: 2px;
+    }
+
+    .tl-node {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 56px 1fr;
+      align-items: start;
+      margin-bottom: 8px;
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s cubic-bezier(0.22,1,0.36,1), transform 0.6s cubic-bezier(0.22,1,0.36,1), filter 0.3s ease;
+    }
+    .tl-node.is-visible { opacity: 1; transform: translateY(0); }
+    .tl-node.tl-dim { opacity: 0.28 !important; filter: grayscale(0.6); pointer-events: none; }
+
+    .tl-marker {
+      grid-column: 2; justify-self: center; align-self: start;
+      margin-top: 26px;
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--surface-card); border: 2px solid var(--border);
+      z-index: 2; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .tl-marker svg { width: 18px; height: 18px; }
+    .tl-node.is-visible .tl-marker { transform: scale(1); }
+    .tl-node:hover .tl-marker { transform: scale(1.1); box-shadow: 0 0 0 6px var(--accent-bg); }
+
+    .tl-marker--career     { color: var(--blue);   border-color: color-mix(in srgb, var(--blue) 45%, var(--border)); }
+    .tl-marker--education  { color: var(--purple); border-color: color-mix(in srgb, var(--purple) 45%, var(--border)); }
+    .tl-marker--leadership { color: var(--orange); border-color: color-mix(in srgb, var(--orange) 45%, var(--border)); }
+    .tl-marker--certification { color: var(--teal); border-color: color-mix(in srgb, var(--teal) 45%, var(--border)); }
+    .tl-marker--milestone  { color: var(--yellow); border-color: color-mix(in srgb, var(--yellow) 45%, var(--border)); }
+
+    .tl-marker--current { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    .tl-card {
+      background: var(--surface-card); border: 1px solid var(--border);
+      border-radius: var(--radius-card); padding: 20px 22px;
+      margin-bottom: 40px; cursor: pointer;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .tl-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+
+    .tl-node:nth-child(odd) .tl-card  { grid-column: 1; text-align: right; }
+    .tl-node:nth-child(even) .tl-card { grid-column: 3; text-align: left; }
+    .tl-node:nth-child(odd) .tl-tags,
+    .tl-node:nth-child(odd) .tl-toggle { justify-content: flex-end; }
+
+    .tl-date { font-family: 'Roboto Mono', monospace; font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; }
+    .tl-tags { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .tl-node:nth-child(even) .tl-tags { justify-content: flex-start; }
+    .tl-tag {
+      font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
+      padding: 3px 9px; border-radius: var(--radius-pill); font-family: 'Google Sans', sans-serif;
+    }
+    .tl-tag--career        { background: var(--blue-bg); color: var(--blue); }
+    .tl-tag--education     { background: var(--purple-bg); color: var(--purple); }
+    .tl-tag--leadership    { background: var(--orange-bg); color: var(--orange); }
+    .tl-tag--certification { background: var(--teal-bg); color: var(--teal); }
+    .tl-tag--milestone     { background: var(--yellow-bg); color: var(--yellow); }
+    .tl-tag--current       { background: var(--green-bg); color: var(--green); }
+
+    .tl-card h3 { font-family: 'Google Sans Display', sans-serif; font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 4px; letter-spacing: -0.2px; }
+    .tl-org { font-size: 13.5px; color: var(--text-secondary); margin-bottom: 10px; font-family: 'Google Sans', sans-serif; }
+    .tl-summary { font-size: 14px; line-height: 1.6; color: var(--text-secondary); }
+
+    .tl-toggle {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 12px; background: none; border: none; cursor: pointer;
+      font-size: 12.5px; font-weight: 500; color: var(--accent);
+      font-family: 'Google Sans', sans-serif; padding: 0;
+    }
+    .tl-toggle svg { width: 14px; height: 14px; transition: transform 0.25s ease; }
+    .tl-card.expanded .tl-toggle svg { transform: rotate(180deg); }
+
+    .tl-details {
+      max-height: 0; overflow: hidden; text-align: left;
+      transition: max-height 0.35s ease, margin-top 0.35s ease;
+    }
+    .tl-card.expanded .tl-details { margin-top: 14px; }
+    .tl-details ul { padding-left: 18px; }
+    .tl-details li { font-size: 13.5px; line-height: 1.65; color: var(--text-secondary); margin-bottom: 7px; }
+    .tl-details li::marker { color: var(--accent); }
+    .tl-details p { font-size: 13.5px; line-height: 1.65; color: var(--text-secondary); }
+
+    .tl-node:nth-child(odd) .tl-details ul { padding-left: 0; padding-right: 18px; list-style-position: inside; }
+
+    /* ---------- Mobile ---------- */
+    @media (max-width: 760px) {
+      .tl-stats { grid-template-columns: repeat(2, 1fr); }
+      .tl-spine { left: 20px; }
+      .tl-node { grid-template-columns: 40px 1fr; }
+      .tl-marker { grid-column: 1; justify-self: start; margin-left: 0; }
+      .tl-node:nth-child(odd) .tl-card,
+      .tl-node:nth-child(even) .tl-card {
+        grid-column: 2; text-align: left; margin-left: 8px;
+      }
+      .tl-node:nth-child(odd) .tl-tags,
+      .tl-node:nth-child(odd) .tl-toggle,
+      .tl-node:nth-child(even) .tl-tags { justify-content: flex-start; }
+      .tl-node:nth-child(odd) .tl-details ul { padding-left: 18px; padding-right: 0; list-style-position: outside; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tl-node { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    /* ---------- CTA ---------- */
+    .tl-cta {
+      max-width: 700px; margin: 24px auto 64px; padding: 0 24px;
+      text-align: center;
+    }
+    .tl-cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -159,7 +305,7 @@
       </a>
       <a href="/claude-code" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Powered by Claude Code
+        My Claude Code Stack
       </a>
     </div>
 
@@ -199,21 +345,334 @@
   </aside>
 
   <div class="page">
-    <div class="coming-soon">
-      <div class="coming-soon-card">
-        <div class="coming-soon-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+
+    <!-- ─── Intro ─── -->
+    <div class="tl-intro">
+      <div class="tl-eyebrow"><span class="pulse-dot"></span>&nbsp;Overview</div>
+      <h1>The <span>journey</span> so far</h1>
+      <p>From Senior Product Manager building AI-native Customer Success software back to a math-obsessed school kid in Meerut — most recent first. Click any card to expand it.</p>
+    </div>
+
+    <!-- ─── Stats ─── -->
+    <div class="tl-stats" id="tl-stats">
+      <div class="tl-stat"><div class="tl-stat-value" data-count="8" data-suffix="+">0</div><div class="tl-stat-label">Years in the Industry</div></div>
+      <div class="tl-stat"><div class="tl-stat-value" data-count="13">0</div><div class="tl-stat-label">Milestones Logged</div></div>
+      <div class="tl-stat"><div class="tl-stat-value" data-count="6">0</div><div class="tl-stat-label">Organizations</div></div>
+      <div class="tl-stat"><div class="tl-stat-value" data-count="2">0</div><div class="tl-stat-label">Degrees Earned</div></div>
+    </div>
+
+    <!-- ─── Filters ─── -->
+    <div class="tl-filters" id="tl-filters">
+      <button class="tl-chip active" data-filter="all"><span class="dot" style="background:var(--text-tertiary)"></span> All</button>
+      <button class="tl-chip" data-filter="career"><span class="dot" style="color:var(--blue)"></span> Career</button>
+      <button class="tl-chip" data-filter="education"><span class="dot" style="color:var(--purple)"></span> Education</button>
+      <button class="tl-chip" data-filter="leadership"><span class="dot" style="color:var(--orange)"></span> Leadership</button>
+      <button class="tl-chip" data-filter="certification"><span class="dot" style="color:var(--teal)"></span> Certifications</button>
+      <button class="tl-chip" data-filter="milestone"><span class="dot" style="color:var(--yellow)"></span> Milestones</button>
+    </div>
+
+    <!-- ─── Timeline ─── -->
+    <div class="tl-wrap" id="tl-wrap">
+      <div class="tl-spine"><div class="tl-spine-fill" id="tl-spine-fill"></div></div>
+
+      <!-- 13 — current -->
+      <div class="tl-node" data-category="career">
+        <div class="tl-marker tl-marker--career tl-marker--current">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
         </div>
-        <div class="coming-soon-badge"><span class="dot"></span> Coming Soon</div>
-        <h1><span>Career</span> Timeline</h1>
-        <p>A chronological walk through the roles, transitions, and turning points that shaped my product career — under construction.</p>
-        <div class="coming-soon-actions">
-          <a href="/profile" class="io-btn io-btn--primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            View Profile
-          </a>
-          <a href="/" class="io-btn io-btn--secondary">Back Home</a>
+        <div class="tl-card">
+          <div class="tl-date">Mar 2025 &ndash; Present</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--career">Career</span><span class="tl-tag tl-tag--current"><span class="pulse-dot" style="width:5px;height:5px;"></span>&nbsp;Current</span></div>
+          <h3>Senior Product Manager</h3>
+          <div class="tl-org">Global Enterprise SaaS Company</div>
+          <p class="tl-summary">Leading all AI features for Customer Success — a system of 19 agents that helped grow ACV 290% and win 10+ competitive deals.</p>
+          <button class="tl-toggle" type="button" aria-expanded="false">Show details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="tl-details">
+            <ul>
+              <li>Led all AI features for the Customer Success product, including AI agents that work on their own — these became a top reason customers chose us over Gainsight and Totango in 10+ competitive deals, helping grow yearly contract revenue by 290%</li>
+              <li>Set the product direction for a system of 19 AI agents covering 5 different workflows, replacing manual support work that took 200+ hours per week; grew from 0 to 120 enterprise accounts using it within 12 months</li>
+              <li>Grew our premium subscription tier from 0 to 120 accounts by shipping AI features good enough that customers chose to pay more for them</li>
+              <li>Used real usage data to decide that automating renewal-risk reviews mattered more than manual check-ins, cutting that workload by 40% (200+ hours/week) while still having a person review anything high-risk</li>
+              <li>Connected Customer Success tools with sales, order management, and release-planning systems, so teams could see a customer's full journey in one place instead of piecing it together across tools</li>
+              <li>Built a live dashboard system tracking product usage across 5 products and 500+ enterprise users</li>
+              <li>Led integrations with Salesforce, Microsoft Dynamics, and AI providers, tripling how many other systems our product could connect to</li>
+              <li>Built data-access controls that only give people and AI agents the minimum access they need — this resolved security concerns that had been blocking deals with regulated banking and finance customers</li>
+              <li>Built, from scratch, an AI-powered operating system for how my team works — 30+ automated helpers, 70+ ready-made routines, and 40+ shortcuts that write product specs, summarize customer research, track plans, draft stakeholder updates, and check project health automatically instead of by hand</li>
+              <li>Shipped a steady stream of new Customer Success features across six releases — including a customizable success-plan tool, a way to map account relationships and timelines, risk visualization, more detailed admin controls, automatic meeting-note capture, and a major accessibility upgrade for users with visual impairments — while also strengthening security and compliance every release</li>
+            </ul>
+          </div>
         </div>
+      </div>
+
+
+      <!-- 12 -->
+      <div class="tl-node" data-category="certification">
+        <div class="tl-marker tl-marker--certification">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">2023 &ndash; 2024</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--certification">Certifications</span></div>
+          <h3>Professional Certifications &amp; Continuous Learning</h3>
+          <div class="tl-org">Self-directed</div>
+          <p class="tl-summary">Certified Scrum Product Owner, Customer Success Management, and a personal-finance specialization — stacked while shipping.</p>
+          <button class="tl-toggle" type="button" aria-expanded="false">Show details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="tl-details">
+            <ul>
+              <li>Certified Scrum Product Owner&reg; (CSPO&reg;)</li>
+              <li>Customer Success Management — Fundamentals</li>
+              <li>Customer Success Management — Implementation</li>
+              <li>Excel Skills for Business Specialization</li>
+              <li>People Analytics</li>
+              <li>Personal Finance Mastery — 1% Club (Jul 2024)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="tl-node" data-category="career">
+        <div class="tl-marker tl-marker--career">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">May 2023 &ndash; Feb 2025</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--career">Career</span></div>
+          <h3>Product Manager</h3>
+          <div class="tl-org">Global Enterprise SaaS Company</div>
+          <p class="tl-summary">Built the Customer Success product from the ground up — tripled the customer base and cut onboarding time by 40%.</p>
+          <button class="tl-toggle" type="button" aria-expanded="false">Show details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="tl-details">
+            <ul>
+              <li>Built the Customer Success product from the ground up, creating core workflows that 300+ enterprise accounts now use</li>
+              <li>Tripled the customer base (120&rarr;380 accounts) by fixing the top 5 gaps that were costing us deals, including a way to show customers the value they were getting and a tool that scores account health</li>
+              <li>Connected the Customer Success product with 3+ other platform tools, so customer data and activity could be tracked in one continuous view</li>
+              <li>Designed onboarding workflows that got new customers to their first value 40% faster, across 150+ implementation partners</li>
+              <li>Built data pipelines that process 100,000+ records a month, so large customers could onboard smoothly</li>
+              <li>Connected onboarding data with renewal data so problems could be caught earlier, improving customer retention revenue by 8 percentage points</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="tl-node" data-category="career">
+        <div class="tl-marker tl-marker--career">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">Apr &ndash; Jun 2022</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--career">Career</span></div>
+          <h3>Product Management Intern</h3>
+          <div class="tl-org">Zaggle Prepaid Ocean Services, Hyderabad</div>
+          <p class="tl-summary">First real PM reps — onboarding flows, an ROI calculator, and a full sales-enablement kit.</p>
+          <button class="tl-toggle" type="button" aria-expanded="false">Show details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="tl-details">
+            <ul>
+              <li>Designed B2B customer-onboarding workflows for the Expense Management platform, reducing support workload</li>
+              <li>Built an interactive ROI calculator, increasing trial-conversion requests by 35%</li>
+              <li>Ran a 46-feature competitive analysis across 5 players, surfacing whitespace for the roadmap</li>
+              <li>Built a sales-enablement kit: pitch decks, a release-notes template, and 6 email templates</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="tl-node" data-category="leadership">
+        <div class="tl-marker tl-marker--leadership">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">Oct 2021 &ndash; Feb 2023</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--leadership">Leadership</span></div>
+          <h3>Branch President</h3>
+          <div class="tl-org">CSRN, IIM Udaipur</div>
+          <p class="tl-summary">Ran six live social-sector consulting projects in parallel, alongside the MBA.</p>
+          <button class="tl-toggle" type="button" aria-expanded="false">Show details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="tl-details">
+            <ul>
+              <li>Oversaw progress of six live projects in the social sector sourced by CSRN</li>
+              <li>Helped each student consultancy team deliver high-quality work on time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="tl-node" data-category="milestone">
+        <div class="tl-marker tl-marker--milestone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">2022</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--milestone">Milestone</span></div>
+          <h3>National 2nd — Accenture Strategy Challenge</h3>
+          <div class="tl-org">IIM Udaipur</div>
+          <p class="tl-summary">Placed 2nd nationally among 150+ competing teams.</p>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="tl-node" data-category="education">
+        <div class="tl-marker tl-marker--education">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">2021 &ndash; 2023</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--education">Education</span></div>
+          <h3>MBA</h3>
+          <div class="tl-org">Indian Institute of Management, Udaipur</div>
+          <p class="tl-summary">The pivot point — from analytics into product management, with a general-management foundation to match.</p>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="tl-node" data-category="career">
+        <div class="tl-marker tl-marker--career">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">Feb 2019 &ndash; Jun 2021</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--career">Career</span></div>
+          <h3>Senior Business Analyst</h3>
+          <div class="tl-org">MyScoot Tech Pvt. Ltd. (Y Combinator-backed), Gurugram</div>
+          <p class="tl-summary">Built the analytics function from zero at a YC-backed startup — dashboards, KPIs, and a 109% MoM lift in new-user GMV.</p>
+          <button class="tl-toggle" type="button" aria-expanded="false">Show details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="tl-details">
+            <ul>
+              <li>Established the Business Analytics &amp; Insights department and built dashboards to track KPIs</li>
+              <li>Designed and implemented analytics across two platforms — the Creator Tool and Creator webpages</li>
+              <li>Analyzed the impact of new features and campaigns on core KPIs</li>
+              <li>Cut lead-to-conversion turnaround time by ~27% from initial onboarding to final conversion</li>
+              <li>Generated insights that helped grow new-user GMV by ~109% month-over-month</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="tl-node" data-category="career">
+        <div class="tl-marker tl-marker--career">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">Jun 2018 &ndash; Feb 2019</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--career">Career</span></div>
+          <h3>Data Analyst</h3>
+          <div class="tl-org">S.V.S Technologies Ltd., Noida</div>
+          <p class="tl-summary">First full-time role — turning raw funnels into decisions that reduced risk in critical calls.</p>
+          <button class="tl-toggle" type="button" aria-expanded="false">Show details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="tl-details">
+            <ul>
+              <li>Helped the organization make data-driven decisions that reduced risk in critical calls</li>
+              <li>Tracked monthly and weekly lead-conversion and retention KPIs and recommended course of action</li>
+              <li>Built a marketing funnel for established and potential customers across media channels</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="tl-node" data-category="milestone">
+        <div class="tl-marker tl-marker--milestone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">Jun &ndash; Jul 2018</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--milestone">Volunteering</span></div>
+          <h3>Volunteer Teacher</h3>
+          <div class="tl-org">UPAY — Underprivileged Advancement by Youth</div>
+          <p class="tl-summary">Taught children from underprivileged backgrounds and helped raise funds for the Reach &amp; Teach project.</p>
+          <button class="tl-toggle" type="button" aria-expanded="false">Show details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="tl-details">
+            <ul>
+              <li>Volunteered to teach children from underprivileged backgrounds under the initiative "Koshish Ek Behtar Kal Ki"</li>
+              <li>Helped the UPAY team raise ₹20K for the Reach &amp; Teach project</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="tl-node" data-category="milestone">
+        <div class="tl-marker tl-marker--milestone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">Jun &ndash; Aug 2017</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--milestone">Research</span></div>
+          <h3>Research Intern</h3>
+          <div class="tl-org">IIT Guwahati</div>
+          <p class="tl-summary">Simulated fluidized beds under Dr. R. K. Upadhyay — my first real taste of data-driven troubleshooting.</p>
+          <button class="tl-toggle" type="button" aria-expanded="false">Show details
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="tl-details">
+            <ul>
+              <li>Ran simulations on fluidized beds using ANSYS Fluent under the guidance of Dr. R. K. Upadhyay</li>
+              <li>Calibrated the fluidized-bed model against simulation data — an early lesson in rigorous, evidence-based troubleshooting</li>
+              <li>Co-authored the research paper "Flow Past Different Geometries Arranged in Triangular Pattern"</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="tl-node" data-category="education">
+        <div class="tl-marker tl-marker--education">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">2014 &ndash; 2018</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--education">Education</span></div>
+          <h3>B.Tech, Chemical Engineering</h3>
+          <div class="tl-org">Institute of Engineering and Technology, Lucknow</div>
+          <p class="tl-summary">Built the engineering foundation — process systems, simulation, and quantitative problem-solving — that later shaped how I approach product and data work.</p>
+        </div>
+      </div>
+
+      <!-- 1 -->
+      <div class="tl-node" data-category="milestone">
+        <div class="tl-marker tl-marker--milestone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <div class="tl-card">
+          <div class="tl-date">Class XII &middot; AISSCE</div>
+          <div class="tl-tags"><span class="tl-tag tl-tag--milestone">Milestone</span></div>
+          <h3>98% in Mathematics — S. Ramanujam Cup</h3>
+          <div class="tl-org">Dayawati Modi Academy</div>
+          <p class="tl-summary">Topped Mathematics in the All India Senior School Certificate Examination and was awarded the S. Ramanujam Cup for it — the first sign of an analytical streak that later became a career.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── CTA ─── -->
+    <div class="tl-cta">
+      <h2 style="font-family:'Google Sans Display',sans-serif; font-weight:500; font-size:24px; margin-bottom:8px;">Want the fuller picture?</h2>
+      <p style="color:var(--text-secondary); font-size:14px; line-height:1.6;">The Profile page covers skills, products, and achievements in depth — or grab the resume directly.</p>
+      <div class="tl-cta-actions">
+        <a href="/profile" class="io-btn io-btn--primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          View Profile
+        </a>
+        <a href="/resources/Abhay.pdf" target="_blank" rel="noopener" class="io-btn io-btn--secondary">Resume (PDF)</a>
       </div>
     </div>
 
@@ -232,5 +691,101 @@
   </div>
 
   <script src="/assets/js/shared.js"></script>
+  <script>
+    (function () {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // --- Expand / collapse ---
+      document.querySelectorAll('.tl-toggle').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const card = btn.closest('.tl-card');
+          const details = card.querySelector('.tl-details');
+          const expanded = card.classList.toggle('expanded');
+          btn.setAttribute('aria-expanded', expanded);
+          btn.firstChild.textContent = expanded ? 'Hide details ' : 'Show details ';
+          details.style.maxHeight = expanded ? details.scrollHeight + 'px' : '0px';
+        });
+      });
+      // clicking anywhere on a card with details also toggles
+      document.querySelectorAll('.tl-card').forEach(card => {
+        if (!card.querySelector('.tl-toggle')) return;
+        card.addEventListener('click', () => card.querySelector('.tl-toggle').click());
+      });
+
+      // --- Node reveal on scroll ---
+      const nodes = Array.from(document.querySelectorAll('.tl-node'));
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        nodes.forEach(n => n.classList.add('is-visible'));
+      } else {
+        const io = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -60px 0px' });
+        nodes.forEach(n => io.observe(n));
+      }
+
+      // --- Spine fill on scroll ---
+      const wrap = document.getElementById('tl-wrap');
+      const fill = document.getElementById('tl-spine-fill');
+      function updateSpine() {
+        const rect = wrap.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const total = rect.height;
+        const scrolled = Math.min(Math.max(vh * 0.5 - rect.top, 0), total);
+        const pct = total > 0 ? (scrolled / total) * 100 : 0;
+        fill.style.height = pct + '%';
+      }
+      updateSpine();
+      window.addEventListener('scroll', updateSpine, { passive: true });
+      window.addEventListener('resize', updateSpine);
+
+      // --- Filter chips (dim, don't remove — keeps spine continuous) ---
+      const chips = document.querySelectorAll('.tl-chip');
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          chips.forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          const filter = chip.dataset.filter;
+          nodes.forEach(n => {
+            const match = filter === 'all' || n.dataset.category === filter;
+            n.classList.toggle('tl-dim', !match);
+          });
+        });
+      });
+
+      // --- Animated stat counters ---
+      const statEls = document.querySelectorAll('.tl-stat-value');
+      function animateStats() {
+        statEls.forEach(el => {
+          const target = parseInt(el.dataset.count, 10);
+          const suffix = el.dataset.suffix || '';
+          if (reduceMotion) { el.textContent = target + suffix; return; }
+          const start = performance.now();
+          const duration = 900;
+          function tick(now) {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(eased * target) + suffix;
+            if (p < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      }
+      const statsWrap = document.getElementById('tl-stats');
+      if ('IntersectionObserver' in window) {
+        const statsIo = new IntersectionObserver((entries, obs) => {
+          if (entries[0].isIntersecting) { animateStats(); obs.disconnect(); }
+        }, { threshold: 0.4 });
+        statsIo.observe(statsWrap);
+      } else {
+        animateStats();
+      }
+    })();
+  </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Frameworks — Abhay Tyagi | The Product Artisan</title>
-  <meta name="description" content="Named mental models and decision frameworks I use — coming soon.">
+  <meta name="description" content="The named mental models and decision frameworks I use daily — the Strategic Apex, the M-Shaped System Orchestrator, moat skills, and the loop I run every decision through.">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,59 +19,73 @@
       display: flex;
       flex-direction: column;
     }
-    .coming-soon {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 48px 24px;
+    .section { padding: clamp(44px, 4.5vw, 80px) clamp(24px, 2.6vw, 48px); }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px;
+      color: var(--text-tertiary); margin-bottom: 14px; font-family: 'Google Sans', sans-serif;
     }
-    .coming-soon-card {
-      text-align: center;
-      max-width: 480px;
+    .section-head h1, .section-head h2 {
+      font-size: clamp(26px, 2.8vw, 46px); font-weight: 500; letter-spacing: -0.8px;
+      line-height: 1.1; color: var(--text); margin-bottom: clamp(10px, 1vw, 16px);
     }
-    .coming-soon-icon {
-      width: 64px; height: 64px;
-      margin: 0 auto 24px;
-      border-radius: 16px;
+    .section-head p { font-size: clamp(14.5px, 1.1vw, 19px); color: var(--text-secondary); line-height: 1.6; max-width: 46em; }
+
+    /* ─── Process strip ─── */
+    .process-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(10px, 1vw, 18px);
+      margin-top: clamp(28px, 2.6vw, 48px); position: relative;
+    }
+    .process-strip::before {
+      content: ''; position: absolute; top: 22px; left: calc(12.5% - 4px); right: calc(12.5% - 4px);
+      height: 2px; background: var(--grad-spectrum); opacity: 0.4; z-index: 0;
+    }
+    .process-step { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 14px; }
+    .process-step-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--surface-card); border: 2px solid var(--border-strong);
       display: flex; align-items: center; justify-content: center;
-      background: var(--accent-bg, rgba(66,133,244,0.12));
-      color: var(--accent);
+      font-family: 'Google Sans Display', sans-serif; font-weight: 700; font-size: 16px; color: var(--accent);
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .coming-soon-icon svg { width: 30px; height: 30px; }
-    .coming-soon-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      color: var(--text-tertiary);
-      background: var(--surface-card);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 6px 14px;
-      margin-bottom: 20px;
+    .process-step:hover .process-step-num { border-color: var(--accent); transform: scale(1.08); }
+    .process-step h3 { font-family: 'Google Sans', sans-serif; font-size: 16.5px; font-weight: 500; color: var(--text); }
+    .process-step p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.55; }
+    @media (max-width: 860px) {
+      .process-strip { grid-template-columns: 1fr; gap: 22px; }
+      .process-strip::before { display: none; }
     }
-    .coming-soon-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text-tertiary); }
-    .coming-soon h1 {
-      font-size: 28px;
-      font-weight: 400;
-      color: var(--text);
-      letter-spacing: -0.3px;
-      margin-bottom: 12px;
+
+    /* ─── Framework cards ─── */
+    .framework-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(14px, 1.3vw, 22px);
+      margin-top: clamp(24px, 2.2vw, 40px);
     }
-    .coming-soon h1 span { color: var(--accent); }
-    .coming-soon p {
-      font-size: 14px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 28px;
+    .framework-card {
+      display: flex; flex-direction: column; gap: 10px;
+      padding: clamp(20px, 1.8vw, 30px); background: var(--surface-card);
+      border: 1px solid var(--border); border-radius: var(--radius-card);
+      text-decoration: none; color: inherit; position: relative; overflow: hidden;
+      transition: transform 0.22s cubic-bezier(0.34,1.56,0.64,1), border-color 0.2s, box-shadow 0.2s, background 0.2s;
     }
-    .coming-soon-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    @media (max-width: 768px) {
-      .coming-soon { padding: 32px 20px; }
+    .framework-card::after {
+      content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+      background: var(--grad-spectrum); opacity: 0; transition: opacity 0.25s;
+    }
+    .framework-card:hover { transform: translateY(-4px); border-color: var(--border-strong); box-shadow: var(--shadow-lg); background: var(--surface-card-hover); }
+    .framework-card:hover::after { opacity: 1; }
+    .framework-card-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; color: var(--accent);
+      font-family: 'Google Sans', sans-serif;
+    }
+    .framework-card h3 { font-family: 'Google Sans', sans-serif; font-size: 18px; font-weight: 500; color: var(--text); }
+    .framework-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .framework-card-more { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 4px; font-family: 'Google Sans', sans-serif; font-size: 13.5px; font-weight: 500; color: var(--accent); }
+    .framework-card:hover .framework-card-more svg { transform: translateX(4px); }
+    .framework-card-more svg { width: 15px; height: 15px; transition: transform 0.2s; }
+
+    @media (max-width: 640px) {
+      .framework-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -159,7 +173,7 @@
       </a>
       <a href="/claude-code" class="sidebar-link">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-        Powered by Claude Code
+        My Claude Code Stack
       </a>
     </div>
 
@@ -199,23 +213,85 @@
   </aside>
 
   <div class="page">
-    <div class="coming-soon">
-      <div class="coming-soon-card">
-        <div class="coming-soon-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+
+    <!-- ─── Header ─── -->
+    <section class="section" style="padding-bottom: 0;">
+      <div class="section-inner section-head">
+        <div class="eyebrow">Craft &amp; Thinking</div>
+        <h1>Frameworks</h1>
+        <p>The named mental models and decision frameworks I reach for when a product problem is ambiguous — pulled straight from my <a href="/playbook" style="color: var(--accent);">Strategic Playbook</a>.</p>
+      </div>
+    </section>
+
+    <!-- ─── Process strip ─── -->
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="eyebrow">The Daily Decision Loop</div>
+          <h2>Four questions, every decision</h2>
+          <p>Before I commit to a piece of work, it runs through this loop — the same four checks from the playbook's Action Framework.</p>
         </div>
-        <div class="coming-soon-badge"><span class="dot"></span> Coming Soon</div>
-        <h1><span>Frameworks</span></h1>
-        <p>Named mental models and decision frameworks I reach for when a product problem is ambiguous — under construction.</p>
-        <div class="coming-soon-actions">
-          <a href="/profile" class="io-btn io-btn--primary">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            View Profile
-          </a>
-          <a href="/" class="io-btn io-btn--secondary">Back Home</a>
+        <div class="process-strip cards">
+          <div class="process-step">
+            <div class="process-step-num">1</div>
+            <h3>Locate the Work</h3>
+            <p>Strategic Apex or Task Execution? If it's execution, can it be delegated or automated?</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">2</div>
+            <h3>Deepen the Moat</h3>
+            <p>Am I exercising judgment, domain depth, or governance — the skills AI can't replace?</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">3</div>
+            <h3>Prove the Value</h3>
+            <p>Can this tie to a measurable customer or business outcome — not just output shipped?</p>
+          </div>
+          <div class="process-step">
+            <div class="process-step-num">4</div>
+            <h3>Zoom to System</h3>
+            <p>Am I thinking across the whole system, or stuck inside one feature?</p>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    <!-- ─── Named frameworks ─── -->
+    <section class="section" style="background: var(--surface-dim); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+      <div class="section-inner">
+        <div class="section-head">
+          <div class="eyebrow">Named Models</div>
+          <h2>The models behind the loop</h2>
+          <p>Each of these gets a full treatment in the playbook — this is the one-line version.</p>
+        </div>
+        <div class="framework-grid cards">
+          <a href="/playbook" class="framework-card">
+            <div class="framework-card-label">Career Model</div>
+            <h3>Strategic Apex vs. Task Execution</h3>
+            <p>The PM role is splitting in two: the tasks agents will replace, and the judgment, governance, and vision that stays human.</p>
+            <span class="framework-card-more">Read the playbook <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a href="/playbook" class="framework-card">
+            <div class="framework-card-label">Career Model</div>
+            <h3>M-Shaped System Orchestrator</h3>
+            <p>Deep in two areas — domain expertise and AI governance — connected by broad platform thinking across the whole system.</p>
+            <span class="framework-card-more">Read the playbook <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a href="/playbook" class="framework-card">
+            <div class="framework-card-label">Skill Inventory</div>
+            <h3>Moat Skills</h3>
+            <p>Seven skills that protect value the way a moat protects a castle: judgment, design thinking, reading the room, ethical AI governance, pricing strategy, domain expertise, proof of value.</p>
+            <span class="framework-card-more">Read the playbook <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a href="/playbook" class="framework-card">
+            <div class="framework-card-label">Skill Profiles</div>
+            <h3>Two Profiles That Win</h3>
+            <p>System-Level Thinker and AI Workflow Designer + Agent Supervisor — the complementary profiles the future PM role needs.</p>
+            <span class="framework-card-more">Read the playbook <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
 
     <footer>
       <div class="footer-inner">
