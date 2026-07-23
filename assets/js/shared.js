@@ -2,11 +2,11 @@
 //  Shared behaviour — theme, sidebar, injected top nav
 // ============================================================
 
-// --- Theme (dark-first) ---
-// Default to dark (matches io.google) unless the visitor chose light before.
+// --- Theme (light-first) ---
+// Every fresh page load starts in light mode; the toggle below can switch
+// to dark for the current session, but that choice isn't persisted.
 (function initTheme() {
-  const saved = localStorage.getItem('portfolio-theme');
-  document.documentElement.setAttribute('data-theme', saved || 'dark');
+  document.documentElement.setAttribute('data-theme', 'light');
 })();
 
 // --- Primary navigation (injected once, site-wide) ---
@@ -165,6 +165,5 @@ if (themeToggle) {
     const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
     const newTheme = isDark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('portfolio-theme', newTheme);
   });
 }

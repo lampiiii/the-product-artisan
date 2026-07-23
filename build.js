@@ -16,7 +16,7 @@ const PAGES = {
   'artisan/pov/agent-governance.html':             'proof-of-value/agent-governance.html',
   'artisan/pov/domain-expertise.html':             'proof-of-value/domain-expertise.html',
   'artisan/pov/reusable-architecture.html':        'proof-of-value/reusable-architecture.html',
-  'artisan/pov/outcome-stories.html':              'proof-of-value/outcome-stories.html',
+  'artisan/pov/delivery-discipline.html':          'proof-of-value/delivery-discipline.html',
   'artisan/pov/stakeholder-management.html':       'proof-of-value/stakeholder-management.html',
   'artisan/pov/pricing-strategy.html':             'proof-of-value/pricing-strategy.html',
   'artisan/playbook.html':                         'playbook.html',

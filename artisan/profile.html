@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('portfolio-theme')||'dark');</script>
+  <script>document.documentElement.setAttribute('data-theme','light');</script>
   <link rel="stylesheet" href="/assets/css/shared.css">
   <style>
     /* Page-specific: alias --blue to the site's accent tokens (already theme-aware) */
@@ -63,6 +63,54 @@
     /* ─── Profile Layout ─── */
     .profile-layout {
       margin-top: var(--nav-height);
+    }
+
+    /* ─── Hero ─── */
+    .hero {
+      text-align: center; padding: 64px 40px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 16px; font-size: 12px; font-weight: 600;
+      color: var(--accent); background: var(--accent-bg);
+      border-radius: 48px; margin-bottom: 24px; letter-spacing: 0.3px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 44px); font-weight: 400;
+      line-height: 1.15; color: var(--text); margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: clamp(15px, 1.6vw, 17px); color: var(--text-secondary);
+      line-height: 1.65; max-width: 660px; margin: 0 auto;
+    }
+    @media (max-width: 639px) {
+      .hero { padding: 40px 20px 32px; }
+    }
+
+    /* ─── Launch cadence chart ─── */
+    .bar-chart {
+      display: flex; align-items: flex-end; gap: 16px;
+      height: 132px; padding-top: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .bar-col {
+      display: flex; flex-direction: column; align-items: center;
+      flex: 1; height: 100%; justify-content: flex-end;
+    }
+    .bar-value { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .bar { width: 28px; border-radius: 4px 4px 0 0; background: var(--blue); }
+    .bar.planned { background: var(--blue-bg); border: 1.5px dashed var(--blue); opacity: .8; }
+    .bar-label { font-size: 11px; color: var(--text-tertiary); margin-top: 8px; white-space: nowrap; }
+    .chart-legend { display: flex; gap: 18px; margin-top: 14px; font-size: 12px; color: var(--text-secondary); }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-swatch { width: 10px; height: 10px; border-radius: 2px; background: var(--blue); flex: 0 0 auto; }
+    .legend-swatch.planned { background: var(--blue-bg); border: 1.5px dashed var(--blue); }
+    @media (max-width: 639px) {
+      .bar-chart { gap: 8px; }
+      .bar { width: 20px; }
     }
 
     /* ─── Bento grid ─── */
@@ -94,6 +142,7 @@
     .tile-title.sm { font-size: 18px; }
     .tile p { margin: 0 0 14px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
     .tile p:last-child { margin-bottom: 0; }
+    .tile p strong { color: var(--text); font-weight: 600; }
 
     /* Identity tile */
     .identity {
@@ -114,7 +163,7 @@
       object-fit: cover;
       border: 2px solid var(--surface-card);
     }
-    .identity h1 { margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.01em; color: var(--text); }
+    .identity h2 { margin: 0; font-size: 22px; font-weight: 500; letter-spacing: -0.01em; color: var(--text); }
     .identity .role { color: var(--blue); font-weight: 500; font-size: 14px; margin-top: 2px; }
     .identity .company { color: var(--text-secondary); font-size: 13px; }
     .contacts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
@@ -359,13 +408,20 @@
   <!-- ─── Profile Layout ─── -->
   <div class="profile-layout">
 
+    <!-- ─── Hero ─── -->
+    <div class="hero">
+      <div class="hero-badge">Profile</div>
+      <h1>Senior PM building AI my <span>team actually runs on</span></h1>
+      <p>I design and ship the AI agents, GenAI features, and automation systems inside a global enterprise Customer Success product — and a growing personal AI operating system that runs my own work too.</p>
+    </div>
+
     <div class="profile-bento">
 
       <!-- Identity -->
       <div class="identity">
         <img src="/resources/profile-photo.jpg" alt="Abhay Tyagi" class="avatar-lg">
         <div>
-          <h1>Abhay Tyagi</h1>
+          <h2>Abhay Tyagi</h2>
           <div class="role">Senior Product Manager</div>
           <div class="company">Global Enterprise SaaS Company</div>
           <div class="contacts">
@@ -394,15 +450,35 @@
         <div class="stat"><div class="num">~75%/yr</div><div class="lbl">Average annual growth in yearly contract revenue ($18M→$110M)</div></div>
         <div class="stat"><div class="num">19</div><div class="lbl">AI agents built</div></div>
         <div class="stat"><div class="num">0→120</div><div class="lbl">Premium-tier upgrades driven by AI</div></div>
-        <div class="stat"><div class="num">380+</div><div class="lbl">Enterprise accounts</div></div>
+        <div class="stat"><div class="num">400+</div><div class="lbl">Enterprise accounts</div></div>
       </div>
 
       <!-- About -->
       <div class="tile span-2">
         <div class="eyebrow">About</div>
         <div class="tile-title">Who I am</div>
-        <p>Senior Product Manager with 5+ years in B2B enterprise software. At a global enterprise SaaS company, I lead all AI features — including AI agents that work on their own — for the Customer Success product. I built a system of 19 AI agents that helped win 10+ competitive deals against rival vendors, while the product's yearly contract revenue grew from $18M to $110M. I also grew our premium subscription tier from 0 to 120 paying accounts by shipping AI features good enough that customers wanted to pay more for them.</p>
-        <p>Before product management, I built data pipelines at a Y Combinator-backed startup and started my career in analytics and business operations. I work best where AI, data, and enterprise software meet. I hold an MBA from IIM and a B.Tech from IET Lucknow.</p>
+        <p>Senior Product Manager with <strong>5+ years</strong> in B2B enterprise software. At a global enterprise SaaS company, I lead all AI features — including AI agents that work on their own — for the Customer Success product.</p>
+        <p>I built a system of <strong>19 AI agents</strong> that helped win <strong>10+ competitive deals</strong> against rival vendors, while the product's yearly contract revenue grew from <strong>$18M to $110M</strong>. I also grew our premium subscription tier from <strong>0 to 120 paying accounts</strong> by shipping AI features good enough that customers wanted to pay more for them.</p>
+        <p>Before product management, I built data pipelines at a Y Combinator-backed startup and started my career in analytics and business operations. I work best where AI, data, and enterprise software meet. I hold an <strong>MBA from IIM</strong> and a <strong>B.Tech from IET Lucknow</strong>.</p>
+      </div>
+
+      <!-- Launch cadence -->
+      <div class="tile span-2">
+        <div class="eyebrow">Momentum</div>
+        <div class="tile-title sm">From 1 pilot to a 19-agent system</div>
+        <p>Launch cadence since the first agent shipped in February 2025.</p>
+        <div class="bar-chart">
+          <div class="bar-col"><div class="bar-value">2</div><div class="bar" style="height:44px"></div><div class="bar-label">Feb '25</div></div>
+          <div class="bar-col"><div class="bar-value">2</div><div class="bar" style="height:44px"></div><div class="bar-label">Aug '25</div></div>
+          <div class="bar-col"><div class="bar-value">1</div><div class="bar" style="height:22px"></div><div class="bar-label">Jan '26</div></div>
+          <div class="bar-col"><div class="bar-value">5</div><div class="bar" style="height:110px"></div><div class="bar-label">Mar '26</div></div>
+          <div class="bar-col"><div class="bar-value">5</div><div class="bar planned" style="height:110px"></div><div class="bar-label">Aug '26</div></div>
+          <div class="bar-col"><div class="bar-value">4</div><div class="bar planned" style="height:88px"></div><div class="bar-label">Sep '26</div></div>
+        </div>
+        <div class="chart-legend">
+          <span class="legend-item"><span class="legend-swatch"></span>Shipped</span>
+          <span class="legend-item"><span class="legend-swatch planned"></span>Planned</span>
+        </div>
       </div>
 
       <!-- Experience -->

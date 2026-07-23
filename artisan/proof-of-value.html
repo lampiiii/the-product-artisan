@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
-  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('portfolio-theme')||'dark');</script>
+  <script>document.documentElement.setAttribute('data-theme','light');</script>
   <link rel="stylesheet" href="/assets/css/shared.css">
   <style>
     /* Page-specific: extra variables not in shared.css */
@@ -126,6 +126,49 @@
       font-size: 18px;
     }
 
+    /* --- Metrics Strip --- */
+    .metrics-strip {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .metrics-strip-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 14px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .metrics-strip-item {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      padding: 4px 24px;
+      border-left: 1px solid var(--border);
+    }
+    .metrics-strip-item:first-child { border-left: none; padding-left: 0; }
+    .metrics-strip-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: 'Google Sans', sans-serif;
+      white-space: nowrap;
+    }
+    .metrics-strip-label {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+    }
+    @media (max-width: 900px) {
+      .metrics-strip-inner { padding: 12px 20px; gap: 4px 0; }
+      .metrics-strip-item { padding: 4px 16px; }
+      .metrics-strip-label { white-space: normal; }
+    }
+    @media (max-width: 560px) {
+      .metrics-strip-item { border-left: none; padding: 4px 0; width: 50%; }
+    }
+
     /* --- Capability Radar --- */
     .radar-section { padding: 32px 48px 0; }
     .radar-panel {
@@ -190,18 +233,28 @@
     .radar-label:hover, .radar-label:focus { fill: var(--accent); outline: none; }
 
     .radar-tooltip {
-      position: absolute; transform: translate(-50%, -130%);
+      position: fixed; transform: translate(-50%, -130%);
       background: var(--surface-dim); border: 1px solid var(--border-strong);
-      border-radius: 10px; padding: 8px 12px;
-      font-size: 12px; color: var(--text); white-space: nowrap;
+      border-radius: 10px; padding: 10px 14px;
+      font-size: 12px; color: var(--text); width: max-content; max-width: 220px;
       box-shadow: var(--shadow-lg);
       opacity: 0; pointer-events: none;
       transition: opacity 0.15s ease, transform 0.15s ease;
       z-index: 5;
     }
     .radar-tooltip.visible { opacity: 1; transform: translate(-50%, -145%); }
-    .radar-tooltip strong { display: block; color: var(--accent); font-size: 12.5px; }
-    .radar-tooltip span { color: var(--text-tertiary); }
+    .radar-tooltip.visible.flipped { transform: translate(-50%, 20%); }
+    .radar-tooltip-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+    .radar-tooltip strong { color: var(--text); font-size: 12.5px; font-weight: 600; }
+    .radar-tooltip-status {
+      font-size: 9.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px;
+      padding: 2px 7px; border-radius: var(--radius-pill); flex-shrink: 0;
+    }
+    .radar-tooltip-status--active { background: var(--green-bg); color: var(--g-green); }
+    .radar-tooltip-status--watching { background: var(--surface-card); color: var(--text-tertiary); border: 1px solid var(--border); }
+    .radar-tooltip-bar { height: 4px; border-radius: 2px; background: var(--border); overflow: hidden; margin-bottom: 8px; }
+    .radar-tooltip-bar-fill { height: 100%; border-radius: 2px; }
+    .radar-tooltip span { color: var(--text-tertiary); line-height: 1.5; white-space: normal; }
 
     @media (prefers-reduced-motion: reduce) {
       .radar-shape { transition: none !important; }
@@ -571,7 +624,29 @@
         <div class="progress-bar-wrap">
           <div class="progress-bar-fill" id="progress-fill"></div>
         </div>
-        <div class="progress-label"><strong>10</strong> / 10 active</div>
+        <div class="progress-label"><strong>7</strong> / 10 active</div>
+      </div>
+    </div>
+
+    <!-- --- Metrics Strip --- -->
+    <div class="metrics-strip">
+      <div class="metrics-strip-inner">
+        <div class="metrics-strip-item">
+          <span class="metrics-strip-value">~75%</span>
+          <span class="metrics-strip-label">Avg. Annual ARR Growth</span>
+        </div>
+        <div class="metrics-strip-item">
+          <span class="metrics-strip-value">19</span>
+          <span class="metrics-strip-label">AI Agents Built</span>
+        </div>
+        <div class="metrics-strip-item">
+          <span class="metrics-strip-value">400+</span>
+          <span class="metrics-strip-label">Enterprise Accounts</span>
+        </div>
+        <div class="metrics-strip-item">
+          <span class="metrics-strip-value">0→120</span>
+          <span class="metrics-strip-label">Premium-Tier Upgrades Driven by AI</span>
+        </div>
       </div>
     </div>
 
@@ -613,7 +688,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
           </div>
           <div class="card-name">Platform Thinking</div>
-          <div class="card-desc">How I run my team: one consistent system across 5 product lines, with a single source of truth for every feature</div>
+          <div class="card-desc">One consistent operating system across 5 product lines, with a single source of truth per feature.</div>
           <div class="card-footer">
             <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
             <div class="card-items">Team OS</div>
@@ -627,7 +702,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 12 15 16 10"/></svg>
           </div>
           <div class="card-name">Agent Governance</div>
-          <div class="card-desc">Controls on who — and which AI agent — can access what, with a person required to sign off, across ~70 registered AI capabilities</div>
+          <div class="card-desc">Mandatory human sign-off on access, enforced across ~70 registered AI capabilities.</div>
           <div class="card-footer">
             <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
             <div class="card-items">~70 capabilities</div>
@@ -641,7 +716,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
           </div>
           <div class="card-name">Pricing Strategy</div>
-          <div class="card-desc">Treating the cost of running AI as a real expense to design around from day one — reusing results instead of regenerating them, at a pace that matches usage</div>
+          <div class="card-desc">AI usage costs treated as a real expense — cached results reused, not regenerated.</div>
           <div class="card-footer">
             <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
             <div class="card-items">2 cadence models</div>
@@ -655,7 +730,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
           </div>
           <div class="card-name">Domain Expertise</div>
-          <div class="card-desc">Deep, documented knowledge of how the product actually works — spanning 5 product lines and 100+ tracked features</div>
+          <div class="card-desc">Deep, documented product knowledge spanning 5 product lines and 100+ tracked features.</div>
           <div class="card-footer">
             <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
             <div class="card-items">100+ features</div>
@@ -663,13 +738,13 @@
         </a>
 
         <!-- 5. Delivery Discipline — ACTIVE -->
-        <a href="/proof-of-value/outcome-stories" class="card card--active">
+        <a href="/proof-of-value/delivery-discipline" class="card card--active">
           <div class="card-accent-bar"></div>
           <div class="card-icon card-icon--accent">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
           </div>
           <div class="card-name">Delivery Discipline</div>
-          <div class="card-desc">A system that automatically flags delivery risk early and only writes release notes for what's actually confirmed shipped</div>
+          <div class="card-desc">Delivery risk flagged early; release notes limited to work confirmed shipped.</div>
           <div class="card-footer">
             <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
             <div class="card-items">70+ shipped</div>
@@ -682,53 +757,56 @@
           <div class="card-icon card-icon--blue">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
           </div>
-          <div class="card-name">Stakeholder Mgmt</div>
-          <div class="card-desc">Updates written for the right audience, human review before anything goes external, and a repeatable meeting/reporting process for an 80+ person team</div>
+          <div class="card-name">Stakeholder Management</div>
+          <div class="card-desc">Audience-specific updates with human review, for an 80+ person team.</div>
           <div class="card-footer">
             <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
             <div class="card-items">80+ people</div>
           </div>
         </a>
 
-        <!-- 7. Design Thinking — ACTIVE -->
-        <div class="card card--active" style="cursor:default;">
-          <div class="card-accent-bar"></div>
+        <!-- 7. Design Thinking — WATCHING (no dedicated case study yet) -->
+        <div class="card card--watching">
           <div class="card-icon card-icon--yellow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
           </div>
           <div class="card-name">Design Thinking</div>
-          <div class="card-desc">Empathy-driven decisions, user research, observation over assumption</div>
+          <div class="card-desc">Empathy-led decisions and user research inform the work, but a dedicated case study is still in progress.</div>
           <div class="card-footer">
-            <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
-            <div class="card-items">User research–led</div>
+            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
+            <div class="card-lock" title="No shipped evidence yet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
           </div>
         </div>
 
-        <!-- 8. Ethical AI — ACTIVE -->
-        <div class="card card--active" style="cursor:default;">
-          <div class="card-accent-bar"></div>
+        <!-- 8. Ethical AI — WATCHING (no dedicated case study yet) -->
+        <div class="card card--watching">
           <div class="card-icon card-icon--purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
           </div>
           <div class="card-name">Ethical AI</div>
-          <div class="card-desc">Minimum-necessary access as a default for every person and AI agent, not an afterthought bolted on for compliance</div>
+          <div class="card-desc">Minimum-necessary access is shipped in product; a formal review process is still being built.</div>
           <div class="card-footer">
-            <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
-            <div class="card-items">Shipped in product</div>
+            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
+            <div class="card-lock" title="No shipped evidence yet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
           </div>
         </div>
 
-        <!-- 9. Navigating Ambiguity — ACTIVE -->
-        <div class="card card--active" style="cursor:default;">
-          <div class="card-accent-bar"></div>
+        <!-- 9. Navigating Ambiguity — WATCHING (no dedicated case study yet) -->
+        <div class="card card--watching">
           <div class="card-icon card-icon--green">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
           </div>
           <div class="card-name">Navigating Ambiguity</div>
-          <div class="card-desc">Judgment calls with incomplete data, structured decision-making</div>
+          <div class="card-desc">Structured judgment calls happen regularly; a dedicated case study is still in progress.</div>
           <div class="card-footer">
-            <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
-            <div class="card-items">Judgment calls</div>
+            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
+            <div class="card-lock" title="No shipped evidence yet">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
           </div>
         </div>
 
@@ -739,7 +817,7 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           </div>
           <div class="card-name">Reusable Architecture</div>
-          <div class="card-desc">One consistent way to organize and track every feature, reused across every product line instead of rebuilding it each time</div>
+          <div class="card-desc">One framework for tracking every feature, reused across all product lines.</div>
           <div class="card-footer">
             <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
             <div class="card-items">Team OS</div>
@@ -788,26 +866,26 @@
     // --- Animate progress bar ---
     window.addEventListener('load', () => {
       requestAnimationFrame(() => {
-        document.getElementById('progress-fill').style.width = '100%';
+        document.getElementById('progress-fill').style.width = '70%';
       });
     });
 
-    // --- Capability Radar: 10 axes, all active (matches the bento grid above 1:1) ---
+    // --- Capability Radar: 10 axes, matches the bento grid above 1:1 ---
     (function capabilityRadar() {
       const svg = document.querySelector('.radar-svg');
       if (!svg) return;
 
       const factors = [
-        { name: 'Platform Thinking',    desc: 'One system across 5 product lines — Integrated tier, not yet org-wide strategic layer', color: 'var(--blue)',   value: 0.82 },
-        { name: 'Agent Governance',     desc: '~70 registered AI capabilities, human sign-off — Managed tier, no external audit or governance board yet', color: 'var(--red)',    value: 0.65 },
-        { name: 'Pricing Strategy',     desc: 'Cost-aware cadence models — Stage 2 SaaS pricing maturity, no willingness-to-pay research yet', color: 'var(--green)',  value: 0.55 },
-        { name: 'Domain Expertise',     desc: '5 product lines, 100+ tracked features — deep but scoped to one company’s product suite', color: 'var(--purple)', value: 0.8 },
-        { name: 'Delivery Discipline',  desc: '70+ features shipped, risk flagged early — consistent execution across six releases', color: 'var(--accent)', value: 0.78 },
-        { name: 'Stakeholder Mgmt',     desc: 'Repeatable process for an 80+ person team — one org proven, not yet cross-company', color: 'var(--blue)',   value: 0.72 },
-        { name: 'Design Thinking',      desc: 'User research over assumption — no dedicated case study yet', color: 'var(--yellow)', value: 0.5 },
-        { name: 'Ethical AI',           desc: 'Minimum-necessary access, shipped in product — no formal review board or audit yet', color: 'var(--purple)', value: 0.48 },
-        { name: 'Navigating Ambiguity', desc: 'Structured calls with incomplete data — no dedicated case study yet', color: 'var(--green)', value: 0.52 },
-        { name: 'Reusable Architecture',desc: 'One team OS reused across every product line — dozens of agents and reusable skills', color: 'var(--yellow)', value: 0.85 },
+        { name: 'Platform Thinking',    desc: 'Integrated tier — one system across 5 product lines, not yet an org-wide strategic layer.', color: 'var(--blue)',   value: 0.82, status: 'active' },
+        { name: 'Agent Governance',     desc: 'Managed tier — ~70 registered AI capabilities with human sign-off, no external audit board yet.', color: 'var(--red)',    value: 0.65, status: 'active' },
+        { name: 'Pricing Strategy',     desc: 'Stage 2 SaaS pricing maturity — cost-aware cadence models, no willingness-to-pay research yet.', color: 'var(--green)',  value: 0.55, status: 'active' },
+        { name: 'Domain Expertise',     desc: 'Deep but scoped — 5 product lines and 100+ tracked features within one company’s suite.', color: 'var(--purple)', value: 0.8, status: 'active' },
+        { name: 'Delivery Discipline',  desc: 'Consistent execution — 70+ features shipped, risk flagged early across six releases.', color: 'var(--accent)', value: 0.78, status: 'active' },
+        { name: 'Stakeholder Management', desc: 'One org proven — repeatable process for an 80+ person team, not yet cross-company.', color: 'var(--blue)',   value: 0.72, status: 'active' },
+        { name: 'Design Thinking',      desc: 'Early stage — user research over assumption, no dedicated case study yet.', color: 'var(--yellow)', value: 0.5, status: 'watching' },
+        { name: 'Ethical AI',           desc: 'Early stage — minimum-necessary access shipped, no formal review board yet.', color: 'var(--purple)', value: 0.48, status: 'watching' },
+        { name: 'Navigating Ambiguity', desc: 'Early stage — structured calls with incomplete data, no dedicated case study yet.', color: 'var(--green)', value: 0.52, status: 'watching' },
+        { name: 'Reusable Architecture',desc: 'Broadly reused — one team OS spanning every product line, dozens of agents and skills.', color: 'var(--yellow)', value: 0.85, status: 'active' },
       ];
 
       const NS = 'http://www.w3.org/2000/svg';
@@ -839,16 +917,30 @@
       const pointsG = svg.querySelector('#radar-points');
       const labelsG = svg.querySelector('#radar-labels');
       const tooltip = document.getElementById('radar-tooltip');
-      const wrap = document.querySelector('.radar-chart-wrap');
       const cards = document.querySelectorAll('.bento > .card');
 
-      function showTooltip(f, x, y) {
-        tooltip.innerHTML = `<strong>${f.name} — ${Math.round(f.value * 100)}%</strong><span>${f.desc}</span>`;
-        const rect = wrap.getBoundingClientRect();
-        const scale = rect.width / 520;
-        tooltip.style.left = `${x * scale}px`;
-        tooltip.style.top = `${y * scale}px`;
+      function showTooltip(f, anchorEl) {
+        const statusLabel = f.status === 'active' ? 'Active' : 'Watching';
+        tooltip.innerHTML = `
+          <div class="radar-tooltip-head">
+            <strong>${f.name}</strong>
+            <span class="radar-tooltip-status radar-tooltip-status--${f.status}">${statusLabel}</span>
+          </div>
+          <div class="radar-tooltip-bar"><div class="radar-tooltip-bar-fill" style="width:${Math.round(f.value * 100)}%; background:${f.color};"></div></div>
+          <span>${f.desc}</span>`;
         tooltip.classList.add('visible');
+
+        // Anchor to the point's actual screen position (fixed positioning escapes the
+        // panel's overflow:hidden, which otherwise clips a tall tooltip near the edges).
+        const r = anchorEl.getBoundingClientRect();
+        const anchorX = r.left + r.width / 2;
+        const anchorY = r.top;
+        const tw = tooltip.offsetWidth, th = tooltip.offsetHeight;
+        const flipped = anchorY - th - 16 < 0; // not enough room above — show below the point instead
+        tooltip.classList.toggle('flipped', flipped);
+        const left = Math.min(Math.max(anchorX, tw / 2 + 8), window.innerWidth - tw / 2 - 8);
+        tooltip.style.left = `${left}px`;
+        tooltip.style.top = `${anchorY}px`;
       }
       function hideTooltip() { tooltip.classList.remove('visible'); }
 
@@ -874,7 +966,7 @@
         labelsG.appendChild(text);
 
         const card = cards[i];
-        const highlight = () => { showTooltip(f, x, y); card && card.classList.add('card--linked'); };
+        const highlight = () => { showTooltip(f, dot); card && card.classList.add('card--linked'); };
         const unhighlight = () => { hideTooltip(); card && card.classList.remove('card--linked'); };
         [dot, text].forEach(el => {
           el.addEventListener('mouseenter', highlight);
@@ -917,7 +1009,7 @@
       const modalTitle = document.getElementById('card-modal-title');
       const modalBody = document.getElementById('card-modal-body');
       const closeBtn = document.getElementById('card-modal-close');
-      const cards = document.querySelectorAll('.bento > .card');
+      const cards = document.querySelectorAll('.bento > .card.card--active');
       const pageCache = new Map();
       const injectedStyles = new Set();
       let lastFocused = null;

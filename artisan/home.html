@@ -38,7 +38,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('portfolio-theme')||'dark');</script>
+  <script>document.documentElement.setAttribute('data-theme','light');</script>
   <link rel="stylesheet" href="/assets/css/shared.css">
   <style>
     body { overflow-x: hidden; }
@@ -184,6 +184,36 @@
     .explore-more { display: inline-flex; align-items: center; gap: 6px; margin-top: auto; padding-top: 4px; font-family: 'Google Sans', sans-serif; font-size: clamp(13px, 0.93vw, 16px); font-weight: 500; color: var(--accent); }
     .explore-card:hover .explore-more svg { transform: translateX(4px); }
     .explore-more svg { width: 16px; height: 16px; transition: transform 0.2s; }
+
+    /* ─── More-to-explore tiles ─── */
+    .explore-more-label {
+      display: flex; align-items: center; gap: 12px;
+      margin-top: clamp(36px, 3.4vw, 60px); margin-bottom: clamp(16px, 1.5vw, 24px);
+      font-family: 'Google Sans', sans-serif; font-size: 13px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 1px; color: var(--text-tertiary);
+    }
+    .explore-more-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .explore-tile-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(10px, 1vw, 16px); }
+    .explore-tile {
+      display: flex; align-items: flex-start; gap: 13px;
+      padding: clamp(15px, 1.3vw, 20px); background: var(--surface-card);
+      border: 1px solid var(--border); border-radius: var(--radius-card);
+      text-decoration: none; color: inherit;
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    .explore-tile:hover { transform: translateY(-3px); border-color: var(--border-strong); box-shadow: var(--shadow-lg); background: var(--surface-card-hover); }
+    .explore-tile-icon {
+      width: 34px; height: 34px; border-radius: 9px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--blue-bg); color: var(--g-blue);
+    }
+    .explore-tile-icon svg { width: 17px; height: 17px; }
+    .explore-tile-text h4 { font-family: 'Google Sans', sans-serif; font-size: clamp(14px, 1.02vw, 16.5px); font-weight: 500; color: var(--text); margin-bottom: 3px; display: flex; align-items: center; gap: 7px; }
+    .explore-tile-soon { font-size: 10px; font-weight: 600; letter-spacing: 0.02em; color: var(--text-tertiary); background: var(--surface-dim); border: 1px solid var(--border); border-radius: 20px; padding: 2px 8px; text-transform: uppercase; }
+    .explore-tile-text p { font-size: clamp(12px, 0.86vw, 14px); color: var(--text-secondary); line-height: 1.5; }
+
+    @media (max-width: 1024px) { .explore-tile-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .explore-tile-grid { grid-template-columns: 1fr; } }
 
     /* ─── Skill status ─── */
     .radar-section { background: var(--surface); border-top: 1px solid var(--border); }
@@ -390,7 +420,7 @@
         <div class="metric-label">Premium-Tier Upgrades Driven by AI Features</div>
       </div>
       <div class="metric">
-        <div class="metric-value grad-text">380+</div>
+        <div class="metric-value grad-text">400+</div>
         <div class="metric-label">Enterprise Accounts</div>
       </div>
     </div>
@@ -446,6 +476,38 @@
           <span class="explore-more">Open <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
         </a>
       </div>
+
+      <div class="explore-more-label">More on the site</div>
+      <div class="explore-tile-grid">
+        <a href="/career-timeline" class="explore-tile">
+          <div class="explore-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <div class="explore-tile-text"><h4>Career Timeline</h4><p>The path from data analyst to Senior PM, year by year.</p></div>
+        </a>
+        <a href="/projects" class="explore-tile">
+          <div class="explore-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+          <div class="explore-tile-text"><h4>Projects</h4><p>Shipped work across the AI agent platform, by product area.</p></div>
+        </a>
+        <a href="/case-studies/case-study-1" class="explore-tile">
+          <div class="explore-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <div class="explore-tile-text"><h4>Case Study 01 <span class="explore-tile-soon">Soon</span></h4><p>One deal, start to finish — problem, build, and result.</p></div>
+        </a>
+        <a href="/metrics-dashboard" class="explore-tile">
+          <div class="explore-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div class="explore-tile-text"><h4>Metrics Dashboard <span class="explore-tile-soon">Soon</span></h4><p>The numbers behind the growth, tracked over time.</p></div>
+        </a>
+        <a href="/skills-tools" class="explore-tile">
+          <div class="explore-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="explore-tile-text"><h4>Skills &amp; Tools</h4><p>The real daily stack, grouped by how often it's used.</p></div>
+        </a>
+        <a href="/frameworks" class="explore-tile">
+          <div class="explore-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+          <div class="explore-tile-text"><h4>Frameworks</h4><p>The mental models I reach for when scoping AI features.</p></div>
+        </a>
+        <a href="/reading-list" class="explore-tile">
+          <div class="explore-tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></div>
+          <div class="explore-tile-text"><h4>Reading List</h4><p>Books and creators that shape how I think about product.</p></div>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -494,12 +556,12 @@
       { name: 'Reusable Architecture',  active: true },
       { name: 'Agent Governance',        active: true },
       { name: 'Domain Expertise',        active: true },
-      { name: 'Design Thinking',         active: true },
-      { name: 'Navigating Ambiguity',    active: true },
-      { name: 'Stakeholder Mgmt',        active: true },
+      { name: 'Design Thinking',         active: false },
+      { name: 'Navigating Ambiguity',    active: false },
+      { name: 'Stakeholder Management',  active: true },
       { name: 'Pricing Strategy',        active: true },
       { name: 'Delivery Discipline',     active: true },
-      { name: 'Ethical AI',              active: true },
+      { name: 'Ethical AI',              active: false },
     ];
 
     function buildLegend() {

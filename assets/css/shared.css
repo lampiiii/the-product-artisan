@@ -135,7 +135,7 @@ code, pre, .mono {
    NAV
    ============================================================ */
 nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  position: fixed; top: 0; left: 0; right: 0; z-index: 210;
   background: color-mix(in srgb, var(--surface) 82%, transparent);
   backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid transparent;

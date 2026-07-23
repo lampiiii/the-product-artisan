@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
-  <script>document.documentElement.setAttribute('data-theme',localStorage.getItem('portfolio-theme')||'dark');</script>
+  <script>document.documentElement.setAttribute('data-theme','light');</script>
   <link rel="stylesheet" href="/assets/css/shared.css">
   <style>
     /* ─── Page Layout ─── */
@@ -280,6 +280,62 @@
       .distinction-table { font-size: 13px; }
       .distinction-table th, .distinction-table td { padding: 10px 12px; }
     }
+
+    /* ─── Clickable Items (Skills & Agents) ─── */
+    .item--clickable { cursor: pointer; }
+    .item--clickable:hover { border-color: var(--accent); }
+    .item--clickable:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .item-expand {
+      margin-left: auto; flex-shrink: 0; color: var(--text-tertiary);
+      display: flex; align-items: center; padding-top: 2px;
+    }
+    .item-expand svg { width: 14px; height: 14px; }
+    .item--clickable .item-name { display: flex; align-items: center; }
+
+    /* ─── Card Modal ─── */
+    .card-modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px 20px;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+    .card-modal-overlay.open { opacity: 1; visibility: visible; }
+    .card-modal {
+      background: var(--surface-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      width: 100%; max-width: 620px; max-height: 85vh;
+      display: flex; flex-direction: column;
+      overflow: hidden;
+      transform: translateY(12px) scale(0.98);
+      transition: transform 0.22s cubic-bezier(0.22,1,0.36,1);
+    }
+    .card-modal-overlay.open .card-modal { transform: translateY(0) scale(1); }
+    .card-modal-head {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 18px 20px; border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .card-modal-head-title { display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: 700; color: var(--text); }
+    .card-modal-head-title .item-dot { margin-top: 0; width: 10px; height: 10px; }
+    .card-modal-close {
+      background: none; border: 1px solid var(--border); border-radius: 8px;
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      color: var(--text-secondary); cursor: pointer; flex-shrink: 0;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .card-modal-close:hover, .card-modal-close:focus { background: var(--accent-bg); color: var(--accent); border-color: var(--accent); outline: none; }
+    .card-modal-body { overflow-y: auto; flex: 1; padding: 24px; }
+    .card-modal-desc { font-size: 14.5px; line-height: 1.7; color: var(--text-secondary); }
+    .card-modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+    @media (max-width: 640px) {
+      .card-modal-overlay { padding: 0; }
+      .card-modal { max-width: 100%; max-height: 100%; height: 100%; border-radius: 0; }
+    }
   </style>
 </head>
 <body>
@@ -420,11 +476,11 @@
     <!-- ─── Stats ─── -->
     <div class="stats">
       <div class="stat">
-        <div class="stat-value">9</div>
+        <div class="stat-value">80+</div>
         <div class="stat-label">Custom Skills</div>
       </div>
       <div class="stat">
-        <div class="stat-value">5</div>
+        <div class="stat-value">30+</div>
         <div class="stat-label">Custom Agents</div>
       </div>
       <div class="stat">
@@ -436,7 +492,7 @@
         <div class="stat-label">Lifecycle Hooks</div>
       </div>
       <div class="stat">
-        <div class="stat-value">24</div>
+        <div class="stat-value">50</div>
         <div class="stat-label">CLAUDE.md Files</div>
       </div>
       <div class="stat">
@@ -476,78 +532,78 @@
           </div>
           <div class="section-title">Custom Skills</div>
         </div>
-        <div class="section-desc">Ready-made shortcuts that automate repeat product-management tasks. Run one and get a finished, polished result immediately — zero back-and-forth by design.</div>
+        <div class="section-desc">Ready-made shortcuts that automate repeat product-management tasks. Run one and get a finished, polished result immediately — zero back-and-forth by design. A representative selection below.</div>
         <div class="items">
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="I open this when a feature idea is still a paragraph in my notes app. It asks for the minimum it needs — a feature doc link or a single sentence — then returns a subject line, a plain-English description, and acceptance criteria written the way engineering actually reads them, not marketing copy. The output format is domain-configurable, so the same skill produces ready-to-file epics whether the product is SaaS or mobile, without me rewriting the prompt each time.">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/epic-creator</div>
+              <div class="item-name">/epic-creator <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Drafts a structured product epic — subject, description, acceptance criteria — from a feature doc or a single sentence. Domain-configurable; outputs as a formatted document.</div>
               <div class="item-tags"><span class="item-tag">Product</span><span class="item-tag">Documentation</span></div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Takes an epic or a feature description and splits it into stories sized the way a sprint actually consumes them — each with a short description, a longer description, and acceptance criteria a QA engineer could test against without asking me follow-up questions. I usually run it right after /epic-creator, so the two chain into a full backlog pass in one sitting.">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/story-creator</div>
+              <div class="item-name">/story-creator <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Breaks an epic or feature description into engineering-ready user stories with short description, description, and acceptance criteria.</div>
               <div class="item-tags"><span class="item-tag">Product</span><span class="item-tag">Agile</span></div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Free-form notes rarely translate into something a busy stakeholder will read before a call. This skill compresses whatever I dump in — half-formed thoughts, three open questions, a Slack thread I forgot to reply to — into an 8-word-max subject line and a priority-ranked agenda. Nothing gets silently dropped; if it's in my notes, it's in the agenda.">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/meeting-prep</div>
+              <div class="item-name">/meeting-prep <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Turns free-form notes into a concise subject line (max 8 words) and a priority-ranked agenda — nothing the input mentions gets dropped.</div>
               <div class="item-tags"><span class="item-tag">Meetings</span><span class="item-tag">Productivity</span></div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="One pass over a messy markdown doc: adds a TL;DR at the top, imposes heading structure, and removes duplication — without flattening my voice into something that reads like a style guide wrote it. Single-pass by design, because iterating on a doc that's already 90% fine mostly just introduces new mistakes.">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/doc-refiner</div>
+              <div class="item-name">/doc-refiner <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Refines unstructured markdown — adds a TL;DR, structures with headings, removes duplication — while preserving the author's original voice. Single-pass.</div>
               <div class="item-tags"><span class="item-tag">Writing</span><span class="item-tag">Documentation</span></div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Rough thoughts in, a message that sounds like me out — for Slack, Teams, or email. I built this because most AI-drafted messages read like a press release. It's tuned against my own writing samples so the tone doesn't slip into generic corporate voice.">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/team-message</div>
+              <div class="item-name">/team-message <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Converts rough thoughts into a clear, conversational message for Slack, Teams, or email — in a real voice, not a template.</div>
               <div class="item-tags"><span class="item-tag">Communication</span><span class="item-tag">Productivity</span></div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Point it at a screenshot, a whiteboard photo, or a rough mockup export and it returns a complete markdown feature spec — no clarifying questions, because most of the time I've already answered them in my head and just need it written down fast. If the image is genuinely ambiguous, it states its assumptions inline rather than stalling on a question.">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/image-to-spec</div>
+              <div class="item-name">/image-to-spec <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Reads a screenshot, whiteboard photo, or mockup and extracts a complete, structured markdown feature spec — no clarifying questions asked.</div>
               <div class="item-tags"><span class="item-tag">Design</span><span class="item-tag">Product</span></div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Drafts a publish-ready LinkedIn post from a topic or a scrap of notes, following a hook → context → payoff structure I've seen perform well, matched against my own voice so it doesn't read like it came out of a content calendar tool.">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/linkedin-post</div>
+              <div class="item-name">/linkedin-post <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Drafts a ready-to-publish LinkedIn post from any topic or rough notes, matching a proven hook → context → payoff structure and my own voice.</div>
               <div class="item-tags"><span class="item-tag">Writing</span><span class="item-tag">Personal Brand</span></div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="A structured audit of my own Claude Code workflow — plan mode usage, task tracking discipline, memory hygiene, CLAUDE.md coverage, skill and agent usage, prompt quality, context management. It's the skill I run when a session felt slower than it should have, to find out why.">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/cc-check</div>
+              <div class="item-name">/cc-check <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Runs a structured audit of my own Claude Code workflow against a set of best-practice pillars — plan mode, task tracking, memory, CLAUDE.md, skills, agents, prompts, context management.</div>
               <div class="item-tags"><span class="item-tag">Workflow</span><span class="item-tag">Self-Audit</span></div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Offloads a research-heavy or exploratory task to a fresh sub-agent with its own context window. The dead ends and half-answers that come with exploration don't need to live in my main session — this skill keeps that noise out so the main thread stays focused on decisions rather than the search for them.">
             <div class="item-dot item-dot--blue"></div>
             <div>
-              <div class="item-name">/spin-up</div>
+              <div class="item-name">/spin-up <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Offloads a research-heavy or exploratory task to a fresh sub-agent with its own context window, so the main session's journey (dead ends, intermediate results) doesn't consume it.</div>
-              <div class="item-tags"><span class="item-tag">Context Mgmt</span><span class="item-tag">Delegation</span></div>
+              <div class="item-tags"><span class="item-tag">Context Management</span><span class="item-tag">Delegation</span></div>
             </div>
           </div>
         </div>
@@ -561,16 +617,16 @@
           </div>
           <div class="section-title">Custom Agents</div>
         </div>
-        <div class="section-desc">Agents are long-horizon, multi-step workers — each a scoped `.md` spec with its own model, tools, and system prompt. I group them by the pattern they serve, not just what they're called.</div>
+        <div class="section-desc">Agents are long-horizon, multi-step workers — each a scoped `.md` spec with its own model, tools, and system prompt. I group them by the pattern they serve, not just what they're called. A representative selection below.</div>
 
         <div class="pattern-group">
           <div class="pattern-label">Stewardship agents</div>
           <div class="pattern-desc">Own a corpus and keep it consistent over time — propose changes, a human approves before anything is written.</div>
           <div class="items">
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Runs on a schedule, not on demand. Every day it generates one vivid, realistic workday scenario for a B2B persona I don't get to sit with directly — a warehouse ops manager, a compliance officer, a support lead — logged to a running corpus that builds real intuition for roles I've never lived, without me having to shadow anyone.">
               <div class="item-dot item-dot--purple"></div>
               <div>
-                <div class="item-name">Persona Drip</div>
+                <div class="item-name">Persona Drip <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Generates one vivid, realistic B2B persona workday scenario daily — building intuitive empathy for roles I haven't lived, logged to a running corpus that never repeats a category consecutively.</div>
                 <div class="item-tags"><span class="item-tag">Empathy</span><span class="item-tag">Daily</span></div>
               </div>
@@ -582,18 +638,18 @@
           <div class="pattern-label">Critic agents</div>
           <div class="pattern-desc">Independent review pass, run in a fresh context so they aren't anchored to the author's framing.</div>
           <div class="items">
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Before a PRD reaches engineering, this agent runs it through a fixed set of risk dimensions — user behavior, data integrity, integrations, security, performance, error handling — and surfaces what I missed. It runs in a fresh context so it isn't anchored to how I framed the problem while writing it.">
               <div class="item-dot item-dot--purple"></div>
               <div>
-                <div class="item-name">PRD Edge Case Analyzer</div>
+                <div class="item-name">PRD Edge Case Analyzer <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Reviews a product requirements doc across a set of risk dimensions — user behavior, data, integrations, security, performance, error handling, and more — before it reaches engineering.</div>
                 <div class="item-tags"><span class="item-tag">Quality</span><span class="item-tag">Risk Analysis</span></div>
               </div>
             </div>
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="A 7-step competitive analysis I can point at any feature or roadmap decision — positioning, differentiation, how defensible the moat actually is, and where an AI-native entrant could disrupt the space. I run it before a roadmap review, not after, so the analysis shapes the decision instead of just justifying it.">
               <div class="item-dot item-dot--purple"></div>
               <div>
-                <div class="item-name">Competitive Strategic Lens</div>
+                <div class="item-name">Competitive Strategic Lens <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Runs a 7-step competitive analysis on any feature or roadmap decision — positioning, differentiation, moat defensibility, and disruption risk from AI-native entrants.</div>
                 <div class="item-tags"><span class="item-tag">Strategy</span><span class="item-tag">Competitive Intel</span></div>
               </div>
@@ -605,18 +661,18 @@
           <div class="pattern-label">QA / health agents</div>
           <div class="pattern-desc">Dedicated agents that audit the platform or the repo itself, on demand or on a schedule.</div>
           <div class="items">
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Audits the whole repo — structure, metadata validity, cross-references, doc drift, content quality, naming hygiene — and returns a prioritized fix list with trend tracking against the last run, so I can see whether the repo is getting healthier or accumulating debt. Runs on a schedule, so hygiene doesn't depend on me remembering to check.">
               <div class="item-dot item-dot--purple"></div>
               <div>
-                <div class="item-name">Repo Health Doctor</div>
+                <div class="item-name">Repo Health Doctor <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Audits the repo across categories like structure, metadata validity, cross-references, doc drift, content quality, and naming hygiene — with a prioritized fix list and trend tracking vs. prior runs.</div>
                 <div class="item-tags"><span class="item-tag">Governance</span><span class="item-tag">Scheduled</span></div>
               </div>
             </div>
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="The engine behind /cc-check. It reads the activity log, memory, and the existing skill and agent library, then scores workflow health and points at specific, actionable gaps — not generic advice, but 'you have a hook doing X but no skill doing Y' specificity.">
               <div class="item-dot item-dot--purple"></div>
               <div>
-                <div class="item-name">Claude Code Coach</div>
+                <div class="item-name">Claude Code Coach <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">The engine behind /cc-check — reads the activity log, memory, and existing skills/commands to score workflow health and surface specific, actionable improvements.</div>
                 <div class="item-tags"><span class="item-tag">Workflow</span><span class="item-tag">Coaching</span></div>
               </div>
@@ -636,38 +692,38 @@
         </div>
         <div class="section-desc">Short, opinionated actions — scaffolding, data pulls, and orchestration. Commands call skills and agents in a defined sequence rather than doing the work themselves.</div>
         <div class="items">
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Stages what's actually relevant to the change, writes a commit message that matches the repo's existing style and voice, then pushes — automatically excludes anything that looks like a secret or a lockfile diff so those never end up staged by accident.">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">/commit-push</div>
+              <div class="item-name">/commit-push <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Stages relevant changes, writes a commit message matching the repo's existing style, and pushes — automatically excludes secrets and lockfiles.</div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Scans the repo top to bottom, finds every directory missing a CLAUDE.md, and drafts one for each — what belongs here, what doesn't, where misplaced content should go instead. I run it after any restructuring so the governance hierarchy never falls behind the folder structure.">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">/claude-md-init-all</div>
+              <div class="item-name">/claude-md-init-all <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Scans a repo top to bottom for directories missing a CLAUDE.md and drafts one for each — keeps the governance hierarchy complete as the repo grows.</div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Scaffolds a new feature folder for the team-wide operating system from a template — copies the standard structure, fills in metadata, and prompts for owners so nothing ships without one. Keeps every feature folder consistent without me remembering the template by hand.">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">/new-feature</div>
+              <div class="item-name">/new-feature <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Scaffolds a new feature folder from a template — copies structure, fills metadata, prompts for owners — for the team-wide operating system.</div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Reviews the current session and writes a polished entry to the activity log, checking first against what the Stop hook already auto-captured so nothing gets duplicated. The auto-capture is the safety net; this is the polish pass for sessions worth writing up properly.">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">/update-activity-log</div>
+              <div class="item-name">/update-activity-log <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Reviews the current session and appends a polished entry to the activity log — checks for duplicates against what the Stop hook already auto-captured.</div>
             </div>
           </div>
-          <div class="item">
+          <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Flips a coin, 50/50, no explanation. Not everything needs to be productive — sometimes the fastest way through an actually-trivial decision is to stop deliberating and let something decide for you.">
             <div class="item-dot item-dot--green"></div>
             <div>
-              <div class="item-name">/flip-a-coin</div>
+              <div class="item-name">/flip-a-coin <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
               <div class="item-desc">Flips a coin, 50/50, no explanation. Not everything needs to be productive.</div>
             </div>
           </div>
@@ -687,17 +743,17 @@
         <div class="pattern-group">
           <div class="pattern-label">Stop — run after every session ends</div>
           <div class="items">
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Fires at the end of every session and appends an entry to a JSON activity ledger, tagged 'auto' so it's distinguishable from anything I've since gone back and polished by hand. Writes are atomic, so a session that crashes mid-write can't corrupt the whole feed — worst case is one missing entry, not a broken file.">
               <div class="item-dot item-dot--red"></div>
               <div>
-                <div class="item-name">log-activity</div>
+                <div class="item-name">log-activity <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Auto-captures every session into a JSON activity ledger, tagged "auto." Never overwrites an entry I've since polished by hand — atomic writes so a partial run can't corrupt the feed.</div>
               </div>
             </div>
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Counts tool calls from the transcript in the background and nudges me toward /compact or /clear at 30, 75, and 150 calls — once per threshold, not every message. The point is catching context bloat before response quality visibly degrades, not after.">
               <div class="item-dot item-dot--red"></div>
               <div>
-                <div class="item-name">nudge-compact</div>
+                <div class="item-name">nudge-compact <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Tracks tool-call count from the transcript and nudges toward /compact or /clear at 30 / 75 / 150 calls, once per threshold — before quality degrades.</div>
               </div>
             </div>
@@ -707,31 +763,31 @@
         <div class="pattern-group">
           <div class="pattern-label">PreToolUse — run before specific tool calls</div>
           <div class="items">
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Blocks an edit to any markdown file if it contains an @handle that doesn't match the current team roster. Catches a typo'd mention before it ships instead of after someone notices it was never delivered; code blocks are exempt so example snippets don't get flagged.">
               <div class="item-dot item-dot--red"></div>
               <div>
-                <div class="item-name">validate-teams-handles</div>
+                <div class="item-name">validate-teams-handles <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Blocks an edit to any markdown file if it contains an @handle that doesn't match the team roster. Catches typos before they ship; code blocks are exempt.</div>
               </div>
             </div>
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Restricts edits to the core config files — the capability registry, the team roster, the hooks themselves — to a designated list of maintainers, and fails safe (denies) if that config is missing rather than defaulting open.">
               <div class="item-dot item-dot--red"></div>
               <div>
-                <div class="item-name">protect-governance-files</div>
+                <div class="item-name">protect-governance-files <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Restricts edits to core config files — the registry, the roster, the hooks themselves — to designated maintainers, with a safe default if config is missing.</div>
               </div>
             </div>
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Blocks a specific agent type from reading raw research files directly, enforced at the path level rather than as a prose instruction in its system prompt — a rule a model could talk itself out of, a path check can't.">
               <div class="item-dot item-dot--red"></div>
               <div>
-                <div class="item-name">protect-intake-paths</div>
+                <div class="item-name">protect-intake-paths <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Blocks a specific agent type from reading raw research files directly — enforced by path, not by prose instruction, so it can't be forgotten.</div>
               </div>
             </div>
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Gates every sub-agent invocation against a known-good registry before it runs: is this agent recognized, does the calling context have access, is a sensitive path involved. The registry is the single source of truth for what's allowed to run, not scattered prompt instructions.">
               <div class="item-dot item-dot--red"></div>
               <div>
-                <div class="item-name">govern-agent</div>
+                <div class="item-name">govern-agent <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Gates every sub-agent call against a known-good registry — is the agent recognized, does the caller have access, is a sensitive path involved.</div>
               </div>
             </div>
@@ -741,31 +797,31 @@
         <div class="pattern-group" style="margin-bottom: 0;">
           <div class="pattern-label">PostToolUse — run after specific tool calls</div>
           <div class="items">
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Every skill and agent invocation gets logged automatically and feeds a live tool-usage dashboard — which skills actually get used, how often, by what pattern. No manual tracking, no end-of-week tally.">
               <div class="item-dot item-dot--red"></div>
               <div>
-                <div class="item-name">log-skill-usage / log-agent-usage</div>
+                <div class="item-name">log-skill-usage / log-agent-usage <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Every skill and agent invocation is logged and feeds a live tool-usage dashboard — no manual tracking.</div>
               </div>
             </div>
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Rebuilds the guides catalog the moment a skill, agent, command, or hook file changes, so the catalog never silently drifts out of sync with what actually exists in .claude/.">
               <div class="item-dot item-dot--red"></div>
               <div>
-                <div class="item-name">regenerate-toolkit-guides</div>
+                <div class="item-name">regenerate-toolkit-guides <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Rebuilds the guides catalog automatically whenever a skill, agent, command, or hook file changes.</div>
               </div>
             </div>
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="A new agent, skill, or command file gets a conservative auto-stub entry in the capability registry the moment it's created, so it's discoverable immediately — locked down by default until I review and promote it.">
               <div class="item-dot item-dot--red"></div>
               <div>
-                <div class="item-name">sync-capability-registry</div>
+                <div class="item-name">sync-capability-registry <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">A new agent, skill, or command file gets a conservative auto-stub entry in the registry so it's discoverable — locked down until reviewed.</div>
               </div>
             </div>
-            <div class="item">
+            <div class="item item--clickable" tabindex="0" role="button" aria-haspopup="dialog" data-detail="Watches specific file patterns across the repo and rebuilds the matching dashboard page automatically — zero manual regeneration steps, the dashboard is never more than one hook run behind the source data.">
               <div class="item-dot item-dot--red"></div>
               <div>
-                <div class="item-name">regenerate-teamos</div>
+                <div class="item-name">regenerate-teamos <span class="item-expand"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span></div>
                 <div class="item-desc">Watches specific file patterns and rebuilds the matching dashboard page — zero manual regeneration steps, ever.</div>
               </div>
             </div>
@@ -795,7 +851,7 @@
           </div>
           <div class="section-title">CLAUDE.md Governance System</div>
         </div>
-        <div class="section-desc">Every folder gets a CLAUDE.md answering three questions: what is this folder for, what belongs here, and what doesn't (and where does it go instead). The root CLAUDE.md has a routing table — a decision tree mapping any content type to its correct home, so Claude almost never files something in the wrong place. 24 files total across my personal and team-wide systems, loaded in order: global user settings → project root → folder-level.</div>
+        <div class="section-desc">Every folder gets a CLAUDE.md answering three questions: what is this folder for, what belongs here, and what doesn't (and where does it go instead). The root CLAUDE.md has a routing table — a decision tree mapping any content type to its correct home, so Claude almost never files something in the wrong place. 50 files total across my personal and team-wide systems, loaded in order: global user settings → project root → folder-level.</div>
         <div class="file-tree">
           <div class="tree-item tree-item--l1">
             <div class="tree-icon tree-icon--folder"><svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M10 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V8a2 2 0 00-2-2h-8l-2-2z"/></svg></div>
@@ -960,6 +1016,19 @@
 
     </div>
 
+    <!-- ─── Card Modal ─── -->
+    <div class="card-modal-overlay" id="card-modal-overlay">
+      <div class="card-modal" role="dialog" aria-modal="true" aria-labelledby="card-modal-title">
+        <div class="card-modal-head">
+          <div class="card-modal-head-title" id="card-modal-title"></div>
+          <button type="button" class="card-modal-close" id="card-modal-close" aria-label="Close">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="card-modal-body" id="card-modal-body"></div>
+      </div>
+    </div>
+
     <footer>
       <div class="footer-inner">
         <span class="footer-text">Abhay Tyagi — Built with Claude Code</span>
@@ -975,6 +1044,57 @@
   </div>
 
   <script src="/assets/js/shared.js"></script>
+  <script>
+    // --- Card Modal: click a skill or agent card to read more about it ---
+    (function cardModal() {
+      const overlay = document.getElementById('card-modal-overlay');
+      const modalTitle = document.getElementById('card-modal-title');
+      const modalBody = document.getElementById('card-modal-body');
+      const closeBtn = document.getElementById('card-modal-close');
+      const items = document.querySelectorAll('.item--clickable');
+      let lastFocused = null;
+
+      function openModal(item) {
+        const dotClass = item.querySelector('.item-dot')?.className || '';
+        const name = item.querySelector('.item-name')?.firstChild?.textContent.trim() || '';
+        const detail = item.dataset.detail || '';
+        const tags = item.querySelector('.item-tags')?.innerHTML || '';
+
+        modalTitle.innerHTML = `<span class="${dotClass}" style="width:10px;height:10px;border-radius:50%;flex-shrink:0;"></span><span>${name}</span>`;
+        modalBody.innerHTML = `<p class="card-modal-desc">${detail}</p>${tags ? `<div class="card-modal-tags">${tags}</div>` : ''}`;
+
+        lastFocused = document.activeElement;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+      }
+
+      function closeModal() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        modalBody.innerHTML = '';
+        if (lastFocused) lastFocused.focus();
+      }
+
+      items.forEach(item => {
+        item.addEventListener('click', () => openModal(item));
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal(item);
+          }
+        });
+      });
+
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) closeModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+      });
+    })();
+  </script>
 
 </body>
 </html>
