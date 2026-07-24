@@ -5,8 +5,6 @@
    from this single source.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css?family=Google+Sans+Display:400,500,700|Google+Sans:400,500,700|Google+Sans+Text:400,500|Roboto+Mono:400,500&display=swap');
-
 /* --- Reset --- */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
