@@ -19,6 +19,8 @@ const PAGES = {
   'artisan/pov/delivery-discipline.html':          'proof-of-value/delivery-discipline.html',
   'artisan/pov/stakeholder-management.html':       'proof-of-value/stakeholder-management.html',
   'artisan/pov/pricing-strategy.html':             'proof-of-value/pricing-strategy.html',
+  'artisan/pov/ethical-ai.html':                   'proof-of-value/ethical-ai.html',
+  'artisan/pov/design-thinking.html':              'proof-of-value/design-thinking.html',
   'artisan/playbook.html':                         'playbook.html',
   'artisan/career-timeline.html':                  'career-timeline.html',
   'artisan/skills-tools.html':                     'skills-tools.html',

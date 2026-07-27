@@ -625,7 +625,7 @@
         <div class="progress-bar-wrap">
           <div class="progress-bar-fill" id="progress-fill"></div>
         </div>
-        <div class="progress-label"><strong>7</strong> / 10 active</div>
+        <div class="progress-label"><strong>9</strong> / 10 active</div>
       </div>
     </div>
 
@@ -766,46 +766,44 @@
           </div>
         </a>
 
-        <!-- 7. Design Thinking — WATCHING (no dedicated case study yet) -->
-        <div class="card card--watching">
+        <!-- 7. Design Thinking — ACTIVE -->
+        <a href="/proof-of-value/design-thinking" class="card card--active">
+          <div class="card-accent-bar"></div>
           <div class="card-icon card-icon--yellow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
           </div>
           <div class="card-name">Design Thinking</div>
-          <div class="card-desc">Empathy-led decisions and user research inform the work, but a dedicated case study is still in progress.</div>
+          <div class="card-desc">A personal PWA's voice-log UI is built around where AI extraction actually goes wrong for the user, not the happy path.</div>
           <div class="card-footer">
-            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
-            <div class="card-lock" title="No shipped evidence yet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-            </div>
+            <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
+            <div class="card-items">1 shipped feature</div>
           </div>
-        </div>
+        </a>
 
-        <!-- 8. Ethical AI — WATCHING (no dedicated case study yet) -->
-        <div class="card card--watching">
+        <!-- 8. Ethical AI — ACTIVE -->
+        <a href="/proof-of-value/ethical-ai" class="card card--active">
+          <div class="card-accent-bar"></div>
           <div class="card-icon card-icon--purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
           </div>
           <div class="card-name">Ethical AI</div>
-          <div class="card-desc">Minimum-necessary access is shipped in product; a formal review process is still being built.</div>
+          <div class="card-desc">A personal project's own Anthropic key is held server-side only and never shipped to the client — the same minimum-access instinct applied to my own code.</div>
           <div class="card-footer">
-            <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
-            <div class="card-lock" title="No shipped evidence yet">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
-            </div>
+            <div class="card-status card-status--active"><span class="card-dot"></span> Active</div>
+            <div class="card-items">Key never leaves server</div>
           </div>
-        </div>
+        </a>
 
-        <!-- 9. Navigating Ambiguity — WATCHING (no dedicated case study yet) -->
+        <!-- 9. Navigating Ambiguity — WATCHING (one small in-repo example, not yet a full case study) -->
         <div class="card card--watching">
           <div class="card-icon card-icon--green">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
           </div>
           <div class="card-name">Navigating Ambiguity</div>
-          <div class="card-desc">Structured judgment calls happen regularly; a dedicated case study is still in progress.</div>
+          <div class="card-desc">Structured judgment calls happen regularly; so far only a single documented infra tradeoff backs this, not yet a full case study.</div>
           <div class="card-footer">
             <div class="card-status card-status--watching"><span class="card-dot"></span> Watching</div>
-            <div class="card-lock" title="No shipped evidence yet">
+            <div class="card-lock" title="Thin evidence so far">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
             </div>
           </div>
@@ -867,7 +865,7 @@
     // --- Animate progress bar ---
     window.addEventListener('load', () => {
       requestAnimationFrame(() => {
-        document.getElementById('progress-fill').style.width = '70%';
+        document.getElementById('progress-fill').style.width = '90%';
       });
     });
 
@@ -883,9 +881,9 @@
         { name: 'Domain Expertise',     desc: 'Deep but scoped — 5 product lines and 100+ tracked features within one company’s suite.', color: 'var(--purple)', value: 0.8, status: 'active' },
         { name: 'Delivery Discipline',  desc: 'Consistent execution — 70+ features shipped, risk flagged early across six releases.', color: 'var(--accent)', value: 0.78, status: 'active' },
         { name: 'Stakeholder Management', desc: 'One org proven — repeatable process for an 80+ person team, not yet cross-company.', color: 'var(--blue)',   value: 0.72, status: 'active' },
-        { name: 'Design Thinking',      desc: 'Early stage — user research over assumption, no dedicated case study yet.', color: 'var(--yellow)', value: 0.5, status: 'watching' },
-        { name: 'Ethical AI',           desc: 'Early stage — minimum-necessary access shipped, no formal review board yet.', color: 'var(--purple)', value: 0.48, status: 'watching' },
-        { name: 'Navigating Ambiguity', desc: 'Early stage — structured calls with incomplete data, no dedicated case study yet.', color: 'var(--green)', value: 0.52, status: 'watching' },
+        { name: 'Design Thinking',      desc: 'Early tier — one shipped feature designed around real user error cases, not yet a pattern across products.', color: 'var(--yellow)', value: 0.58, status: 'active' },
+        { name: 'Ethical AI',           desc: 'Early tier — minimum-necessary access shipped in both day-job and personal code, no formal review board yet.', color: 'var(--purple)', value: 0.56, status: 'active' },
+        { name: 'Navigating Ambiguity', desc: 'Early stage — one documented infra tradeoff so far, not yet a dedicated case study.', color: 'var(--green)', value: 0.52, status: 'watching' },
         { name: 'Reusable Architecture',desc: 'Broadly reused — one team OS spanning every product line, dozens of agents and skills.', color: 'var(--yellow)', value: 0.85, status: 'active' },
       ];
 
