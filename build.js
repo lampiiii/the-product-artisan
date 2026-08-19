@@ -26,6 +26,8 @@ const PAGES = {
   'artisan/skills-tools.html':                     'skills-tools.html',
   'artisan/reading-list.html':                     'reading-list.html',
   'artisan/frameworks.html':                       'frameworks.html',
+  'artisan/reference-prd.html':                    'reference-prd.html',
+  'artisan/agent-evals.html':                      'agent-evals.html',
   'artisan/metrics-dashboard.html':                'metrics-dashboard.html',
   'artisan/case-studies/case-study-1.html':        'case-studies/case-study-1.html',
   'artisan/404.html':                              '404.html',

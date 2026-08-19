@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-VCRWJS3XCF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-VCRWJS3XCF');
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "xqetuge495");
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reference PRD — Abhay Tyagi | The Product Artisan</title>
+  <meta name="description" content="A complete, sanitized product requirements document for an enterprise AI agent — JTBD, RICE prioritization, OKRs, decision boundaries, staged rollout, and the executive narrative.">
+  <meta property="og:title" content="Reference PRD — Abhay Tyagi">
+  <meta property="og:description" content="A complete, sanitized product requirements document for an enterprise AI agent — JTBD, RICE prioritization, OKRs, decision boundaries, staged rollout, and the executive narrative.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://the-product-artisan.abhay-tyagi-2021.workers.dev/reference-prd">
+  <meta property="og:image" content="https://the-product-artisan.abhay-tyagi-2021.workers.dev/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Reference PRD — Abhay Tyagi">
+  <meta name="twitter:description" content="A complete, sanitized product requirements document for an enterprise AI agent — JTBD, RICE prioritization, OKRs, decision boundaries, staged rollout, and the executive narrative.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%231a73e8'/><stop offset='0.5' stop-color='%234285f4'/><stop offset='1' stop-color='%238ab4f8'/></linearGradient></defs><circle cx='50' cy='50' r='50' fill='url(%23g)'/><text x='50' y='69' text-anchor='middle' font-family='Arial' font-weight='bold' font-size='58' fill='white'>A</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans+Display:400,500,700|Google+Sans:400,500,700|Google+Sans+Text:400,500&family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet">
+  <script>document.documentElement.setAttribute('data-theme','light');</script>
+  <link rel="stylesheet" href="/assets/css/shared.css">
+  <style>
+
+    .doc { max-width: 1000px; margin: 0 auto; padding: 0 clamp(20px,2.6vw,48px); }
+    .doc-hero { padding: clamp(48px,5vw,84px) 0 clamp(20px,2vw,32px); }
+    .doc-hero h1 { font-family:'Google Sans Display',sans-serif; font-size: clamp(30px,4.4vw,50px); font-weight:500; letter-spacing:-0.8px; line-height:1.1; color:var(--text); margin-bottom:16px; }
+    .doc-hero .lede { font-size: clamp(15px,1.2vw,19px); color:var(--text-secondary); line-height:1.65; }
+    .doc-eyebrow { display:inline-flex; align-items:center; gap:7px; font-family:'Google Sans',sans-serif; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.9px; color:var(--accent); background:var(--accent-bg); border-radius:var(--radius-pill); padding:6px 14px; margin-bottom:20px; }
+
+    .notice { display:flex; gap:14px; align-items:flex-start; border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:12px; background:var(--surface-card); padding:18px 20px; margin:28px 0 8px; }
+    .notice svg { width:20px; height:20px; flex:0 0 auto; color:var(--accent); margin-top:2px; }
+    .notice p { font-size:14px; line-height:1.65; color:var(--text-secondary); margin:0; }
+    .notice strong { color:var(--text); font-weight:600; }
+
+    .meta-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin:28px 0 8px; }
+    .meta-cell { background:var(--surface-card); padding:16px 18px; }
+    .meta-cell .k { font-family:'Google Sans',sans-serif; font-size:11px; text-transform:uppercase; letter-spacing:0.7px; color:var(--text-tertiary); margin-bottom:6px; }
+    .meta-cell .v { font-size:14px; font-weight:500; color:var(--text); line-height:1.4; }
+    @media (max-width:860px){ .meta-strip{ grid-template-columns:repeat(2,1fr);} }
+    @media (max-width:520px){ .meta-strip{ grid-template-columns:1fr;} }
+
+    .doc-body { padding-bottom: 64px; }
+    .doc-sec { padding-top: clamp(36px,3.4vw,56px); }
+    .doc-sec > h2 { font-family:'Google Sans Display',sans-serif; font-size:clamp(21px,2vw,29px); font-weight:500; letter-spacing:-0.4px; color:var(--text); margin-bottom:8px; padding-bottom:12px; border-bottom:1px solid var(--border); }
+    .doc-sec > h2 .num { color:var(--text-tertiary); font-weight:400; margin-right:12px; }
+    .doc-sec h3 { font-family:'Google Sans',sans-serif; font-size:16.5px; font-weight:600; color:var(--text); margin:26px 0 10px; }
+    .doc-sec p { font-size:15px; line-height:1.75; color:var(--text-secondary); margin:0 0 14px; }
+    .doc-sec p strong, .doc-sec li strong { color:var(--text); font-weight:600; }
+    .doc-sec ul { margin:0 0 16px; padding-left:20px; }
+    .doc-sec li { font-size:15px; line-height:1.75; color:var(--text-secondary); margin-bottom:8px; }
+
+    .tbl-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:12px; margin:16px 0 20px; }
+    table.doc-tbl { width:100%; border-collapse:collapse; min-width:620px; }
+    table.doc-tbl th { text-align:left; font-family:'Google Sans',sans-serif; font-size:11.5px; font-weight:600; text-transform:uppercase; letter-spacing:0.7px; color:var(--text-tertiary); background:var(--surface-dim); padding:12px 16px; border-bottom:1px solid var(--border); white-space:nowrap; }
+    table.doc-tbl td { font-size:14px; line-height:1.6; color:var(--text-secondary); padding:13px 16px; border-bottom:1px solid var(--border); vertical-align:top; }
+    table.doc-tbl tr:last-child td { border-bottom:none; }
+    table.doc-tbl td strong { color:var(--text); font-weight:600; }
+
+    .tag { display:inline-block; font-family:'Google Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.4px; padding:3px 9px; border-radius:var(--radius-pill); white-space:nowrap; }
+    .tag--p0 { color:#b3261e; background:rgba(179,38,30,0.10); }
+    .tag--p1 { color:#8a5a00; background:rgba(234,158,0,0.13); }
+    .tag--p2 { color:var(--text-tertiary); background:var(--surface-dim); }
+    [data-theme="dark"] .tag--p0 { color:#f2b8b5; background:rgba(242,184,181,0.14); }
+    [data-theme="dark"] .tag--p1 { color:#f5cf7a; background:rgba(245,207,122,0.14); }
+
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:16px 0 4px; }
+    @media (max-width:760px){ .split{ grid-template-columns:1fr; } }
+    .panel { border:1px solid var(--border); border-radius:12px; background:var(--surface-card); padding:20px 22px; }
+    .panel h4 { font-family:'Google Sans',sans-serif; font-size:14px; font-weight:600; color:var(--text); margin:0 0 12px; display:flex; align-items:center; gap:8px; }
+    .panel ul { margin:0; padding-left:18px; }
+    .panel li { font-size:14px; line-height:1.65; margin-bottom:7px; }
+    .dot-g,.dot-r { width:8px; height:8px; border-radius:50%; flex:0 0 auto; }
+    .dot-g { background:var(--g-green,#34a853); }
+    .dot-r { background:#b3261e; }
+
+    .quote { border-left:3px solid var(--border-strong); padding:4px 0 4px 20px; margin:20px 0; }
+    .quote p { font-size:16px; line-height:1.7; color:var(--text); font-style:italic; margin:0; }
+
+    .next { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+
+  </style>
+</head>
+<body>
+
+  <!-- --- Nav --- -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-left">
+        <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <a href="/" class="nav-logo">
+          <div class="nav-logo-mark">A</div>
+          <span class="nav-logo-text">Abhay Tyagi</span>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="https://productartisan.substack.com" class="nav-icon-btn" target="_blank" rel="noopener" title="Substack">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        </a>
+        <a href="https://github.com/lampiiii" class="nav-icon-btn" target="_blank" rel="noopener" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <button class="nav-icon-btn" id="theme-toggle" title="Toggle dark mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- --- Sidebar --- -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Overview</div>
+      <a href="/profile" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </a>
+      <a href="/career-timeline" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Career Timeline
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Proof of Work</div>
+      <a href="/proof-of-value" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        Proof of Value
+      </a>
+      <a href="/projects" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+        Projects
+      </a>
+      <a href="/reference-prd" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Reference PRD
+      </a>
+      <a href="/agent-evals" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        Agent Eval Rubrics
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Craft & Thinking</div>
+      <a href="/skills-tools" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+        Skills &amp; Tools
+      </a>
+      <a href="/frameworks" class="sidebar-link active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Frameworks
+      </a>
+      <a href="/playbook" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Playbook
+      </a>
+      <a href="/claude-code" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        My Claude Code Stack
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Reading & Influences</div>
+      <a href="/reading-list" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        Reading List
+      </a>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Quick Links</div>
+      <a href="https://productartisan.substack.com" class="sidebar-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+        Substack
+      </a>
+      <a href="mailto:mail4abhaytyagi@gmail.com" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+      <a href="https://www.linkedin.com/in/abhay-tyagi-iimu/" class="sidebar-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+
+    <div class="sidebar-spacer"></div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-footer-text">The Product Artisan v2.0</div>
+    </div>
+  </aside>
+
+  <div class="page">
+
+
+    <!-- Hero -->
+    <div class="doc">
+      <div class="doc-hero">
+        <div class="doc-eyebrow">Proof of Work · Reference Document</div>
+        <h1>Reference PRD: Renewal&#8209;Risk Review Agent</h1>
+        <p class="lede">A complete product requirements document for one of the 19 agents in the Customer Success agent system — written the way I actually write them, then sanitized for publication. It is here because describing a PRD and showing one are different claims.</p>
+      </div>
+
+      <div class="notice">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <p><strong>Sanitized for publication.</strong> Internal system names, product codenames, customer names, and exact internal figures are removed or rounded. The structure, reasoning, and decision boundaries are the real ones. Nothing here is confidential ServiceNow material.</p>
+      </div>
+
+      <div class="meta-strip">
+        <div class="meta-cell"><div class="k">Status</div><div class="v">Shipped · GA</div></div>
+        <div class="meta-cell"><div class="k">Author</div><div class="v">Abhay Tyagi, Sr PM</div></div>
+        <div class="meta-cell"><div class="k">Scope</div><div class="v">1 of 19 agents, 5 workflows</div></div>
+        <div class="meta-cell"><div class="k">Reviewers</div><div class="v">Eng, Design, Security, GTM</div></div>
+      </div>
+
+      <div class="doc-body">
+
+      <!-- 1 -->
+      <div class="doc-sec">
+        <h2><span class="num">01</span>Context and problem</h2>
+        <p>Customer Success Managers at enterprise accounts run a renewal-risk review on every account in their book ahead of each renewal cycle. Done manually, the review means pulling usage telemetry, open support cases, health-score movement, executive-sponsor changes, and last-quarter's success-plan progress out of five different places, then forming a judgment about whether the renewal is at risk and what to do about it.</p>
+        <p>A time study across the CSM organization put this and its adjacent manual work at <strong>200+ hours per week</strong> in aggregate. The cost is not only the hours. Because the review is expensive, it happens late — often close enough to the renewal date that the intervention window has already closed. The org was paying for a diagnostic it could not afford to run early enough to act on.</p>
+        <h3>Why this, and why now</h3>
+        <p>Two competitors, <strong>Gainsight</strong> and <strong>Totango</strong>, were positioning risk intelligence as a core differentiator in evaluations we were losing. The gap was visible in lost-deal analysis. Meanwhile the agent platform investment was already committed, which meant the marginal cost of adding a well-scoped agent workflow was low relative to building this as bespoke product logic.</p>
+      </div>
+
+      <!-- 2 -->
+      <div class="doc-sec">
+        <h2><span class="num">02</span>Jobs to be Done</h2>
+        <div class="tbl-wrap">
+          <table class="doc-tbl">
+            <thead><tr><th>Job statement</th><th>Current workaround</th><th>What "done well" looks like</th></tr></thead>
+            <tbody>
+              <tr><td><strong>When</strong> a renewal enters its final two quarters, <strong>I want to</strong> know which of my accounts are actually at risk, <strong>so I can</strong> spend my limited hours on the ones where I can change the outcome.</td><td>Manual review, run late, on a subset of the book chosen by gut feel.</td><td>Ranked risk list covering the full book, refreshed continuously, with the evidence attached.</td></tr>
+              <tr><td><strong>When</strong> I am told an account is at risk, <strong>I want to</strong> see why, <strong>so I can</strong> decide whether I agree before I act on it.</td><td>Health score with no traceable reasoning; CSMs routinely override it and stop trusting it.</td><td>Every risk call cites the specific signals behind it and links to the source record.</td></tr>
+              <tr><td><strong>When</strong> I brief my leader on book health, <strong>I want to</strong> defend the numbers, <strong>so I can</strong> ask for the resource I need without relitigating the data.</td><td>Hand-built slides, inconsistent between CSMs.</td><td>One generated view both the CSM and the leader are looking at.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The second job is the one that decides whether this ships or dies. An agent that produces correct risk calls with no legible reasoning fails in exactly the way the existing health score already failed — it gets overridden, then ignored.</p>
+      </div>
+
+      <!-- 3 -->
+      <div class="doc-sec">
+        <h2><span class="num">03</span>Prioritization</h2>
+        <p>This competed against manual-check-in tooling and a success-plan template expansion for the same quarter's capacity. Scored with RICE, using CSM time-study data for impact rather than estimates:</p>
+        <div class="tbl-wrap">
+          <table class="doc-tbl">
+            <thead><tr><th>Candidate</th><th>Reach</th><th>Impact</th><th>Confidence</th><th>Effort</th><th>Score</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Renewal-risk review agent</strong></td><td>Full CSM org, 400+ accounts</td><td>3 (massive)</td><td>80% — time study, not estimate</td><td>2 quarters</td><td><strong>Highest</strong></td></tr>
+              <tr><td>Manual check-in tooling</td><td>Full CSM org</td><td>1 (low)</td><td>90%</td><td>1 quarter</td><td>Middle</td></tr>
+              <tr><td>Success-plan template expansion</td><td>Subset requesting it</td><td>2 (high)</td><td>60%</td><td>1.5 quarters</td><td>Lowest</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The judgment call worth naming: check-in tooling was cheaper, faster, and had louder customer demand. It lost because it optimizes a ritual rather than the decision the ritual exists to serve. Field requests were for a better manual review; the time study said the manual review itself was the problem.</p>
+      </div>
+
+      <!-- 4 -->
+      <div class="doc-sec">
+        <h2><span class="num">04</span>Goals, non-goals, and success measures</h2>
+        <div class="split">
+          <div class="panel">
+            <h4><span class="dot-g"></span> Goals</h4>
+            <ul>
+              <li>Cut renewal-risk review effort materially, without reducing coverage of the book</li>
+              <li>Surface risk early enough that intervention is still possible</li>
+              <li>Make every risk call auditable back to source records</li>
+              <li>Keep human judgment on every high-risk determination</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h4><span class="dot-r"></span> Non-goals</h4>
+            <ul>
+              <li>The agent does not contact customers. Ever, in v1 — outbound is a separate trust conversation</li>
+              <li>The agent does not change account or renewal records; it proposes, a human commits</li>
+              <li>No renewal-probability percentage. A false precision number invites arguments about the number instead of the account</li>
+              <li>Not a replacement for the CSM relationship; explicitly a preparation layer</li>
+            </ul>
+          </div>
+        </div>
+        <h3>OKR framing taken to executive review</h3>
+        <div class="tbl-wrap">
+          <table class="doc-tbl">
+            <thead><tr><th>Key result</th><th>Baseline</th><th>Target</th><th>Outcome</th></tr></thead>
+            <tbody>
+              <tr><td>Reduce manual renewal-risk operations load</td><td>Baseline from CSM time study</td><td>−30%</td><td><strong>−40% achieved</strong> (200+ hrs/week class of work)</td></tr>
+              <tr><td>Full-book coverage per cycle</td><td>Partial, CSM-selected</td><td>100% of accounts scored</td><td>Met</td></tr>
+              <tr><td>CSM agreement rate with high-risk calls</td><td>n/a — new measure</td><td>&gt;70% accepted on review</td><td>Met after rubric iteration (see <a href="/agent-evals" style="color:var(--accent);">Agent Eval Rubrics</a>)</td></tr>
+              <tr><td>Premium-tier attach</td><td>Part of a 0→120 account program</td><td>Contribute to tier upgrade rationale</td><td>Cited in upgrade conversations</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Note the third KR. Agreement rate is the metric that keeps an agent honest — it is the only one that degrades when the agent is confidently wrong, and it is the one I would defend hardest if asked to cut the measurement scope.</p>
+      </div>
+
+      <!-- 5 -->
+      <div class="doc-sec">
+        <h2><span class="num">05</span>Requirements</h2>
+        <div class="tbl-wrap">
+          <table class="doc-tbl">
+            <thead><tr><th>#</th><th>Requirement</th><th>Priority</th><th>Acceptance</th></tr></thead>
+            <tbody>
+              <tr><td>R1</td><td>Agent ingests usage telemetry, support-case history, health-score trend, sponsor-change signals, and success-plan progress for every account in scope</td><td><span class="tag tag--p0">P0</span></td><td>All five sources present or the account is flagged <em>insufficient evidence</em>, never silently scored</td></tr>
+              <tr><td>R2</td><td>Every risk determination cites the specific signals that produced it, each linked to its source record</td><td><span class="tag tag--p0">P0</span></td><td>Zero uncited risk calls in eval set</td></tr>
+              <tr><td>R3</td><td>Risk tiers are ordinal (Low / Watch / High), not a probability score</td><td><span class="tag tag--p0">P0</span></td><td>Design and GTM sign-off on tier language</td></tr>
+              <tr><td>R4</td><td>Every High determination routes to a named human for accept / downgrade / reject before it is visible outside the CSM</td><td><span class="tag tag--p0">P0</span></td><td>No High tier reaches leadership views unreviewed</td></tr>
+              <tr><td>R5</td><td>Agent operates strictly under least-privilege data access; no cross-account or cross-scope reads</td><td><span class="tag tag--p0">P0</span></td><td>Security review passed; access controls enforced at the platform layer, not in the prompt</td></tr>
+              <tr><td>R6</td><td>Reviewer decisions (accept / downgrade / reject, with reason) are captured as labelled evaluation data</td><td><span class="tag tag--p1">P1</span></td><td>Feeds the scoring rubric refresh each cycle</td></tr>
+              <tr><td>R7</td><td>Suggested next action attached to each Watch and High account</td><td><span class="tag tag--p1">P1</span></td><td>CSM can act without leaving the view</td></tr>
+              <tr><td>R8</td><td>Leader roll-up across a CSM's book</td><td><span class="tag tag--p1">P1</span></td><td>Same underlying data as the CSM view — one number, one source</td></tr>
+              <tr><td>R9</td><td>Configurable signal weighting per segment</td><td><span class="tag tag--p2">P2</span></td><td>Deferred — see open questions</td></tr>
+              <tr><td>R10</td><td>Natural-language query over the risk set</td><td><span class="tag tag--p2">P2</span></td><td>Deferred to platform-level assistant, not built here</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>R5 is worth dwelling on. Enforcing access control at the platform layer rather than through agent instructions is the difference between a control and a suggestion. This was the requirement that unblocked deals with banking and finance customers whose security review had been stalling them.</p>
+      </div>
+
+      <!-- 6 -->
+      <div class="doc-sec">
+        <h2><span class="num">06</span>Decision boundaries</h2>
+        <p>The core design question for any agent is not what it can do — it is what it is permitted to decide alone. This is the table engineering, security, and GTM all argued over, and the one I would bring to any agent review:</p>
+        <div class="tbl-wrap">
+          <table class="doc-tbl">
+            <thead><tr><th>Decision</th><th>Agent decides</th><th>Human decides</th><th>Rationale</th></tr></thead>
+            <tbody>
+              <tr><td>Which signals are relevant to this account</td><td>✓</td><td></td><td>Mechanical; high volume; cheap to get wrong and correct</td></tr>
+              <tr><td>Low / Watch tier assignment</td><td>✓</td><td></td><td>Reversible, low blast radius, reviewed in aggregate</td></tr>
+              <tr><td>High tier assignment</td><td>Proposes</td><td>✓ Confirms</td><td>Triggers escalation and resourcing; a false positive burns CSM credibility with the account</td></tr>
+              <tr><td>Insufficient-evidence flag</td><td>✓</td><td></td><td>Abstaining must always be free — this is what stops confident guessing</td></tr>
+              <tr><td>Any customer-facing communication</td><td></td><td>✓ Always</td><td>Trust boundary. Non-negotiable in v1</td></tr>
+              <tr><td>Record mutation</td><td></td><td>✓ Always</td><td>Agent proposes, human commits. Keeps the audit trail human-attributable</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="quote"><p>"Abstaining has to be cheaper for the agent than guessing. If the only way to look useful is to produce a verdict, it will produce a verdict."</p></div>
+      </div>
+
+      <!-- 7 -->
+      <div class="doc-sec">
+        <h2><span class="num">07</span>Rollout</h2>
+        <p>Enterprise B2B does not permit clean account-level A/B splits — accounts are not interchangeable and customers notice inconsistent behaviour. So validation was staged by cohort with success criteria fixed in advance:</p>
+        <ul>
+          <li><strong>Stage 0 — Shadow.</strong> Agent scores the full book; output visible only to the product team. Compared against CSM judgment on the same accounts. Ship gate: agreement rate clears the rubric threshold.</li>
+          <li><strong>Stage 1 — Single-team pilot.</strong> One CSM team, agent output visible alongside existing workflow, both running. Ship gate: no regression in review quality, plus qualitative signal that CSMs read the citations rather than the tier alone.</li>
+          <li><strong>Stage 2 — Segment expansion.</strong> Widened by segment, not by percentage — regulated-industry accounts last, after security sign-off.</li>
+          <li><strong>Stage 3 — GA</strong>, with the manual path still available for a full cycle. Removing the fallback before one complete renewal cycle would have meant discovering seasonal failure modes in production.</li>
+        </ul>
+      </div>
+
+      <!-- 8 -->
+      <div class="doc-sec">
+        <h2><span class="num">08</span>Risks and what we cut</h2>
+        <div class="tbl-wrap">
+          <table class="doc-tbl">
+            <thead><tr><th>Risk</th><th>Mitigation</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Confident wrongness.</strong> A plausible, well-written, incorrect risk narrative is more dangerous than an obvious error — it survives review.</td><td>Citation requirement (R2) plus reviewer capture (R6). The rubric weights unsupported-but-fluent output as a hard fail, not a partial score.</td></tr>
+              <tr><td><strong>Automation complacency.</strong> Reviewers rubber-stamp High tiers once volume climbs.</td><td>Track accept-rate drift over time. A rising accept rate with a flat correction rate is a warning sign, not a success signal.</td></tr>
+              <tr><td><strong>Signal staleness.</strong> Sponsor-change data is the weakest input and the highest-leverage one.</td><td>Insufficient-evidence flag rather than imputation.</td></tr>
+              <tr><td><strong>Cost per account at full book scale.</strong></td><td>Tiered model routing — cheap pass over the full book, expensive reasoning pass only on accounts that clear a first-pass threshold.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Cut from v1</h3>
+        <p>A renewal-probability percentage, agent-drafted customer emails, and per-segment signal weighting (R9). The percentage was cut on judgment rather than effort: it tested well in concept and would have made the feature demo better, and it would have moved every internal conversation onto the accuracy of a number nobody could defend. Weighting was cut because we did not yet have enough labelled reviewer decisions to tune it honestly — that is now what R6 is accumulating.</p>
+      </div>
+
+      <!-- 9 -->
+      <div class="doc-sec">
+        <h2><span class="num">09</span>Executive narrative</h2>
+        <p>The one-paragraph version that went upward, which is a different document than everything above:</p>
+        <div class="quote"><p>"Our CSM organization spends more than 200 hours a week on manual account review, and because it is expensive, it runs too late to change renewal outcomes. Two competitors are winning evaluations on risk intelligence we do not have. We are shipping an agent that scores the full book continuously, shows its evidence, and routes every high-risk call to a human before it moves. We expect a 30% reduction in review load. We are not automating the customer relationship — we are giving it back the hours."</p></div>
+        <p>Three things that paragraph does deliberately: it opens with the operational cost rather than the technology, it names the competitive stake, and it states the boundary of the automation before anyone asks. Executive alignment on an AI feature is usually lost on the third point, not the first.</p>
+      </div>
+
+      <!-- 10 -->
+      <div class="doc-sec">
+        <h2><span class="num">10</span>Open questions</h2>
+        <ul>
+          <li>At what labelled-decision volume does per-segment weighting (R9) become tunable rather than guessed?</li>
+          <li>Does agreement rate stay a real quality signal once CSMs trust the agent, or does it decay into a compliance metric?</li>
+          <li>Where does the abstain threshold sit? Too eager to abstain and the agent stops being useful; too reluctant and it guesses. This is a business decision, not a model parameter.</li>
+        </ul>
+        <div class="next">
+          <a href="/agent-evals" class="io-btn io-btn--primary">How this agent was evaluated</a>
+          <a href="/proof-of-value" class="io-btn io-btn--secondary">Proof of Value</a>
+        </div>
+      </div>
+
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <span class="footer-text">Abhay Tyagi — Built with Claude Code</span>
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/profile">Profile</a>
+          <a href="/claude-code">Claude Code</a>
+          <a href="https://productartisan.substack.com" target="_blank" rel="noopener">Substack</a>
+          <a href="https://github.com/lampiiii" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/assets/js/shared.js"></script>
+</body>
+</html>
